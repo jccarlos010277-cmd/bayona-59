@@ -251,10 +251,22 @@
         import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, collection, addDoc, query, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // Configuración automática del entorno (Mantener estas líneas)
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app';
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : null;
-        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+        // -----------------------------------------------------------------
+        // TU CONFIGURACIÓN DE FIREBASE AÑADIDA AQUÍ
+        // -----------------------------------------------------------------
+        const FIREBASE_CONFIG = {
+          apiKey: "AIzaSyDGiGWy8c6WhfBFgQdHmMQUV8y8EMEZANk",
+          authDomain: "terrazasdebayonaopiniones.firebaseapp.com",
+          projectId: "terrazasdebayonaopiniones",
+          storageBucket: "terrazasdebayonaopiniones.firebasestorage.app",
+          messagingSenderId: "830449670376",
+          appId: "1:830449670376:web:927a33a83aae5ab944115d"
+        };
+        
+        // Asignamos las variables de uso interno del script
+        const appId = FIREBASE_CONFIG.projectId; 
+        const firebaseConfig = FIREBASE_CONFIG;
+        const initialAuthToken = null; // No usamos token personalizado
 
         let db, auth, userId;
         const submitBtn = document.getElementById('submit-btn');
@@ -271,12 +283,11 @@
         }
 
         async function initApp() {
-            updateFormState(false); // Asegurar que inicie deshabilitado
+            updateFormState(false); 
 
             if (!firebaseConfig) {
                 console.error("Falta configuración Firebase");
-                const container = document.getElementById('reviews-container');
-                container.innerHTML = '<div class="col-span-2 text-center text-red-600">Error de configuración: Las opiniones no pueden cargarse.</div>';
+                document.getElementById('reviews-container').innerHTML = '<div class="col-span-2 text-center text-red-600">Error: No se pudo cargar la configuración de Firebase.</div>';
                 return;
             }
 
@@ -284,16 +295,12 @@
             auth = getAuth(app);
             db = getFirestore(app);
 
-            // Intentar autenticación (Necesario para Firestore)
+            // Intentar autenticación anónima
             try {
-                if (initialAuthToken) {
-                    await signInWithCustomToken(auth, initialAuthToken);
-                } else {
-                    await signInAnonymously(auth);
-                }
+                await signInAnonymously(auth);
             } catch (e) {
                 console.error("Error de autenticación:", e);
-                document.getElementById('reviews-container').innerHTML = '<div class="col-span-2 text-center text-red-600">Error: No se pudo conectar a la base de datos.</div>';
+                document.getElementById('reviews-container').innerHTML = '<div class="col-span-2 text-center text-red-600">Error: La base de datos no es accesible (revisa las reglas de seguridad).</div>';
                 return;
             }
 
@@ -301,7 +308,7 @@
             onAuthStateChanged(auth, (user) => {
                 if (user) {
                     userId = user.uid;
-                    updateFormState(true); // Habilitar el botón solo cuando el ID de usuario exista
+                    updateFormState(true); // Habilitar el botón
                     loadReviews(); // Cargar opiniones
                 } else {
                     userId = null;
@@ -313,14 +320,14 @@
         // Cargar opiniones en tiempo real
         function loadReviews() {
             const container = document.getElementById('reviews-container');
-            // Usamos la ruta estándar para datos públicos
+            // La ruta usa el projectId: terrazasdebayonaopiniones
             const colRef = collection(db, 'artifacts', appId, 'public', 'data', 'reviews');
             
             onSnapshot(query(colRef), (snapshot) => {
                 const reviews = [];
                 snapshot.forEach(doc => reviews.push({ id: doc.id, ...doc.data() }));
 
-                // Ordenar por fecha (más reciente primero) en el cliente
+                // Ordenar por fecha (más reciente primero)
                 reviews.sort((a, b) => (b.timestamp?.seconds || 0) - (a.timestamp?.seconds || 0));
 
                 if (reviews.length === 0) {
@@ -344,7 +351,11 @@
         // Enviar opinión
         document.getElementById('review-form').addEventListener('submit', async (e) => {
             e.preventDefault();
-            // Ya no es necesario el alert, porque el botón está deshabilitado si no hay userId
+
+            if (!userId) {
+                // Esto no debería pasar si el botón está deshabilitado, pero es una buena guardia
+                return;
+            }
 
             const msg = document.getElementById('form-message');
             const name = document.getElementById('review-name').value;
@@ -368,8 +379,8 @@
                 msg.classList.remove('hidden');
                 setTimeout(() => msg.classList.add('hidden'), 5000);
             } catch (err) {
-                console.error(err);
-                msg.textContent = "Error al enviar. Verifica tu conexión o las reglas de Firebase.";
+                console.error("Error al añadir documento:", err);
+                msg.textContent = "Error al enviar. Asegúrate de que las reglas de Firebase estén publicadas.";
                 msg.className = "text-center mt-4 text-sm font-semibold text-red-600";
                 msg.classList.remove('hidden');
             } finally {

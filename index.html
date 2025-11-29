@@ -6,6 +6,9 @@
     <title>Terrazas de Bayona - Alojamiento en La Habana</title>
     <!-- Carga de Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Carga de Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
     <!-- Configuración de la fuente Inter y estilos personalizados -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
@@ -57,140 +60,248 @@
             width: 100%;
             z-index: 20;
         }
+        /* Estilo para imágenes de galería con efecto hover */
+        .gallery-item img {
+            transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.05);
+            filter: brightness(0.9);
+        }
+        .gallery-item {
+            overflow: hidden; /* Para que la imagen no se desborde al hacer scale */
+        }
     </style>
 </head>
 <body class="text-gray-800">
 
-    <!-- CABECERA Y NAVEGACIÓN -->
+    <!-- CABECERA FIJA Y NAVEGACIÓN -->
     <header id="main-header" class="bg-white shadow-md sticky top-0 z-20">
         <div class="content-container mx-auto px-4 py-3 flex justify-between items-center">
             <a href="#" class="text-2xl font-bold text-teal-600 hover:text-teal-800 transition duration-300">
                 Terrazas de Bayona
             </a>
             
-            <!-- Menú Desktop -->
+            <!-- Menú de escritorio -->
             <nav class="hidden md:flex items-center space-x-6">
-                <a href="#ubicacion" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Ubicación</a>
+                <a href="#about" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Nosotros</a>
                 <a href="#alojamiento" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Alojamiento</a>
+                <a href="#servicios" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Servicios</a>
+                <a href="#ubicacion" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Ubicación</a>
                 <a href="#opiniones" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Opiniones</a>
                 <a href="#contacto" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition duration-300">
-                    Contáctanos: +53 53893144
+                    Contáctanos
                 </a>
             </nav>
 
-            <!-- Botón Móvil -->
+            <!-- Botón de menú móvil -->
             <button id="mobile-menu-button" class="md:hidden p-2 text-gray-600 hover:text-teal-600 rounded-lg transition duration-300">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
             </button>
         </div>
         
-        <!-- Menú Móvil -->
+        <!-- Menú desplegable móvil -->
         <div id="mobile-menu" class="hidden md:hidden px-4 pb-4 bg-gray-50 border-t border-gray-200">
-            <a href="#ubicacion" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Ubicación</a>
+            <a href="#about" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Nosotros</a>
             <a href="#alojamiento" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Alojamiento</a>
+            <a href="#servicios" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Servicios</a>
+            <a href="#ubicacion" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Ubicación</a>
             <a href="#opiniones" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Opiniones</a>
             <a href="#contacto" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Contáctanos</a>
         </div>
     </header>
 
-    <!-- SECCIÓN HERO -->
-    <section class="relative h-[60vh] md:h-[80vh] bg-cover bg-center flex items-center justify-center" 
-             style="background-image: url('https://placehold.co/1200x800/228b7e/ffffff?text=Terrazas+de+Bayona+Habana');">
+    <!-- SECCIÓN HERO/BIENVENIDA -->
+    <section class="relative h-[70vh] md:h-[90vh] bg-cover bg-center flex items-center justify-center" 
+             style="background-image: url('https://i.postimg.cc/HxjRCG5Y/frente.jpg');">
         <div class="absolute inset-0 bg-black opacity-40"></div>
         <div class="relative text-center text-white p-6 animate-on-scroll">
             <h1 class="text-4xl md:text-6xl font-extrabold mb-4 hero-text-shadow">
                 Terrazas de Bayona
             </h1>
             <p class="text-xl md:text-2xl font-light hero-text-shadow max-w-2xl mx-auto">
-                Tu hogar perfecto en La Habana. Comodidad, tranquilidad y una experiencia auténtica.
+                Descubre tu hogar perfecto en La Habana. Comodidad, tranquilidad y una experiencia auténtica.
             </p>
         </div>
     </section>
 
-    <!-- SECCIÓN UBICACIÓN -->
-    <section id="ubicacion" class="py-16 bg-white">
-        <div class="content-container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center text-teal-700 mb-12 animate-on-scroll">
-                Ubicación Inmejorable
-            </h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-                <div class="p-6 bg-gray-50 rounded-xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1 animate-on-scroll">
-                    <div class="text-4xl text-teal-600 mb-3">📍</div>
-                    <p class="font-semibold text-lg">A 10 minutos a pie</p>
-                    <p class="text-gray-600">Del centro de la ciudad de La Habana Vieja.</p>
-                </div>
-                <div class="p-6 bg-gray-50 rounded-xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1 animate-on-scroll">
-                    <div class="text-4xl text-teal-600 mb-3">🍽️</div>
-                    <p class="font-semibold text-lg">Comida Local</p>
-                    <p class="text-gray-600">Excelentes opciones gastronómicas cerca.</p>
-                </div>
-                <div class="p-6 bg-gray-50 rounded-xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1 animate-on-scroll">
-                    <div class="text-4xl text-teal-600 mb-3">🚌</div>
-                    <p class="font-semibold text-lg">Fácil Acceso</p>
-                    <p class="text-gray-600">Cerca de la parada de autobús a la playa.</p>
-                </div>
-                <div class="p-6 bg-gray-50 rounded-xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1 animate-on-scroll">
-                    <div class="text-4xl text-teal-600 mb-3">🛍️</div>
-                    <p class="font-semibold text-lg">Mercado</p>
-                    <p class="text-gray-600">Cerca de mercados y tiendas.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- SECCIÓN SOBRE NOSOTROS -->
-    <section class="py-16 bg-white border-t border-gray-100">
+    <section id="about" class="py-16 bg-white">
         <div class="content-container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
             <div class="order-2 md:order-1 animate-on-scroll">
-                <img src="https://placehold.co/600x400/80cbc4/000000?text=Alexander+e+Isaida" 
+                <img src="https://i.postimg.cc/G29V10Yr/asencio-e-izaida.jpg" 
                      alt="Alexander e Isaida"
                      class="w-full h-auto rounded-xl shadow-2xl object-cover">
             </div>
             <div class="order-1 md:order-2 animate-on-scroll">
-                <h2 class="text-3xl font-bold text-teal-700 mb-4">Sobre nosotros</h2>
+                <h2 class="text-3xl font-bold text-teal-700 mb-4">Un poco sobre nosotros</h2>
                 <p class="text-gray-700 mb-4 leading-relaxed">
-                    Somos Alexander e Isaida, una pareja con 16 años de casados. Nos encanta compartir nuestras pasiones y crear un ambiente cálido y acogedor.
+                    Somos Alexander e Isaida, una pareja con 16 años de casados y el corazón abierto para recibirte. Nos apasiona compartir nuestra cultura y asegurar que tu estancia sea inolvidable.
                 </p>
                 <p class="text-gray-700 mb-4 leading-relaxed">
-                    Valoramos la comodidad de estar en casa y disfrutamos cocinando para nuestros huéspedes. ¡Esperamos conocerte pronto!
+                    Creemos firmemente que la mejor forma de conocer un lugar es a través de sus personas. Por eso, te invitamos a vivir una experiencia cubana auténtica, con la comodidad de un hogar y la calidez de una familia.
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- SECCIÓN DE ALOJAMIENTO/INSTALACIONES Y PRECIOS -->
-    <section id="alojamiento" class="py-16 bg-white">
-        <div class="content-container mx-auto px-4 grid md:grid-cols-2 gap-12">
-            <!-- Instalaciones -->
-            <div class="animate-on-scroll">
-                <h3 class="text-2xl font-bold text-teal-700 mb-6">Instalaciones</h3>
-                <ul class="grid grid-cols-2 gap-y-4 text-gray-700">
-                    <li class="flex items-center"><span class="text-teal-500 mr-2">✔️</span>Agua caliente</li>
-                    <li class="flex items-center"><span class="text-teal-500 mr-2">✔️</span>Aire acondicionado</li>
-                    <li class="flex items-center"><span class="text-teal-500 mr-2">✔️</span>2 terrazas</li>
-                    <li class="flex items-center"><span class="text-teal-500 mr-2">✔️</span>Baño privado</li>
-                    <li class="flex items-center"><span class="text-teal-500 mr-2">✔️</span>Wi-Fi</li>
-                    <li class="flex items-center"><span class="text-teal-500 mr-2">✔️</span>Cocina compartida</li>
-                </ul>
+    <!-- SECCIÓN ALOJAMIENTO Y GALERÍA -->
+    <section id="alojamiento" class="py-16 bg-gray-50 border-t border-gray-100">
+        <div class="content-container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-teal-700 mb-12 animate-on-scroll">
+                Nuestro Alojamiento: Tu Oasis en La Habana
+            </h2>
+            <p class="text-center text-gray-600 mb-10 max-w-2xl mx-auto animate-on-scroll">
+                Descubre cada rincón de Terrazas de Bayona. Desde nuestras confortables habitaciones hasta las áreas comunes, todo diseñado para tu máximo confort y disfrute.
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <div class="gallery-item bg-white rounded-xl shadow-lg overflow-hidden animate-on-scroll">
+                    <img src="https://i.postimg.cc/MTXN8kRG/habitacion.jpg" alt="Habitación principal" class="w-full h-48 object-cover">
+                    <div class="p-4"><h3 class="font-semibold text-lg text-teal-700">Habitación Confortable</h3></div>
+                </div>
+                <div class="gallery-item bg-white rounded-xl shadow-lg overflow-hidden animate-on-scroll">
+                    <img src="https://i.postimg.cc/MTXN8kRK/habitacion_1.jpg" alt="Habitación secundaria" class="w-full h-48 object-cover">
+                    <div class="p-4"><h3 class="font-semibold text-lg text-teal-700">Espacio Adicional</h3></div>
+                </div>
+                <div class="gallery-item bg-white rounded-xl shadow-lg overflow-hidden animate-on-scroll">
+                    <img src="https://i.postimg.cc/XJXm0MFJ/sala.jpg" alt="Sala de estar" class="w-full h-48 object-cover">
+                    <div class="p-4"><h3 class="font-semibold text-lg text-teal-700">Sala de Estar</h3></div>
+                </div>
+                <div class="gallery-item bg-white rounded-xl shadow-lg overflow-hidden animate-on-scroll">
+                    <img src="https://i.postimg.cc/RFqyzrfZ/sala_1.jpg" alt="Sala de estar vista 2" class="w-full h-48 object-cover">
+                    <div class="p-4"><h3 class="font-semibold text-lg text-teal-700">Ambiente Relajado</h3></div>
+                </div>
+                <div class="gallery-item bg-white rounded-xl shadow-lg overflow-hidden animate-on-scroll">
+                    <img src="https://i.postimg.cc/k4Dzdr8n/baño.jpg" alt="Baño privado" class="w-full h-48 object-cover">
+                    <div class="p-4"><h3 class="font-semibold text-lg text-teal-700">Baño Privado</h3></div>
+                </div>
+                <div class="gallery-item bg-white rounded-xl shadow-lg overflow-hidden animate-on-scroll">
+                    <img src="https://i.postimg.cc/Y9jZwcg0/terraza.jpg" alt="Terraza con vista" class="w-full h-48 object-cover">
+                    <div class="p-4"><h3 class="font-semibold text-lg text-teal-700">Terrazas Soleadas</h3></div>
+                </div>
+                 <div class="gallery-item bg-white rounded-xl shadow-lg overflow-hidden animate-on-scroll">
+                    <img src="https://i.postimg.cc/HxjRCG5Y/frente.jpg" alt="Exterior de la casa" class="w-full h-48 object-cover">
+                    <div class="p-4"><h3 class="font-semibold text-lg text-teal-700">Fachada Principal</h3></div>
+                </div>
             </div>
 
-            <!-- Precios -->
-            <div class="animate-on-scroll">
-                <h3 class="text-2xl font-bold text-teal-700 mb-6">Precios</h3>
-                <div class="bg-teal-50 p-6 rounded-xl shadow-lg">
-                    <p class="text-xl font-semibold mb-4 text-teal-800">Habitación privada:</p>
-                    <ul class="space-y-3 text-gray-700">
-                        <li class="flex justify-between border-b pb-2">
-                            <span class="font-medium">1-6 noches:</span>
-                            <span class="font-bold text-teal-600">25 USD/noche</span>
+            <!-- Precios y comodidades -->
+            <div class="grid md:grid-cols-2 gap-12 mt-16">
+                <!-- Comodidades -->
+                <div class="animate-on-scroll">
+                    <h3 class="text-2xl font-bold text-teal-700 mb-6">Comodidades</h3>
+                    <ul class="grid grid-cols-2 gap-y-4 text-gray-700">
+                        <li class="flex items-center"><span class="text-teal-500 mr-2">✔️</span>Agua caliente</li>
+                        <li class="flex items-center"><span class="text-teal-500 mr-2">✔️</span>Aire acondicionado</li>
+                        <li class="flex items-center"><span class="text-teal-500 mr-2">✔️</span>2 terrazas</li>
+                        <li class="flex items-center"><span class="text-teal-500 mr-2">✔️</span>Baño privado</li>
+                        <li class="flex items-center"><span class="text-teal-500 mr-2">✔️</span>Wi-Fi</li>
+                        <li class="flex items-center"><span class="text-teal-500 mr-2">✔️</span>Cocina compartida</li>
+                    </ul>
+                </div>
+
+                <!-- Precios -->
+                <div class="animate-on-scroll">
+                    <h3 class="text-2xl font-bold text-teal-700 mb-6">Precios por Noche</h3>
+                    <div class="bg-teal-50 p-6 rounded-xl shadow-lg">
+                        <p class="text-xl font-semibold mb-4 text-teal-800">Habitación privada:</p>
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex justify-between border-b pb-2">
+                                <span class="font-medium">1-6 noches:</span>
+                                <span class="font-bold text-teal-600">25 USD</span>
+                            </li>
+                            <li class="flex justify-between border-b pb-2">
+                                <span class="font-medium">1-2 semanas:</span>
+                                <span class="font-bold text-teal-600">20 USD</span>
+                            </li>
+                            <li class="flex justify-between">
+                                <span class="font-medium">15+ noches:</span>
+                                <span class="font-bold text-teal-600">15 USD</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN SERVICIOS ADICIONALES -->
+    <section id="servicios" class="py-16 bg-white border-t border-gray-100">
+        <div class="content-container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-teal-700 mb-12 animate-on-scroll">
+                Servicios Adicionales para tu Estancia
+            </h2>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <!-- Desayuno -->
+                <div class="animate-on-scroll">
+                    <img src="https://i.postimg.cc/hjh6qFxK/desayuno.jpg" alt="Desayuno tradicional cubano" class="w-full h-auto rounded-xl shadow-2xl object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-teal-700 mb-3">Desayunos Caseros</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Empieza el día con energía. Ofrecemos deliciosos desayunos tradicionales cubanos, preparados con ingredientes frescos y mucho cariño. ¡Una experiencia gastronómica que no querrás perderte!
+                        </p>
+                    </div>
+                </div>
+                <!-- Tours y Traslados -->
+                <div class="animate-on-scroll">
+                    <img src="https://i.postimg.cc/k4Dzdr82/tour_habana.jpg" alt="Tour por La Habana" class="w-full h-auto rounded-xl shadow-2xl object-cover">
+                     <div class="p-6">
+                        <h3 class="text-2xl font-bold text-teal-700 mb-3">Tours y Traslados</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            ¿Quieres explorar La Habana o sus alrededores? Te ayudamos a organizar tours personalizados y traslados cómodos con nuestro chofer. Descubre los encantos de Cuba sin preocupaciones.
+                        </p>
+                        <!-- Imagen secundaria del chofer -->
+                        <img src="https://i.postimg.cc/RFqyzrf4/chofer.jpg" alt="Chofer disponible" class="w-full h-auto rounded-xl shadow-md mt-4 object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN UBICACIÓN -->
+    <section id="ubicacion" class="py-16 bg-white border-t border-gray-100">
+        <div class="content-container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-teal-700 mb-12 animate-on-scroll">
+                Nuestra Ubicación: El Corazón de La Habana
+            </h2>
+            <p class="text-center text-gray-600 mb-10 max-w-2xl mx-auto animate-on-scroll">
+                Disfruta de la comodidad de estar cerca de todo. Terrazas de Bayona se encuentra en un punto estratégico para explorar La Habana Vieja y sus alrededores.
+            </p>
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <!-- Mapa de Google Maps -->
+                <div class="animate-on-scroll">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3782.903774889608!2d-82.3582496851234!3d23.13637158489744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88cd72b22f4b4b4d%3A0x6a0f7c2d7e1c8d!2sLa%20Habana%2C%20Cuba!5e0!3m2!1ses!2sus!4v1678912345678!5m2!1ses!2sus" 
+                            width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                            class="rounded-xl shadow-lg"></iframe>
+                </div>
+                <!-- Puntos de Interés -->
+                <div class="animate-on-scroll">
+                    <h3 class="text-2xl font-bold text-teal-700 mb-6">Puntos de Interés Cercanos</h3>
+                    <ul class="space-y-4 text-gray-700">
+                        <li class="flex items-start">
+                            <i class="fas fa-walking text-teal-500 mr-3 mt-1 text-xl"></i>
+                            <div>
+                                <span class="font-semibold text-lg">La Habana Vieja:</span> A solo 10 minutos a pie del centro histórico.
+                            </div>
                         </li>
-                        <li class="flex justify-between border-b pb-2">
-                            <span class="font-medium">1-2 semanas:</span>
-                            <span class="font-bold text-teal-600">20 USD/noche</span>
+                        <li class="flex items-start">
+                            <i class="fas fa-utensils text-teal-500 mr-3 mt-1 text-xl"></i>
+                            <div>
+                                <span class="font-semibold text-lg">Gastronomía Local:</span> Restaurantes y paladares a pocos pasos.
+                            </div>
                         </li>
-                        <li class="flex justify-between">
-                            <span class="font-medium">15+ noches:</span>
-                            <span class="font-bold text-teal-600">15 USD/noche</span>
+                        <li class="flex items-start">
+                            <i class="fas fa-bus text-teal-500 mr-3 mt-1 text-xl"></i>
+                            <div>
+                                <span class="font-semibold text-lg">Transporte Público:</span> Parada de autobús a la playa muy cercana.
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-store text-teal-500 mr-3 mt-1 text-xl"></i>
+                            <div>
+                                <span class="font-semibold text-lg">Mercados y Tiendas:</span> Todo lo que necesitas al alcance de tu mano.
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -198,14 +309,14 @@
         </div>
     </section>
 
-    <!-- SECCIÓN DE OPINIONES (CON FORMULARIO Y LISTA DE FIREBASE) -->
+    <!-- SECCIÓN OPINIONES (con Firestore) -->
     <section id="opiniones" class="py-16 bg-gray-50 border-t border-gray-200">
         <div class="content-container mx-auto px-4">
             <h2 class="text-3xl font-bold text-center text-teal-700 mb-10 animate-on-scroll">
                 Opiniones de nuestros huéspedes
             </h2>
 
-            <!-- 1. Formulario de Opinión -->
+            <!-- Formulario para añadir opinión -->
             <div class="max-w-2xl mx-auto mb-16 animate-on-scroll">
                 <div class="bg-white p-8 rounded-xl shadow-xl">
                     <h3 class="text-xl font-bold text-gray-800 mb-6 text-center">Déjanos tu opinión</h3>
@@ -218,7 +329,7 @@
                         <div class="mb-4 text-center">
                             <label class="block text-gray-700 text-sm font-bold mb-2">Calificación</label>
                             <div class="star-rating justify-center">
-                                <!-- Las etiquetas tienen un "for" que apunta al input (ej: star5). Esto permite marcar al hacer click. -->
+                                <!-- Las estrellas son campos de radio ocultos -->
                                 <input type="radio" id="star5" name="rating" value="5" required><label for="star5" title="5 estrellas">★</label>
                                 <input type="radio" id="star4" name="rating" value="4"><label for="star4" title="4 estrellas">★</label>
                                 <input type="radio" id="star3" name="rating" value="3"><label for="star3" title="3 estrellas">★</label>
@@ -232,7 +343,7 @@
                             <textarea id="review-text" rows="3" placeholder="Cuéntanos qué te pareció..." class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500" required></textarea>
                         </div>
                         
-                        <!-- BOTÓN DESHABILITADO POR DEFECTO HASTA CONEXIÓN FIREBASE -->
+                        <!-- Botón de envío, deshabilitado hasta que se autentique Firebase -->
                         <button type="submit" id="submit-btn" class="w-full bg-gray-400 text-white font-bold py-3 rounded-lg transition duration-300 shadow-md" disabled>
                             Conectando...
                         </button>
@@ -241,61 +352,70 @@
                 </div>
             </div>
 
-            <!-- 2. Lista de Opiniones (Contenedor cargado por JS) -->
+            <!-- Contenedor de opiniones -->
             <div id="reviews-container" class="grid md:grid-cols-2 gap-6">
                 <div class="col-span-2 text-center text-gray-500 italic">Cargando opiniones...</div>
             </div>
         </div>
     </section>
 
-    <!-- CONTACTO -->
+    <!-- SECCIÓN CONTACTO Y LLAMADA A LA ACCIÓN -->
     <section id="contacto" class="py-16 bg-teal-600 text-white text-center">
         <div class="content-container mx-auto px-4 animate-on-scroll">
-            <h2 class="text-3xl font-bold mb-4">¿Listo para visitar Cuba?</h2>
-            <p class="text-xl mb-8 font-light">Contáctanos directamente por WhatsApp.</p>
-            <a href="https://wa.me/53893144" target="_blank" class="inline-block bg-white text-teal-600 px-8 py-3 rounded-full font-bold shadow-lg hover:bg-gray-100 transition transform hover:scale-105">
-                WhatsApp: +53 893144
+            <h2 class="text-3xl font-bold mb-4">¿Listo para vivir la experiencia cubana?</h2>
+            <p class="text-xl mb-8 font-light">¡Esperamos tu visita! Contáctanos directamente por WhatsApp para reservar o aclarar cualquier duda.</p>
+            <a href="https://wa.me/5353893144" target="_blank" class="inline-block bg-white text-teal-600 px-8 py-3 rounded-full font-bold shadow-lg hover:bg-gray-100 transition transform hover:scale-105">
+                <i class="fab fa-whatsapp mr-2"></i> WhatsApp: +53 53893144
             </a>
+            <div class="mt-8">
+                <p class="text-lg font-semibold">También puedes encontrarnos en:</p>
+                <div class="flex justify-center space-x-6 mt-4">
+                    <!-- Enlaces de redes sociales (sustituir # por URLs reales) -->
+                    <a href="#" class="text-white hover:text-gray-200 transition text-2xl"><i class="fab fa-facebook-square"></i></a>
+                    <a href="#" class="text-white hover:text-gray-200 transition text-2xl"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
         </div>
     </section>
 
+    <!-- PIE DE PÁGINA -->
     <footer class="bg-gray-800 text-white py-6 text-center">
         <p>&copy; 2025 Terrazas de Bayona. Todos los derechos reservados.</p>
     </footer>
 
-    <!-- LÓGICA DE FIREBASE (Autenticación y Firestore) -->
+    <!-- LÓGICA DE FIREBASE Y JS DE LA PÁGINA -->
     <script type="module">
-        // Importaciones de Firebase desde CDN actualizado (Modular API v12.6.0)
+        // Importaciones de Firebase (Modular API)
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
         import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
-        import { getFirestore, collection, addDoc, query, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, query, onSnapshot, serverTimestamp, doc, deleteDoc } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
 
-        // --- MANEJO DE CONFIGURACIÓN GLOBAL ---
-        // --- MANEJO DE CONFIGURACIÓN GLOBAL ---
-        // Se utilizan las variables globales proporcionadas por el entorno (Canvas)
-        // ** CONFIGURACIÓN DE FIREBASE (REEMPLAZAR CON TUS VALORES REALES) **
-        const FIREBASE_CONFIG_PLACEHOLDER = {
-            apiKey: "AIzaSyDGiGWy8c6WhfBFgQdHmMQUV8y8EMEZANk",
-            authDomain: "terrazasdebayonaopiniones.firebaseapp.com",
-            projectId: "terrazasdebayonaopiniones",
-            storageBucket: "terrazasdebayonaopiniones.firebasestorage.app",
-            messagingSenderId: "830449670376",
-            appId: "1:830449670376:web:927a33a83aae5ab944115d"
-        };
-        
-        // La lógica original busca variables globales, si no existen, usa el placeholder.
-        // Si el usuario tiene un entorno que inyecta las variables, se usarán esas.
-        // Si no, se usará el placeholder para que el código funcione.
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : FIREBASE_CONFIG_PLACEHOLDER;
-        // const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : null; // Línea original comentada
-        const APP_ID = typeof __app_id !== 'undefined' ? __app_id : firebaseConfig.projectId; // Usar projectId como APP_ID por defecto
-        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
-        
-        let db, auth, userId = null; // Inicializar userId a null
-        let isAuthReady = false; // Bandera para saber si la autenticación ha terminado
+        // --- 1. CONFIGURACIÓN Y ESTADO GLOBAL ---
+        let firebaseConfig = null;
+        let APP_ID = 'default-app-id';
+        let initialAuthToken = null;
+
+        let db; 
+        let auth; 
+        let userId = null; 
+        let isAdmin = false; 
+        let isAuthReady = false; 
         const submitBtn = document.getElementById('submit-btn');
 
-        // Función de utilidad para sanitizar HTML (prevenir XSS)
+        function getGlobalConfig() {
+             // Configuración de Canvas
+             if (typeof __firebase_config !== 'undefined' && __firebase_config) {
+                 try {
+                     firebaseConfig = JSON.parse(__firebase_config);
+                 } catch (e) {
+                     console.error("Error al parsear __firebase_config:", e);
+                     firebaseConfig = null;
+                 }
+             }
+             APP_ID = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+             initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+        }
+
         function escapeHtml(text) {
             if (!text) return "";
             return text.toString()
@@ -306,7 +426,6 @@
                        .replace(/'/g, "&#039;");
         }
         
-        // Maneja el estado del botón del formulario
         function updateFormState(ready) {
             isAuthReady = ready;
             if (ready) {
@@ -322,168 +441,256 @@
             }
         }
 
-        // 1. Inicializa Firebase y realiza la autenticación
+        function createReviewCard(review) {
+            const date = review.timestamp ? new Date(review.timestamp.seconds * 1000).toLocaleDateString('es-ES') : 'Fecha desconocida';
+            const stars = '★'.repeat(review.rating) + '☆'.repeat(5 - review.rating);
+            const isOwner = userId === review.userId;
+            const card = document.createElement('div');
+            card.className = 'bg-white p-6 rounded-xl shadow-lg border border-gray-100 flex flex-col justify-between animate-on-scroll';
+            card.dataset.id = review.id;
+
+            let deleteButton = '';
+            // El administrador puede eliminar cualquier comentario.
+            if (isAdmin) {
+                 deleteButton = `<button class="delete-review text-red-500 hover:text-red-700 text-sm ml-auto" data-id="${review.id}" title="Eliminar opinión (Admin)">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>`;
+            }
+
+            card.innerHTML = `
+                <div class="mb-4">
+                    <div class="flex justify-between items-start mb-2">
+                        <p class="font-bold text-lg text-teal-700">${escapeHtml(review.name)}</p>
+                        ${deleteButton}
+                    </div>
+                    <div class="text-yellow-500 text-xl font-mono">${stars}</div>
+                    <p class="text-gray-600 mt-3 italic leading-relaxed">${escapeHtml(review.text)}</p>
+                </div>
+                <div class="text-xs text-gray-400 border-t pt-3 mt-3 flex justify-between items-center">
+                    <span>Publicado el ${date}</span>
+                    <span title="ID de usuario para identificar al autor">${isOwner ? 'TU OPINIÓN' : 'ID: ' + review.userId.substring(0, 8) + '...'}</span>
+                </div>
+            `;
+            return card;
+        }
+
+        function loadReviews() {
+            if (!db || !isAuthReady) {
+                console.log("Firestore no inicializado o autenticación no lista.");
+                return;
+            }
+
+            // Usamos la colección de datos públicos para las opiniones
+            const collectionPath = `artifacts/${APP_ID}/public/data/opiniones`;
+            const q = query(collection(db, collectionPath));
+
+            // Escuchar cambios en tiempo real
+            onSnapshot(q, (snapshot) => {
+                const reviewsContainer = document.getElementById('reviews-container');
+                reviewsContainer.innerHTML = '';
+                let reviews = [];
+
+                snapshot.forEach(doc => {
+                    reviews.push({ id: doc.id, ...doc.data() });
+                });
+
+                // Ordenar las opiniones por fecha de publicación (más recientes primero) en JavaScript.
+                reviews.sort((a, b) => {
+                    if (a.timestamp && b.timestamp) {
+                        return b.timestamp.seconds - a.timestamp.seconds;
+                    }
+                    return 0;
+                });
+                
+                if (reviews.length === 0) {
+                    reviewsContainer.innerHTML = '<div class="col-span-2 text-center text-gray-500 italic p-4">Aún no hay opiniones. ¡Sé el primero en dejar la tuya!</div>';
+                } else {
+                    reviews.forEach(review => {
+                        reviewsContainer.appendChild(createReviewCard(review));
+                    });
+                }
+                
+                // Añadir listeners para botones de eliminar después de cargar
+                document.querySelectorAll('.delete-review').forEach(button => {
+                    button.addEventListener('click', async (e) => {
+                        const reviewId = e.target.dataset.id;
+                        if (confirm('¿Estás seguro de que quieres eliminar esta opinión?')) { // Usar modal personalizado en apps reales
+                             try {
+                                 await deleteDoc(doc(db, collectionPath, reviewId));
+                                 console.log("Opinión eliminada:", reviewId);
+                             } catch (error) {
+                                 console.error("Error al eliminar la opinión:", error);
+                                 document.getElementById('form-message').textContent = 'Error al eliminar. Revisa la consola.';
+                                 document.getElementById('form-message').classList.remove('hidden', 'text-green-600');
+                                 document.getElementById('form-message').classList.add('text-red-600');
+                             }
+                        }
+                    });
+                });
+
+                // Re-ejecutar la lógica de animación para los nuevos elementos
+                initializeScrollReveal();
+
+            }, (error) => {
+                console.error("Error al escuchar las opiniones:", error);
+                document.getElementById('reviews-container').innerHTML = '<div class="col-span-2 text-center text-red-600 p-4 rounded-xl bg-red-100">Error: No se pudo conectar para cargar las opiniones.</div>';
+            });
+        }
+
         async function initApp() {
             updateFormState(false); 
+            getGlobalConfig(); 
 
             if (!firebaseConfig) {
                 console.error("Firebase Configuración no disponible.");
-                document.getElementById('reviews-container').innerHTML = '<div class="col-span-2 text-center text-red-600 p-4 rounded-xl bg-red-100">Error: La configuración de Firebase no se pudo cargar correctamente.</div>';
+                document.getElementById('reviews-container').innerHTML = '<div class="col-span-2 text-center text-red-600 p-4 rounded-xl bg-red-100">Error: La configuración de Firebase no se pudo cargar.</div>';
                 return;
             }
 
             try {
-                // Inicializa Firebase
                 const app = initializeApp(firebaseConfig);
                 auth = getAuth(app);
                 db = getFirestore(app);
 
-                // Monitorear el estado de autenticación (se dispara después del sign-in)
+                // 1. Escuchar cambios de autenticación
                 onAuthStateChanged(auth, (user) => {
                     if (user) {
                         userId = user.uid;
-                        updateFormState(true); // Habilitar el botón y establecer isAuthReady = true
-                        loadReviews(); // Cargar opiniones
+                        // Obtener los claims para determinar si es admin
+                        user.getIdTokenResult().then(tokenResult => {
+                            isAdmin = !!tokenResult.claims.admin;
+                            updateFormState(true); 
+                            loadReviews(); 
+                            console.log("Usuario autenticado. ID:", userId, "¿Es administrador?:", isAdmin);
+                        });
                     } else {
-                        // Si el usuario cierra sesión o la autenticación falla por alguna razón.
                         userId = null;
-                        updateFormState(false); // Deshabilitar el botón y establecer isAuthReady = false
-                        document.getElementById('reviews-container').innerHTML = '<div class="col-span-2 text-center text-gray-500 italic">Esperando autenticación...</div>';
+                        isAdmin = false;
+                        updateFormState(false); 
+                        // Muestra el mensaje de carga hasta que la carga inicial de loadReviews() falle o se complete.
+                        document.getElementById('reviews-container').innerHTML = '<div class="col-span-2 text-center text-gray-500 italic">Iniciando sesión...</div>';
+                        loadReviews(); // Intenta cargar incluso si es anónimo (debe pasar las reglas de seguridad)
                     }
                 });
 
-                // LÓGICA DE AUTENTICACIÓN:
-                // Intentar iniciar sesión con la ficha personalizada o de forma anónima
+                // 2. Iniciar sesión si es posible
                 if (initialAuthToken) {
+                    console.log("Intentando iniciar sesión con token personalizado...");
                     await signInWithCustomToken(auth, initialAuthToken);
                 } else {
+                    console.log("Token de autenticación no disponible. Iniciando sesión anónimamente...");
                     await signInAnonymously(auth);
                 }
 
-            } catch (e) {
-                console.error("Error al inicializar o autenticar Firebase.", e);
-                let errorMsg = 'Error al conectar la base de datos. Verifica las reglas de seguridad de Firestore.';
-                document.getElementById('reviews-container').innerHTML = `<div class="col-span-2 text-center text-red-600 p-4 rounded-xl bg-red-100">${errorMsg}</div>`;
-                updateFormState(false);
+            } catch (error) {
+                console.error("Error en la inicialización de Firebase o autenticación:", error);
+                // FIX: El error era en esta línea. Ahora es una cadena de texto válida.
+                document.getElementById('reviews-container').innerHTML = '<div class="col-span-2 text-center text-red-600 p-4 rounded-xl bg-red-100">Error crítico de conexión: No se pudieron cargar las opiniones.</div>';
             }
         }
-
-        // 2. Cargar opiniones en tiempo real (onSnapshot)
-        function loadReviews() {
-            if (!db || !APP_ID || !userId) return; // Asegurar que la DB y el Auth estén listos
-            const container = document.getElementById('reviews-container');
-            const colRef = collection(db, 'artifacts', APP_ID, 'public', 'data', 'reviews');
-            
-            // onSnapshot crea una conexión en tiempo real
-            onSnapshot(query(colRef), (snapshot) => {
-                const reviews = [];
-                snapshot.forEach(doc => reviews.push({ id: doc.id, ...doc.data() }));
-
-                // Ordenar por fecha (más reciente primero)
-                reviews.sort((a, b) => (b.timestamp?.seconds || 0) - (a.timestamp?.seconds || 0));
-
-                if (reviews.length === 0) {
-                    container.innerHTML = '<div class="col-span-2 text-center text-gray-500 p-4">Sé el primero en opinar.</div>';
-                    return;
-                }
-
-                container.innerHTML = reviews.map(r => {
-                    const rating = parseInt(r.rating) || 5;
-                    // Genera estrellas amarillas (★) y vacías (☆)
-                    const stars = '★'.repeat(rating) + '☆'.repeat(5 - rating);
-                    const date = r.timestamp ? new Date(r.timestamp.seconds * 1000).toLocaleDateString() : 'Reciente';
-
-                    return `
-                        <div class="bg-white p-6 rounded-xl shadow-md border-l-4 border-teal-500 animate-on-scroll scrolled-in">
-                            <div class="text-yellow-400 text-xl mb-2">${stars}</div>
-                            <p class="text-gray-700 italic mb-4">"${escapeHtml(r.reviewText)}"</p>
-                            <div class="text-right">
-                                <span class="font-bold text-teal-600 block">- ${escapeHtml(r.name)}</span>
-                                <span class="text-xs text-gray-400">${date}</span>
-                            </div>
-                        </div>
-                    `;
-                }).join('');
-            }, (error) => {
-                console.error("Error al escuchar opiniones:", error);
-                container.innerHTML = '<div class="col-span-2 text-center text-red-600 p-4 rounded-xl bg-red-100">Error de permisos: Revisa las Reglas de Seguridad de Firestore.</div></div>';
-            });
-        }
-
-        // 3. Enviar opinión a Firestore
+        
+        // --- 2. Enviar Opinión ---
         document.getElementById('review-form').addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            const msg = document.getElementById('form-message');
-            
-            // Comprobación de estado de autenticación (LA CORRECCIÓN CLAVE)
-            if (!isAuthReady || !userId) {
-                msg.textContent = "Conexión pendiente. Por favor, espera un momento y vuelve a intentarlo.";
-                msg.className = "text-center mt-4 text-sm font-semibold text-orange-600";
-                msg.classList.remove('hidden');
-                setTimeout(() => msg.classList.add('hidden'), 5000);
+            if (!isAuthReady || !db) {
+                document.getElementById('form-message').textContent = 'Error: La conexión no está lista. Intenta de nuevo.';
+                document.getElementById('form-message').classList.remove('hidden', 'text-green-600');
+                document.getElementById('form-message').classList.add('text-red-600');
                 return;
             }
 
             const name = document.getElementById('review-name').value.trim();
             const text = document.getElementById('review-text').value.trim();
-            const rating = document.querySelector('input[name="rating"]:checked')?.value || '5';
+            const ratingInput = document.querySelector('input[name="rating"]:checked');
+            const rating = ratingInput ? parseInt(ratingInput.value) : 0;
 
-            if (name.length === 0 || text.length === 0) return;
+            if (!name || !text || rating === 0) {
+                 // Usar un modal o mensaje interno en lugar de alert
+                document.getElementById('form-message').textContent = 'Por favor, rellena todos los campos y la calificación.';
+                document.getElementById('form-message').classList.remove('hidden', 'text-green-600');
+                document.getElementById('form-message').classList.add('text-red-600');
+                return;
+            }
 
+            const newReview = {
+                name: name,
+                text: text,
+                rating: rating,
+                timestamp: serverTimestamp(),
+                userId: userId, 
+            };
+            
             submitBtn.disabled = true;
             submitBtn.textContent = "Enviando...";
-            msg.classList.add('hidden'); // Ocultar mensaje anterior
 
             try {
-                // Se utiliza el APP_ID para construir la ruta correcta
-                await addDoc(collection(db, 'artifacts', APP_ID, 'public', 'data', 'reviews'), {
-                    name,
-                    reviewText: text,
-                    rating: parseInt(rating),
-                    userId,
-                    timestamp: serverTimestamp()
-                });
+                // Colección para datos públicos compartidos
+                const collectionPath = `artifacts/${APP_ID}/public/data/opiniones`;
+                await addDoc(collection(db, collectionPath), newReview);
                 
-                // Éxito
-                e.target.reset();
-                msg.textContent = "¡Gracias por tu opinión! Se ha publicado con éxito.";
-                msg.className = "text-center mt-4 text-sm font-semibold text-green-600";
-                msg.classList.remove('hidden');
-                setTimeout(() => msg.classList.add('hidden'), 5000);
-            } catch (err) {
-                // Error
-                console.error("Error al añadir documento:", err);
-                msg.textContent = "Error al enviar. Asegúrate de que las Reglas de Seguridad de Firestore permitan la escritura (write).";
-                msg.className = "text-center mt-4 text-sm font-semibold text-red-600";
-                msg.classList.remove('hidden');
+                document.getElementById('form-message').textContent = '¡Opinión publicada con éxito! Gracias por tu reseña.';
+                document.getElementById('form-message').classList.remove('hidden', 'text-red-600');
+                document.getElementById('form-message').classList.add('text-green-600');
+                
+                // Limpiar formulario
+                document.getElementById('review-form').reset();
+                
+            } catch (error) {
+                console.error("Error al añadir la opinión:", error);
+                document.getElementById('form-message').textContent = 'Error al publicar la opinión: ' + error.message;
+                document.getElementById('form-message').classList.remove('hidden', 'text-green-600');
+                document.getElementById('form-message').classList.add('text-red-600');
             } finally {
-                updateFormState(true); // Restaurar estado del botón
+                submitBtn.disabled = false;
+                submitBtn.textContent = "Publicar Opinión";
             }
         });
 
-        // 4. Inicialización y Eventos DOM
-        document.addEventListener('DOMContentLoaded', () => {
-            // Inicialización de la aplicación de Firebase
-            initApp();
-            
-            // --- Lógica para desplazamiento (Scroll Reveal) ---
-            const observer = new IntersectionObserver((entries, observer) => {
+        // --- 3. Animación de Revelación al Desplazarse (Scroll Reveal) ---
+        let observer;
+        
+        function initializeScrollReveal() {
+            // Desconectar el observador anterior si existe para evitar duplicados
+            if (observer) {
+                observer.disconnect();
+            }
+
+            const elementsToAnimate = document.querySelectorAll('.animate-on-scroll');
+
+            observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
+                        // El elemento está visible, añadir la clase final
                         entry.target.classList.add('scrolled-in');
-                        observer.unobserve(entry.target); // Dejar de observar una vez animado
+                        // Dejar de observar el elemento una vez animado
+                        observer.unobserve(entry.target);
                     }
                 });
-            }, { threshold: 0.1 });
-            document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
-            
-            // Menú móvil
-            const btn = document.getElementById('mobile-menu-button');
-            const menu = document.getElementById('mobile-menu');
-            btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+            }, {
+                // Opciones del observador: animar cuando el 10% del elemento sea visible
+                threshold: 0.1 
+            });
 
-            // Desplazamiento suave para enlaces de navegación
+            // Observar cada elemento
+            elementsToAnimate.forEach(element => {
+                // Solo observar si aún no ha sido animado (útil si se llama varias veces, como en loadReviews)
+                if (!element.classList.contains('scrolled-in')) {
+                     observer.observe(element);
+                }
+            });
+        }
+
+
+        // --- 4. Inicializar al cargar la página ---
+        window.onload = function() {
+            // Inicia la aplicación (incluyendo Firebase)
+            initApp();
+            
+            // Inicia la lógica de revelación por scroll
+            initializeScrollReveal();
+            
+            // Lógica de navegación suave
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
@@ -492,19 +699,27 @@
                     const targetElement = document.getElementById(targetId);
 
                     if (targetElement) {
-                        // Usamos scrollIntoView para asegurar que se desplaza al inicio del elemento
-                        targetElement.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start' 
+                        window.scroll({
+                            top: targetElement.offsetTop - 70, // Ajuste para la cabecera fija
+                            behavior: 'smooth'
                         });
-                        
-                        // Pequeño ajuste después del scroll para compensar la cabecera fija
-                        const headerHeight = document.getElementById('main-header').offsetHeight || 0;
-                        window.scrollBy(0, -headerHeight - 8); // Ajuste fino
                     }
                 });
             });
-        });
+
+            // Lógica de menú móvil
+            document.getElementById('mobile-menu-button').addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.toggle('hidden');
+            });
+            
+            // Cerrar menú móvil al hacer clic en un enlace
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                });
+            });
+        };
+        
     </script>
 </body>
 </html>

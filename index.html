@@ -271,9 +271,24 @@
         import { getFirestore, collection, addDoc, query, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
 
         // --- MANEJO DE CONFIGURACIÓN GLOBAL ---
+        // --- MANEJO DE CONFIGURACIÓN GLOBAL ---
         // Se utilizan las variables globales proporcionadas por el entorno (Canvas)
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : null;
-        const APP_ID = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        // ** CONFIGURACIÓN DE FIREBASE (REEMPLAZAR CON TUS VALORES REALES) **
+        const FIREBASE_CONFIG_PLACEHOLDER = {
+            apiKey: "AIzaSyDGiGWy8c6WhfBFgQdHmMQUV8y8EMEZANk",
+            authDomain: "terrazasdebayonaopiniones.firebaseapp.com",
+            projectId: "terrazasdebayonaopiniones",
+            storageBucket: "terrazasdebayonaopiniones.firebasestorage.app",
+            messagingSenderId: "830449670376",
+            appId: "1:830449670376:web:927a33a83aae5ab944115d"
+        };
+        
+        // La lógica original busca variables globales, si no existen, usa el placeholder.
+        // Si el usuario tiene un entorno que inyecta las variables, se usarán esas.
+        // Si no, se usará el placeholder para que el código funcione.
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : FIREBASE_CONFIG_PLACEHOLDER;
+        // const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : null; // Línea original comentada
+        const APP_ID = typeof __app_id !== 'undefined' ? __app_id : firebaseConfig.projectId; // Usar projectId como APP_ID por defecto
         const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
         
         let db, auth, userId = null; // Inicializar userId a null

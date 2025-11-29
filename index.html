@@ -89,6 +89,7 @@
                 <a href="#servicios" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Servicios</a>
                 <a href="#ubicacion" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Ubicación</a>
                 <a href="#opiniones" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Opiniones</a>
+                <a href="#reservas" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Reservas</a>
                 <a href="#contacto" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition duration-300">
                     Contáctanos
                 </a>
@@ -107,6 +108,7 @@
             <a href="#servicios" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Servicios</a>
             <a href="#ubicacion" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Ubicación</a>
             <a href="#opiniones" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Opiniones</a>
+            <a href="#reservas" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Reservas</a>
             <a href="#contacto" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Contáctanos</a>
         </div>
     </header>
@@ -355,6 +357,67 @@
             <!-- Contenedor de opiniones -->
             <div id="reviews-container" class="grid md:grid-cols-2 gap-6">
                 <div class="col-span-2 text-center text-gray-500 italic">Cargando opiniones...</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================= -->
+    <!-- ========= SECCIÓN DE RESERVAS - ACTIVA ======== -->
+    <!-- ============================================= -->
+    <section id="reservas" class="py-16 bg-white border-t border-gray-100">
+        <div class="content-container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-teal-700 mb-10 animate-on-scroll">
+                Reserva tu Estancia
+            </h2>
+            <p class="text-center text-gray-600 mb-10 max-w-2xl mx-auto animate-on-scroll">
+                Completa el siguiente formulario para solicitar tu reserva. Nos pondremos en contacto contigo a la brevedad para confirmar la disponibilidad.
+            </p>
+
+            <div class="max-w-3xl mx-auto animate-on-scroll">
+                <div class="bg-white p-8 rounded-xl shadow-2xl border border-gray-100">
+                    <!-- 
+                        Este formulario ahora está conectado a tu cuenta de Formspree.
+                    -->
+                    <form action="https://formspree.io/f/mqavrlvg" method="POST">
+                        <!-- Campo de Nombre -->
+                        <div class="mb-5">
+                            <label for="booking-name" class="block text-gray-700 text-sm font-bold mb-2">Nombre Completo</label>
+                            <input type="text" id="booking-name" name="nombre" placeholder="Ej: Juan Pérez" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500" required>
+                        </div>
+                        
+                        <!-- Campo de Correo Electrónico -->
+                        <div class="mb-5">
+                            <label for="booking-email" class="block text-gray-700 text-sm font-bold mb-2">Correo Electrónico</label>
+                            <input type="email" id="booking-email" name="email" placeholder="tucorreo@ejemplo.com" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500" required>
+                        </div>
+
+                        <!-- Campos de Fechas (Entrada y Salida) -->
+                        <div class="grid md:grid-cols-2 gap-6 mb-5">
+                            <div>
+                                <label for="check-in" class="block text-gray-700 text-sm font-bold mb-2">Fecha de Entrada</label>
+                                <input type="date" id="check-in" name="fecha_entrada" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500" required>
+                            </div>
+                            <div>
+                                <label for="check-out" class="block text-gray-700 text-sm font-bold mb-2">Fecha de Salida</label>
+                                <input type="date" id="check-out" name="fecha_salida" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500" required>
+                            </div>
+                        </div>
+
+                        <!-- Campo de Número de Huéspedes -->
+                        <div class="mb-6">
+                             <label for="guests" class="block text-gray-700 text-sm font-bold mb-2">Número de Huéspedes</label>
+                            <input type="number" id="guests" name="huespedes" min="1" max="5" placeholder="1" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500" required>
+                        </div>
+                        
+                        <!-- Botón de Envío -->
+                        <button type="submit" class="w-full bg-teal-600 text-white font-bold py-3 rounded-lg hover:bg-teal-700 transition duration-300 shadow-md">
+                            Enviar Solicitud de Reserva
+                        </button>
+                        <p class="text-center mt-4 text-xs text-gray-500">
+                            * El envío de este formulario es una solicitud y está sujeta a confirmación de disponibilidad.
+                        </p>
+                    </form>
+                </div>
             </div>
         </div>
     </section>

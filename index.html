@@ -391,6 +391,17 @@
         import { getFirestore, collection, addDoc, query, onSnapshot, serverTimestamp, doc, deleteDoc } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
 
         // --- 1. CONFIGURACIÓN Y ESTADO GLOBAL ---
+
+        // Configuración de Fallback proporcionada por el usuario
+        const FALLBACK_FIREBASE_CONFIG = {
+            apiKey: "AIzaSyDGiGWy8c6WhfBFgQdHmMQUV8y8EMEZANk",
+            authDomain: "terrazasdebayonaopiniones.firebaseapp.com",
+            projectId: "terrazasdebayonaopiniones",
+            storageBucket: "terrazasdebayonaopiniones.firebasestorage.app",
+            messagingSenderId: "830449670376",
+            appId: "1:830449670376:web:927a33a83aae5ab944115d"
+        };
+        
         let firebaseConfig = null;
         let APP_ID = 'default-app-id';
         let initialAuthToken = null;
@@ -403,7 +414,7 @@
         const submitBtn = document.getElementById('submit-btn');
 
         function getGlobalConfig() {
-             // Configuración de Canvas
+             // 1. Intentar cargar la configuración inyectada por el entorno (preferida)
              if (typeof __firebase_config !== 'undefined' && __firebase_config) {
                  try {
                      firebaseConfig = JSON.parse(__firebase_config);
@@ -412,6 +423,14 @@
                      firebaseConfig = null;
                  }
              }
+
+             // 2. Si la inyección falló, usar la configuración de fallback
+             if (!firebaseConfig) {
+                 console.warn("Usando la configuración de Firebase de respaldo proporcionada por el usuario.");
+                 firebaseConfig = FALLBACK_FIREBASE_CONFIG;
+             }
+
+             // Cargar ID de la App y Token de Autenticación
              APP_ID = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
              initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
         }
@@ -468,19 +487,20 @@
                 </div>
                 <div class="text-xs text-gray-400 border-t pt-3 mt-3 flex justify-between items-center">
                     <span>Publicado el ${date}</span>
-                    <span title="ID de usuario para identificar al autor">${isOwner ? 'TU OPINIÓN' : 'ID: ' + review.userId.substring(0, 8) + '...'}</span>
+                    <span title="ID de usuario para identificar al autor">${isOwner ? 'TU OPINIÓN' : 'ID: ' + escapeHtml(review.userId).substring(0, 8) + '...'}</span>
                 </div>
             `;
             return card;
         }
 
         function loadReviews() {
-            if (!db || !isAuthReady) {
-                console.log("Firestore no inicializado o autenticación no lista.");
+            if (!db || !isAuthReady || !userId) {
+                console.log("Firestore no inicializado, autenticación no lista o userId no disponible.");
                 return;
             }
 
             // Usamos la colección de datos públicos para las opiniones
+            // RUTA: /artifacts/{appId}/public/data/opiniones
             const collectionPath = `artifacts/${APP_ID}/public/data/opiniones`;
             const q = query(collection(db, collectionPath));
 
@@ -513,8 +533,9 @@
                 // Añadir listeners para botones de eliminar después de cargar
                 document.querySelectorAll('.delete-review').forEach(button => {
                     button.addEventListener('click', async (e) => {
-                        const reviewId = e.target.dataset.id;
-                        if (confirm('¿Estás seguro de que quieres eliminar esta opinión?')) { // Usar modal personalizado en apps reales
+                        const reviewId = e.target.dataset.id || e.target.closest('button').dataset.id;
+                        // Uso de modal personalizado o confirm si es solo para prueba/dev
+                        if (confirm('¿Estás seguro de que quieres eliminar esta opinión?')) { 
                              try {
                                  await deleteDoc(doc(db, collectionPath, reviewId));
                                  console.log("Opinión eliminada:", reviewId);
@@ -533,7 +554,7 @@
 
             }, (error) => {
                 console.error("Error al escuchar las opiniones:", error);
-                document.getElementById('reviews-container').innerHTML = '<div class="col-span-2 text-center text-red-600 p-4 rounded-xl bg-red-100">Error: No se pudo conectar para cargar las opiniones.</div>';
+                document.getElementById('reviews-container').innerHTML = '<div class="col-span-2 text-center text-red-600 p-4 rounded-xl bg-red-100">Error: No se pudo conectar para cargar las opiniones. Revisa los permisos.</div>';
             });
         }
 
@@ -556,36 +577,46 @@
                 onAuthStateChanged(auth, (user) => {
                     if (user) {
                         userId = user.uid;
+                        
                         // Obtener los claims para determinar si es admin
                         user.getIdTokenResult().then(tokenResult => {
-                            isAdmin = !!tokenResult.claims.admin;
+                            // La lógica de admin determina si el usuario puede borrar comentarios
+                            isAdmin = !!tokenResult.claims.admin; 
+                            
+                            // Una vez que el usuario y los claims están listos, actualizamos el estado e iniciamos la carga de datos.
                             updateFormState(true); 
                             loadReviews(); 
                             console.log("Usuario autenticado. ID:", userId, "¿Es administrador?:", isAdmin);
+                        }).catch(e => {
+                            // Fallback si el chequeo de token falla, pero el usuario ya está autenticado.
+                            isAdmin = false;
+                            updateFormState(true); 
+                            loadReviews(); 
+                            console.error("Error al obtener token result. Asumiendo no-admin:", e);
                         });
                     } else {
+                        // El usuario está desconectado. No cargamos datos ni habilitamos el formulario.
                         userId = null;
                         isAdmin = false;
-                        updateFormState(false); 
-                        // Muestra el mensaje de carga hasta que la carga inicial de loadReviews() falle o se complete.
-                        document.getElementById('reviews-container').innerHTML = '<div class="col-span-2 text-center text-gray-500 italic">Iniciando sesión...</div>';
-                        loadReviews(); // Intenta cargar incluso si es anónimo (debe pasar las reglas de seguridad)
+                        updateFormState(false);
+                        console.log("Usuario desconectado. Esperando autenticación.");
                     }
                 });
 
-                // 2. Iniciar sesión si es posible
+                // 2. Iniciar sesión: Usamos el token personalizado o iniciamos sesión anónima.
+                // Es crucial que una de estas dos llamadas asíncronas ocurra para garantizar que
+                // onAuthStateChanged se active con un usuario no nulo.
                 if (initialAuthToken) {
                     console.log("Intentando iniciar sesión con token personalizado...");
                     await signInWithCustomToken(auth, initialAuthToken);
                 } else {
-                    console.log("Token de autenticación no disponible. Iniciando sesión anónimamente...");
+                    console.log("Token de autenticación no disponible. Iniciando sesión anónima.");
                     await signInAnonymously(auth);
                 }
 
             } catch (error) {
                 console.error("Error en la inicialización de Firebase o autenticación:", error);
-                // FIX: El error era en esta línea. Ahora es una cadena de texto válida.
-                document.getElementById('reviews-container').innerHTML = '<div class="col-span-2 text-center text-red-600 p-4 rounded-xl bg-red-100">Error crítico de conexión: No se pudieron cargar las opiniones.</div>';
+                document.getElementById('reviews-container').innerHTML = '<div class="col-span-2 text-center text-red-600 p-4 rounded-xl bg-red-100">Error crítico de conexión: ' + error.message + '</div>';
             }
         }
         
@@ -593,8 +624,8 @@
         document.getElementById('review-form').addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            if (!isAuthReady || !db) {
-                document.getElementById('form-message').textContent = 'Error: La conexión no está lista. Intenta de nuevo.';
+            if (!isAuthReady || !db || !userId) {
+                document.getElementById('form-message').textContent = 'Error: La conexión o el usuario no están listos. Intenta de nuevo.';
                 document.getElementById('form-message').classList.remove('hidden', 'text-green-600');
                 document.getElementById('form-message').classList.add('text-red-600');
                 return;
@@ -606,7 +637,6 @@
             const rating = ratingInput ? parseInt(ratingInput.value) : 0;
 
             if (!name || !text || rating === 0) {
-                 // Usar un modal o mensaje interno en lugar de alert
                 document.getElementById('form-message').textContent = 'Por favor, rellena todos los campos y la calificación.';
                 document.getElementById('form-message').classList.remove('hidden', 'text-green-600');
                 document.getElementById('form-message').classList.add('text-red-600');
@@ -635,6 +665,11 @@
                 
                 // Limpiar formulario
                 document.getElementById('review-form').reset();
+                
+                // Reiniciar el estado del mensaje después de un tiempo
+                setTimeout(() => {
+                    document.getElementById('form-message').classList.add('hidden');
+                }, 5000);
                 
             } catch (error) {
                 console.error("Error al añadir la opinión:", error);

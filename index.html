@@ -233,7 +233,7 @@
                         </div>
                         
                         <!-- BOTÓN DESHABILITADO POR DEFECTO HASTA CONEXIÓN FIREBASE -->
-                        <button type="submit" id="submit-btn" class="w-full bg-teal-600 hover:bg-teal-700 text-white font-bold py-3 rounded-lg transition duration-300 shadow-md" disabled>
+                        <button type="submit" id="submit-btn" class="w-full bg-gray-400 text-white font-bold py-3 rounded-lg transition duration-300 shadow-md" disabled>
                             Conectando...
                         </button>
                         <p id="form-message" class="text-center mt-4 text-sm font-semibold hidden"></p>
@@ -276,7 +276,8 @@
         const APP_ID = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
         const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
         
-        let db, auth, userId;
+        let db, auth, userId = null; // Inicializar userId a null
+        let isAuthReady = false; // Bandera para saber si la autenticación ha terminado
         const submitBtn = document.getElementById('submit-btn');
 
         // Función de utilidad para sanitizar HTML (prevenir XSS)
@@ -292,6 +293,7 @@
         
         // Maneja el estado del botón del formulario
         function updateFormState(ready) {
+            isAuthReady = ready;
             if (ready) {
                 submitBtn.disabled = false;
                 submitBtn.textContent = "Publicar Opinión";
@@ -325,30 +327,27 @@
                 onAuthStateChanged(auth, (user) => {
                     if (user) {
                         userId = user.uid;
-                        updateFormState(true); // Habilitar el botón
+                        updateFormState(true); // Habilitar el botón y establecer isAuthReady = true
                         loadReviews(); // Cargar opiniones
                     } else {
                         // Si el usuario cierra sesión o la autenticación falla por alguna razón.
                         userId = null;
-                        updateFormState(false);
+                        updateFormState(false); // Deshabilitar el botón y establecer isAuthReady = false
                         document.getElementById('reviews-container').innerHTML = '<div class="col-span-2 text-center text-gray-500 italic">Esperando autenticación...</div>';
                     }
                 });
 
                 // LÓGICA DE AUTENTICACIÓN:
-                // 1. Intentar iniciar sesión con la ficha personalizada (preferido en Canvas).
+                // Intentar iniciar sesión con la ficha personalizada o de forma anónima
                 if (initialAuthToken) {
                     await signInWithCustomToken(auth, initialAuthToken);
-                    console.log("Firebase: Inicio de sesión con ficha personalizada exitoso.");
                 } else {
-                    // 2. Fallback a autenticación anónima si no hay ficha.
                     await signInAnonymously(auth);
-                    console.log("Firebase: Inicio de sesión anónimo exitoso.");
                 }
 
             } catch (e) {
                 console.error("Error al inicializar o autenticar Firebase.", e);
-                let errorMsg = 'Error al conectar la base de datos. Verifica las reglas de seguridad de Firestore y la Autenticación Anónima.';
+                let errorMsg = 'Error al conectar la base de datos. Verifica las reglas de seguridad de Firestore.';
                 document.getElementById('reviews-container').innerHTML = `<div class="col-span-2 text-center text-red-600 p-4 rounded-xl bg-red-100">${errorMsg}</div>`;
                 updateFormState(false);
             }
@@ -356,9 +355,8 @@
 
         // 2. Cargar opiniones en tiempo real (onSnapshot)
         function loadReviews() {
-            if (!db || !APP_ID) return; // Asegurar que la DB esté inicializada
+            if (!db || !APP_ID || !userId) return; // Asegurar que la DB y el Auth estén listos
             const container = document.getElementById('reviews-container');
-            // Ruta pública para datos compartidos: artifacts/{appId}/public/data/reviews
             const colRef = collection(db, 'artifacts', APP_ID, 'public', 'data', 'reviews');
             
             // onSnapshot crea una conexión en tiempo real
@@ -392,9 +390,8 @@
                     `;
                 }).join('');
             }, (error) => {
-                // Manejo de errores de onSnapshot (e.g., permisos denegados)
                 console.error("Error al escuchar opiniones:", error);
-                container.innerHTML = '<div class="col-span-2 text-center text-red-600 p-4 rounded-xl bg-red-100">Error de permisos: Revisa las Reglas de Seguridad de Firestore para permitir la lectura pública.</div></div>';
+                container.innerHTML = '<div class="col-span-2 text-center text-red-600 p-4 rounded-xl bg-red-100">Error de permisos: Revisa las Reglas de Seguridad de Firestore.</div></div>';
             });
         }
 
@@ -402,25 +399,26 @@
         document.getElementById('review-form').addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            if (!userId) {
-                // Si la autenticación aún no está lista
-                const msg = document.getElementById('form-message');
-                msg.textContent = "La conexión aún no está lista. Inténtalo de nuevo en un momento.";
-                msg.className = "text-center mt-4 text-sm font-semibold text-red-600";
+            const msg = document.getElementById('form-message');
+            
+            // Comprobación de estado de autenticación (LA CORRECCIÓN CLAVE)
+            if (!isAuthReady || !userId) {
+                msg.textContent = "Conexión pendiente. Por favor, espera un momento y vuelve a intentarlo.";
+                msg.className = "text-center mt-4 text-sm font-semibold text-orange-600";
                 msg.classList.remove('hidden');
+                setTimeout(() => msg.classList.add('hidden'), 5000);
                 return;
             }
 
-            const msg = document.getElementById('form-message');
             const name = document.getElementById('review-name').value.trim();
             const text = document.getElementById('review-text').value.trim();
-            // Captura el valor del radio button checked o usa 5 por defecto
             const rating = document.querySelector('input[name="rating"]:checked')?.value || '5';
 
             if (name.length === 0 || text.length === 0) return;
 
             submitBtn.disabled = true;
             submitBtn.textContent = "Enviando...";
+            msg.classList.add('hidden'); // Ocultar mensaje anterior
 
             try {
                 // Se utiliza el APP_ID para construir la ruta correcta
@@ -441,7 +439,7 @@
             } catch (err) {
                 // Error
                 console.error("Error al añadir documento:", err);
-                msg.textContent = "Error al enviar. Revisa las reglas de seguridad de Firestore.";
+                msg.textContent = "Error al enviar. Asegúrate de que las Reglas de Seguridad de Firestore permitan la escritura (write).";
                 msg.className = "text-center mt-4 text-sm font-semibold text-red-600";
                 msg.classList.remove('hidden');
             } finally {
@@ -474,19 +472,20 @@
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
-                    // Obtiene el ID de destino
+                    
                     const targetId = this.getAttribute('href').substring(1);
                     const targetElement = document.getElementById(targetId);
 
                     if (targetElement) {
-                         // Usar scrollIntoView con offset para compensar la cabecera fija
+                        // Usamos scrollIntoView para asegurar que se desplaza al inicio del elemento
                         targetElement.scrollIntoView({
                             behavior: 'smooth',
-                            block: 'start' // Asegura que el elemento esté al principio de la vista
+                            block: 'start' 
                         });
-                        // Ajuste manual si es necesario, aunque 'block: start' debería ser suficiente
+                        
+                        // Pequeño ajuste después del scroll para compensar la cabecera fija
                         const headerHeight = document.getElementById('main-header').offsetHeight || 0;
-                        window.scrollBy(0, -headerHeight);
+                        window.scrollBy(0, -headerHeight - 8); // Ajuste fino
                     }
                 });
             });

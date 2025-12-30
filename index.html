@@ -71,6 +71,17 @@
         .gallery-item {
             overflow: hidden; /* Para que la imagen no se desborde al hacer scale */
         }
+        /* Estilo para el modal de confirmación */
+        .modal-overlay {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .modal-content {
+            animation: modalFadeIn 0.3s ease-out;
+        }
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body class="text-gray-800">
@@ -384,57 +395,204 @@
         </div>
     </section>
 
-    <!-- SECCIÓN DE RESERVAS -->
+    <!-- ============================================= -->
+    <!-- ========= SECCIÓN DE RESERVAS MEJORADA ======== -->
+    <!-- ============================================= -->
     <section id="reservas" class="py-16 bg-white border-t border-gray-100">
         <div class="content-container mx-auto px-4">
             <h2 class="text-3xl font-bold text-center text-teal-700 mb-10 animate-on-scroll">
                 Reserva tu Estancia
             </h2>
             <p class="text-center text-gray-600 mb-10 max-w-2xl mx-auto animate-on-scroll">
-                Completa el siguiente formulario para solicitar tu reserva. Nos pondremos en contacto contigo a la brevedad para confirmar la disponibilidad.
+                Completa el siguiente formulario para solicitar tu reserva. Te enviaremos confirmación en menos de 24 horas.
             </p>
 
             <div class="max-w-3xl mx-auto animate-on-scroll">
                 <div class="bg-white p-8 rounded-xl shadow-2xl border border-gray-100">
-                    <form action="https://formspree.io/f/mqavrlvg" method="POST">
-                        <!-- Campo de Nombre -->
-                        <div class="mb-5">
-                            <label for="booking-name" class="block text-gray-700 text-sm font-bold mb-2">Nombre Completo</label>
-                            <input type="text" id="booking-name" name="nombre" placeholder="Ej: Juan Pérez" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500" required>
+                    <!-- Indicador de pasos -->
+                    <div class="flex justify-center mb-8">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 rounded-full bg-teal-600 text-white flex items-center justify-center font-bold">1</div>
+                            <div class="h-1 w-16 bg-teal-600"></div>
+                            <div class="w-8 h-8 rounded-full bg-teal-600 text-white flex items-center justify-center font-bold">2</div>
+                        </div>
+                    </div>
+                    
+                    <form action="https://formspree.io/f/mqavrlvg" method="POST" id="booking-form-enhanced">
+                        <!-- Campos ocultos para Formspree -->
+                        <input type="hidden" name="_subject" value="🏠 NUEVA RESERVA - Terrazas de Bayona">
+                        <input type="hidden" name="_language" value="es">
+                        
+                        <!-- SECCIÓN 1: DATOS PERSONALES -->
+                        <div class="mb-8">
+                            <h3 class="text-xl font-bold text-teal-700 mb-4 border-b pb-2">Datos Personales</h3>
+                            
+                            <div class="grid md:grid-cols-2 gap-4 mb-4">
+                                <div>
+                                    <label for="booking-name" class="block text-gray-700 text-sm font-bold mb-2">Nombre Completo *</label>
+                                    <input type="text" id="booking-name" name="nombre" placeholder="Ej: Juan Pérez" 
+                                           class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500" required>
+                                </div>
+                                <div>
+                                    <label for="booking-email" class="block text-gray-700 text-sm font-bold mb-2">Correo Electrónico *</label>
+                                    <input type="email" id="booking-email" name="email" placeholder="tucorreo@ejemplo.com" 
+                                           class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500" required>
+                                </div>
+                            </div>
+                            
+                            <div class="grid md:grid-cols-2 gap-4 mb-4">
+                                <div>
+                                    <label for="booking-phone" class="block text-gray-700 text-sm font-bold mb-2">Teléfono / WhatsApp *</label>
+                                    <input type="tel" id="booking-phone" name="telefono" placeholder="+34 612345678" 
+                                           class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500" required>
+                                    <p class="text-xs text-gray-500 mt-1">Incluye código de país</p>
+                                </div>
+                                <div>
+                                    <label for="booking-country" class="block text-gray-700 text-sm font-bold mb-2">País de Origen *</label>
+                                    <input type="text" id="booking-country" name="pais" placeholder="Ej: España, México, etc." 
+                                           class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500" required>
+                                </div>
+                            </div>
                         </div>
                         
-                        <!-- Campo de Correo Electrónico -->
-                        <div class="mb-5">
-                            <label for="booking-email" class="block text-gray-700 text-sm font-bold mb-2">Correo Electrónico</label>
-                            <input type="email" id="booking-email" name="email" placeholder="tucorreo@ejemplo.com" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500" required>
-                        </div>
-
-                        <!-- Campos de Fechas (Entrada y Salida) -->
-                        <div class="grid md:grid-cols-2 gap-6 mb-5">
-                            <div>
-                                <label for="check-in" class="block text-gray-700 text-sm font-bold mb-2">Fecha de Entrada</label>
-                                <input type="date" id="check-in" name="fecha_entrada" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500" required>
+                        <!-- SECCIÓN 2: FECHAS Y HUÉSPEDES -->
+                        <div class="mb-8">
+                            <h3 class="text-xl font-bold text-teal-700 mb-4 border-b pb-2">Fechas y Huéspedes</h3>
+                            
+                            <div class="grid md:grid-cols-2 gap-4 mb-4">
+                                <div>
+                                    <label for="check-in" class="block text-gray-700 text-sm font-bold mb-2">Fecha de Entrada *</label>
+                                    <input type="date" id="check-in" name="fecha_entrada" 
+                                           class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500" required>
+                                </div>
+                                <div>
+                                    <label for="check-out" class="block text-gray-700 text-sm font-bold mb-2">Fecha de Salida *</label>
+                                    <input type="date" id="check-out" name="fecha_salida" 
+                                           class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500" required>
+                                </div>
                             </div>
-                            <div>
-                                <label for="check-out" class="block text-gray-700 text-sm font-bold mb-2">Fecha de Salida</label>
-                                <input type="date" id="check-out" name="fecha_salida" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500" required>
+                            
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="guests" class="block text-gray-700 text-sm font-bold mb-2">Número de Huéspedes *</label>
+                                    <select id="guests" name="huespedes" 
+                                            class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500" required>
+                                        <option value="">Selecciona...</option>
+                                        <option value="1">1 persona</option>
+                                        <option value="2">2 personas</option>
+                                        <option value="3">3 personas</option>
+                                        <option value="4">4 personas</option>
+                                        <option value="5">5 personas (máximo)</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="arrival-time" class="block text-gray-700 text-sm font-bold mb-2">Hora Aproximada de Llegada</label>
+                                    <select id="arrival-time" name="hora_llegada" 
+                                            class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500">
+                                        <option value="">No sé aún</option>
+                                        <option value="Mañana (8:00-12:00)">Mañana (8:00-12:00)</option>
+                                        <option value="Tarde (12:00-18:00)">Tarde (12:00-18:00)</option>
+                                        <option value="Noche (18:00-22:00)">Noche (18:00-22:00)</option>
+                                        <option value="Después de 22:00">Después de 22:00</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-
-                        <!-- Campo de Número de Huéspedes -->
-                        <div class="mb-6">
-                             <label for="guests" class="block text-gray-700 text-sm font-bold mb-2">Número de Huéspedes</label>
-                            <input type="number" id="guests" name="huespedes" min="1" max="5" placeholder="1" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500" required>
                         </div>
                         
-                        <!-- Botón de Envío -->
-                        <button type="submit" class="w-full bg-teal-600 text-white font-bold py-3 rounded-lg hover:bg-teal-700 transition duration-300 shadow-md">
-                            Enviar Solicitud de Reserva
-                        </button>
-                        <p class="text-center mt-4 text-xs text-gray-500">
-                            * El envío de este formulario es una solicitud y está sujeta a confirmación de disponibilidad.
-                        </p>
+                        <!-- SECCIÓN 3: SERVICIOS ADICIONALES -->
+                        <div class="mb-8">
+                            <h3 class="text-xl font-bold text-teal-700 mb-4 border-b pb-2">Servicios Adicionales (Opcional)</h3>
+                            
+                            <div class="space-y-3">
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="servicio_desayuno" value="Sí" class="mr-3 h-5 w-5 text-teal-600">
+                                    <span class="text-gray-700">Desayuno cubano tradicional (5 USD/persona/día)</span>
+                                </label>
+                                
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="servicio_tour" value="Sí" class="mr-3 h-5 w-5 text-teal-600">
+                                    <span class="text-gray-700">Tour guiado por La Habana (consultar precio)</span>
+                                </label>
+                                
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="servicio_traslado" value="Sí" class="mr-3 h-5 w-5 text-teal-600">
+                                    <span class="text-gray-700">Traslado aeropuerto (consultar precio)</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- SECCIÓN 4: COMENTARIOS ESPECIALES -->
+                        <div class="mb-8">
+                            <h3 class="text-xl font-bold text-teal-700 mb-4 border-b pb-2">Comentarios Especiales</h3>
+                            
+                            <div class="mb-4">
+                                <label for="special-requests" class="block text-gray-700 text-sm font-bold mb-2">Peticiones especiales, alergias, etc.</label>
+                                <textarea id="special-requests" name="comentarios" rows="3" 
+                                          placeholder="Ej: Soy vegetariano, necesito habitación en planta baja, llegamos tarde..." 
+                                          class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500"></textarea>
+                            </div>
+                            
+                            <div>
+                                <label for="how-found" class="block text-gray-700 text-sm font-bold mb-2">¿Cómo nos encontraste?</label>
+                                <select id="how-found" name="como_encontro" 
+                                        class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500">
+                                    <option value="">Selecciona...</option>
+                                    <option value="Google/Buscador">Google / Buscador</option>
+                                    <option value="Recomendación">Recomendación de amigos/familia</option>
+                                    <option value="Airbnb">Airbnb</option>
+                                    <option value="Booking.com">Booking.com</option>
+                                    <option value="Redes sociales">Redes sociales</option>
+                                    <option value="Otro">Otro</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <!-- CALCULADOR DE PRECIO (visual) -->
+                        <div class="mb-8 p-6 bg-teal-50 rounded-xl border border-teal-100">
+                            <h4 class="text-lg font-bold text-teal-800 mb-3">Resumen estimado:</h4>
+                            <div class="space-y-2">
+                                <div class="flex justify-between">
+                                    <span>Noches:</span>
+                                    <span id="nights-count">0 noches</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Huéspedes:</span>
+                                    <span id="guests-count">0 personas</span>
+                                </div>
+                                <div class="flex justify-between font-bold text-teal-700 text-lg border-t pt-2 mt-2">
+                                    <span>Precio estimado:</span>
+                                    <span id="estimated-price">$0 USD</span>
+                                </div>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-3">* Precio final sujeto a confirmación. Precios por noche: 1-6 noches: $25, 1-2 semanas: $20, 15+ noches: $15</p>
+                        </div>
+                        
+                        <!-- BOTÓN DE ENVÍO -->
+                        <div class="text-center">
+                            <button type="submit" 
+                                    class="bg-teal-600 hover:bg-teal-700 text-white font-bold py-4 px-12 rounded-lg transition duration-300 transform hover:scale-105 shadow-lg text-lg">
+                                <i class="fas fa-calendar-check mr-3"></i>
+                                Solicitar Reserva
+                            </button>
+                            <p class="text-sm text-gray-500 mt-4">
+                                * Recibirás confirmación por email/WhatsApp en menos de 24 horas.
+                            </p>
+                        </div>
                     </form>
+                </div>
+            </div>
+            
+            <!-- BLOQUE ALTERNATIVO (WhatsApp directo) -->
+            <div class="max-w-3xl mx-auto mt-8 animate-on-scroll">
+                <div class="bg-gradient-to-r from-teal-50 to-blue-50 p-6 rounded-xl border border-teal-200 text-center">
+                    <h4 class="text-xl font-bold text-teal-700 mb-3">¿Prefieres reservar por WhatsApp?</h4>
+                    <p class="text-gray-600 mb-4">Reserva directamente y obtén respuesta inmediata</p>
+                    <a href="https://wa.me/5356382909?text=Hola,%20quiero%20reservar%20en%20Terrazas%20de%20Bayona.%20Mis%20datos:%0A📅%20Fechas:%20%0A👥%20Huéspedes:%20%0A📞%20Teléfono:%20" 
+                       target="_blank"
+                       class="inline-flex items-center bg-green-500 hover:bg-green-600 text-white font-bold px-8 py-3 rounded-full transition transform hover:scale-105">
+                        <i class="fab fa-whatsapp text-xl mr-3"></i>
+                        Reservar por WhatsApp
+                    </a>
                 </div>
             </div>
         </div>
@@ -445,8 +603,8 @@
         <div class="content-container mx-auto px-4 animate-on-scroll">
             <h2 class="text-3xl font-bold mb-4">¿Listo para vivir la experiencia cubana?</h2>
             <p class="text-xl mb-8 font-light">¡Esperamos tu visita! Contáctanos directamente por WhatsApp para reservar o aclarar cualquier duda.</p>
-            <a href="https://wa.me/5353893144" target="_blank" class="inline-block bg-white text-teal-600 px-8 py-3 rounded-full font-bold shadow-lg hover:bg-gray-100 transition transform hover:scale-105">
-                <i class="fab fa-whatsapp mr-2"></i> WhatsApp: +53 53893144
+            <a href="https://wa.me/5356382909" target="_blank" class="inline-block bg-white text-teal-600 px-8 py-3 rounded-full font-bold shadow-lg hover:bg-gray-100 transition transform hover:scale-105">
+                <i class="fab fa-whatsapp mr-2"></i> WhatsApp: +53 56382909
             </a>
             <div class="mt-8">
                 <p class="text-lg font-semibold">También puedes encontrarnos en:</p>
@@ -679,44 +837,160 @@
             }
         }
         
-        // 6. CONFIGURAR FORMULARIO DE RESERVAS
-        function setupBookingForm() {
+        // 6. FORMULARIO DE RESERVAS MEJORADO
+        function setupEnhancedBookingForm() {
+            const checkInInput = document.getElementById('check-in');
+            const checkOutInput = document.getElementById('check-out');
+            const guestsSelect = document.getElementById('guests');
+            const nightsCount = document.getElementById('nights-count');
+            const guestsCount = document.getElementById('guests-count');
+            const estimatedPrice = document.getElementById('estimated-price');
+            const bookingForm = document.getElementById('booking-form-enhanced');
+            
             // Fechas mínimas (hoy)
-            const hoy = new Date();
-            const hoyFormato = hoy.toISOString().split('T')[0];
+            const today = new Date();
+            const todayFormatted = today.toISOString().split('T')[0];
             
-            // Fecha por defecto salida (3 días después)
-            const salidaDefault = new Date();
-            salidaDefault.setDate(salidaDefault.getDate() + 3);
-            const salidaFormato = salidaDefault.toISOString().split('T')[0];
+            // Fecha por defecto: mañana
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            const tomorrowFormatted = tomorrow.toISOString().split('T')[0];
             
-            const checkIn = document.getElementById('check-in');
-            const checkOut = document.getElementById('check-out');
+            // Fecha por defecto salida: 3 días después de mañana
+            const defaultOut = new Date();
+            defaultOut.setDate(defaultOut.getDate() + 4);
+            const defaultOutFormatted = defaultOut.toISOString().split('T')[0];
             
-            if (checkIn) {
-                checkIn.min = hoyFormato;
-                checkIn.value = hoyFormato;
+            if (checkInInput) {
+                checkInInput.min = todayFormatted;
+                checkInInput.value = tomorrowFormatted;
             }
             
-            if (checkOut) {
-                checkOut.min = hoyFormato;
-                checkOut.value = salidaFormato;
+            if (checkOutInput) {
+                checkOutInput.min = todayFormatted;
+                checkOutInput.value = defaultOutFormatted;
             }
             
-            // Validación de fechas
-            if (checkIn && checkOut) {
-                checkIn.addEventListener('change', function() {
-                    checkOut.min = this.value;
-                    
-                    // Si salida es anterior a entrada, ajustar
-                    const fechaEntrada = new Date(this.value);
-                    const fechaSalida = new Date(checkOut.value);
-                    
-                    if (fechaSalida < fechaEntrada) {
-                        const nuevaFecha = new Date(fechaEntrada);
-                        nuevaFecha.setDate(nuevaFecha.getDate() + 3);
-                        checkOut.value = nuevaFecha.toISOString().split('T')[0];
+            // Función para calcular precio
+            function calculatePrice() {
+                if (!checkInInput.value || !checkOutInput.value || !guestsSelect.value) {
+                    return;
+                }
+                
+                const checkIn = new Date(checkInInput.value);
+                const checkOut = new Date(checkOutInput.value);
+                
+                // Validar que salida sea después de entrada
+                if (checkOut <= checkIn) {
+                    checkOutInput.value = '';
+                    alert('La fecha de salida debe ser posterior a la de entrada');
+                    return;
+                }
+                
+                // Calcular noches
+                const timeDiff = checkOut.getTime() - checkIn.getTime();
+                const nights = Math.ceil(timeDiff / (1000 * 3600 * 24));
+                
+                // Actualizar contadores
+                nightsCount.textContent = `${nights} ${nights === 1 ? 'noche' : 'noches'}`;
+                guestsCount.textContent = `${guestsSelect.value} ${guestsSelect.value === '1' ? 'persona' : 'personas'}`;
+                
+                // Calcular precio según noches
+                let pricePerNight;
+                if (nights >= 15) {
+                    pricePerNight = 15;
+                } else if (nights >= 7) {
+                    pricePerNight = 20;
+                } else {
+                    pricePerNight = 25;
+                }
+                
+                const totalPrice = pricePerNight * nights;
+                estimatedPrice.textContent = `$${totalPrice} USD`;
+                
+                // Añadir precio al formulario (campo oculto)
+                const priceField = document.getElementById('estimated-price-hidden');
+                if (!priceField) {
+                    const hiddenField = document.createElement('input');
+                    hiddenField.type = 'hidden';
+                    hiddenField.name = 'precio_estimado';
+                    hiddenField.id = 'estimated-price-hidden';
+                    hiddenField.value = totalPrice;
+                    bookingForm.appendChild(hiddenField);
+                } else {
+                    priceField.value = totalPrice;
+                }
+            }
+            
+            // Event listeners para calcular automáticamente
+            if (checkInInput) checkInInput.addEventListener('change', calculatePrice);
+            if (checkOutInput) checkOutInput.addEventListener('change', calculatePrice);
+            if (guestsSelect) guestsSelect.addEventListener('change', calculatePrice);
+            
+            // Calcular precio inicial
+            setTimeout(calculatePrice, 500);
+            
+            // Manejar envío del formulario mejorado
+            if (bookingForm) {
+                bookingForm.addEventListener('submit', function(e) {
+                    // Validación extra
+                    if (!guestsSelect.value) {
+                        e.preventDefault();
+                        alert('Por favor, selecciona el número de huéspedes');
+                        guestsSelect.focus();
+                        return;
                     }
+                    
+                    // Mostrar confirmación
+                    setTimeout(() => {
+                        // Generar número de referencia
+                        const refNumber = 'TDB-' + Date.now().toString().slice(-6);
+                        
+                        // Crear modal de éxito
+                        const modalHTML = `
+                            <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 modal-overlay">
+                                <div class="bg-white p-8 rounded-xl max-w-md w-full text-center modal-content">
+                                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                        <i class="fas fa-check text-green-600 text-2xl"></i>
+                                    </div>
+                                    <h3 class="text-2xl font-bold text-gray-800 mb-3">¡Solicitud Enviada!</h3>
+                                    <p class="text-gray-600 mb-6">
+                                        Hemos recibido tu solicitud de reserva. Te contactaremos por email/WhatsApp en menos de 24 horas para confirmar disponibilidad.
+                                    </p>
+                                    <div class="bg-gray-100 p-4 rounded-lg mb-6">
+                                        <p class="text-sm text-gray-700">
+                                            <strong>Número de referencia:</strong><br>
+                                            <span class="text-teal-600 font-bold text-lg">${refNumber}</span>
+                                        </p>
+                                    </div>
+                                    <button onclick="this.parentElement.parentElement.remove()" 
+                                            class="bg-teal-600 text-white px-8 py-3 rounded-lg hover:bg-teal-700 transition font-medium">
+                                        Entendido
+                                    </button>
+                                </div>
+                            </div>
+                        `;
+                        
+                        // Añadir modal al DOM
+                        const modalDiv = document.createElement('div');
+                        modalDiv.innerHTML = modalHTML;
+                        document.body.appendChild(modalDiv);
+                        
+                        // Cerrar modal al hacer clic fuera
+                        modalDiv.addEventListener('click', function(event) {
+                            if (event.target === this) {
+                                this.remove();
+                            }
+                        });
+                        
+                        // Añadir referencia al formulario
+                        const refField = document.createElement('input');
+                        refField.type = 'hidden';
+                        refField.name = 'numero_referencia';
+                        refField.value = refNumber;
+                        this.appendChild(refField);
+                        
+                    }, 100);
                 });
             }
         }
@@ -760,7 +1034,7 @@
             setupMobileMenu();
             setupReviews();
             setupReviewForm();
-            setupBookingForm();
+            setupEnhancedBookingForm();
             setupInteractions();
             
             // Actualizar año en footer automáticamente

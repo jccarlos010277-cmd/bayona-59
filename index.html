@@ -661,9 +661,10 @@
             <div class="max-w-2xl mx-auto animate-on-scroll">
                 <div class="bg-white p-8 rounded-xl shadow-xl">
                     <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Comparte tu experiencia</h3>
-                    <!-- CORREO MODIFICADO: Ambos correos recibirán las opiniones -->
-                    <form id="review-form" action="mailto:alexanderacensio1234@gmail.com?cc=info@reservaterrazasdebayona59.com" method="POST" enctype="text/plain">
+                    <!-- FORMULARIO SEGURO CON FORMSPREE - AMBOS CORREOS -->
+                    <form id="review-form" action="https://formspree.io/f/xvzolnyg" method="POST">
                         <input type="hidden" name="_subject" value="⭐ OPINION_TDB - Terrazas de Bayona">
+                        <input type="hidden" name="_cc" value="jccarlos010277@gmail.com">
                         <input type="hidden" name="_language" value="es">
                         
                         <div class="mb-4">
@@ -731,11 +732,12 @@
 
             <div class="max-w-3xl mx-auto animate-on-scroll">
                 <div class="bg-white p-8 rounded-xl shadow-2xl border border-gray-100">
-                    <!-- CORREO MODIFICADO: Ambos correos recibirán las reservas -->
-                    <form action="mailto:alexanderacensio1234@gmail.com?cc=info@reservaterrazasdebayona59.com" method="POST" id="booking-form-enhanced" enctype="text/plain">
+                    <!-- FORMULARIO SEGURO CON FORMSPREE - AMBOS CORREOS -->
+                    <form action="https://formspree.io/f/mqavrlvg" method="POST" id="booking-form-enhanced">
                         <!-- Campos ocultos para organización automática -->
                         <input type="hidden" name="_subject" id="email-subject">
                         <input type="hidden" name="_replyto" id="client-email">
+                        <input type="hidden" name="_cc" value="jccarlos010277@gmail.com">
                         <input type="hidden" name="_language" value="es">
                         <input type="hidden" name="referencia" id="booking-reference">
                         <input type="hidden" name="precio_estimado" id="estimated-price-hidden">
@@ -952,7 +954,7 @@
             <p>&copy; <span id="current-year">2025</span> Terrazas de Bayona. Todos los derechos reservados.</p>
             <p class="text-sm text-gray-400 mt-2">
                 Alojamiento privado en La Habana, Cuba | 
-                <a href="mailto:info@reservaterrazasdebayona59.com" class="text-teal-300 hover:text-teal-100">info@reservaterrazasdebayona59.com</a>
+                <a href="mailto:alexanderacensio1234@gmail.com" class="text-teal-300 hover:text-teal-100">alexanderacensio1234@gmail.com</a>
             </p>
         </div>
     </footer>
@@ -1135,17 +1137,34 @@
                     submitBtn.disabled = true;
                     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Enviando...';
                     
-                    // Para formulario mailto, simplemente permitir el envío
-                    setTimeout(() => {
-                        formMessage.textContent = '¡Gracias por tu opinión! La revisaremos y publicaremos pronto.';
-                        formMessage.className = 'text-center mt-4 text-sm font-semibold text-green-600';
+                    try {
+                        const formData = new FormData(this);
+                        const response = await fetch(this.action, {
+                            method: 'POST',
+                            body: formData,
+                            headers: { 'Accept': 'application/json' }
+                        });
+                        
+                        if (response.ok) {
+                            formMessage.textContent = '¡Gracias por tu opinión! La revisaremos y publicaremos pronto.';
+                            formMessage.className = 'text-center mt-4 text-sm font-semibold text-green-600';
+                            formMessage.classList.remove('hidden');
+                            this.reset();
+                            document.getElementById('star5').checked = true;
+                            setTimeout(() => formMessage.classList.add('hidden'), 5000);
+                        } else {
+                            formMessage.textContent = 'Hubo un error al enviar. Por favor, intenta de nuevo o envíanos un WhatsApp.';
+                            formMessage.className = 'text-center mt-4 text-sm font-semibold text-red-600';
+                            formMessage.classList.remove('hidden');
+                        }
+                    } catch (error) {
+                        formMessage.textContent = 'Error de conexión. Puedes enviarnos tu opinión por WhatsApp: +53 53893144';
+                        formMessage.className = 'text-center mt-4 text-sm font-semibold text-red-600';
                         formMessage.classList.remove('hidden');
-                        this.reset();
-                        document.getElementById('star5').checked = true;
-                        setTimeout(() => formMessage.classList.add('hidden'), 5000);
+                    } finally {
                         submitBtn.disabled = false;
                         submitBtn.innerHTML = '<i class="fas fa-paper-plane mr-2"></i> Enviar Opinión';
-                    }, 1000);
+                    }
                 });
             }
         }

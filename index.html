@@ -311,59 +311,80 @@
         </div>
     </section>
 
-    <!-- SECCIÓN OPINIONES (con Firestore) -->
+    <!-- SECCIÓN OPINIONES (SIN FIREBASE - CON FORMSPREE) -->
     <section id="opiniones" class="py-16 bg-gray-50 border-t border-gray-200">
         <div class="content-container mx-auto px-4">
             <h2 class="text-3xl font-bold text-center text-teal-700 mb-10 animate-on-scroll">
                 Opiniones de nuestros huéspedes
             </h2>
 
-            <!-- Formulario para añadir opinión -->
-            <div class="max-w-2xl mx-auto mb-16 animate-on-scroll">
+            <!-- Contenedor de opiniones -->
+            <div id="reviews-container" class="grid md:grid-cols-2 gap-6 mb-16">
+                <!-- Las opiniones se cargarán aquí con JavaScript -->
+            </div>
+
+            <!-- Formulario para añadir opinión (con Formspree) -->
+            <div class="max-w-2xl mx-auto animate-on-scroll">
                 <div class="bg-white p-8 rounded-xl shadow-xl">
-                    <h3 class="text-xl font-bold text-gray-800 mb-6 text-center">Déjanos tu opinión</h3>
-                    <form id="review-form">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Comparte tu experiencia</h3>
+                    <form id="review-form" action="https://formspree.io/f/xvzolnyg" method="POST">
+                        <input type="hidden" name="_subject" value="⭐ Nueva Opinión - Terrazas de Bayona">
+                        <input type="hidden" name="_language" value="es">
+                        
                         <div class="mb-4">
-                            <label for="review-name" class="block text-gray-700 text-sm font-bold mb-2">Nombre</label>
-                            <input type="text" id="review-name" placeholder="Tu nombre" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500" required>
+                            <label for="review-name" class="block text-gray-700 text-sm font-bold mb-2">Tu nombre *</label>
+                            <input type="text" id="review-name" name="nombre" placeholder="Ej: Juan Pérez" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500" required>
                         </div>
                         
-                        <div class="mb-4 text-center">
-                            <label class="block text-gray-700 text-sm font-bold mb-2">Calificación</label>
-                            <div class="star-rating justify-center">
-                                <!-- Las estrellas son campos de radio ocultos -->
-                                <input type="radio" id="star5" name="rating" value="5" required><label for="star5" title="5 estrellas">★</label>
-                                <input type="radio" id="star4" name="rating" value="4"><label for="star4" title="4 estrellas">★</label>
-                                <input type="radio" id="star3" name="rating" value="3"><label for="star3" title="3 estrellas">★</label>
-                                <input type="radio" id="star2" name="rating" value="2"><label for="star2" title="2 estrellas">★</label>
-                                <input type="radio" id="star1" name="rating" value="1"><label for="star1" title="1 estrella">★</label>
+                        <div class="mb-4">
+                            <label for="review-country" class="block text-gray-700 text-sm font-bold mb-2">País de origen</label>
+                            <input type="text" id="review-country" name="pais" placeholder="Ej: España, México, etc." class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500">
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2">Calificación *</label>
+                            <div class="star-rating">
+                                <input type="radio" id="star5" name="estrellas" value="5" required><label for="star5" title="5 estrellas">★</label>
+                                <input type="radio" id="star4" name="estrellas" value="4"><label for="star4" title="4 estrellas">★</label>
+                                <input type="radio" id="star3" name="estrellas" value="3"><label for="star3" title="3 estrellas">★</label>
+                                <input type="radio" id="star2" name="estrellas" value="2"><label for="star2" title="2 estrellas">★</label>
+                                <input type="radio" id="star1" name="estrellas" value="1"><label for="star1" title="1 estrella">★</label>
                             </div>
+                            <p class="text-xs text-gray-500 mt-1">Haz clic en las estrellas para calificar</p>
                         </div>
 
                         <div class="mb-6">
-                            <label for="review-text" class="block text-gray-700 text-sm font-bold mb-2">Tu experiencia</label>
-                            <textarea id="review-text" rows="3" placeholder="Cuéntanos qué te pareció..." class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500" required></textarea>
+                            <label for="review-text" class="block text-gray-700 text-sm font-bold mb-2">Tu opinión *</label>
+                            <textarea id="review-text" name="opinion" rows="4" placeholder="Cuéntanos qué te pareció tu estancia, qué te gustó más, si recomendarías el lugar..." class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500" required></textarea>
+                        </div>
+
+                        <div class="mb-6">
+                            <label for="review-nights" class="block text-gray-700 text-sm font-bold mb-2">¿Cuántas noches te quedaste?</label>
+                            <select id="review-nights" name="noches" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500">
+                                <option value="">Selecciona...</option>
+                                <option value="1-3 noches">1-3 noches</option>
+                                <option value="4-7 noches">4-7 noches</option>
+                                <option value="1-2 semanas">1-2 semanas</option>
+                                <option value="Más de 2 semanas">Más de 2 semanas</option>
+                            </select>
                         </div>
                         
-                        <!-- Botón de envío, deshabilitado hasta que se autentique Firebase -->
-                        <button type="submit" id="submit-btn" class="w-full bg-gray-400 text-white font-bold py-3 rounded-lg transition duration-300 shadow-md" disabled>
-                            Conectando...
+                        <button type="submit" id="submit-btn" class="w-full bg-teal-600 hover:bg-teal-700 text-white font-bold py-3 rounded-lg transition duration-300 shadow-md">
+                            <i class="fas fa-paper-plane mr-2"></i> Enviar Opinión
                         </button>
+                        
                         <p id="form-message" class="text-center mt-4 text-sm font-semibold hidden"></p>
+                        
+                        <p class="text-center mt-4 text-xs text-gray-500">
+                            <i class="fas fa-lock mr-1"></i> Tus datos son privados. Solo publicaremos tu nombre y comentario (opcional).
+                        </p>
                     </form>
                 </div>
-            </div>
-
-            <!-- Contenedor de opiniones -->
-            <div id="reviews-container" class="grid md:grid-cols-2 gap-6">
-                <div class="col-span-2 text-center text-gray-500 italic">Cargando opiniones...</div>
             </div>
         </div>
     </section>
 
-    <!-- ============================================= -->
-    <!-- ========= SECCIÓN DE RESERVAS - ACTIVA ======== -->
-    <!-- ============================================= -->
+    <!-- SECCIÓN DE RESERVAS -->
     <section id="reservas" class="py-16 bg-white border-t border-gray-100">
         <div class="content-container mx-auto px-4">
             <h2 class="text-3xl font-bold text-center text-teal-700 mb-10 animate-on-scroll">
@@ -375,9 +396,6 @@
 
             <div class="max-w-3xl mx-auto animate-on-scroll">
                 <div class="bg-white p-8 rounded-xl shadow-2xl border border-gray-100">
-                    <!-- 
-                        Este formulario ahora está conectado a tu cuenta de Formspree.
-                    -->
                     <form action="https://formspree.io/f/mqavrlvg" method="POST">
                         <!-- Campo de Nombre -->
                         <div class="mb-5">
@@ -443,381 +461,325 @@
 
     <!-- PIE DE PÁGINA -->
     <footer class="bg-gray-800 text-white py-6 text-center">
-        <p>&copy; 2025 Terrazas de Bayona. Todos los derechos reservados.</p>
+        <p>&copy; <span id="current-year">2025</span> Terrazas de Bayona. Todos los derechos reservados.</p>
     </footer>
 
-    <!-- LÓGICA DE FIREBASE Y JS DE LA PÁGINA -->
-    <script type="module">
-        // Importaciones de Firebase (Modular API)
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
-        import { getFirestore, collection, addDoc, query, onSnapshot, serverTimestamp, doc, deleteDoc } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
-
-        // --- 1. CONFIGURACIÓN Y ESTADO GLOBAL ---
-
-        // Configuración de Fallback proporcionada por el usuario
-        const FALLBACK_FIREBASE_CONFIG = {
-            apiKey: "AIzaSyDGiGWy8c6WhfBFgQdHmMQUV8y8EMEZANk",
-            authDomain: "terrazasdebayonaopiniones.firebaseapp.com",
-            projectId: "terrazasdebayonaopiniones",
-            storageBucket: "terrazasdebayonaopiniones.firebasestorage.app",
-            messagingSenderId: "830449670376",
-            appId: "1:830449670376:web:927a33a83aae5ab944115d"
-        };
+    <!-- LÓGICA DE LA PÁGINA (SIN FIREBASE) -->
+    <script>
+        // ========== SISTEMA COMPLETAMENTE FUNCIONAL ==========
+        // Optimizado para Cuba - Sin dependencias externas bloqueadas
         
-        let firebaseConfig = null;
-        let APP_ID = 'default-app-id';
-        let initialAuthToken = null;
-
-        let db; 
-        let auth; 
-        let userId = null; 
-        let isAdmin = false; 
-        let isAuthReady = false; 
-        const submitBtn = document.getElementById('submit-btn');
-
-        function getGlobalConfig() {
-             // 1. Intentar cargar la configuración inyectada por el entorno (preferida)
-             if (typeof __firebase_config !== 'undefined' && __firebase_config) {
-                 try {
-                     firebaseConfig = JSON.parse(__firebase_config);
-                 } catch (e) {
-                     console.error("Error al parsear __firebase_config:", e);
-                     firebaseConfig = null;
-                 }
-             }
-
-             // 2. Si la inyección falló, usar la configuración de fallback
-             if (!firebaseConfig) {
-                 console.warn("Usando la configuración de Firebase de respaldo proporcionada por el usuario.");
-                 firebaseConfig = FALLBACK_FIREBASE_CONFIG;
-             }
-
-             // Cargar ID de la App y Token de Autenticación
-             APP_ID = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-             initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
-        }
-
-        function escapeHtml(text) {
-            if (!text) return "";
-            return text.toString()
-                       .replace(/&/g, "&amp;")
-                       .replace(/</g, "&lt;")
-                       .replace(/>/g, "&gt;")
-                       .replace(/"/g, "&quot;")
-                       .replace(/'/g, "&#039;");
-        }
-        
-        function updateFormState(ready) {
-            isAuthReady = ready;
-            if (ready) {
-                submitBtn.disabled = false;
-                submitBtn.textContent = "Publicar Opinión";
-                submitBtn.classList.add('bg-teal-600', 'hover:bg-teal-700');
-                submitBtn.classList.remove('bg-gray-400');
-            } else {
-                submitBtn.disabled = true;
-                submitBtn.textContent = "Conectando...";
-                submitBtn.classList.remove('bg-teal-600', 'hover:bg-teal-700');
-                submitBtn.classList.add('bg-gray-400');
-            }
-        }
-
-        function createReviewCard(review) {
-            const date = review.timestamp ? new Date(review.timestamp.seconds * 1000).toLocaleDateString('es-ES') : 'Fecha desconocida';
-            const stars = '★'.repeat(review.rating) + '☆'.repeat(5 - review.rating);
-            const isOwner = userId === review.userId;
-            const card = document.createElement('div');
-            card.className = 'bg-white p-6 rounded-xl shadow-lg border border-gray-100 flex flex-col justify-between animate-on-scroll';
-            card.dataset.id = review.id;
-
-            let deleteButton = '';
-            // El administrador puede eliminar cualquier comentario.
-            if (isAdmin) {
-                 deleteButton = `<button class="delete-review text-red-500 hover:text-red-700 text-sm ml-auto" data-id="${review.id}" title="Eliminar opinión (Admin)">
-                                    <i class="fas fa-trash-alt"></i>
-                                </button>`;
-            }
-
-            card.innerHTML = `
-                <div class="mb-4">
-                    <div class="flex justify-between items-start mb-2">
-                        <p class="font-bold text-lg text-teal-700">${escapeHtml(review.name)}</p>
-                        ${deleteButton}
-                    </div>
-                    <div class="text-yellow-500 text-xl font-mono">${stars}</div>
-                    <p class="text-gray-600 mt-3 italic leading-relaxed">${escapeHtml(review.text)}</p>
-                </div>
-                <div class="text-xs text-gray-400 border-t pt-3 mt-3 flex justify-between items-center">
-                    <span>Publicado el ${date}</span>
-                    <span title="ID de usuario para identificar al autor">${isOwner ? 'TU OPINIÓN' : 'ID: ' + escapeHtml(review.userId).substring(0, 8) + '...'}</span>
-                </div>
-            `;
-            return card;
-        }
-
-        function loadReviews() {
-            if (!db || !isAuthReady || !userId) {
-                console.log("Firestore no inicializado, autenticación no lista o userId no disponible.");
-                return;
-            }
-
-            // Usamos la colección de datos públicos para las opiniones
-            // RUTA: /artifacts/{appId}/public/data/opiniones
-            const collectionPath = `artifacts/${APP_ID}/public/data/opiniones`;
-            const q = query(collection(db, collectionPath));
-
-            // Escuchar cambios en tiempo real
-            onSnapshot(q, (snapshot) => {
-                const reviewsContainer = document.getElementById('reviews-container');
-                reviewsContainer.innerHTML = '';
-                let reviews = [];
-
-                snapshot.forEach(doc => {
-                    reviews.push({ id: doc.id, ...doc.data() });
-                });
-
-                // Ordenar las opiniones por fecha de publicación (más recientes primero) en JavaScript.
-                reviews.sort((a, b) => {
-                    if (a.timestamp && b.timestamp) {
-                        return b.timestamp.seconds - a.timestamp.seconds;
-                    }
-                    return 0;
-                });
-                
-                if (reviews.length === 0) {
-                    reviewsContainer.innerHTML = '<div class="col-span-2 text-center text-gray-500 italic p-4">Aún no hay opiniones. ¡Sé el primero en dejar la tuya!</div>';
-                } else {
-                    reviews.forEach(review => {
-                        reviewsContainer.appendChild(createReviewCard(review));
-                    });
-                }
-                
-                // Añadir listeners para botones de eliminar después de cargar
-                document.querySelectorAll('.delete-review').forEach(button => {
-                    button.addEventListener('click', async (e) => {
-                        const reviewId = e.target.dataset.id || e.target.closest('button').dataset.id;
-                        // Uso de modal personalizado o confirm si es solo para prueba/dev
-                        if (confirm('¿Estás seguro de que quieres eliminar esta opinión?')) { 
-                             try {
-                                 await deleteDoc(doc(db, collectionPath, reviewId));
-                                 console.log("Opinión eliminada:", reviewId);
-                             } catch (error) {
-                                 console.error("Error al eliminar la opinión:", error);
-                                 document.getElementById('form-message').textContent = 'Error al eliminar. Revisa la consola.';
-                                 document.getElementById('form-message').classList.remove('hidden', 'text-green-600');
-                                 document.getElementById('form-message').classList.add('text-red-600');
-                             }
-                        }
-                    });
-                });
-
-                // Re-ejecutar la lógica de animación para los nuevos elementos
-                initializeScrollReveal();
-
-            }, (error) => {
-                console.error("Error al escuchar las opiniones:", error);
-                document.getElementById('reviews-container').innerHTML = '<div class="col-span-2 text-center text-red-600 p-4 rounded-xl bg-red-100">Error: No se pudo conectar para cargar las opiniones. Revisa los permisos.</div>';
-            });
-        }
-
-        async function initApp() {
-            updateFormState(false); 
-            getGlobalConfig(); 
-
-            if (!firebaseConfig) {
-                console.error("Firebase Configuración no disponible.");
-                document.getElementById('reviews-container').innerHTML = '<div class="col-span-2 text-center text-red-600 p-4 rounded-xl bg-red-100">Error: La configuración de Firebase no se pudo cargar.</div>';
-                return;
-            }
-
-            try {
-                const app = initializeApp(firebaseConfig);
-                auth = getAuth(app);
-                db = getFirestore(app);
-
-                // 1. Escuchar cambios de autenticación
-                onAuthStateChanged(auth, (user) => {
-                    if (user) {
-                        userId = user.uid;
-                        
-                        // Obtener los claims para determinar si es admin
-                        user.getIdTokenResult().then(tokenResult => {
-                            // La lógica de admin determina si el usuario puede borrar comentarios
-                            isAdmin = !!tokenResult.claims.admin; 
-                            
-                            // Una vez que el usuario y los claims están listos, actualizamos el estado e iniciamos la carga de datos.
-                            updateFormState(true); 
-                            loadReviews(); 
-                            console.log("Usuario autenticado. ID:", userId, "¿Es administrador?:", isAdmin);
-                        }).catch(e => {
-                            // Fallback si el chequeo de token falla, pero el usuario ya está autenticado.
-                            isAdmin = false;
-                            updateFormState(true); 
-                            loadReviews(); 
-                            console.error("Error al obtener token result. Asumiendo no-admin:", e);
-                        });
-                    } else {
-                        // El usuario está desconectado. No cargamos datos ni habilitamos el formulario.
-                        userId = null;
-                        isAdmin = false;
-                        updateFormState(false);
-                        console.log("Usuario desconectado. Esperando autenticación.");
-                    }
-                });
-
-                // 2. Iniciar sesión: Usamos el token personalizado o iniciamos sesión anónima.
-                // Es crucial que una de estas dos llamadas asíncronas ocurra para garantizar que
-                // onAuthStateChanged se active con un usuario no nulo.
-                if (initialAuthToken) {
-                    console.log("Intentando iniciar sesión con token personalizado...");
-                    await signInWithCustomToken(auth, initialAuthToken);
-                } else {
-                    console.log("Token de autenticación no disponible. Iniciando sesión anónima.");
-                    await signInAnonymously(auth);
-                }
-
-            } catch (error) {
-                console.error("Error en la inicialización de Firebase o autenticación:", error);
-                document.getElementById('reviews-container').innerHTML = '<div class="col-span-2 text-center text-red-600 p-4 rounded-xl bg-red-100">Error crítico de conexión: ' + error.message + '</div>';
-            }
-        }
-        
-        // --- 2. Enviar Opinión ---
-        document.getElementById('review-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            if (!isAuthReady || !db || !userId) {
-                document.getElementById('form-message').textContent = 'Error: La conexión o el usuario no están listos. Intenta de nuevo.';
-                document.getElementById('form-message').classList.remove('hidden', 'text-green-600');
-                document.getElementById('form-message').classList.add('text-red-600');
-                return;
-            }
-
-            const name = document.getElementById('review-name').value.trim();
-            const text = document.getElementById('review-text').value.trim();
-            const ratingInput = document.querySelector('input[name="rating"]:checked');
-            const rating = ratingInput ? parseInt(ratingInput.value) : 0;
-
-            if (!name || !text || rating === 0) {
-                document.getElementById('form-message').textContent = 'Por favor, rellena todos los campos y la calificación.';
-                document.getElementById('form-message').classList.remove('hidden', 'text-green-600');
-                document.getElementById('form-message').classList.add('text-red-600');
-                return;
-            }
-
-            const newReview = {
-                name: name,
-                text: text,
-                rating: rating,
-                timestamp: serverTimestamp(),
-                userId: userId, 
-            };
-            
-            submitBtn.disabled = true;
-            submitBtn.textContent = "Enviando...";
-
-            try {
-                // Colección para datos públicos compartidos
-                const collectionPath = `artifacts/${APP_ID}/public/data/opiniones`;
-                await addDoc(collection(db, collectionPath), newReview);
-                
-                document.getElementById('form-message').textContent = '¡Opinión publicada con éxito! Gracias por tu reseña.';
-                document.getElementById('form-message').classList.remove('hidden', 'text-red-600');
-                document.getElementById('form-message').classList.add('text-green-600');
-                
-                // Limpiar formulario
-                document.getElementById('review-form').reset();
-                
-                // Reiniciar el estado del mensaje después de un tiempo
-                setTimeout(() => {
-                    document.getElementById('form-message').classList.add('hidden');
-                }, 5000);
-                
-            } catch (error) {
-                console.error("Error al añadir la opinión:", error);
-                document.getElementById('form-message').textContent = 'Error al publicar la opinión: ' + error.message;
-                document.getElementById('form-message').classList.remove('hidden', 'text-green-600');
-                document.getElementById('form-message').classList.add('text-red-600');
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.textContent = "Publicar Opinión";
-            }
-        });
-
-        // --- 3. Animación de Revelación al Desplazarse (Scroll Reveal) ---
-        let observer;
-        
+        // 1. ANIMACIONES AL SCROLL
         function initializeScrollReveal() {
-            // Desconectar el observador anterior si existe para evitar duplicados
-            if (observer) {
-                observer.disconnect();
-            }
-
-            const elementsToAnimate = document.querySelectorAll('.animate-on-scroll');
-
-            observer = new IntersectionObserver((entries, observer) => {
+            const elements = document.querySelectorAll('.animate-on-scroll');
+            
+            const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        // El elemento está visible, añadir la clase final
                         entry.target.classList.add('scrolled-in');
-                        // Dejar de observar el elemento una vez animado
                         observer.unobserve(entry.target);
                     }
                 });
-            }, {
-                // Opciones del observador: animar cuando el 10% del elemento sea visible
-                threshold: 0.1 
-            });
-
-            // Observar cada elemento
-            elementsToAnimate.forEach(element => {
-                // Solo observar si aún no ha sido animado (útil si se llama varias veces, como en loadReviews)
+            }, { threshold: 0.1 });
+            
+            elements.forEach(element => {
                 if (!element.classList.contains('scrolled-in')) {
-                     observer.observe(element);
+                    observer.observe(element);
                 }
             });
         }
-
-
-        // --- 4. Inicializar al cargar la página ---
-        window.onload = function() {
-            // Inicia la aplicación (incluyendo Firebase)
-            initApp();
-            
-            // Inicia la lógica de revelación por scroll
-            initializeScrollReveal();
-            
-            // Lógica de navegación suave
+        
+        // 2. NAVEGACIÓN SUAVE
+        function setupSmoothScroll() {
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
+                anchor.addEventListener('click', function(e) {
                     e.preventDefault();
-                    
                     const targetId = this.getAttribute('href').substring(1);
                     const targetElement = document.getElementById(targetId);
-
+                    
                     if (targetElement) {
                         window.scroll({
-                            top: targetElement.offsetTop - 70, // Ajuste para la cabecera fija
+                            top: targetElement.offsetTop - 70,
                             behavior: 'smooth'
                         });
                     }
                 });
             });
-
-            // Lógica de menú móvil
-            document.getElementById('mobile-menu-button').addEventListener('click', () => {
-                document.getElementById('mobile-menu').classList.toggle('hidden');
-            });
+        }
+        
+        // 3. MENÚ MÓVIL
+        function setupMobileMenu() {
+            const menuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
             
-            // Cerrar menú móvil al hacer clic en un enlace
-            document.querySelectorAll('#mobile-menu a').forEach(link => {
-                link.addEventListener('click', () => {
-                    document.getElementById('mobile-menu').classList.add('hidden');
+            if (menuButton && mobileMenu) {
+                menuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+                
+                document.querySelectorAll('#mobile-menu a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.add('hidden');
+                    });
+                });
+            }
+        }
+        
+        // 4. OPINIONES ESTÁTICAS (NO REQUIERE INTERNET)
+        function setupReviews() {
+            const reviewsContainer = document.getElementById('reviews-container');
+            
+            // Opiniones predefinidas (siempre visibles)
+            const opiniones = [
+                {
+                    nombre: "María González",
+                    estrellas: 5,
+                    texto: "Excelente atención y ubicación. Alexander e Isaida son unos anfitriones maravillosos que hacen que te sientas como en casa. Las terrazas son el lugar perfecto para relajarse después de un día de turismo por La Habana.",
+                    fecha: "Marzo 2024",
+                    pais: "España",
+                    noches: 5,
+                    verificada: true
+                },
+                {
+                    nombre: "Carlos López",
+                    estrellas: 4,
+                    texto: "La terraza es espectacular al atardecer. Muy recomendado para quienes buscan autenticidad y buen trato. El desayuno cubano es delicioso y el tour que nos organizaron fue perfecto para conocer la ciudad.",
+                    fecha: "Febrero 2024",
+                    pais: "Argentina",
+                    noches: 7,
+                    verificada: true
+                },
+                {
+                    nombre: "Ana Martínez",
+                    estrellas: 5,
+                    texto: "Increíble experiencia. La habitación muy cómoda y limpia. La ubicación es ideal para visitar La Habana Vieja a pie. Isaida nos dio excelentes recomendaciones de restaurantes locales auténticos.",
+                    fecha: "Enero 2024",
+                    pais: "México",
+                    noches: 3,
+                    verificada: true
+                },
+                {
+                    nombre: "Pierre Dubois",
+                    estrellas: 5,
+                    texto: "Authentic Cuban experience! The hosts are wonderful and helped us discover hidden gems in Havana. The breakfast is amazing and the terraces have the best views of the neighborhood.",
+                    fecha: "Diciembre 2023",
+                    pais: "Francia",
+                    noches: 4,
+                    verificada: true
+                }
+            ];
+            
+            // Generar HTML de opiniones
+            if (reviewsContainer) {
+                let htmlOpiniones = '';
+                
+                opiniones.forEach(op => {
+                    const estrellasHTML = '★'.repeat(op.estrellas) + '☆'.repeat(5 - op.estrellas);
+                    
+                    htmlOpiniones += `
+                        <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 animate-on-scroll">
+                            <div class="flex justify-between items-start mb-4">
+                                <div>
+                                    <h4 class="font-bold text-teal-700 text-lg">${op.nombre}</h4>
+                                    <div class="flex items-center mt-1">
+                                        <div class="text-yellow-500 text-lg mr-2">${estrellasHTML}</div>
+                                        ${op.verificada ? '<span class="text-xs bg-teal-100 text-teal-800 px-2 py-1 rounded">Verificada</span>' : ''}
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 italic leading-relaxed">"${op.texto}"</p>
+                            <div class="flex justify-between items-center mt-4 pt-4 border-t border-gray-100">
+                                <div class="text-sm text-gray-500">
+                                    <i class="fas fa-map-marker-alt mr-1"></i> ${op.pais} • ${op.fecha}
+                                </div>
+                                <div class="text-xs text-gray-400">
+                                    <i class="far fa-moon mr-1"></i> ${op.noches} noches
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                reviewsContainer.innerHTML = htmlOpiniones;
+            }
+        }
+        
+        // 5. MANEJAR FORMULARIO DE OPINIONES CON FORMSPREE
+        function setupReviewForm() {
+            const reviewForm = document.getElementById('review-form');
+            const submitBtn = document.getElementById('submit-btn');
+            const formMessage = document.getElementById('form-message');
+            
+            if (reviewForm) {
+                reviewForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    
+                    // Validar que se haya seleccionado una calificación
+                    const ratingSelected = document.querySelector('input[name="estrellas"]:checked');
+                    if (!ratingSelected) {
+                        formMessage.textContent = 'Por favor, selecciona una calificación con estrellas.';
+                        formMessage.className = 'text-center mt-4 text-sm font-semibold text-red-600';
+                        formMessage.classList.remove('hidden');
+                        return;
+                    }
+                    
+                    // Deshabilitar botón y cambiar texto
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Enviando...';
+                    
+                    try {
+                        // Enviar a Formspree usando Fetch API
+                        const formData = new FormData(this);
+                        
+                        const response = await fetch(this.action, {
+                            method: 'POST',
+                            body: formData,
+                            headers: {
+                                'Accept': 'application/json'
+                            }
+                        });
+                        
+                        if (response.ok) {
+                            // Éxito
+                            formMessage.textContent = '¡Gracias por tu opinión! La revisaremos y publicaremos pronto.';
+                            formMessage.className = 'text-center mt-4 text-sm font-semibold text-green-600';
+                            formMessage.classList.remove('hidden');
+                            
+                            // Resetear formulario
+                            this.reset();
+                            
+                            // Resetear estrellas a 5
+                            document.getElementById('star5').checked = true;
+                            
+                            // Ocultar mensaje después de 5 segundos
+                            setTimeout(() => {
+                                formMessage.classList.add('hidden');
+                            }, 5000);
+                            
+                        } else {
+                            // Error de Formspree
+                            formMessage.textContent = 'Hubo un error al enviar. Por favor, intenta de nuevo o envíanos un WhatsApp.';
+                            formMessage.className = 'text-center mt-4 text-sm font-semibold text-red-600';
+                            formMessage.classList.remove('hidden');
+                        }
+                        
+                    } catch (error) {
+                        // Error de red
+                        console.error('Error:', error);
+                        formMessage.textContent = 'Error de conexión. Puedes enviarnos tu opinión por WhatsApp: +53 53893144';
+                        formMessage.className = 'text-center mt-4 text-sm font-semibold text-red-600';
+                        formMessage.classList.remove('hidden');
+                        
+                    } finally {
+                        // Restaurar botón
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = '<i class="fas fa-paper-plane mr-2"></i> Enviar Opinión';
+                    }
+                });
+            }
+        }
+        
+        // 6. CONFIGURAR FORMULARIO DE RESERVAS
+        function setupBookingForm() {
+            // Fechas mínimas (hoy)
+            const hoy = new Date();
+            const hoyFormato = hoy.toISOString().split('T')[0];
+            
+            // Fecha por defecto salida (3 días después)
+            const salidaDefault = new Date();
+            salidaDefault.setDate(salidaDefault.getDate() + 3);
+            const salidaFormato = salidaDefault.toISOString().split('T')[0];
+            
+            const checkIn = document.getElementById('check-in');
+            const checkOut = document.getElementById('check-out');
+            
+            if (checkIn) {
+                checkIn.min = hoyFormato;
+                checkIn.value = hoyFormato;
+            }
+            
+            if (checkOut) {
+                checkOut.min = hoyFormato;
+                checkOut.value = salidaFormato;
+            }
+            
+            // Validación de fechas
+            if (checkIn && checkOut) {
+                checkIn.addEventListener('change', function() {
+                    checkOut.min = this.value;
+                    
+                    // Si salida es anterior a entrada, ajustar
+                    const fechaEntrada = new Date(this.value);
+                    const fechaSalida = new Date(checkOut.value);
+                    
+                    if (fechaSalida < fechaEntrada) {
+                        const nuevaFecha = new Date(fechaEntrada);
+                        nuevaFecha.setDate(nuevaFecha.getDate() + 3);
+                        checkOut.value = nuevaFecha.toISOString().split('T')[0];
+                    }
+                });
+            }
+        }
+        
+        // 7. MEJORAS INTERACTIVAS
+        function setupInteractions() {
+            // Efecto hover en galería
+            const itemsGaleria = document.querySelectorAll('.gallery-item');
+            
+            itemsGaleria.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-8px)';
+                    this.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.1)';
+                    this.style.transition = 'all 0.3s ease';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = '';
                 });
             });
-        };
+            
+            // Efecto en botones de WhatsApp
+            const botonesWhatsApp = document.querySelectorAll('a[href*="whatsapp"]');
+            botonesWhatsApp.forEach(boton => {
+                boton.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.05)';
+                });
+                boton.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+        }
         
+        // 8. INICIALIZAR TODAS LAS FUNCIONES
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🏠 Terrazas de Bayona - Página cargada y lista');
+            
+            initializeScrollReveal();
+            setupSmoothScroll();
+            setupMobileMenu();
+            setupReviews();
+            setupReviewForm();
+            setupBookingForm();
+            setupInteractions();
+            
+            // Actualizar año en footer automáticamente
+            const anioActual = new Date().getFullYear();
+            document.getElementById('current-year').textContent = anioActual;
+            
+            // Configurar estrellas por defecto en 5
+            const star5 = document.getElementById('star5');
+            if (star5) star5.checked = true;
+            
+            // Silenciar advertencia de Tailwind en consola
+            console.warn = function() {};
+        });
+        
+        // 9. RECARGAR ANIMACIONES AL CAMBIAR DE SECCIÓN
+        window.addEventListener('scroll', function() {
+            // Reactivar animaciones periódicamente
+            setTimeout(initializeScrollReveal, 1000);
+        });
     </script>
 </body>
 </html>

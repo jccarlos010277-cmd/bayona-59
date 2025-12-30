@@ -4,87 +4,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terrazas de Bayona - Alojamiento en La Habana</title>
-    <!-- Carga de Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Carga de Font Awesome para iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
-    <!-- Configuración de la fuente Inter y estilos personalizados -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f7f7f7;
-        }
-        .content-container {
-            max-width: 1200px;
-        }
-        .hero-text-shadow {
-            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
-        }
-        /* Clase inicial para la animación de revelación */
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-        /* Clase para el estado final de la animación */
-        .scrolled-in {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        /* Estilos para las estrellas de calificación (de derecha a izquierda) */
-        .star-rating {
-            direction: rtl;
-            display: inline-flex;
-        }
-        .star-rating label {
-            cursor: pointer;
-            font-size: 1.5rem;
-            color: #d1d5db;
-            transition: color 0.2s;
-            direction: ltr; /* Reset de dirección para el símbolo */
-        }
-        /* Colorea las estrellas seleccionadas y las anteriores en amarillo */
+        body { font-family: 'Inter', sans-serif; background-color: #f7f7f7; }
+        .content-container { max-width: 1200px; }
+        .hero-text-shadow { text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8); }
+        .animate-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .scrolled-in { opacity: 1; transform: translateY(0); }
+        .star-rating { direction: rtl; display: inline-flex; }
+        .star-rating label { cursor: pointer; font-size: 1.5rem; color: #d1d5db; transition: color 0.2s; direction: ltr; }
         .star-rating input:checked ~ label,
         .star-rating label:hover,
-        .star-rating label:hover ~ label {
-            color: #f59e0b;
-        }
-        .star-rating input {
-            display: none;
-        }
-        /* Estilo para la cabecera fija */
-        #main-header {
-            top: 0;
-            width: 100%;
-            z-index: 20;
-        }
-        /* Estilo para imágenes de galería con efecto hover */
-        .gallery-item img {
-            transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
-        }
-        .gallery-item:hover img {
-            transform: scale(1.05);
-            filter: brightness(0.9);
-        }
-        .gallery-item {
-            overflow: hidden; /* Para que la imagen no se desborde al hacer scale */
-        }
-        /* Estilo para el modal de confirmación */
-        .modal-overlay {
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-        .modal-content {
-            animation: modalFadeIn 0.3s ease-out;
-        }
+        .star-rating label:hover ~ label { color: #f59e0b; }
+        .star-rating input { display: none; }
+        #main-header { top: 0; width: 100%; z-index: 20; }
+        .gallery-item img { transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out; }
+        .gallery-item:hover img { transform: scale(1.05); filter: brightness(0.9); }
+        .gallery-item { overflow: hidden; }
+        .modal-overlay { background-color: rgba(0, 0, 0, 0.5); }
+        .modal-content { animation: modalFadeIn 0.3s ease-out; }
         @keyframes modalFadeIn {
             from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 1rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        .play-button:hover {
+            background: rgba(0, 0, 0, 0.9);
+            transform: translate(-50%, -50%) scale(1.1);
+        }
     </style>
 </head>
 <body class="text-gray-800">
+
+    <!-- BOTÓN FLOTANTE WHATSAPP -->
+    <div class="whatsapp-float">
+        <a href="https://wa.me/5353893144?text=Hola,%20quiero%20más%20información%20sobre%20Terrazas%20de%20Bayona" 
+           target="_blank"
+           class="bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition transform hover:scale-110 flex items-center">
+            <i class="fab fa-whatsapp text-2xl"></i>
+        </a>
+    </div>
 
     <!-- CABECERA FIJA Y NAVEGACIÓN -->
     <header id="main-header" class="bg-white shadow-md sticky top-0 z-20">
@@ -93,7 +92,6 @@
                 Terrazas de Bayona
             </a>
             
-            <!-- Menú de escritorio -->
             <nav class="hidden md:flex items-center space-x-6">
                 <a href="#about" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Nosotros</a>
                 <a href="#alojamiento" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Alojamiento</a>
@@ -101,18 +99,14 @@
                 <a href="#ubicacion" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Ubicación</a>
                 <a href="#opiniones" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Opiniones</a>
                 <a href="#reservas" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Reservas</a>
-                <a href="#contacto" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition duration-300">
-                    Contáctanos
-                </a>
+                <a href="#contacto" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition duration-300">Contáctanos</a>
             </nav>
 
-            <!-- Botón de menú móvil -->
             <button id="mobile-menu-button" class="md:hidden p-2 text-gray-600 hover:text-teal-600 rounded-lg transition duration-300">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
             </button>
         </div>
         
-        <!-- Menú desplegable móvil -->
         <div id="mobile-menu" class="hidden md:hidden px-4 pb-4 bg-gray-50 border-t border-gray-200">
             <a href="#about" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Nosotros</a>
             <a href="#alojamiento" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Alojamiento</a>
@@ -124,17 +118,80 @@
         </div>
     </header>
 
-    <!-- SECCIÓN HERO/BIENVENIDA -->
-    <section class="relative h-[70vh] md:h-[90vh] bg-cover bg-center flex items-center justify-center" 
-             style="background-image: url('https://i.postimg.cc/QxWvyYGy/acuarela-(1).jpg');">
-        <div class="absolute inset-0 bg-black opacity-40"></div>
-        <div class="relative text-center text-white p-6 animate-on-scroll">
-            <h1 class="text-4xl md:text-6xl font-extrabold mb-4 hero-text-shadow">
-                Terrazas de Bayona
-            </h1>
-            <p class="text-xl md:text-2xl font-light hero-text-shadow max-w-2xl mx-auto">
-                Descubre tu hogar perfecto en La Habana. Comodidad, tranquilidad y una experiencia auténtica.
-            </p>
+    <!-- SECCIÓN HERO/BIENVENIDA CON VIDEO -->
+    <section class="relative bg-gradient-to-b from-gray-900 to-gray-800 pt-16 pb-24 md:pt-24 md:pb-32">
+        <div class="content-container mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <!-- Texto principal -->
+                <div class="text-white animate-on-scroll">
+                    <h1 class="text-4xl md:text-6xl font-extrabold mb-4 hero-text-shadow">
+                        Terrazas de Bayona
+                    </h1>
+                    <p class="text-xl md:text-2xl font-light mb-8 max-w-2xl">
+                        Descubre tu hogar perfecto en La Habana. Comodidad, tranquilidad y una experiencia auténtica.
+                    </p>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-center">
+                            <i class="fas fa-star text-yellow-400 text-xl mr-3"></i>
+                            <span class="text-lg">Experiencia cubana auténtica</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-home text-teal-400 text-xl mr-3"></i>
+                            <span class="text-lg">Hogar lejos de casa</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-heart text-red-400 text-xl mr-3"></i>
+                            <span class="text-lg">Atención personalizada</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#reservas" 
+                           class="bg-teal-600 hover:bg-teal-700 text-white font-bold px-8 py-3 rounded-full transition transform hover:scale-105 shadow-lg">
+                            <i class="fas fa-calendar-alt mr-2"></i> Reservar Ahora
+                        </a>
+                        <a href="#about" 
+                           class="bg-white text-gray-800 hover:bg-gray-100 font-bold px-8 py-3 rounded-full transition transform hover:scale-105 shadow-lg">
+                            <i class="fas fa-users mr-2"></i> Conócenos
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Video de YouTube -->
+                <div class="animate-on-scroll">
+                    <div class="relative">
+                        <h2 class="text-2xl md:text-3xl font-bold text-white text-center mb-6">
+                            <i class="fas fa-play-circle mr-2"></i> Vive la experiencia
+                        </h2>
+                        <div class="video-container">
+                            <!-- Vista previa del video con botón de play -->
+                            <div id="video-preview" class="absolute inset-0 bg-cover bg-center rounded-xl cursor-pointer" 
+                                 style="background-image: url('https://img.youtube.com/vi/M4mBVaOqMEs/maxresdefault.jpg');">
+                                <div class="absolute inset-0 bg-black bg-opacity-30 rounded-xl"></div>
+                                <button id="play-video" class="play-button">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                                <div class="absolute bottom-4 left-4 right-4 text-white">
+                                    <p class="text-sm font-semibold">Video: Terrazas de Bayona - Experiencia Cubana</p>
+                                    <p class="text-xs">Duración: 2:35 • Haz clic para ver</p>
+                                </div>
+                            </div>
+                            <!-- Iframe de YouTube (oculto inicialmente) -->
+                            <iframe id="youtube-video" 
+                                    src="https://www.youtube.com/embed/M4mBVaOqMEs?rel=0&modestbranding=1&showinfo=0" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen
+                                    style="display: none;">
+                            </iframe>
+                        </div>
+                        <p class="text-gray-300 text-center mt-4 text-sm">
+                            Mira nuestro video para sentir la experiencia que vivirás con nosotros
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -154,6 +211,12 @@
                 <p class="text-gray-700 mb-4 leading-relaxed">
                     Creemos firmemente que la mejor forma de conocer un lugar es a través de sus personas. Por eso, te invitamos a vivir una experiencia cubana auténtica, con la comodidad de un hogar y la calidez de una familia.
                 </p>
+                <div class="mt-6">
+                    <a href="#reservas" class="inline-flex items-center text-teal-600 font-bold hover:text-teal-800">
+                        <span>Reserva tu experiencia cubana</span>
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -193,7 +256,7 @@
                     <img src="https://i.postimg.cc/Y9jZwcg0/terraza.jpg" alt="Terraza con vista" class="w-full h-48 object-cover">
                     <div class="p-4"><h3 class="font-semibold text-lg text-teal-700">Terrazas Soleadas</h3></div>
                 </div>
-                 <div class="gallery-item bg-white rounded-xl shadow-lg overflow-hidden animate-on-scroll">
+                <div class="gallery-item bg-white rounded-xl shadow-lg overflow-hidden animate-on-scroll">
                     <img src="https://i.postimg.cc/HxjRCG5Y/frente.jpg" alt="Exterior de la casa" class="w-full h-48 object-cover">
                     <div class="p-4"><h3 class="font-semibold text-lg text-teal-700">Fachada Principal</h3></div>
                 </div>
@@ -201,7 +264,6 @@
 
             <!-- Precios y comodidades -->
             <div class="grid md:grid-cols-2 gap-12 mt-16">
-                <!-- Comodidades -->
                 <div class="animate-on-scroll">
                     <h3 class="text-2xl font-bold text-teal-700 mb-6">Comodidades</h3>
                     <ul class="grid grid-cols-2 gap-y-4 text-gray-700">
@@ -214,7 +276,6 @@
                     </ul>
                 </div>
 
-                <!-- Precios -->
                 <div class="animate-on-scroll">
                     <h3 class="text-2xl font-bold text-teal-700 mb-6">Precios por Noche</h3>
                     <div class="bg-teal-50 p-6 rounded-xl shadow-lg">
@@ -246,7 +307,6 @@
                 Servicios Adicionales para tu Estancia
             </h2>
             <div class="grid md:grid-cols-2 gap-12 items-center">
-                <!-- Desayuno -->
                 <div class="animate-on-scroll">
                     <img src="https://i.postimg.cc/hjh6qFxK/desayuno.jpg" alt="Desayuno tradicional cubano" class="w-full h-auto rounded-xl shadow-2xl object-cover">
                     <div class="p-6">
@@ -256,15 +316,13 @@
                         </p>
                     </div>
                 </div>
-                <!-- Tours y Traslados -->
                 <div class="animate-on-scroll">
                     <img src="https://i.postimg.cc/k4Dzdr82/tour_habana.jpg" alt="Tour por La Habana" class="w-full h-auto rounded-xl shadow-2xl object-cover">
-                     <div class="p-6">
+                    <div class="p-6">
                         <h3 class="text-2xl font-bold text-teal-700 mb-3">Tours y Traslados</h3>
                         <p class="text-gray-700 leading-relaxed">
                             ¿Quieres explorar La Habana o sus alrededores? Te ayudamos a organizar tours personalizados y traslados cómodos con nuestro chofer. Descubre los encantos de Cuba sin preocupaciones.
                         </p>
-                        <!-- Imagen secundaria del chofer -->
                         <img src="https://i.postimg.cc/RFqyzrf4/chofer.jpg" alt="Chofer disponible" class="w-full h-auto rounded-xl shadow-md mt-4 object-cover">
                     </div>
                 </div>
@@ -282,13 +340,11 @@
                 Disfruta de la comodidad de estar cerca de todo. Terrazas de Bayona se encuentra en un punto estratégico para explorar La Habana Vieja y sus alrededores.
             </p>
             <div class="grid md:grid-cols-2 gap-8 items-center">
-                <!-- Mapa de Google Maps -->
                 <div class="animate-on-scroll">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3782.903774889608!2d-82.3582496851234!3d23.13637158489744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88cd72b22f4b4b4d%3A0x6a0f7c2d7e1c8d!2sLa%20Habana%2C%20Cuba!5e0!3m2!1ses!2sus!4v1678912345678!5m2!1ses!2sus" 
                             width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
                             class="rounded-xl shadow-lg"></iframe>
                 </div>
-                <!-- Puntos de Interés -->
                 <div class="animate-on-scroll">
                     <h3 class="text-2xl font-bold text-teal-700 mb-6">Puntos de Interés Cercanos</h3>
                     <ul class="space-y-4 text-gray-700">
@@ -322,24 +378,22 @@
         </div>
     </section>
 
-    <!-- SECCIÓN OPINIONES (SIN FIREBASE - CON FORMSPREE) -->
+    <!-- SECCIÓN OPINIONES -->
     <section id="opiniones" class="py-16 bg-gray-50 border-t border-gray-200">
         <div class="content-container mx-auto px-4">
             <h2 class="text-3xl font-bold text-center text-teal-700 mb-10 animate-on-scroll">
                 Opiniones de nuestros huéspedes
             </h2>
 
-            <!-- Contenedor de opiniones -->
             <div id="reviews-container" class="grid md:grid-cols-2 gap-6 mb-16">
-                <!-- Las opiniones se cargarán aquí con JavaScript -->
+                <!-- Opiniones cargadas por JavaScript -->
             </div>
 
-            <!-- Formulario para añadir opinión (con Formspree) -->
             <div class="max-w-2xl mx-auto animate-on-scroll">
                 <div class="bg-white p-8 rounded-xl shadow-xl">
                     <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Comparte tu experiencia</h3>
                     <form id="review-form" action="https://formspree.io/f/xvzolnyg" method="POST">
-                        <input type="hidden" name="_subject" value="⭐ Nueva Opinión - Terrazas de Bayona">
+                        <input type="hidden" name="_subject" value="⭐ OPINION_TDB - Terrazas de Bayona">
                         <input type="hidden" name="_language" value="es">
                         
                         <div class="mb-4">
@@ -380,11 +434,11 @@
                             </select>
                         </div>
                         
-                        <button type="submit" id="submit-btn" class="w-full bg-teal-600 hover:bg-teal-700 text-white font-bold py-3 rounded-lg transition duration-300 shadow-md">
+                        <button type="submit" id="submit-btn-review" class="w-full bg-teal-600 hover:bg-teal-700 text-white font-bold py-3 rounded-lg transition duration-300 shadow-md">
                             <i class="fas fa-paper-plane mr-2"></i> Enviar Opinión
                         </button>
                         
-                        <p id="form-message" class="text-center mt-4 text-sm font-semibold hidden"></p>
+                        <p id="form-message-review" class="text-center mt-4 text-sm font-semibold hidden"></p>
                         
                         <p class="text-center mt-4 text-xs text-gray-500">
                             <i class="fas fa-lock mr-1"></i> Tus datos son privados. Solo publicaremos tu nombre y comentario (opcional).
@@ -395,9 +449,7 @@
         </div>
     </section>
 
-    <!-- ============================================= -->
-    <!-- ========= SECCIÓN DE RESERVAS MEJORADA ======== -->
-    <!-- ============================================= -->
+    <!-- SECCIÓN DE RESERVAS -->
     <section id="reservas" class="py-16 bg-white border-t border-gray-100">
         <div class="content-container mx-auto px-4">
             <h2 class="text-3xl font-bold text-center text-teal-700 mb-10 animate-on-scroll">
@@ -409,19 +461,13 @@
 
             <div class="max-w-3xl mx-auto animate-on-scroll">
                 <div class="bg-white p-8 rounded-xl shadow-2xl border border-gray-100">
-                    <!-- Indicador de pasos -->
-                    <div class="flex justify-center mb-8">
-                        <div class="flex items-center">
-                            <div class="w-8 h-8 rounded-full bg-teal-600 text-white flex items-center justify-center font-bold">1</div>
-                            <div class="h-1 w-16 bg-teal-600"></div>
-                            <div class="w-8 h-8 rounded-full bg-teal-600 text-white flex items-center justify-center font-bold">2</div>
-                        </div>
-                    </div>
-                    
                     <form action="https://formspree.io/f/mqavrlvg" method="POST" id="booking-form-enhanced">
-                        <!-- Campos ocultos para Formspree -->
-                        <input type="hidden" name="_subject" value="🏠 NUEVA RESERVA - Terrazas de Bayona">
+                        <!-- Campos ocultos para organización automática -->
+                        <input type="hidden" name="_subject" id="email-subject">
+                        <input type="hidden" name="_replyto" id="client-email">
                         <input type="hidden" name="_language" value="es">
+                        <input type="hidden" name="referencia" id="booking-reference">
+                        <input type="hidden" name="precio_estimado" id="estimated-price-hidden">
                         
                         <!-- SECCIÓN 1: DATOS PERSONALES -->
                         <div class="mb-8">
@@ -505,17 +551,17 @@
                             
                             <div class="space-y-3">
                                 <label class="flex items-center">
-                                    <input type="checkbox" name="servicio_desayuno" value="Sí" class="mr-3 h-5 w-5 text-teal-600">
+                                    <input type="checkbox" id="breakfast" name="servicio_desayuno" value="Sí" class="mr-3 h-5 w-5 text-teal-600">
                                     <span class="text-gray-700">Desayuno cubano tradicional (5 USD/persona/día)</span>
                                 </label>
                                 
                                 <label class="flex items-center">
-                                    <input type="checkbox" name="servicio_tour" value="Sí" class="mr-3 h-5 w-5 text-teal-600">
+                                    <input type="checkbox" id="tour" name="servicio_tour" value="Sí" class="mr-3 h-5 w-5 text-teal-600">
                                     <span class="text-gray-700">Tour guiado por La Habana (consultar precio)</span>
                                 </label>
                                 
                                 <label class="flex items-center">
-                                    <input type="checkbox" name="servicio_traslado" value="Sí" class="mr-3 h-5 w-5 text-teal-600">
+                                    <input type="checkbox" id="transfer" name="servicio_traslado" value="Sí" class="mr-3 h-5 w-5 text-teal-600">
                                     <span class="text-gray-700">Traslado aeropuerto (consultar precio)</span>
                                 </label>
                             </div>
@@ -547,7 +593,7 @@
                             </div>
                         </div>
                         
-                        <!-- CALCULADOR DE PRECIO (visual) -->
+                        <!-- CALCULADOR DE PRECIO -->
                         <div class="mb-8 p-6 bg-teal-50 rounded-xl border border-teal-100">
                             <h4 class="text-lg font-bold text-teal-800 mb-3">Resumen estimado:</h4>
                             <div class="space-y-2">
@@ -567,9 +613,20 @@
                             <p class="text-xs text-gray-500 mt-3">* Precio final sujeto a confirmación. Precios por noche: 1-6 noches: $25, 1-2 semanas: $20, 15+ noches: $15</p>
                         </div>
                         
+                        <!-- OPCIÓN WHATSAPP -->
+                        <div class="mb-6 p-4 bg-blue-50 rounded-xl border border-blue-200">
+                            <label class="flex items-center">
+                                <input type="checkbox" name="quiero_whatsapp" value="Sí" class="mr-3 h-5 w-5 text-teal-600" checked>
+                                <span class="text-gray-700 font-medium">Envíame confirmación por WhatsApp</span>
+                            </label>
+                            <p class="text-sm text-gray-600 mt-2 ml-8">
+                                Te enviaremos un mensaje de WhatsApp para confirmar tu reserva y responder preguntas.
+                            </p>
+                        </div>
+                        
                         <!-- BOTÓN DE ENVÍO -->
                         <div class="text-center">
-                            <button type="submit" 
+                            <button type="submit" id="submit-btn-booking" 
                                     class="bg-teal-600 hover:bg-teal-700 text-white font-bold py-4 px-12 rounded-lg transition duration-300 transform hover:scale-105 shadow-lg text-lg">
                                 <i class="fas fa-calendar-check mr-3"></i>
                                 Solicitar Reserva
@@ -582,12 +639,12 @@
                 </div>
             </div>
             
-            <!-- BLOQUE ALTERNATIVO (WhatsApp directo) -->
+            <!-- BLOQUE ALTERNATIVO WHATSAPP -->
             <div class="max-w-3xl mx-auto mt-8 animate-on-scroll">
                 <div class="bg-gradient-to-r from-teal-50 to-blue-50 p-6 rounded-xl border border-teal-200 text-center">
                     <h4 class="text-xl font-bold text-teal-700 mb-3">¿Prefieres reservar por WhatsApp?</h4>
                     <p class="text-gray-600 mb-4">Reserva directamente y obtén respuesta inmediata</p>
-                    <a href="https://wa.me/5356382909?text=Hola,%20quiero%20reservar%20en%20Terrazas%20de%20Bayona.%20Mis%20datos:%0A📅%20Fechas:%20%0A👥%20Huéspedes:%20%0A📞%20Teléfono:%20" 
+                    <a href="https://wa.me/5353893144?text=Hola,%20quiero%20reservar%20en%20Terrazas%20de%20Bayona.%20Mis%20datos:%0A📅%20Fechas:%20%0A👥%20Huéspedes:%20%0A📞%20Teléfono:%20" 
                        target="_blank"
                        class="inline-flex items-center bg-green-500 hover:bg-green-600 text-white font-bold px-8 py-3 rounded-full transition transform hover:scale-105">
                         <i class="fab fa-whatsapp text-xl mr-3"></i>
@@ -598,18 +655,17 @@
         </div>
     </section>
 
-    <!-- SECCIÓN CONTACTO Y LLAMADA A LA ACCIÓN -->
+    <!-- SECCIÓN CONTACTO -->
     <section id="contacto" class="py-16 bg-teal-600 text-white text-center">
         <div class="content-container mx-auto px-4 animate-on-scroll">
             <h2 class="text-3xl font-bold mb-4">¿Listo para vivir la experiencia cubana?</h2>
             <p class="text-xl mb-8 font-light">¡Esperamos tu visita! Contáctanos directamente por WhatsApp para reservar o aclarar cualquier duda.</p>
-            <a href="https://wa.me/5356382909" target="_blank" class="inline-block bg-white text-teal-600 px-8 py-3 rounded-full font-bold shadow-lg hover:bg-gray-100 transition transform hover:scale-105">
-                <i class="fab fa-whatsapp mr-2"></i> WhatsApp: +53 56382909
+            <a href="https://wa.me/5353893144" target="_blank" class="inline-block bg-white text-teal-600 px-8 py-3 rounded-full font-bold shadow-lg hover:bg-gray-100 transition transform hover:scale-105">
+                <i class="fab fa-whatsapp mr-2"></i> WhatsApp: +53 53893144
             </a>
             <div class="mt-8">
                 <p class="text-lg font-semibold">También puedes encontrarnos en:</p>
                 <div class="flex justify-center space-x-6 mt-4">
-                    <!-- Enlaces de redes sociales (sustituir # por URLs reales) -->
                     <a href="#" class="text-white hover:text-gray-200 transition text-2xl"><i class="fab fa-facebook-square"></i></a>
                     <a href="#" class="text-white hover:text-gray-200 transition text-2xl"><i class="fab fa-instagram"></i></a>
                 </div>
@@ -622,15 +678,13 @@
         <p>&copy; <span id="current-year">2025</span> Terrazas de Bayona. Todos los derechos reservados.</p>
     </footer>
 
-    <!-- LÓGICA DE LA PÁGINA (SIN FIREBASE) -->
+    <!-- LÓGICA DE LA PÁGINA -->
     <script>
-        // ========== SISTEMA COMPLETAMENTE FUNCIONAL ==========
-        // Optimizado para Cuba - Sin dependencias externas bloqueadas
+        // ========== SISTEMA COMPLETO CON VIDEO ==========
         
         // 1. ANIMACIONES AL SCROLL
         function initializeScrollReveal() {
             const elements = document.querySelectorAll('.animate-on-scroll');
-            
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -647,7 +701,32 @@
             });
         }
         
-        // 2. NAVEGACIÓN SUAVE
+        // 2. CONTROL DEL VIDEO
+        function setupVideoPlayer() {
+            const videoPreview = document.getElementById('video-preview');
+            const playButton = document.getElementById('play-video');
+            const youtubeVideo = document.getElementById('youtube-video');
+            
+            if (videoPreview && playButton && youtubeVideo) {
+                playButton.addEventListener('click', function() {
+                    // Ocultar vista previa
+                    videoPreview.style.display = 'none';
+                    // Mostrar iframe de YouTube
+                    youtubeVideo.style.display = 'block';
+                    // Autoreproducir
+                    youtubeVideo.src = youtubeVideo.src + "&autoplay=1";
+                });
+                
+                // También permitir hacer clic en toda la vista previa
+                videoPreview.addEventListener('click', function() {
+                    videoPreview.style.display = 'none';
+                    youtubeVideo.style.display = 'block';
+                    youtubeVideo.src = youtubeVideo.src + "&autoplay=1";
+                });
+            }
+        }
+        
+        // 3. NAVEGACIÓN SUAVE
         function setupSmoothScroll() {
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
@@ -665,7 +744,7 @@
             });
         }
         
-        // 3. MENÚ MÓVIL
+        // 4. MENÚ MÓVIL
         function setupMobileMenu() {
             const menuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
@@ -683,11 +762,9 @@
             }
         }
         
-        // 4. OPINIONES ESTÁTICAS (NO REQUIERE INTERNET)
+        // 5. OPINIONES ESTÁTICAS
         function setupReviews() {
             const reviewsContainer = document.getElementById('reviews-container');
-            
-            // Opiniones predefinidas (siempre visibles)
             const opiniones = [
                 {
                     nombre: "María González",
@@ -727,13 +804,10 @@
                 }
             ];
             
-            // Generar HTML de opiniones
             if (reviewsContainer) {
                 let htmlOpiniones = '';
-                
                 opiniones.forEach(op => {
                     const estrellasHTML = '★'.repeat(op.estrellas) + '☆'.repeat(5 - op.estrellas);
-                    
                     htmlOpiniones += `
                         <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 animate-on-scroll">
                             <div class="flex justify-between items-start mb-4">
@@ -757,22 +831,20 @@
                         </div>
                     `;
                 });
-                
                 reviewsContainer.innerHTML = htmlOpiniones;
             }
         }
         
-        // 5. MANEJAR FORMULARIO DE OPINIONES CON FORMSPREE
+        // 6. FORMULARIO DE OPINIONES
         function setupReviewForm() {
             const reviewForm = document.getElementById('review-form');
-            const submitBtn = document.getElementById('submit-btn');
-            const formMessage = document.getElementById('form-message');
+            const submitBtn = document.getElementById('submit-btn-review');
+            const formMessage = document.getElementById('form-message-review');
             
             if (reviewForm) {
                 reviewForm.addEventListener('submit', async function(e) {
                     e.preventDefault();
                     
-                    // Validar que se haya seleccionado una calificación
                     const ratingSelected = document.querySelector('input[name="estrellas"]:checked');
                     if (!ratingSelected) {
                         formMessage.textContent = 'Por favor, selecciona una calificación con estrellas.';
@@ -781,55 +853,34 @@
                         return;
                     }
                     
-                    // Deshabilitar botón y cambiar texto
                     submitBtn.disabled = true;
                     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Enviando...';
                     
                     try {
-                        // Enviar a Formspree usando Fetch API
                         const formData = new FormData(this);
-                        
                         const response = await fetch(this.action, {
                             method: 'POST',
                             body: formData,
-                            headers: {
-                                'Accept': 'application/json'
-                            }
+                            headers: { 'Accept': 'application/json' }
                         });
                         
                         if (response.ok) {
-                            // Éxito
                             formMessage.textContent = '¡Gracias por tu opinión! La revisaremos y publicaremos pronto.';
                             formMessage.className = 'text-center mt-4 text-sm font-semibold text-green-600';
                             formMessage.classList.remove('hidden');
-                            
-                            // Resetear formulario
                             this.reset();
-                            
-                            // Resetear estrellas a 5
                             document.getElementById('star5').checked = true;
-                            
-                            // Ocultar mensaje después de 5 segundos
-                            setTimeout(() => {
-                                formMessage.classList.add('hidden');
-                            }, 5000);
-                            
+                            setTimeout(() => formMessage.classList.add('hidden'), 5000);
                         } else {
-                            // Error de Formspree
                             formMessage.textContent = 'Hubo un error al enviar. Por favor, intenta de nuevo o envíanos un WhatsApp.';
                             formMessage.className = 'text-center mt-4 text-sm font-semibold text-red-600';
                             formMessage.classList.remove('hidden');
                         }
-                        
                     } catch (error) {
-                        // Error de red
-                        console.error('Error:', error);
                         formMessage.textContent = 'Error de conexión. Puedes enviarnos tu opinión por WhatsApp: +53 53893144';
                         formMessage.className = 'text-center mt-4 text-sm font-semibold text-red-600';
                         formMessage.classList.remove('hidden');
-                        
                     } finally {
-                        // Restaurar botón
                         submitBtn.disabled = false;
                         submitBtn.innerHTML = '<i class="fas fa-paper-plane mr-2"></i> Enviar Opinión';
                     }
@@ -837,7 +888,7 @@
             }
         }
         
-        // 6. FORMULARIO DE RESERVAS MEJORADO
+        // 7. FORMULARIO DE RESERVAS MEJORADO
         function setupEnhancedBookingForm() {
             const checkInInput = document.getElementById('check-in');
             const checkOutInput = document.getElementById('check-out');
@@ -846,17 +897,19 @@
             const guestsCount = document.getElementById('guests-count');
             const estimatedPrice = document.getElementById('estimated-price');
             const bookingForm = document.getElementById('booking-form-enhanced');
+            const emailSubject = document.getElementById('email-subject');
+            const clientEmail = document.getElementById('client-email');
+            const bookingReference = document.getElementById('booking-reference');
+            const estimatedPriceHidden = document.getElementById('estimated-price-hidden');
             
-            // Fechas mínimas (hoy)
+            // Fechas por defecto
             const today = new Date();
             const todayFormatted = today.toISOString().split('T')[0];
             
-            // Fecha por defecto: mañana
             const tomorrow = new Date();
             tomorrow.setDate(tomorrow.getDate() + 1);
             const tomorrowFormatted = tomorrow.toISOString().split('T')[0];
             
-            // Fecha por defecto salida: 3 días después de mañana
             const defaultOut = new Date();
             defaultOut.setDate(defaultOut.getDate() + 4);
             const defaultOutFormatted = defaultOut.toISOString().split('T')[0];
@@ -871,7 +924,17 @@
                 checkOutInput.value = defaultOutFormatted;
             }
             
-            // Función para calcular precio
+            // Generar referencia única
+            function generateReference() {
+                const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+                let ref = 'TDB-';
+                for (let i = 0; i < 6; i++) {
+                    ref += chars.charAt(Math.floor(Math.random() * chars.length));
+                }
+                return ref;
+            }
+            
+            // Calcular precio
             function calculatePrice() {
                 if (!checkInInput.value || !checkOutInput.value || !guestsSelect.value) {
                     return;
@@ -880,22 +943,18 @@
                 const checkIn = new Date(checkInInput.value);
                 const checkOut = new Date(checkOutInput.value);
                 
-                // Validar que salida sea después de entrada
                 if (checkOut <= checkIn) {
                     checkOutInput.value = '';
                     alert('La fecha de salida debe ser posterior a la de entrada');
                     return;
                 }
                 
-                // Calcular noches
                 const timeDiff = checkOut.getTime() - checkIn.getTime();
                 const nights = Math.ceil(timeDiff / (1000 * 3600 * 24));
                 
-                // Actualizar contadores
                 nightsCount.textContent = `${nights} ${nights === 1 ? 'noche' : 'noches'}`;
                 guestsCount.textContent = `${guestsSelect.value} ${guestsSelect.value === '1' ? 'persona' : 'personas'}`;
                 
-                // Calcular precio según noches
                 let pricePerNight;
                 if (nights >= 15) {
                     pricePerNight = 15;
@@ -905,35 +964,61 @@
                     pricePerNight = 25;
                 }
                 
-                const totalPrice = pricePerNight * nights;
-                estimatedPrice.textContent = `$${totalPrice} USD`;
+                // Añadir desayuno si está seleccionado
+                let totalPrice = pricePerNight * nights;
+                const breakfastCheckbox = document.getElementById('breakfast');
+                if (breakfastCheckbox && breakfastCheckbox.checked) {
+                    totalPrice += (parseInt(guestsSelect.value) * 5 * nights);
+                }
                 
-                // Añadir precio al formulario (campo oculto)
-                const priceField = document.getElementById('estimated-price-hidden');
-                if (!priceField) {
-                    const hiddenField = document.createElement('input');
-                    hiddenField.type = 'hidden';
-                    hiddenField.name = 'precio_estimado';
-                    hiddenField.id = 'estimated-price-hidden';
-                    hiddenField.value = totalPrice;
-                    bookingForm.appendChild(hiddenField);
-                } else {
-                    priceField.value = totalPrice;
+                estimatedPrice.textContent = `$${totalPrice} USD`;
+                if (estimatedPriceHidden) estimatedPriceHidden.value = totalPrice;
+                
+                // Generar referencia si no existe
+                if (bookingReference && !bookingReference.value) {
+                    bookingReference.value = generateReference();
                 }
             }
             
-            // Event listeners para calcular automáticamente
+            // Configurar email automático
+            function setupEmailAutoFill() {
+                const emailInput = document.getElementById('booking-email');
+                const nameInput = document.getElementById('booking-name');
+                
+                if (emailInput && clientEmail) {
+                    emailInput.addEventListener('input', function() {
+                        clientEmail.value = this.value;
+                    });
+                }
+                
+                if (nameInput && emailSubject) {
+                    nameInput.addEventListener('input', function() {
+                        const fecha = document.getElementById('check-in')?.value || 'NODATE';
+                        const nombreCorto = this.value.substring(0, 15).replace(/\s+/g, '');
+                        const ref = bookingReference?.value || 'NOREF';
+                        emailSubject.value = `RESERVA_TDB_${fecha}_${nombreCorto}_${ref}`;
+                    });
+                }
+            }
+            
+            // Event listeners
             if (checkInInput) checkInInput.addEventListener('change', calculatePrice);
             if (checkOutInput) checkOutInput.addEventListener('change', calculatePrice);
             if (guestsSelect) guestsSelect.addEventListener('change', calculatePrice);
             
+            // Checkbox desayuno afecta precio
+            const breakfastCheckbox = document.getElementById('breakfast');
+            if (breakfastCheckbox) {
+                breakfastCheckbox.addEventListener('change', calculatePrice);
+            }
+            
             // Calcular precio inicial
             setTimeout(calculatePrice, 500);
+            setTimeout(setupEmailAutoFill, 1000);
             
-            // Manejar envío del formulario mejorado
+            // Manejar envío
             if (bookingForm) {
                 bookingForm.addEventListener('submit', function(e) {
-                    // Validación extra
                     if (!guestsSelect.value) {
                         e.preventDefault();
                         alert('Por favor, selecciona el número de huéspedes');
@@ -941,12 +1026,30 @@
                         return;
                     }
                     
-                    // Mostrar confirmación
-                    setTimeout(() => {
-                        // Generar número de referencia
-                        const refNumber = 'TDB-' + Date.now().toString().slice(-6);
+                    // Generar mensaje WhatsApp
+                    const nombre = document.getElementById('booking-name').value;
+                    const telefono = document.getElementById('booking-phone').value;
+                    const whatsappCheckbox = document.querySelector('input[name="quiero_whatsapp"]');
+                    
+                    if (whatsappCheckbox && whatsappCheckbox.checked && telefono) {
+                        const fechaEntrada = document.getElementById('check-in').value;
+                        const fechaSalida = document.getElementById('check-out').value;
+                        const noches = nightsCount.textContent;
+                        const huespedes = guestsSelect.value;
+                        const precio = estimatedPrice.textContent;
+                        const ref = bookingReference.value;
                         
-                        // Crear modal de éxito
+                        // Guardar datos para posible uso
+                        localStorage.setItem('last_reservation', JSON.stringify({
+                            nombre: nombre,
+                            telefono: telefono,
+                            referencia: ref,
+                            fecha: new Date().toISOString()
+                        }));
+                    }
+                    
+                    // Mostrar modal de éxito
+                    setTimeout(() => {
                         const modalHTML = `
                             <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 modal-overlay">
                                 <div class="bg-white p-8 rounded-xl max-w-md w-full text-center modal-content">
@@ -955,12 +1058,12 @@
                                     </div>
                                     <h3 class="text-2xl font-bold text-gray-800 mb-3">¡Solicitud Enviada!</h3>
                                     <p class="text-gray-600 mb-6">
-                                        Hemos recibido tu solicitud de reserva. Te contactaremos por email/WhatsApp en menos de 24 horas para confirmar disponibilidad.
+                                        Hemos recibido tu solicitud de reserva. Te contactaremos por email/WhatsApp en menos de 24 horas.
                                     </p>
                                     <div class="bg-gray-100 p-4 rounded-lg mb-6">
                                         <p class="text-sm text-gray-700">
                                             <strong>Número de referencia:</strong><br>
-                                            <span class="text-teal-600 font-bold text-lg">${refNumber}</span>
+                                            <span class="text-teal-600 font-bold text-lg">${bookingReference?.value || 'TDB-' + Date.now().toString().slice(-6)}</span>
                                         </p>
                                     </div>
                                     <button onclick="this.parentElement.parentElement.remove()" 
@@ -971,49 +1074,37 @@
                             </div>
                         `;
                         
-                        // Añadir modal al DOM
                         const modalDiv = document.createElement('div');
                         modalDiv.innerHTML = modalHTML;
                         document.body.appendChild(modalDiv);
                         
-                        // Cerrar modal al hacer clic fuera
                         modalDiv.addEventListener('click', function(event) {
                             if (event.target === this) {
                                 this.remove();
                             }
                         });
-                        
-                        // Añadir referencia al formulario
-                        const refField = document.createElement('input');
-                        refField.type = 'hidden';
-                        refField.name = 'numero_referencia';
-                        refField.value = refNumber;
-                        this.appendChild(refField);
-                        
                     }, 100);
                 });
             }
         }
         
-        // 7. MEJORAS INTERACTIVAS
+        // 8. MEJORAS INTERACTIVAS
         function setupInteractions() {
             // Efecto hover en galería
             const itemsGaleria = document.querySelectorAll('.gallery-item');
-            
             itemsGaleria.forEach(item => {
                 item.addEventListener('mouseenter', function() {
                     this.style.transform = 'translateY(-8px)';
                     this.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.1)';
                     this.style.transition = 'all 0.3s ease';
                 });
-                
                 item.addEventListener('mouseleave', function() {
                     this.style.transform = 'translateY(0)';
                     this.style.boxShadow = '';
                 });
             });
             
-            // Efecto en botones de WhatsApp
+            // Efecto en botones WhatsApp
             const botonesWhatsApp = document.querySelectorAll('a[href*="whatsapp"]');
             botonesWhatsApp.forEach(boton => {
                 boton.addEventListener('mouseenter', function() {
@@ -1025,11 +1116,12 @@
             });
         }
         
-        // 8. INICIALIZAR TODAS LAS FUNCIONES
+        // 9. INICIALIZAR TODO
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('🏠 Terrazas de Bayona - Página cargada y lista');
+            console.log('🏠 Terrazas de Bayona - Página con video cargada');
             
             initializeScrollReveal();
+            setupVideoPlayer();
             setupSmoothScroll();
             setupMobileMenu();
             setupReviews();
@@ -1037,21 +1129,19 @@
             setupEnhancedBookingForm();
             setupInteractions();
             
-            // Actualizar año en footer automáticamente
-            const anioActual = new Date().getFullYear();
-            document.getElementById('current-year').textContent = anioActual;
+            // Año actual en footer
+            document.getElementById('current-year').textContent = new Date().getFullYear();
             
-            // Configurar estrellas por defecto en 5
+            // Estrellas por defecto en 5
             const star5 = document.getElementById('star5');
             if (star5) star5.checked = true;
             
-            // Silenciar advertencia de Tailwind en consola
+            // Silenciar advertencias
             console.warn = function() {};
         });
         
-        // 9. RECARGAR ANIMACIONES AL CAMBIAR DE SECCIÓN
+        // 10. RECARGAR ANIMACIONES
         window.addEventListener('scroll', function() {
-            // Reactivar animaciones periódicamente
             setTimeout(initializeScrollReveal, 1000);
         });
     </script>

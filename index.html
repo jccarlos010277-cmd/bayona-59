@@ -232,9 +232,9 @@
 </head>
 <body class="text-gray-800 fade-in">
 
-    <!-- BOTÓN FLOTANTE WHATSAPP -->
+    <!-- BOTÓN FLOTANTE WHATSAPP CORREGIDO -->
     <div class="whatsapp-float">
-        <a href="https://wa.me/5353893144?text=Hola,%20quiero%20más%20información%20sobre%20Terrazas%20de%20Bayona" 
+        <a href="https://wa.me/5353893144?text=Hola,%20quiero%20más%20información%20sobre%20Terrazas%20de%20Bayona%20en%20La%20Habana" 
            target="_blank"
            class="bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition transform hover:scale-110 flex items-center"
            aria-label="Contactar por WhatsApp">
@@ -253,6 +253,7 @@
                 <a href="#about" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Nosotros</a>
                 <a href="#alojamiento" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Alojamiento</a>
                 <a href="#servicios" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Servicios</a>
+                <a href="#minibar" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Minibar</a>
                 <a href="#ubicacion" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Ubicación</a>
                 <a href="#opiniones" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Opiniones</a>
                 <a href="#reservas" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Reservas</a>
@@ -271,6 +272,7 @@
             <a href="#about" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Nosotros</a>
             <a href="#alojamiento" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Alojamiento</a>
             <a href="#servicios" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Servicios</a>
+            <a href="#minibar" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Minibar</a>
             <a href="#ubicacion" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Ubicación</a>
             <a href="#opiniones" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Opiniones</a>
             <a href="#reservas" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Reservas</a>
@@ -507,6 +509,79 @@
                         <p class="text-teal-600 font-semibold mt-2">
                             <i class="fas fa-car mr-2"></i>Precios según destino y duración
                         </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NUEVA SECCIÓN: MINIBAR -->
+    <section id="minibar" class="py-16 bg-gray-50 border-t border-gray-200">
+        <div class="content-container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-teal-700 mb-12 animate-on-scroll">
+                Minibar en Habitación
+            </h2>
+            <p class="text-center text-gray-600 mb-10 max-w-2xl mx-auto animate-on-scroll">
+                Disfruta de bebidas refrescantes directamente en tu habitación. Nuestro minibar está siempre abastecido para tu comodidad.
+            </p>
+
+            <div class="max-w-3xl mx-auto animate-on-scroll">
+                <div class="bg-white p-8 rounded-xl shadow-xl">
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <!-- Cerveza -->
+                        <div class="text-center p-6 bg-blue-50 rounded-xl hover:shadow-lg transition-shadow duration-300">
+                            <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-beer text-blue-600 text-3xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-blue-700 mb-3">Cerveza</h3>
+                            <p class="text-gray-600 mb-2">Refrescante cerveza fría</p>
+                            <div class="text-2xl font-bold text-teal-600">1.50 USD</div>
+                            <p class="text-sm text-gray-500 mt-2">Por unidad</p>
+                        </div>
+
+                        <!-- Refresco Lata -->
+                        <div class="text-center p-6 bg-red-50 rounded-xl hover:shadow-lg transition-shadow duration-300">
+                            <div class="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-wine-bottle text-red-600 text-3xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-red-700 mb-3">Refresco Lata</h3>
+                            <p class="text-gray-600 mb-2">Variedad de refrescos</p>
+                            <div class="text-2xl font-bold text-teal-600">1.00 USD</div>
+                            <p class="text-sm text-gray-500 mt-2">Por lata</p>
+                        </div>
+
+                        <!-- Agua Pomo -->
+                        <div class="text-center p-6 bg-teal-50 rounded-xl hover:shadow-lg transition-shadow duration-300">
+                            <div class="w-20 h-20 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-wine-bottle text-teal-600 text-3xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-teal-700 mb-3">Agua Pomo</h3>
+                            <p class="text-gray-600 mb-2">Agua mineral purificada</p>
+                            <div class="text-2xl font-bold text-teal-600">1.00 USD</div>
+                            <p class="text-sm text-gray-500 mt-2">Por pomo</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-10 p-6 bg-teal-50 rounded-xl border border-teal-100">
+                        <h4 class="text-xl font-bold text-teal-800 mb-4">Información importante</h4>
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-teal-500 mr-3 mt-1"></i>
+                                <span>Todas las bebidas están disponibles las 24 horas</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-teal-500 mr-3 mt-1"></i>
+                                <span>El consumo se registra y se paga al finalizar la estancia</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-teal-500 mr-3 mt-1"></i>
+                                <span>Precios sujetos a disponibilidad</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-teal-500 mr-3 mt-1"></i>
+                                <span>También disponible en áreas comunes</span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -835,12 +910,12 @@
                 </div>
             </div>
             
-            <!-- BLOQUE ALTERNATIVO WHATSAPP -->
+            <!-- BLOQUE ALTERNATIVO WHATSAPP CORREGIDO -->
             <div class="max-w-3xl mx-auto mt-8 animate-on-scroll">
                 <div class="bg-gradient-to-r from-teal-50 to-blue-50 p-6 rounded-xl border border-teal-200 text-center">
                     <h4 class="text-xl font-bold text-teal-700 mb-3">¿Prefieres reservar por WhatsApp?</h4>
                     <p class="text-gray-600 mb-4">Reserva directamente y obtén respuesta inmediata</p>
-                    <a href="https://wa.me/5353893144?text=Hola,%20quiero%20reservar%20en%20Terrazas%20de%20Bayona.%20Mis%20datos:%0A📅%20Fechas:%20%0A👥%20Huéspedes:%20%0A📞%20Teléfono:%20" 
+                    <a href="https://wa.me/5353893144?text=Hola,%20quiero%20reservar%20en%20Terrazas%20de%20Bayona%20en%20La%20Habana.%20Mis%20datos:%0A📅%20Fechas:%20%0A👥%20Huéspedes:%20%0A📞%20Teléfono:%20" 
                        target="_blank"
                        class="inline-flex items-center bg-green-500 hover:bg-green-600 text-white font-bold px-8 py-3 rounded-full transition transform hover:scale-105">
                         <i class="fab fa-whatsapp text-xl mr-3"></i>
@@ -851,12 +926,14 @@
         </div>
     </section>
 
-    <!-- SECCIÓN CONTACTO -->
+    <!-- SECCIÓN CONTACTO CORREGIDA -->
     <section id="contacto" class="py-16 bg-teal-600 text-white text-center">
         <div class="content-container mx-auto px-4 animate-on-scroll">
             <h2 class="text-3xl font-bold mb-4">¿Listo para vivir la experiencia cubana?</h2>
             <p class="text-xl mb-8 font-light">¡Esperamos tu visita! Contáctanos directamente por WhatsApp para reservar o aclarar cualquier duda.</p>
-            <a href="https://wa.me/5353893144" target="_blank" class="inline-block bg-white text-teal-600 px-8 py-3 rounded-full font-bold shadow-lg hover:bg-gray-100 transition transform hover:scale-105">
+            <a href="https://wa.me/5353893144?text=Hola,%20quiero%20información%20sobre%20Terrazas%20de%20Bayona%20en%20La%20Habana" 
+               target="_blank" 
+               class="inline-block bg-white text-teal-600 px-8 py-3 rounded-full font-bold shadow-lg hover:bg-gray-100 transition transform hover:scale-105">
                 <i class="fab fa-whatsapp mr-2"></i> WhatsApp: +53 53893144
             </a>
             <div class="mt-8">

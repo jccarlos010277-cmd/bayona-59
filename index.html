@@ -72,6 +72,18 @@
             background: rgba(0, 0, 0, 0.9);
             transform: translate(-50%, -50%) scale(1.1);
         }
+        /* Mejoras para móviles */
+        @media (max-width: 768px) {
+            .map-container iframe {
+                height: 350px !important;
+            }
+            .video-container {
+                margin-bottom: 2rem;
+            }
+            .hero-text-shadow {
+                text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+            }
+        }
     </style>
 </head>
 <body class="text-gray-800">
@@ -330,7 +342,7 @@
         </div>
     </section>
 
-    <!-- SECCIÓN UBICACIÓN -->
+    <!-- SECCIÓN UBICACIÓN - CORREGIDA -->
     <section id="ubicacion" class="py-16 bg-white border-t border-gray-100">
         <div class="content-container mx-auto px-4">
             <h2 class="text-3xl font-bold text-center text-teal-700 mb-12 animate-on-scroll">
@@ -340,10 +352,22 @@
                 Disfruta de la comodidad de estar cerca de todo. Terrazas de Bayona se encuentra en un punto estratégico para explorar La Habana Vieja y sus alrededores.
             </p>
             <div class="grid md:grid-cols-2 gap-8 items-center">
-                <div class="animate-on-scroll">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3782.903774889608!2d-82.3582496851234!3d23.13637158489744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88cd72b22f4b4b4d%3A0x6a0f7c2d7e1c8d!2sLa%20Habana%2C%20Cuba!5e0!3m2!1ses!2sus!4v1678912345678!5m2!1ses!2sus" 
-                            width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-                            class="rounded-xl shadow-lg"></iframe>
+                <div class="animate-on-scroll map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3782.829020209592!2d-82.35525379999999!3d23.130434000000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sTerrazas%20de%20Bayona!5e0!3m2!1ses!2sus!4v1735599776625!5m2!1ses!2sus&zoom=16"
+                        width="100%" 
+                        height="450" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade"
+                        class="rounded-xl shadow-lg">
+                    </iframe>
+                    <p class="text-center mt-4 text-gray-600">
+                        <a href="https://maps.google.com/?q=23.130434,-82.352679" target="_blank" class="text-teal-600 hover:underline font-medium">
+                            <i class="fas fa-external-link-alt mr-2"></i>Abrir en Google Maps
+                        </a>
+                    </p>
                 </div>
                 <div class="animate-on-scroll">
                     <h3 class="text-2xl font-bold text-teal-700 mb-6">Puntos de Interés Cercanos</h3>
@@ -372,6 +396,13 @@
                                 <span class="font-semibold text-lg">Mercados y Tiendas:</span> Todo lo que necesitas al alcance de tu mano.
                             </div>
                         </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-red-500 mr-3 mt-1 text-xl"></i>
+                            <div>
+                                <span class="font-semibold text-lg">Ubicación exacta:</span><br>
+                                <span class="text-sm text-gray-600">Coordenadas: 23.130434, -82.352679</span>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -395,6 +426,9 @@
                     <form id="review-form" action="https://formspree.io/f/xvzolnyg" method="POST">
                         <input type="hidden" name="_subject" value="⭐ OPINION_TDB - Terrazas de Bayona">
                         <input type="hidden" name="_language" value="es">
+                        
+                        <!-- 📧 ENVIAR A 2 CORREOS: Alexander y Carlos -->
+                        <input type="hidden" name="_cc" value="alexanderacensio1234@gmail.com,jccarlos010277@gmail.com">
                         
                         <div class="mb-4">
                             <label for="review-name" class="block text-gray-700 text-sm font-bold mb-2">Tu nombre *</label>
@@ -468,6 +502,9 @@
                         <input type="hidden" name="_language" value="es">
                         <input type="hidden" name="referencia" id="booking-reference">
                         <input type="hidden" name="precio_estimado" id="estimated-price-hidden">
+                        
+                        <!-- 📧 ENVIAR A 2 CORREOS: Alexander y Carlos -->
+                        <input type="hidden" name="_cc" value="alexanderacensio1234@gmail.com,jccarlos010277@gmail.com">
                         
                         <!-- SECCIÓN 1: DATOS PERSONALES -->
                         <div class="mb-8">

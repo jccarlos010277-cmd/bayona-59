@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://reservaterrazasdebayona59.com/sitemap.xml

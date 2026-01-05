@@ -94,6 +94,14 @@
     
     <!-- Estilos personalizados -->
     <style>
+        :root {
+            --primary-teal: #0d9488;
+            --accent-yellow: #fbbf24;
+            --dark-teal: #115e59;
+            --light-teal: #ccfbf1;
+            --warm-gray: #f5f5f4;
+        }
+        
         body { 
             font-family: 'Inter', sans-serif; 
             background-color: #f7f7f7; 
@@ -129,7 +137,7 @@
         .star-rating input:checked ~ label,
         .star-rating label:hover,
         .star-rating label:hover ~ label { 
-            color: #f59e0b; 
+            color: var(--accent-yellow); 
         }
         .star-rating input { 
             display: none; 
@@ -137,11 +145,11 @@
         #main-header { 
             top: 0; 
             width: 100%; 
-            z-index: 20; 
+            z-index: 50; 
             transition: all 0.3s ease;
         }
         #main-header.scrolled {
-            background-color: rgba(255, 255, 255, 0.95);
+            background-color: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
@@ -181,10 +189,15 @@
             bottom: 20px;
             right: 20px;
             z-index: 100;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
         .video-container {
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            padding-bottom: 56.25%;
             height: 0;
             overflow: hidden;
             border-radius: 1rem;
@@ -198,26 +211,6 @@
             height: 100%;
             border: none;
         }
-        .play-button {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 80px;
-            height: 80px;
-            font-size: 2rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 10;
-        }
-        .play-button:hover {
-            background: rgba(0, 0, 0, 0.9);
-            transform: translate(-50%, -50%) scale(1.1);
-        }
         
         /* Mejoras para móviles */
         @media (max-width: 768px) {
@@ -227,11 +220,6 @@
             }
             .hero-text-shadow {
                 text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
-            }
-            .play-button {
-                width: 60px;
-                height: 60px;
-                font-size: 1.5rem;
             }
         }
         
@@ -248,7 +236,7 @@
         .spinner {
             border: 3px solid rgba(0, 0, 0, 0.1);
             border-radius: 50%;
-            border-top: 3px solid #3498db;
+            border-top: 3px solid var(--primary-teal);
             width: 24px;
             height: 24px;
             animation: spin 1s linear infinite;
@@ -257,6 +245,20 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+        
+        /* Aspect ratio utility */
+        .aspect-w-16 { position: relative; padding-bottom: 56.25%; }
+        .aspect-w-16 > * { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        
+        /* Custom colors */
+        .bg-teal-600 { background-color: var(--primary-teal) !important; }
+        .hover\:bg-teal-700:hover { background-color: var(--dark-teal) !important; }
+        .text-teal-600 { color: var(--primary-teal) !important; }
+        .text-teal-700 { color: var(--dark-teal) !important; }
+        .bg-yellow-400 { background-color: var(--accent-yellow) !important; }
+        .hover\:bg-yellow-500:hover { background-color: #f59e0b !important; }
+        .text-yellow-300 { color: #fde68a !important; }
+        .bg-teal-50 { background-color: var(--light-teal) !important; }
     </style>
 </head>
 <body class="text-gray-800 fade-in">
@@ -273,7 +275,7 @@
     </div>
 
     <!-- CABECERA FIJA Y NAVEGACIÓN -->
-    <header id="main-header" class="bg-white shadow-md sticky top-0 z-20">
+    <header id="main-header" class="bg-white shadow-md sticky top-0 z-50">
         <div class="content-container mx-auto px-4 py-3 flex justify-between items-center">
             <a href="#" class="text-2xl font-bold text-teal-600 hover:text-teal-800 transition duration-300">
                 <i class="fas fa-home mr-2"></i>Terrazas de Bayona
@@ -308,93 +310,156 @@
         </div>
     </header>
 
-    <!-- SECCIÓN HERO/BIENVENIDA CON VIDEO -->
-    <section class="relative bg-gradient-to-b from-gray-900 to-gray-800 pt-16 pb-24 md:pt-24 md:pb-32">
-        <div class="content-container mx-auto px-4">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <!-- Texto principal -->
-                <div class="text-white animate-on-scroll">
-                    <!-- H1 Optimizado -->
-                    <h1 class="text-4xl md:text-6xl font-extrabold mb-4 hero-text-shadow">
-                        Terrazas de Bayona - Alojamiento en La Habana Cuba
+    <!-- NUEVA SECCIÓN HERO - DISEÑO PREMIUM -->
+    <section class="relative h-screen min-h-[600px] overflow-hidden">
+        <!-- Fondo con overlay gradient -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://i.postimg.cc/Y9jZwcg0/terraza.jpg" 
+                 alt="Vista panorámica de Terrazas de Bayona, La Habana"
+                 class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-r from-teal-900/70 via-teal-800/50 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+        </div>
+        
+        <!-- Contenido principal centrado -->
+        <div class="relative z-10 h-full flex items-center">
+            <div class="content-container mx-auto px-4">
+                <div class="max-w-2xl">
+                    <!-- Badge de autenticidad -->
+                    <div class="inline-flex items-center bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full mb-6">
+                        <i class="fas fa-heart mr-2"></i>
+                        <span class="text-sm font-semibold">Experiencia 100% Cubana</span>
+                    </div>
+                    
+                    <!-- Título principal -->
+                    <h1 class="text-5xl md:text-7xl font-bold text-white mb-4 leading-tight">
+                        Tu <span class="text-yellow-300">Hogar</span><br>
+                        en <span class="text-yellow-300">La Habana</span>
                     </h1>
-                    <p class="text-xl md:text-2xl font-light mb-8 max-w-2xl">
-                        Descubre tu hogar perfecto en La Habana. Comodidad, tranquilidad y una experiencia auténtica.
+                    
+                    <!-- Subtítulo -->
+                    <p class="text-xl md:text-2xl text-white/90 mb-8 font-light max-w-xl">
+                        Donde la calidez cubana se encuentra con el confort moderno. 
+                        Más que alojamiento, una experiencia familiar.
                     </p>
                     
-                    <div class="space-y-4 mb-8">
-                        <div class="flex items-center">
-                            <i class="fas fa-star text-yellow-400 text-xl mr-3"></i>
-                            <span class="text-lg">Experiencia cubana auténtica</span>
-                        </div>
-                        <div class="flex items-center">
-                            <i class="fas fa-home text-teal-400 text-xl mr-3"></i>
-                            <span class="text-lg">Hogar lejos de casa</span>
-                        </div>
-                        <div class="flex items-center">
-                            <i class="fas fa-heart text-red-400 text-xl mr-3"></i>
-                            <span class="text-lg">Atención personalizada</span>
-                        </div>
-                    </div>
-                    
+                    <!-- CTA Principal -->
                     <div class="flex flex-wrap gap-4">
                         <a href="#reservas" 
-                           class="bg-teal-600 hover:bg-teal-700 text-white font-bold px-8 py-3 rounded-full transition transform hover:scale-105 shadow-lg"
-                           onclick="gtag('event', 'click', {'event_category': 'cta', 'event_label': 'reservar_ahora_hero'});">
-                            <i class="fas fa-calendar-alt mr-2"></i> Reservar Ahora
+                           class="bg-yellow-400 hover:bg-yellow-500 text-teal-900 font-bold px-8 py-4 rounded-full transition-all transform hover:scale-105 shadow-2xl hover:shadow-3xl flex items-center group"
+                           onclick="gtag('event', 'click', {'event_category': 'cta', 'event_label': 'reservar_experiencia_completa_hero'});">
+                            <i class="fas fa-calendar-check mr-3 text-xl"></i>
+                            <span class="text-lg">Reservar Experiencia Completa</span>
+                            <i class="fas fa-arrow-right ml-3 group-hover:translate-x-2 transition-transform"></i>
                         </a>
-                        <a href="#about" 
-                           class="bg-white text-gray-800 hover:bg-gray-100 font-bold px-8 py-3 rounded-full transition transform hover:scale-105 shadow-lg"
-                           onclick="gtag('event', 'click', {'event_category': 'cta', 'event_label': 'conocenos_hero'});">
-                            <i class="fas fa-users mr-2"></i> Conócenos
+                        
+                        <a href="#video-experiencia" 
+                           class="bg-transparent border-2 border-white text-white hover:bg-white/10 px-8 py-4 rounded-full transition-all font-bold flex items-center"
+                           onclick="gtag('event', 'click', {'event_category': 'cta', 'event_label': 'ver_experiencia_hero'});">
+                            <i class="fas fa-play-circle mr-3"></i>
+                            Ver Experiencia
                         </a>
+                    </div>
+                    
+                    <!-- Puntos destacados -->
+                    <div class="flex flex-wrap gap-6 mt-12">
+                        <div class="flex items-center text-white">
+                            <div class="bg-white/20 p-2 rounded-lg mr-3">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold">4.8/5</p>
+                                <p class="text-sm opacity-80">En todas las plataformas</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center text-white">
+                            <div class="bg-white/20 p-2 rounded-lg mr-3">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold">16+ años</p>
+                                <p class="text-sm opacity-80">Recibiendo huéspedes</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center text-white">
+                            <div class="bg-white/20 p-2 rounded-lg mr-3">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold">Familiar</p>
+                                <p class="text-sm opacity-80">Atención personalizada</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
+            <div class="animate-bounce">
+                <i class="fas fa-chevron-down text-white text-2xl"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- BANNER DE CONFIANZA -->
+    <section class="py-12 bg-white border-y border-gray-200">
+        <div class="content-container mx-auto px-4">
+            <div class="text-center mb-8">
+                <h3 class="text-2xl font-bold text-gray-900 mb-2">
+                    Confían en nuestra experiencia
+                </h3>
+                <p class="text-gray-600">
+                    Huéspedes de más de 25 países han vivido la auténtica Cuba con nosotros
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-teal-600 mb-2">98%</div>
+                    <p class="text-gray-700 font-medium">Tasa de repetición</p>
+                    <p class="text-sm text-gray-500">Huéspedes que regresan</p>
+                </div>
                 
-                <!-- Video de YouTube -->
-                <div class="animate-on-scroll">
-                    <div class="relative">
-                        <h2 class="text-2xl md:text-3xl font-bold text-white text-center mb-6">
-                            <i class="fas fa-play-circle mr-2"></i> Vive la experiencia
-                        </h2>
-                        <div class="video-container">
-                            <!-- Vista previa del video con botón de play -->
-                            <div id="video-preview" class="absolute inset-0 bg-cover bg-center rounded-xl cursor-pointer" 
-                                 style="background-image: url('https://img.youtube.com/vi/M4mBVaOqMEs/maxresdefault.jpg');"
-                                 role="button"
-                                 tabindex="0"
-                                 aria-label="Reproducir video de presentación">
-                                <div class="absolute inset-0 bg-black bg-opacity-30 rounded-xl"></div>
-                                <button id="play-video" class="play-button" aria-label="Reproducir video"
-                                        onclick="gtag('event', 'play', {'event_category': 'video', 'event_label': 'hero_video'});">
-                                    <i class="fas fa-play"></i>
-                                </button>
-                                <div class="absolute bottom-4 left-4 right-4 text-white">
-                                    <p class="text-sm font-semibold">Video: Terrazas de Bayona - Experiencia Cubana</p>
-                                    <p class="text-xs">Duración: 2:35 • Haz clic para ver</p>
-                                </div>
-                            </div>
-                            <!-- Iframe de YouTube (oculto inicialmente) -->
-                            <iframe id="youtube-video" 
-                                    src="https://www.youtube.com/embed/M4mBVaOqMEs?rel=0&modestbranding=1&showinfo=0" 
-                                    frameborder="0" 
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                    allowfullscreen
-                                    style="display: none;"
-                                    title="Video de presentación de Terrazas de Bayona">
-                            </iframe>
-                        </div>
-                        <p class="text-gray-300 text-center mt-4 text-sm">
-                            Mira nuestro video para sentir la experiencia que vivirás con nosotros
-                        </p>
-                    </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-teal-600 mb-2">4.8★</div>
+                    <p class="text-gray-700 font-medium">Calificación promedio</p>
+                    <p class="text-sm text-gray-500">En todas las plataformas</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-teal-600 mb-2">16+</div>
+                    <p class="text-gray-700 font-medium">Años de experiencia</p>
+                    <p class="text-sm text-gray-500">Como anfitriones</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-teal-600 mb-2">24/7</div>
+                    <p class="text-gray-700 font-medium">Disponibilidad</p>
+                    <p class="text-sm text-gray-500">Atención personalizada</p>
+                </div>
+            </div>
+            
+            <!-- Logos de plataformas -->
+            <div class="flex justify-center items-center space-x-8 mt-12 opacity-60">
+                <div class="text-2xl text-gray-400">
+                    <i class="fab fa-airbnb"></i>
+                </div>
+                <div class="text-2xl text-gray-400">
+                    <i class="fas fa-b"></i>
+                </div>
+                <div class="text-2xl text-gray-400">
+                    <i class="fab fa-google"></i>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- SECCIÓN SOBRE NOSOTROS -->
-    <section id="about" class="py-16 bg-white">
+    <section id="about" class="py-16 bg-gray-50">
         <div class="content-container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
             <div class="order-2 md:order-1 animate-on-scroll">
                 <img src="https://i.postimg.cc/G29V10Yr/asencio-e-izaida.jpg" 
@@ -402,6 +467,9 @@
                      class="w-full h-auto rounded-xl shadow-2xl object-cover">
             </div>
             <div class="order-1 md:order-2 animate-on-scroll">
+                <span class="inline-block bg-teal-100 text-teal-800 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                    <i class="fas fa-heart mr-2"></i> Tu familia en Cuba
+                </span>
                 <h2 class="text-3xl font-bold text-teal-700 mb-4">Un poco sobre nosotros</h2>
                 <p class="text-gray-700 mb-4 leading-relaxed">
                     Somos Alexander e Isaida, una pareja con 16 años de casados y el corazón abierto para recibirte. Nos apasiona compartir nuestra cultura y asegurar que tu estancia sea inolvidable.
@@ -415,6 +483,236 @@
                         <span>Reserva tu experiencia cubana</span>
                         <i class="fas fa-arrow-right ml-2"></i>
                     </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE PROMOCIÓN ESPECIAL -->
+    <section class="py-16 bg-gradient-to-r from-teal-50 to-yellow-50">
+        <div class="content-container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="bg-white rounded-3xl shadow-2xl overflow-hidden">
+                    <div class="md:flex">
+                        <!-- Lado izquierdo: Oferta -->
+                        <div class="md:w-2/5 bg-gradient-to-br from-teal-600 to-teal-800 p-12 text-white relative overflow-hidden">
+                            <!-- Elementos decorativos -->
+                            <div class="absolute -top-20 -right-20 w-40 h-40 bg-white/10 rounded-full"></div>
+                            <div class="absolute -bottom-20 -left-20 w-40 h-40 bg-white/10 rounded-full"></div>
+                            
+                            <div class="relative z-10">
+                                <span class="inline-block bg-yellow-400 text-teal-900 px-4 py-2 rounded-full text-sm font-bold mb-6">
+                                    <i class="fas fa-bolt mr-2"></i> OFERTA ESPECIAL
+                                </span>
+                                
+                                <h3 class="text-3xl font-bold mb-4">
+                                    Reserva 7+ noches<br>
+                                    <span class="text-yellow-300">y obtén</span>
+                                </h3>
+                                
+                                <div class="space-y-4 mb-8">
+                                    <div class="flex items-center">
+                                        <div class="bg-white/20 p-2 rounded-lg mr-4">
+                                            <i class="fas fa-gift"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-bold">Desayuno cubano GRATIS</p>
+                                            <p class="text-sm opacity-90">1 día por persona</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="flex items-center">
+                                        <div class="bg-white/20 p-2 rounded-lg mr-4">
+                                            <i class="fas fa-car"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-bold">Tour de bienvenida</p>
+                                            <p class="text-sm opacity-90">Por La Habana Vieja</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="border-t border-white/30 pt-6">
+                                    <p class="text-sm opacity-80 mb-2">Válido hasta:</p>
+                                    <div class="flex items-center">
+                                        <div class="bg-white/20 px-4 py-2 rounded-lg mr-3">
+                                            <i class="fas fa-calendar-alt"></i>
+                                        </div>
+                                        <div>
+                                            <p class="font-bold text-lg">30 de Junio 2024</p>
+                                            <p class="text-sm opacity-80">o hasta agotar disponibilidad</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Lado derecho: Información -->
+                        <div class="md:w-3/5 p-12">
+                            <h4 class="text-2xl font-bold text-gray-900 mb-6">
+                                ¿Por qué elegir esta oferta?
+                            </h4>
+                            
+                            <div class="grid md:grid-cols-2 gap-6 mb-8">
+                                <div class="flex items-start">
+                                    <div class="text-teal-600 mr-4 mt-1">
+                                        <i class="fas fa-check-circle text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-bold text-gray-800">Mejor precio garantizado</p>
+                                        <p class="text-gray-600 text-sm">20 USD/noche + beneficios extras</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="text-teal-600 mr-4 mt-1">
+                                        <i class="fas fa-check-circle text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-bold text-gray-800">Experiencia completa</p>
+                                        <p class="text-gray-600 text-sm">Gastronomía + Cultura + Confort</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="text-teal-600 mr-4 mt-1">
+                                        <i class="fas fa-check-circle text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-bold text-gray-800">Flexibilidad total</p>
+                                        <p class="text-gray-600 text-sm">Cancelación gratuita 7 días antes</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="text-teal-600 mr-4 mt-1">
+                                        <i class="fas fa-check-circle text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-bold text-gray-800">Asistencia personal</p>
+                                        <p class="text-gray-600 text-sm">Alexander e Isaida disponibles 24/7</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Contador de disponibilidad -->
+                            <div class="bg-gray-100 rounded-xl p-6 mb-8">
+                                <div class="flex justify-between items-center mb-4">
+                                    <div>
+                                        <p class="font-bold text-gray-800">Disponibilidad limitada</p>
+                                        <p class="text-sm text-gray-600">Solo 3 habitaciones con esta promoción</p>
+                                    </div>
+                                    <div class="text-right">
+                                        <p class="text-2xl font-bold text-teal-600">2/3</p>
+                                        <p class="text-sm text-gray-600">habitaciones disponibles</p>
+                                    </div>
+                                </div>
+                                <div class="w-full bg-gray-300 rounded-full h-3">
+                                    <div class="bg-teal-600 h-3 rounded-full" style="width: 33%"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- CTA -->
+                            <div class="flex flex-wrap gap-4">
+                                <a href="#reservas" 
+                                   class="bg-teal-600 hover:bg-teal-700 text-white font-bold px-8 py-4 rounded-full transition-all transform hover:scale-105 shadow-lg flex-1 min-w-[200px] text-center"
+                                   onclick="gtag('event', 'click', {'event_category': 'promo', 'event_label': 'aprovechar_oferta'});">
+                                    <i class="fas fa-calendar-star mr-3"></i>
+                                    Aprovechar Oferta
+                                </a>
+                                
+                                <a href="https://wa.me/5356382909?text=Hola,%20quiero%20saber%20más%20sobre%20la%20oferta%20de%207+noches" 
+                                   target="_blank"
+                                   class="border-2 border-teal-600 text-teal-600 hover:bg-teal-50 font-bold px-8 py-4 rounded-full transition-all flex-1 min-w-[200px] text-center"
+                                   onclick="trackWhatsAppClick('promo_offer');">
+                                    <i class="fab fa-whatsapp mr-3"></i>
+                                    Consultar por WhatsApp
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NUEVA SECCIÓN DE VIDEO MEJORADA -->
+    <section id="video-experiencia" class="py-20 bg-gradient-to-b from-white to-gray-50">
+        <div class="content-container mx-auto px-4">
+            <!-- Encabezado con narrativa -->
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="inline-block bg-teal-100 text-teal-800 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                    <i class="fas fa-film mr-2"></i> Vive la experiencia
+                </span>
+                <h2 class="text-4xl font-bold text-gray-900 mb-6">
+                    No solo te lo <span class="text-teal-600">contamos</span>,<br>
+                    te lo <span class="text-teal-600">mostramos</span>
+                </h2>
+                <p class="text-gray-600 text-lg">
+                    Descubre por qué nuestros huéspedes repiten año tras año. 
+                    Un vistazo a la auténtica vida cubana desde dentro.
+                </p>
+            </div>
+            
+            <!-- Contenedor de video premium -->
+            <div class="max-w-5xl mx-auto">
+                <div class="relative rounded-2xl overflow-hidden shadow-2xl">
+                    <!-- Miniatura del video con overlay -->
+                    <div class="relative cursor-pointer group" id="video-trigger">
+                        <img src="https://img.youtube.com/vi/M4mBVaOqMEs/maxresdefault.jpg" 
+                             alt="Video experiencia Terrazas de Bayona"
+                             class="w-full h-[500px] object-cover transition-transform duration-700 group-hover:scale-105">
+                        
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent"></div>
+                        
+                        <!-- Botón de play premium -->
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="bg-white/20 backdrop-blur-sm rounded-full p-1 group-hover:scale-110 transition-transform duration-300">
+                                <div class="bg-teal-600 text-white p-6 rounded-full group-hover:bg-teal-700 transition-colors">
+                                    <i class="fas fa-play text-3xl"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Texto overlay -->
+                        <div class="absolute bottom-8 left-8 text-white">
+                            <p class="text-sm font-semibold opacity-90">TERRAZAS DE BAYONA PRESENTA</p>
+                            <p class="text-2xl font-bold mt-1">"Un día en La Habana con nosotros"</p>
+                            <p class="opacity-80 mt-2">2:35 min • Haz clic para ver la experiencia completa</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Iframe oculto inicialmente -->
+                    <div id="video-container" class="hidden">
+                        <div class="aspect-w-16">
+                            <iframe id="youtube-embed" 
+                                    src="https://www.youtube.com/embed/M4mBVaOqMEs?rel=0&modestbranding=1&showinfo=0" 
+                                    frameborder="0" 
+                                    allowfullscreen
+                                    class="w-full h-[500px]">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonio relacionado con el video -->
+                <div class="bg-white p-8 rounded-xl shadow-lg -mt-8 relative z-10 mx-8">
+                    <div class="flex items-start">
+                        <div class="text-teal-600 text-4xl mr-4">"</div>
+                        <div>
+                            <p class="text-gray-700 text-lg italic">
+                                El video captura perfectamente lo que se siente estar aquí. 
+                                Esa terraza al atardecer con el café cubano... ¡inolvidable!
+                            </p>
+                            <div class="flex items-center mt-4">
+                                <div class="w-12 h-12 bg-gray-300 rounded-full mr-4"></div>
+                                <div>
+                                    <p class="font-bold text-gray-900">María G.</p>
+                                    <p class="text-sm text-gray-600">Huésped desde España • Marzo 2024</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -945,7 +1243,7 @@
             <p>&copy; <span id="current-year">2025</span> Terrazas de Bayona. Todos los derechos reservados.</p>
             <p class="text-sm text-gray-400 mt-2">
                 Alojamiento privado en La Habana, Cuba | 
-                WhatsApp: <a href="https://wa.me/5356382909" class="text-teal-300 hover:text-teal-100">+53 56382909</a> |
+                WhatsApp: <a href="https://wa.me/5356382909" class="text-teal-300 hover:text-teal-100">+53 56382909</a> | 
                 Email: <a href="mailto:alexanderacensio1234@gmail.com" class="text-teal-300 hover:text-teal-100">alexanderacensio1234@gmail.com</a>
             </p>
         </div>
@@ -974,23 +1272,41 @@
             });
         }
         
-        // 2. CONTROL DEL VIDEO
-        function setupVideoPlayer() {
-            const videoPreview = document.getElementById('video-preview');
-            const playButton = document.getElementById('play-video');
-            const youtubeVideo = document.getElementById('youtube-video');
+        // 2. CONTROL DEL VIDEO PREMIUM
+        function setupPremiumVideoPlayer() {
+            const videoTrigger = document.getElementById('video-trigger');
+            const videoContainer = document.getElementById('video-container');
+            const youtubeEmbed = document.getElementById('youtube-embed');
             
-            if (videoPreview && playButton && youtubeVideo) {
-                playButton.addEventListener('click', function() {
-                    videoPreview.style.display = 'none';
-                    youtubeVideo.style.display = 'block';
-                    youtubeVideo.src = youtubeVideo.src + "&autoplay=1";
-                });
-                
-                videoPreview.addEventListener('click', function() {
-                    videoPreview.style.display = 'none';
-                    youtubeVideo.style.display = 'block';
-                    youtubeVideo.src = youtubeVideo.src + "&autoplay=1";
+            if (videoTrigger && videoContainer && youtubeEmbed) {
+                videoTrigger.addEventListener('click', function() {
+                    // Animación de transición
+                    videoTrigger.style.opacity = '0';
+                    videoTrigger.style.transition = 'opacity 0.3s ease';
+                    
+                    setTimeout(() => {
+                        videoTrigger.style.display = 'none';
+                        videoContainer.classList.remove('hidden');
+                        videoContainer.style.opacity = '0';
+                        videoContainer.style.display = 'block';
+                        
+                        // Animación de entrada
+                        setTimeout(() => {
+                            videoContainer.style.opacity = '1';
+                            videoContainer.style.transition = 'opacity 0.5s ease';
+                        }, 10);
+                        
+                        // Iniciar video automáticamente
+                        youtubeEmbed.src = youtubeEmbed.src + "&autoplay=1&mute=0";
+                        
+                        // Track event
+                        if (typeof gtag !== 'undefined') {
+                            gtag('event', 'video_play', {
+                                'event_category': 'engagement',
+                                'event_label': 'premium_experience_video'
+                            });
+                        }
+                    }, 300);
                 });
             }
         }
@@ -1486,10 +1802,10 @@
         
         // 11. INICIALIZAR TODO
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('🏠 Terrazas de Bayona - Formspree Integrado');
+            console.log('🏠 Terrazas de Bayona - Rediseño Premium Activado');
             
             initializeScrollReveal();
-            setupVideoPlayer();
+            setupPremiumVideoPlayer();
             setupSmoothScroll();
             setupMobileMenu();
             setupReviews();

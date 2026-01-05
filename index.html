@@ -243,6 +243,20 @@
             from { opacity: 0; }
             to { opacity: 1; }
         }
+        
+        /* Loading spinner */
+        .spinner {
+            border: 3px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            border-top: 3px solid #3498db;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body class="text-gray-800 fade-in">
@@ -606,19 +620,31 @@
             <div class="max-w-2xl mx-auto animate-on-scroll">
                 <div class="bg-white p-8 rounded-xl shadow-xl">
                     <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Comparte tu experiencia</h3>
-                    <!-- CORREO MODIFICADO: Ambos correos recibirán las opiniones -->
-                    <form id="review-form" action="mailto:alexanderacensio1234@gmail.com?cc=info@reservaterrazasdebayona59.com" method="POST" enctype="text/plain">
-                        <input type="hidden" name="_subject" value="⭐ OPINION_TDB - Terrazas de Bayona">
+                    
+                    <!-- FORMULARIO DE OPINIONES CON FORMSPREE -->
+                    <form id="review-form" action="https://formspree.io/f/rsvodpy" method="POST">
+                        <input type="hidden" name="_subject" value="⭐ NUEVA OPINIÓN - Terrazas de Bayona">
+                        <input type="hidden" name="_replyto" id="review-email" value="alexanderacensio1234@gmail.com">
+                        <!-- Configuración para redirigir a ambos correos -->
+                        <input type="hidden" name="_cc" value="jccarlos010277@gmail.com,info@reservaterrazasdebayona59.com">
                         <input type="hidden" name="_language" value="es">
                         
                         <div class="mb-4">
                             <label for="review-name" class="block text-gray-700 text-sm font-bold mb-2">Tu nombre *</label>
-                            <input type="text" id="review-name" name="nombre" placeholder="Ej: Juan Pérez" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500" required>
+                            <input type="text" id="review-name" name="nombre" placeholder="Ej: Juan Pérez" 
+                                   class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500" required>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="review-email-input" class="block text-gray-700 text-sm font-bold mb-2">Tu email (opcional)</label>
+                            <input type="email" id="review-email-input" name="email" placeholder="tuemail@ejemplo.com" 
+                                   class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500">
                         </div>
                         
                         <div class="mb-4">
                             <label for="review-country" class="block text-gray-700 text-sm font-bold mb-2">País de origen</label>
-                            <input type="text" id="review-country" name="pais" placeholder="Ej: España, México, etc." class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500">
+                            <input type="text" id="review-country" name="pais" placeholder="Ej: España, México, etc." 
+                                   class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500">
                         </div>
 
                         <div class="mb-4">
@@ -635,12 +661,15 @@
 
                         <div class="mb-6">
                             <label for="review-text" class="block text-gray-700 text-sm font-bold mb-2">Tu opinión *</label>
-                            <textarea id="review-text" name="opinion" rows="4" placeholder="Cuéntanos qué te pareció tu estancia, qué te gustó más, si recomendarías el lugar..." class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500" required></textarea>
+                            <textarea id="review-text" name="opinion" rows="4" 
+                                      placeholder="Cuéntanos qué te pareció tu estancia, qué te gustó más, si recomendarías el lugar..." 
+                                      class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500" required></textarea>
                         </div>
 
                         <div class="mb-6">
                             <label for="review-nights" class="block text-gray-700 text-sm font-bold mb-2">¿Cuántas noches te quedaste?</label>
-                            <select id="review-nights" name="noches" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500">
+                            <select id="review-nights" name="noches" 
+                                    class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500">
                                 <option value="">Selecciona...</option>
                                 <option value="1-3 noches">1-3 noches</option>
                                 <option value="4-7 noches">4-7 noches</option>
@@ -649,15 +678,19 @@
                             </select>
                         </div>
                         
-                        <button type="submit" id="submit-btn-review" class="w-full bg-teal-600 hover:bg-teal-700 text-white font-bold py-3 rounded-lg transition duration-300 shadow-md"
+                        <!-- Botón de envío con spinner -->
+                        <button type="submit" id="submit-btn-review" 
+                                class="w-full bg-teal-600 hover:bg-teal-700 text-white font-bold py-3 rounded-lg transition duration-300 shadow-md flex items-center justify-center"
                                 onclick="gtag('event', 'submit', {'event_category': 'review', 'event_label': 'opinion_submit'});">
-                            <i class="fas fa-paper-plane mr-2"></i> Enviar Opinión
+                            <span id="submit-text-review">Enviar Opinión</span>
+                            <div id="spinner-review" class="spinner ml-2 hidden"></div>
                         </button>
                         
-                        <p id="form-message-review" class="text-center mt-4 text-sm font-semibold hidden"></p>
+                        <!-- Mensaje de confirmación -->
+                        <div id="form-message-review" class="text-center mt-4 text-sm font-semibold hidden"></div>
                         
                         <p class="text-center mt-4 text-xs text-gray-500">
-                            <i class="fas fa-lock mr-1"></i> Tus datos son privados. Solo publicaremos tu nombre y comentario (opcional).
+                            <i class="fas fa-shield-alt mr-1"></i> Tus datos son seguros. Solo publicaremos tu nombre y comentario (opcional).
                         </p>
                     </form>
                 </div>
@@ -677,14 +710,16 @@
 
             <div class="max-w-3xl mx-auto animate-on-scroll">
                 <div class="bg-white p-8 rounded-xl shadow-2xl border border-gray-100">
-                    <!-- CORREO MODIFICADO: Ambos correos recibirán las reservas -->
-                    <form action="mailto:alexanderacensio1234@gmail.com?cc=info@reservaterrazasdebayona59.com" method="POST" id="booking-form-enhanced" enctype="text/plain">
-                        <!-- Campos ocultos para organización automática -->
-                        <input type="hidden" name="_subject" id="email-subject">
-                        <input type="hidden" name="_replyto" id="client-email">
+                    <!-- FORMULARIO DE RESERVAS CON FORMSPREE -->
+                    <form id="booking-form" action="https://formspree.io/f/rsvodpy" method="POST">
+                        <!-- Configuración de Formspree -->
+                        <input type="hidden" name="_subject" id="email-subject" value="📅 NUEVA RESERVA - Terrazas de Bayona">
+                        <input type="hidden" name="_replyto" id="client-email" value="alexanderacensio1234@gmail.com">
+                        <!-- Redirigir a ambos correos -->
+                        <input type="hidden" name="_cc" value="jccarlos010277@gmail.com,info@reservaterrazasdebayona59.com">
                         <input type="hidden" name="_language" value="es">
-                        <input type="hidden" name="referencia" id="booking-reference">
-                        <input type="hidden" name="precio_estimado" id="estimated-price-hidden">
+                        <input type="hidden" name="tipo" value="reserva">
+                        <input type="hidden" name="referencia" id="booking-reference" value="TDB-REF">
                         
                         <!-- SECCIÓN 1: DATOS PERSONALES -->
                         <div class="mb-8">
@@ -834,20 +869,20 @@
                         <div class="mb-6 p-4 bg-blue-50 rounded-xl border border-blue-200">
                             <label class="flex items-center">
                                 <input type="checkbox" name="quiero_whatsapp" value="Sí" class="mr-3 h-5 w-5 text-teal-600" checked>
-                                <span class="text-gray-700 font-medium">Envíame confirmación por WhatsApp</span>
+                                <span class="text-gray-700 font-medium">Prefiero confirmación por WhatsApp</span>
                             </label>
                             <p class="text-sm text-gray-600 mt-2 ml-8">
-                                Te enviaremos un mensaje de WhatsApp para confirmar tu reserva y responder preguntas.
+                                Te enviaremos un mensaje de WhatsApp para confirmar tu reserva.
                             </p>
                         </div>
                         
                         <!-- BOTÓN DE ENVÍO -->
                         <div class="text-center">
                             <button type="submit" id="submit-btn-booking" 
-                                    class="bg-teal-600 hover:bg-teal-700 text-white font-bold py-4 px-12 rounded-lg transition duration-300 transform hover:scale-105 shadow-lg text-lg"
-                                    onclick="trackReservation(document.getElementById('booking-reference').value, document.getElementById('estimated-price-hidden').value);">
+                                    class="bg-teal-600 hover:bg-teal-700 text-white font-bold py-4 px-12 rounded-lg transition duration-300 transform hover:scale-105 shadow-lg text-lg flex items-center justify-center mx-auto">
                                 <i class="fas fa-calendar-check mr-3"></i>
-                                Solicitar Reserva
+                                <span id="submit-text-booking">Solicitar Reserva</span>
+                                <div id="spinner-booking" class="spinner ml-2 hidden"></div>
                             </button>
                             <p class="text-sm text-gray-500 mt-4">
                                 * Recibirás confirmación por email/WhatsApp en menos de 24 horas.
@@ -885,6 +920,11 @@
             </a>
             <div class="mt-8">
                 <p class="text-lg font-semibold">También puedes encontrarnos en:</p>
+                <p class="text-xl mt-2">Email: 
+                    <a href="mailto:alexanderacensio1234@gmail.com" class="text-white hover:text-gray-200 underline">
+                        alexanderacensio1234@gmail.com
+                    </a>
+                </p>
                 <div class="flex justify-center space-x-6 mt-4">
                     <a href="#" class="text-white hover:text-gray-200 transition text-2xl" aria-label="Facebook"
                        onclick="gtag('event', 'click', {'event_category': 'social', 'event_label': 'facebook'});">
@@ -905,14 +945,15 @@
             <p>&copy; <span id="current-year">2025</span> Terrazas de Bayona. Todos los derechos reservados.</p>
             <p class="text-sm text-gray-400 mt-2">
                 Alojamiento privado en La Habana, Cuba | 
-                <a href="mailto:info@reservaterrazasdebayona59.com" class="text-teal-300 hover:text-teal-100">info@reservaterrazasdebayona59.com</a>
+                WhatsApp: <a href="https://wa.me/5356382909" class="text-teal-300 hover:text-teal-100">+53 56382909</a> |
+                Email: <a href="mailto:alexanderacensio1234@gmail.com" class="text-teal-300 hover:text-teal-100">alexanderacensio1234@gmail.com</a>
             </p>
         </div>
     </footer>
 
     <!-- LÓGICA DE LA PÁGINA -->
     <script>
-        // ========== SISTEMA COMPLETO CON VIDEO ==========
+        // ========== SISTEMA COMPLETO CON FORMSPREE ==========
         
         // 1. ANIMACIONES AL SCROLL
         function initializeScrollReveal() {
@@ -941,15 +982,11 @@
             
             if (videoPreview && playButton && youtubeVideo) {
                 playButton.addEventListener('click', function() {
-                    // Ocultar vista previa
                     videoPreview.style.display = 'none';
-                    // Mostrar iframe de YouTube
                     youtubeVideo.style.display = 'block';
-                    // Autoreproducir
                     youtubeVideo.src = youtubeVideo.src + "&autoplay=1";
                 });
                 
-                // También permitir hacer clic en toda la vista previa
                 videoPreview.addEventListener('click', function() {
                     videoPreview.style.display = 'none';
                     youtubeVideo.style.display = 'block';
@@ -1011,7 +1048,7 @@
                     nombre: "Carlos López",
                     estrellas: 4,
                     texto: "La terraza es espectacular al atardecer. Muy recomendado para quienes buscan autenticidad y buen trato. El desayuno cubano es delicioso y el tour que nos organizaron fue perfecto para conocer la ciudad.",
-                    fecha: "Octubre 2025",
+                    fecha: "Febrero 2024",
                     pais: "Argentina",
                     noches: 7,
                     verificada: true
@@ -1067,16 +1104,22 @@
             }
         }
         
-        // 6. FORMULARIO DE OPINIONES
+        // 6. FORMULARIO DE OPINIONES CON FORMSPREE
         function setupReviewForm() {
             const reviewForm = document.getElementById('review-form');
             const submitBtn = document.getElementById('submit-btn-review');
+            const submitText = document.getElementById('submit-text-review');
+            const spinner = document.getElementById('spinner-review');
             const formMessage = document.getElementById('form-message-review');
+            const star5 = document.getElementById('star5');
+            
+            if (star5) star5.checked = true;
             
             if (reviewForm) {
                 reviewForm.addEventListener('submit', async function(e) {
                     e.preventDefault();
                     
+                    // Validar calificación
                     const ratingSelected = document.querySelector('input[name="estrellas"]:checked');
                     if (!ratingSelected) {
                         formMessage.textContent = 'Por favor, selecciona una calificación con estrellas.';
@@ -1085,37 +1128,79 @@
                         return;
                     }
                     
+                    // Mostrar loading
                     submitBtn.disabled = true;
-                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Enviando...';
+                    submitText.textContent = 'Enviando...';
+                    spinner.classList.remove('hidden');
                     
-                    // Para formulario mailto, simplemente permitir el envío
-                    setTimeout(() => {
-                        formMessage.textContent = '¡Gracias por tu opinión! La revisaremos y publicaremos pronto.';
-                        formMessage.className = 'text-center mt-4 text-sm font-semibold text-green-600';
+                    try {
+                        // Enviar a Formspree
+                        const formData = new FormData(this);
+                        const response = await fetch(this.action, {
+                            method: 'POST',
+                            body: formData,
+                            headers: {
+                                'Accept': 'application/json'
+                            }
+                        });
+                        
+                        if (response.ok) {
+                            // Éxito
+                            formMessage.textContent = '¡Gracias por tu opinión! La revisaremos y publicaremos pronto.';
+                            formMessage.className = 'text-center mt-4 text-sm font-semibold text-green-600';
+                            formMessage.classList.remove('hidden');
+                            
+                            // Reset form
+                            this.reset();
+                            if (star5) star5.checked = true;
+                            
+                            // Track en Google Analytics
+                            if (typeof gtag !== 'undefined') {
+                                gtag('event', 'review_submitted', {
+                                    'event_category': 'review',
+                                    'event_label': 'formspree_success'
+                                });
+                            }
+                        } else {
+                            throw new Error('Error en el envío');
+                        }
+                    } catch (error) {
+                        // Error - ofrecer alternativa WhatsApp
+                        formMessage.innerHTML = `
+                            Hubo un error al enviar. Puedes compartir tu opinión por WhatsApp:<br>
+                            <a href="https://wa.me/5356382909?text=Hola,%20quiero%20compartir%20mi%20opinión%20sobre%20Terrazas%20de%20Bayona" 
+                               target="_blank" class="text-teal-600 underline mt-2 inline-block">
+                                <i class="fab fa-whatsapp mr-1"></i> Compartir por WhatsApp
+                            </a>
+                        `;
+                        formMessage.className = 'text-center mt-4 text-sm font-semibold text-red-600';
                         formMessage.classList.remove('hidden');
-                        this.reset();
-                        document.getElementById('star5').checked = true;
-                        setTimeout(() => formMessage.classList.add('hidden'), 5000);
+                    } finally {
+                        // Restaurar botón
                         submitBtn.disabled = false;
-                        submitBtn.innerHTML = '<i class="fas fa-paper-plane mr-2"></i> Enviar Opinión';
-                    }, 1000);
+                        submitText.textContent = 'Enviar Opinión';
+                        spinner.classList.add('hidden');
+                        
+                        // Ocultar mensaje después de 8 segundos
+                        setTimeout(() => formMessage.classList.add('hidden'), 8000);
+                    }
                 });
             }
         }
         
-        // 7. FORMULARIO DE RESERVAS MEJORADO
-        function setupEnhancedBookingForm() {
+        // 7. FORMULARIO DE RESERVAS CON FORMSPREE
+        function setupBookingForm() {
             const checkInInput = document.getElementById('check-in');
             const checkOutInput = document.getElementById('check-out');
             const guestsSelect = document.getElementById('guests');
             const nightsCount = document.getElementById('nights-count');
             const guestsCount = document.getElementById('guests-count');
             const estimatedPrice = document.getElementById('estimated-price');
-            const bookingForm = document.getElementById('booking-form-enhanced');
-            const emailSubject = document.getElementById('email-subject');
-            const clientEmail = document.getElementById('client-email');
+            const bookingForm = document.getElementById('booking-form');
             const bookingReference = document.getElementById('booking-reference');
-            const estimatedPriceHidden = document.getElementById('estimated-price-hidden');
+            const submitBtn = document.getElementById('submit-btn-booking');
+            const submitText = document.getElementById('submit-text-booking');
+            const spinner = document.getElementById('spinner-booking');
             
             // Fechas por defecto
             const today = new Date();
@@ -1187,18 +1272,21 @@
                 }
                 
                 estimatedPrice.textContent = `$${totalPrice} USD`;
-                if (estimatedPriceHidden) estimatedPriceHidden.value = totalPrice;
                 
-                // Generar referencia si no existe
-                if (bookingReference && !bookingReference.value) {
+                // Actualizar referencia
+                if (bookingReference && !bookingReference.value.startsWith('TDB-REF')) {
                     bookingReference.value = generateReference();
                 }
+                
+                return { nights, totalPrice };
             }
             
             // Configurar email automático
             function setupEmailAutoFill() {
                 const emailInput = document.getElementById('booking-email');
+                const clientEmail = document.getElementById('client-email');
                 const nameInput = document.getElementById('booking-name');
+                const emailSubject = document.getElementById('email-subject');
                 
                 if (emailInput && clientEmail) {
                     emailInput.addEventListener('input', function() {
@@ -1211,7 +1299,7 @@
                         const fecha = document.getElementById('check-in')?.value || 'NODATE';
                         const nombreCorto = this.value.substring(0, 15).replace(/\s+/g, '');
                         const ref = bookingReference?.value || 'NOREF';
-                        emailSubject.value = `RESERVA_TDB_${fecha}_${nombreCorto}_${ref}`;
+                        emailSubject.value = `📅 RESERVA ${ref} - ${nombreCorto} (${fecha})`;
                     });
                 }
             }
@@ -1231,79 +1319,159 @@
             setTimeout(calculatePrice, 500);
             setTimeout(setupEmailAutoFill, 1000);
             
-            // Manejar envío
+            // Manejar envío del formulario
             if (bookingForm) {
-                bookingForm.addEventListener('submit', function(e) {
+                bookingForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    
                     if (!guestsSelect.value) {
-                        e.preventDefault();
                         alert('Por favor, selecciona el número de huéspedes');
                         guestsSelect.focus();
                         return;
                     }
                     
-                    // Generar mensaje WhatsApp
-                    const nombre = document.getElementById('booking-name').value;
-                    const telefono = document.getElementById('booking-phone').value;
-                    const whatsappCheckbox = document.querySelector('input[name="quiero_whatsapp"]');
+                    // Mostrar loading
+                    submitBtn.disabled = true;
+                    submitText.textContent = 'Enviando...';
+                    spinner.classList.remove('hidden');
                     
-                    if (whatsappCheckbox && whatsappCheckbox.checked && telefono) {
-                        const fechaEntrada = document.getElementById('check-in').value;
-                        const fechaSalida = document.getElementById('check-out').value;
-                        const noches = nightsCount.textContent;
-                        const huespedes = guestsSelect.value;
-                        const precio = estimatedPrice.textContent;
-                        const ref = bookingReference.value;
+                    try {
+                        // Generar referencia final
+                        bookingReference.value = generateReference();
                         
-                        // Guardar datos para posible uso
-                        localStorage.setItem('last_reservation', JSON.stringify({
-                            nombre: nombre,
-                            telefono: telefono,
-                            referencia: ref,
-                            fecha: new Date().toISOString()
-                        }));
-                    }
-                    
-                    // Mostrar modal de éxito
-                    setTimeout(() => {
-                        const modalHTML = `
-                            <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 modal-overlay">
-                                <div class="bg-white p-8 rounded-xl max-w-md w-full text-center modal-content">
-                                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                        <i class="fas fa-check text-green-600 text-2xl"></i>
-                                    </div>
-                                    <h3 class="text-2xl font-bold text-gray-800 mb-3">¡Solicitud Enviada!</h3>
-                                    <p class="text-gray-600 mb-6">
-                                        Hemos recibido tu solicitud de reserva. Te contactaremos por email/WhatsApp en menos de 24 horas.
-                                    </p>
-                                    <div class="bg-gray-100 p-4 rounded-lg mb-6">
-                                        <p class="text-sm text-gray-700">
-                                            <strong>Número de referencia:</strong><br>
-                                            <span class="text-teal-600 font-bold text-lg">${bookingReference?.value || 'TDB-' + Date.now().toString().slice(-6)}</span>
-                                        </p>
-                                    </div>
-                                    <button onclick="this.parentElement.parentElement.remove()" 
-                                            class="bg-teal-600 text-white px-8 py-3 rounded-lg hover:bg-teal-700 transition font-medium">
-                                        Entendido
-                                    </button>
-                                </div>
-                            </div>
-                        `;
-                        
-                        const modalDiv = document.createElement('div');
-                        modalDiv.innerHTML = modalHTML;
-                        document.body.appendChild(modalDiv);
-                        
-                        modalDiv.addEventListener('click', function(event) {
-                            if (event.target === this) {
-                                this.remove();
+                        // Enviar a Formspree
+                        const formData = new FormData(this);
+                        const response = await fetch(this.action, {
+                            method: 'POST',
+                            body: formData,
+                            headers: {
+                                'Accept': 'application/json'
                             }
                         });
-                    }, 100);
+                        
+                        if (response.ok) {
+                            // Éxito - mostrar modal
+                            showReservationSuccess(bookingReference.value);
+                            
+                            // Track en Google Analytics
+                            const precio = calculatePrice();
+                            if (typeof gtag !== 'undefined') {
+                                gtag('event', 'reservation_submitted', {
+                                    'event_category': 'booking',
+                                    'event_label': bookingReference.value,
+                                    'value': precio?.totalPrice || 0
+                                });
+                            }
+                            
+                            // Reset form después de éxito
+                            setTimeout(() => {
+                                this.reset();
+                                calculatePrice();
+                                // Restaurar fechas por defecto
+                                checkInInput.value = tomorrowFormatted;
+                                checkOutInput.value = defaultOutFormatted;
+                            }, 2000);
+                            
+                        } else {
+                            throw new Error('Error en el envío');
+                        }
+                    } catch (error) {
+                        // Error - ofrecer alternativa WhatsApp
+                        showFormError(bookingReference.value);
+                    } finally {
+                        // Restaurar botón
+                        submitBtn.disabled = false;
+                        submitText.textContent = 'Solicitar Reserva';
+                        spinner.classList.add('hidden');
+                    }
                 });
             }
         }
         
-        // 8. MEJORAS INTERACTIVAS
+        // 8. MOSTRAR MODAL DE ÉXITO
+        function showReservationSuccess(reference) {
+            const modalHTML = `
+                <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 modal-overlay">
+                    <div class="bg-white p-8 rounded-xl max-w-md w-full text-center modal-content">
+                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-check text-green-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">¡Reserva Enviada!</h3>
+                        <p class="text-gray-600 mb-6">
+                            Hemos recibido tu solicitud de reserva. Te contactaremos por email/WhatsApp en menos de 24 horas.
+                        </p>
+                        <div class="bg-gray-100 p-4 rounded-lg mb-6">
+                            <p class="text-sm text-gray-700">
+                                <strong>Número de referencia:</strong><br>
+                                <span class="text-teal-600 font-bold text-lg">${reference}</span>
+                            </p>
+                            <p class="text-xs text-gray-500 mt-2">
+                                Guarda este número para cualquier consulta
+                            </p>
+                        </div>
+                        <button onclick="this.parentElement.parentElement.remove()" 
+                                class="bg-teal-600 text-white px-8 py-3 rounded-lg hover:bg-teal-700 transition font-medium">
+                            Entendido
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            const modalDiv = document.createElement('div');
+            modalDiv.innerHTML = modalHTML;
+            document.body.appendChild(modalDiv);
+            
+            modalDiv.addEventListener('click', function(event) {
+                if (event.target === this) {
+                    this.remove();
+                }
+            });
+        }
+        
+        // 9. MOSTRAR ERROR Y ALTERNATIVA
+        function showFormError(reference) {
+            const modalHTML = `
+                <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 modal-overlay">
+                    <div class="bg-white p-8 rounded-xl max-w-md w-full text-center modal-content">
+                        <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-exclamation-triangle text-red-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-3">Hubo un error</h3>
+                        <p class="text-gray-600 mb-6">
+                            No pudimos enviar tu reserva automáticamente. Por favor, usa WhatsApp:
+                        </p>
+                        <div class="bg-gray-100 p-4 rounded-lg mb-6">
+                            <p class="text-sm text-gray-700">
+                                <strong>Tu referencia:</strong><br>
+                                <span class="text-teal-600 font-bold text-lg">${reference}</span>
+                            </p>
+                        </div>
+                        <a href="https://wa.me/5356382909?text=Hola,%20quiero%20reservar%20con%20referencia%20${reference}" 
+                           target="_blank"
+                           class="inline-flex items-center bg-green-500 hover:bg-green-600 text-white font-bold px-6 py-3 rounded-lg transition mb-4">
+                            <i class="fab fa-whatsapp text-xl mr-3"></i>
+                            Reservar por WhatsApp
+                        </a>
+                        <button onclick="this.parentElement.parentElement.remove()" 
+                                class="block w-full bg-gray-200 text-gray-800 px-6 py-3 rounded-lg hover:bg-gray-300 transition font-medium mt-2">
+                            Cancelar
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            const modalDiv = document.createElement('div');
+            modalDiv.innerHTML = modalHTML;
+            document.body.appendChild(modalDiv);
+            
+            modalDiv.addEventListener('click', function(event) {
+                if (event.target === this) {
+                    this.remove();
+                }
+            });
+        }
+        
+        // 10. MEJORAS INTERACTIVAS
         function setupInteractions() {
             // Efecto en header al hacer scroll
             window.addEventListener('scroll', function() {
@@ -1316,9 +1484,9 @@
             });
         }
         
-        // 9. INICIALIZAR TODO
+        // 11. INICIALIZAR TODO
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('🏠 Terrazas de Bayona - Página optimizada cargada');
+            console.log('🏠 Terrazas de Bayona - Formspree Integrado');
             
             initializeScrollReveal();
             setupVideoPlayer();
@@ -1326,28 +1494,26 @@
             setupMobileMenu();
             setupReviews();
             setupReviewForm();
-            setupEnhancedBookingForm();
+            setupBookingForm();
             setupInteractions();
             
             // Año actual en footer
             document.getElementById('current-year').textContent = new Date().getFullYear();
             
-            // Estrellas por defecto en 5
-            const star5 = document.getElementById('star5');
-            if (star5) star5.checked = true;
-            
             // Silenciar advertencias
             console.warn = function() {};
             
             // Track page view
-            gtag('event', 'page_view', {
-                page_title: document.title,
-                page_location: window.location.href,
-                page_path: window.location.pathname
-            });
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'page_view', {
+                    page_title: document.title,
+                    page_location: window.location.href,
+                    page_path: window.location.pathname
+                });
+            }
         });
         
-        // 10. RECARGAR ANIMACIONES
+        // 12. RECARGAR ANIMACIONES
         window.addEventListener('scroll', function() {
             setTimeout(initializeScrollReveal, 1000);
         });

@@ -195,22 +195,6 @@
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
         }
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            border-radius: 1rem;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        }
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
         
         /* Mejoras para móviles */
         @media (max-width: 768px) {
@@ -259,6 +243,75 @@
         .hover\:bg-yellow-500:hover { background-color: #f59e0b !important; }
         .text-yellow-300 { color: #fde68a !important; }
         .bg-teal-50 { background-color: var(--light-teal) !important; }
+        
+        /* Video player custom */
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .video-thumbnail {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.7s ease;
+        }
+        
+        .video-thumbnail:hover {
+            transform: scale(1.05);
+        }
+        
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%, transparent 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        
+        .play-button-large {
+            background: rgba(13, 148, 136, 0.9);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            transition: all 0.3s ease;
+            border: 3px solid white;
+        }
+        
+        .play-button-large:hover {
+            background: rgba(13, 148, 136, 1);
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(13, 148, 136, 0.5);
+        }
+        
+        .video-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            text-align: left;
+        }
+        
+        .youtube-iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+            border-radius: 1rem;
+        }
     </style>
 </head>
 <body class="text-gray-800 fade-in">
@@ -539,7 +592,7 @@
                                             <i class="fas fa-calendar-alt"></i>
                                         </div>
                                         <div>
-                                            <p class="font-bold text-lg">30 de Enero 2026</p>
+                                            <p class="font-bold text-lg">30 de Junio 2024</p>
                                             <p class="text-sm opacity-80">o hasta agotar disponibilidad</p>
                                         </div>
                                     </div>
@@ -636,11 +689,11 @@
         </div>
     </section>
 
-    <!-- NUEVA SECCIÓN DE VIDEO MEJORADA -->
+    <!-- NUEVA SECCIÓN DE VIDEO MEJORADA - SIN SUGERENCIAS DE YOUTUBE -->
     <section id="video-experiencia" class="py-20 bg-gradient-to-b from-white to-gray-50">
         <div class="content-container mx-auto px-4">
             <!-- Encabezado con narrativa -->
-            <div class="text-center max-w-3xl mx-auto mb-16">
+            <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
                 <span class="inline-block bg-teal-100 text-teal-800 px-4 py-2 rounded-full text-sm font-semibold mb-4">
                     <i class="fas fa-film mr-2"></i> Vive la experiencia
                 </span>
@@ -654,49 +707,41 @@
                 </p>
             </div>
             
-            <!-- Contenedor de video premium -->
-            <div class="max-w-5xl mx-auto">
-                <div class="relative rounded-2xl overflow-hidden shadow-2xl">
-                    <!-- Miniatura del video con overlay -->
-                    <div class="relative cursor-pointer group" id="video-trigger">
+            <!-- Contenedor de video premium - SIN SUGERENCIAS -->
+            <div class="max-w-5xl mx-auto animate-on-scroll">
+                <div class="video-wrapper">
+                    <!-- Vista previa del video (visible inicialmente) -->
+                    <div id="video-preview" class="relative">
                         <img src="https://img.youtube.com/vi/M4mBVaOqMEs/maxresdefault.jpg" 
-                             alt="Video experiencia Terrazas de Bayona"
-                             class="w-full h-[500px] object-cover transition-transform duration-700 group-hover:scale-105">
+                             alt="Video experiencia Terrazas de Bayona - La Habana Cuba"
+                             class="video-thumbnail">
                         
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent"></div>
-                        
-                        <!-- Botón de play premium -->
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <div class="bg-white/20 backdrop-blur-sm rounded-full p-1 group-hover:scale-110 transition-transform duration-300">
-                                <div class="bg-teal-600 text-white p-6 rounded-full group-hover:bg-teal-700 transition-colors">
-                                    <i class="fas fa-play text-3xl"></i>
-                                </div>
+                        <div class="video-overlay">
+                            <div class="play-button-large" id="play-video-btn">
+                                <i class="fas fa-play"></i>
                             </div>
                         </div>
                         
-                        <!-- Texto overlay -->
-                        <div class="absolute bottom-8 left-8 text-white">
+                        <div class="video-caption">
                             <p class="text-sm font-semibold opacity-90">TERRAZAS DE BAYONA PRESENTA</p>
                             <p class="text-2xl font-bold mt-1">"Un día en La Habana con nosotros"</p>
                             <p class="opacity-80 mt-2">2:35 min • Haz clic para ver la experiencia completa</p>
                         </div>
                     </div>
                     
-                    <!-- Iframe oculto inicialmente -->
-                    <div id="video-container" class="hidden">
-                        <div class="aspect-w-16">
-                            <iframe id="youtube-embed" 
-                                    src="https://www.youtube.com/embed/M4mBVaOqMEs?rel=0&modestbranding=1&showinfo=0" 
-                                    frameborder="0" 
-                                    allowfullscreen
-                                    class="w-full h-[500px]">
-                            </iframe>
-                        </div>
+                    <!-- Iframe de YouTube (oculto inicialmente) - CONFIGURADO SIN SUGERENCIAS -->
+                    <div id="video-player" class="hidden">
+                        <iframe id="youtube-player"
+                                class="youtube-iframe"
+                                title="Video de presentación de Terrazas de Bayona - La Habana Cuba"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                        </iframe>
                     </div>
                 </div>
                 
                 <!-- Testimonio relacionado con el video -->
-                <div class="bg-white p-8 rounded-xl shadow-lg -mt-8 relative z-10 mx-8">
+                <div class="bg-white p-8 rounded-xl shadow-lg -mt-8 relative z-10 mx-8 animate-on-scroll">
                     <div class="flex items-start">
                         <div class="text-teal-600 text-4xl mr-4">"</div>
                         <div>
@@ -1272,32 +1317,37 @@
             });
         }
         
-        // 2. CONTROL DEL VIDEO PREMIUM
+        // 2. CONTROL DEL VIDEO PREMIUM - SIN SUGERENCIAS DE YOUTUBE
         function setupPremiumVideoPlayer() {
-            const videoTrigger = document.getElementById('video-trigger');
-            const videoContainer = document.getElementById('video-container');
-            const youtubeEmbed = document.getElementById('youtube-embed');
+            const videoPreview = document.getElementById('video-preview');
+            const videoPlayer = document.getElementById('video-player');
+            const youtubePlayer = document.getElementById('youtube-player');
+            const playButton = document.getElementById('play-video-btn');
             
-            if (videoTrigger && videoContainer && youtubeEmbed) {
-                videoTrigger.addEventListener('click', function() {
+            if (videoPreview && videoPlayer && youtubePlayer && playButton) {
+                // URL optimizada para YouTube - SIN SUGERENCIAS
+                const videoId = 'M4mBVaOqMEs';
+                const optimizedUrl = `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&showinfo=0&controls=1&fs=1&iv_load_policy=3&disablekb=1&autohide=1&playsinline=1`;
+                
+                playButton.addEventListener('click', function() {
                     // Animación de transición
-                    videoTrigger.style.opacity = '0';
-                    videoTrigger.style.transition = 'opacity 0.3s ease';
+                    videoPreview.style.opacity = '0';
+                    videoPreview.style.transition = 'opacity 0.3s ease';
                     
                     setTimeout(() => {
-                        videoTrigger.style.display = 'none';
-                        videoContainer.classList.remove('hidden');
-                        videoContainer.style.opacity = '0';
-                        videoContainer.style.display = 'block';
+                        videoPreview.style.display = 'none';
+                        videoPlayer.classList.remove('hidden');
+                        videoPlayer.style.opacity = '0';
+                        videoPlayer.style.display = 'block';
+                        
+                        // Cargar el iframe con la URL optimizada
+                        youtubePlayer.src = optimizedUrl + '&autoplay=1';
                         
                         // Animación de entrada
                         setTimeout(() => {
-                            videoContainer.style.opacity = '1';
-                            videoContainer.style.transition = 'opacity 0.5s ease';
+                            videoPlayer.style.opacity = '1';
+                            videoPlayer.style.transition = 'opacity 0.5s ease';
                         }, 10);
-                        
-                        // Iniciar video automáticamente
-                        youtubeEmbed.src = youtubeEmbed.src + "&autoplay=1&mute=0";
                         
                         // Track event
                         if (typeof gtag !== 'undefined') {
@@ -1307,6 +1357,42 @@
                             });
                         }
                     }, 300);
+                });
+                
+                // También hacer clickeable toda la preview
+                videoPreview.addEventListener('click', function(e) {
+                    if (e.target.closest('.play-button-large') || e.target === videoPreview) {
+                        playButton.click();
+                    }
+                });
+                
+                // Detectar cuando el video termina para mostrar la preview nuevamente
+                window.addEventListener('message', function(e) {
+                    if (e.origin === 'https://www.youtube.com') {
+                        try {
+                            const data = JSON.parse(e.data);
+                            if (data.event === 'onStateChange') {
+                                // Estado 0 = video terminado
+                                if (data.info === 0) {
+                                    setTimeout(() => {
+                                        // Volver a mostrar la preview
+                                        youtubePlayer.src = '';
+                                        videoPlayer.style.opacity = '0';
+                                        setTimeout(() => {
+                                            videoPlayer.style.display = 'none';
+                                            videoPlayer.classList.add('hidden');
+                                            videoPreview.style.display = 'block';
+                                            setTimeout(() => {
+                                                videoPreview.style.opacity = '1';
+                                            }, 10);
+                                        }, 500);
+                                    }, 2000); // Esperar 2 segundos después de que termine
+                                }
+                            }
+                        } catch (error) {
+                            // Ignorar errores de parsing
+                        }
+                    }
                 });
             }
         }

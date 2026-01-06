@@ -961,13 +961,15 @@
                 <div class="bg-white p-8 rounded-xl shadow-xl">
                     <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Comparte tu experiencia</h3>
                     
-                    <!-- FORMULARIO DE OPINIONES CON FORMSPREE -->
-                    <form id="review-form" action="https://formspree.io/f/rsvodpy" method="POST">
+                    <!-- FORMULARIO DE OPINIONES CON FORMSPREE - URL CORREGIDA -->
+                    <form id="review-form" action="https://formspree.io/forms/xvzolnyg/overview" method="POST">
+                        <!-- Configuración correcta de Formspree -->
                         <input type="hidden" name="_subject" value="⭐ NUEVA OPINIÓN - Terrazas de Bayona">
-                        <input type="hidden" name="_replyto" id="review-email" value="alexanderacensio1234@gmail.com">
+                        <input type="hidden" name="_replyto" value="alexanderacensio1234@gmail.com">
                         <!-- Configuración para redirigir a ambos correos -->
                         <input type="hidden" name="_cc" value="jccarlos010277@gmail.com,info@reservaterrazasdebayona59.com">
                         <input type="hidden" name="_language" value="es">
+                        <input type="hidden" name="form_type" value="opinion">
                         
                         <div class="mb-4">
                             <label for="review-name" class="block text-gray-700 text-sm font-bold mb-2">Tu nombre *</label>
@@ -1050,15 +1052,12 @@
 
             <div class="max-w-3xl mx-auto animate-on-scroll">
                 <div class="bg-white p-8 rounded-xl shadow-2xl border border-gray-100">
-                    <!-- FORMULARIO DE RESERVAS CON FORMSPREE -->
-                    <form id="booking-form" action="https://formspree.io/f/rsvodpy" method="POST">
-                        <!-- Configuración de Formspree -->
+                    <!-- FORMULARIO DE RESERVAS CON FORMSPREE - URL CORREGIDA -->
+                    <form id="booking-form" action="https://formspree.io/forms/mqavrlvg/overview" method="POST">
+                        <!-- Configuración correcta de Formspree -->
                         <input type="hidden" name="_subject" id="email-subject" value="📅 NUEVA RESERVA - Terrazas de Bayona">
-                        <input type="hidden" name="_replyto" id="client-email" value="alexanderacensio1234@gmail.com">
-                        <!-- Redirigir a ambos correos -->
-                        <input type="hidden" name="_cc" value="jccarlos010277@gmail.com,info@reservaterrazasdebayona59.com">
                         <input type="hidden" name="_language" value="es">
-                        <input type="hidden" name="tipo" value="reserva">
+                        <input type="hidden" name="form_type" value="reserva">
                         <input type="hidden" name="referencia" id="booking-reference" value="TDB-REF">
                         
                         <!-- SECCIÓN 1: DATOS PERSONALES -->
@@ -1361,35 +1360,6 @@
                         playButton.click();
                     }
                 });
-                
-                // Detectar cuando el video termina para mostrar la preview nuevamente
-                window.addEventListener('message', function(e) {
-                    if (e.origin === 'https://www.youtube.com') {
-                        try {
-                            const data = JSON.parse(e.data);
-                            if (data.event === 'onStateChange') {
-                                // Estado 0 = video terminado
-                                if (data.info === 0) {
-                                    setTimeout(() => {
-                                        // Volver a mostrar la preview
-                                        youtubePlayer.src = '';
-                                        videoPlayer.style.opacity = '0';
-                                        setTimeout(() => {
-                                            videoPlayer.style.display = 'none';
-                                            videoPlayer.classList.add('hidden');
-                                            videoPreview.style.display = 'block';
-                                            setTimeout(() => {
-                                                videoPreview.style.opacity = '1';
-                                            }, 10);
-                                        }, 500);
-                                    }, 2000); // Esperar 2 segundos después de que termine
-                                }
-                            }
-                        } catch (error) {
-                            // Ignorar errores de parsing
-                        }
-                    }
-                });
             }
         }
         
@@ -1502,7 +1472,7 @@
             }
         }
         
-        // 6. FORMULARIO DE OPINIONES CON FORMSPREE
+        // 6. FORMULARIO DE OPINIONES CON FORMSPREE CORREGIDO
         function setupReviewForm() {
             const reviewForm = document.getElementById('review-form');
             const submitBtn = document.getElementById('submit-btn-review');
@@ -1586,7 +1556,7 @@
             }
         }
         
-        // 7. FORMULARIO DE RESERVAS CON FORMSPREE
+        // 7. FORMULARIO DE RESERVAS CON FORMSPREE CORREGIDO
         function setupBookingForm() {
             const checkInInput = document.getElementById('check-in');
             const checkOutInput = document.getElementById('check-out');
@@ -1679,29 +1649,6 @@
                 return { nights, totalPrice };
             }
             
-            // Configurar email automático
-            function setupEmailAutoFill() {
-                const emailInput = document.getElementById('booking-email');
-                const clientEmail = document.getElementById('client-email');
-                const nameInput = document.getElementById('booking-name');
-                const emailSubject = document.getElementById('email-subject');
-                
-                if (emailInput && clientEmail) {
-                    emailInput.addEventListener('input', function() {
-                        clientEmail.value = this.value;
-                    });
-                }
-                
-                if (nameInput && emailSubject) {
-                    nameInput.addEventListener('input', function() {
-                        const fecha = document.getElementById('check-in')?.value || 'NODATE';
-                        const nombreCorto = this.value.substring(0, 15).replace(/\s+/g, '');
-                        const ref = bookingReference?.value || 'NOREF';
-                        emailSubject.value = `📅 RESERVA ${ref} - ${nombreCorto} (${fecha})`;
-                    });
-                }
-            }
-            
             // Event listeners
             if (checkInInput) checkInInput.addEventListener('change', calculatePrice);
             if (checkOutInput) checkOutInput.addEventListener('change', calculatePrice);
@@ -1715,7 +1662,6 @@
             
             // Calcular precio inicial
             setTimeout(calculatePrice, 500);
-            setTimeout(setupEmailAutoFill, 1000);
             
             // Manejar envío del formulario
             if (bookingForm) {
@@ -1736,6 +1682,15 @@
                     try {
                         // Generar referencia final
                         bookingReference.value = generateReference();
+                        
+                        // Configurar el asunto del email dinámicamente
+                        const nameInput = document.getElementById('booking-name');
+                        const emailSubject = document.getElementById('email-subject');
+                        if (nameInput && emailSubject) {
+                            const fecha = document.getElementById('check-in')?.value || 'NODATE';
+                            const nombreCorto = nameInput.value.substring(0, 15).replace(/\s+/g, '');
+                            emailSubject.value = `📅 RESERVA ${bookingReference.value} - ${nombreCorto} (${fecha})`;
+                        }
                         
                         // Enviar a Formspree
                         const formData = new FormData(this);

@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     
     <!-- Título optimizado (65 caracteres) -->
     <title>Terrazas de Bayona - Alojamiento en La Habana Cuba | Reservas Online</title>
@@ -57,6 +57,12 @@
     <!-- Favicon (usa un icono real si tienes) -->
     <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/2091/2091470.png">
     
+    <!-- Preconnect para fuentes externas -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://i.postimg.cc">
+    
     <!-- Google Analytics 4 (REEMPLAZA TU-ID-GA4 con tu ID real) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=TU-ID-GA4"></script>
     <script>
@@ -89,7 +95,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
-    <!-- Google Fonts -->
+    <!-- Google Fonts con carga diferida -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     
     <!-- Estilos personalizados -->
@@ -102,11 +108,79 @@
             --warm-gray: #f5f5f4;
         }
         
+        /* Pantalla de carga */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-teal) 0%, var(--dark-teal) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        
+        #loading-screen.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .loading-logo {
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            color: white;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-align: center;
+            padding: 0 1rem;
+        }
+        
+        .loading-text {
+            font-size: clamp(0.9rem, 3vw, 1.1rem);
+            color: rgba(255, 255, 255, 0.9);
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 0 1rem;
+            max-width: 300px;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--accent-yellow);
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .loading-pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
         body { 
             font-family: 'Inter', sans-serif; 
             background-color: #f7f7f7; 
             scroll-behavior: smooth;
+            opacity: 0;
+            animation: bodyFadeIn 0.5s ease forwards;
         }
+        
+        @keyframes bodyFadeIn {
+            to { opacity: 1; }
+        }
+        
         .content-container { 
             max-width: 1200px; 
             margin: 0 auto;
@@ -153,21 +227,90 @@
             backdrop-filter: blur(10px);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
-        .gallery-item img { 
-            transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out; 
+        
+        /* MEJORAS PARA IMÁGENES CON CONEXIÓN LENTA */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
         }
-        .gallery-item:hover img { 
-            transform: scale(1.05); 
-            filter: brightness(0.9); 
+        
+        .gallery-item {
+            background: #fff;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            min-height: 200px; /* Altura mínima para evitar CLS */
         }
-        .gallery-item { 
-            overflow: hidden; 
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+        
         .gallery-item:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
         }
+        
+        .gallery-image-container {
+            position: relative;
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(45deg, #f0f9ff 0%, #fef3c7 100%);
+            overflow: hidden;
+        }
+        
+        .gallery-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            opacity: 0;
+            animation: imageFadeIn 0.5s ease forwards;
+        }
+        
+        @keyframes imageFadeIn {
+            to { opacity: 1; }
+        }
+        
+        .gallery-item:hover .gallery-image {
+            transform: scale(1.05);
+        }
+        
+        .gallery-image.loading {
+            filter: blur(5px);
+        }
+        
+        .gallery-image.loaded {
+            filter: blur(0);
+            transition: filter 0.3s ease;
+        }
+        
+        .gallery-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #f0f9ff 0%, #fef3c7 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .gallery-placeholder i {
+            font-size: 2rem;
+            color: var(--primary-teal);
+            opacity: 0.5;
+        }
+        
+        .gallery-content {
+            padding: 1rem;
+        }
+        
+        .gallery-content h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--dark-teal);
+            margin: 0;
+        }
+        
         .modal-overlay { 
             background-color: rgba(0, 0, 0, 0.5); 
         }
@@ -204,6 +347,30 @@
             }
             .hero-text-shadow {
                 text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 0.75rem;
+            }
+            
+            .gallery-image-container {
+                height: 140px;
+            }
+            
+            .gallery-content h3 {
+                font-size: 0.9rem;
+            }
+            
+            .loading-logo {
+                font-size: clamp(1.2rem, 4vw, 1.8rem);
+                line-height: 1.3;
+            }
+            
+            .loading-text {
+                font-size: clamp(0.8rem, 2.5vw, 1rem);
+                line-height: 1.4;
+                max-width: 250px;
             }
         }
         
@@ -271,7 +438,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%, transparent 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%, transparent 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -357,210 +524,251 @@
             margin-bottom: 1rem;
             line-height: 1.7;
         }
+        
+        /* Optimización para imágenes */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        /* Mejora de CLS (Cumulative Layout Shift) */
+        .img-placeholder {
+            background: linear-gradient(45deg, #f0f9ff 0%, #fef3c7 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Animación de skeleton loading */
+        @keyframes skeleton-loading {
+            0% { background-position: -200px 0; }
+            100% { background-position: calc(200px + 100%) 0; }
+        }
+        
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200px 100%;
+            animation: skeleton-loading 1.5s infinite;
+        }
     </style>
 </head>
-<body class="text-gray-800 fade-in">
-
-   <!-- BOTÓN FLOTANTE WHATSAPP -->
-<div class="whatsapp-float">
-    <a href="https://wa.me/5356382909?text=Hola,%20quiero%20más%20información%20sobre%20Terrazas%20de%20Bayona" 
-       target="_blank"
-       class="bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition transform hover:scale-110 flex items-center"
-       aria-label="Contactar por WhatsApp"
-       onclick="trackWhatsAppClick('float_button')">
-        <i class="fab fa-whatsapp text-2xl"></i>
-    </a>
-</div>
-
-<!-- CABECERA FIJA Y NAVEGACIÓN -->
-<header id="main-header" class="bg-white shadow-md sticky top-0 z-50">
-    <div class="content-container mx-auto px-4 py-3 flex justify-between items-center">
-        <a href="#" class="text-2xl font-bold text-teal-600 hover:text-teal-800 transition duration-300">
+<body class="text-gray-800">
+    <!-- PANTALLA DE CARGA MEJORADA -->
+    <div id="loading-screen">
+        <div class="loading-logo loading-pulse">
             <i class="fas fa-home mr-2"></i>Terrazas de Bayona
+        </div>
+        <div class="loading-text">
+            Cargando tu experiencia cubana...
+        </div>
+        <div class="loading-spinner"></div>
+        <div class="mt-4 text-sm text-white/70">
+            <i class="fas fa-wifi mr-1"></i> Optimizado para conexiones lentas
+        </div>
+    </div>
+
+    <!-- BOTÓN FLOTANTE WHATSAPP -->
+    <div class="whatsapp-float">
+        <a href="https://wa.me/5356382909?text=Hola,%20quiero%20más%20información%20sobre%20Terrazas%20de%20Bayona" 
+           target="_blank"
+           class="bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition transform hover:scale-110 flex items-center"
+           aria-label="Contactar por WhatsApp"
+           onclick="trackWhatsAppClick('float_button')">
+            <i class="fab fa-whatsapp text-2xl"></i>
         </a>
+    </div>
+
+    <!-- CABECERA FIJA Y NAVEGACIÓN -->
+    <header id="main-header" class="bg-white shadow-md sticky top-0 z-50">
+        <div class="content-container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-teal-600 hover:text-teal-800 transition duration-300">
+                <i class="fas fa-home mr-2"></i>Terrazas de Bayona
+            </a>
+            
+            <nav class="hidden md:flex items-center space-x-6">
+                <a href="#about" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Nosotros</a>
+                <a href="#alojamiento" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Alojamiento</a>
+                <a href="#blog-preview" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Consejos Cuba</a>
+                <a href="#servicios" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Servicios</a>
+                <a href="#ubicacion" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Ubicación</a>
+                <a href="#opiniones" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Opiniones</a>
+                <a href="#reservas" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Reservas</a>
+                <a href="#contacto" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition duration-300">Contáctanos</a>
+            </nav>
+
+            <button id="mobile-menu-button" class="md:hidden p-2 text-gray-600 hover:text-teal-600 rounded-lg transition duration-300"
+                    aria-label="Abrir menú móvil">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
         
-        <nav class="hidden md:flex items-center space-x-6">
-            <a href="#about" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Nosotros</a>
-            <a href="#alojamiento" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Alojamiento</a>
-            <a href="#blog-preview" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Consejos Cuba</a>
-            <a href="#servicios" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Servicios</a>
-            <a href="#ubicacion" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Ubicación</a>
-            <a href="#opiniones" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Opiniones</a>
-            <a href="#reservas" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Reservas</a>
-            <a href="#contacto" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition duration-300">Contáctanos</a>
-        </nav>
+        <div id="mobile-menu" class="hidden md:hidden px-4 pb-4 bg-gray-50 border-t border-gray-200">
+            <a href="#about" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Nosotros</a>
+            <a href="#alojamiento" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Alojamiento</a>
+            <a href="#blog-preview" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Consejos Cuba</a>
+            <a href="#servicios" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Servicios</a>
+            <a href="#ubicacion" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Ubicación</a>
+            <a href="#opiniones" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Opiniones</a>
+            <a href="#reservas" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Reservas</a>
+            <a href="#contacto" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Contáctanos</a>
+        </div>
+    </header>
 
-        <button id="mobile-menu-button" class="md:hidden p-2 text-gray-600 hover:text-teal-600 rounded-lg transition duration-300"
-                aria-label="Abrir menú móvil">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-            </svg>
-        </button>
-    </div>
-    
-    <div id="mobile-menu" class="hidden md:hidden px-4 pb-4 bg-gray-50 border-t border-gray-200">
-        <a href="#about" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Nosotros</a>
-        <a href="#alojamiento" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Alojamiento</a>
-        <a href="#blog-preview" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Consejos Cuba</a>
-        <a href="#servicios" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Servicios</a>
-        <a href="#ubicacion" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Ubicación</a>
-        <a href="#opiniones" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Opiniones</a>
-        <a href="#reservas" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Reservas</a>
-        <a href="#contacto" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Contáctanos</a>
-    </div>
-</header>
+    <!-- NUEVA SECCIÓN HERO - DISEÑO PREMIUM -->
+    <section class="relative h-screen min-h-[600px] overflow-hidden">
+        <!-- Fondo con overlay gradient -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://i.postimg.cc/Y9jZwcg0/terraza.jpg" 
+                 alt="Vista panorámica de Terrazas de Bayona, La Habana"
+                 class="w-full h-full object-cover"
+                 loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-r from-teal-900/70 via-teal-800/50 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+        </div>
+        
+        <!-- Contenido principal centrado -->
+        <div class="relative z-10 h-full flex items-center">
+            <div class="content-container mx-auto px-4">
+                <div class="max-w-2xl">
+                    <!-- Badge de autenticidad -->
+                    <div class="inline-flex items-center bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full mb-6">
+                        <i class="fas fa-heart mr-2"></i>
+                        <span class="text-sm font-semibold">Experiencia 100% Cubana</span>
+                    </div>
+                    
+                    <!-- Título principal -->
+                    <h1 class="text-5xl md:text-7xl font-bold text-white mb-4 leading-tight">
+                        Tu <span class="text-yellow-300">Hogar</span><br>
+                        en <span class="text-yellow-300">La Habana</span>
+                    </h1>
+                    
+                    <!-- Subtítulo -->
+                    <p class="text-xl md:text-2xl text-white/90 mb-8 font-light max-w-xl">
+                        Donde la calidez cubana se encuentra con el confort moderno. 
+                        Más que alojamiento, una experiencia familiar.
+                    </p>
+                    
+                    <!-- CTA Principal -->
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#reservas" 
+                           class="bg-yellow-400 hover:bg-yellow-500 text-teal-900 font-bold px-8 py-4 rounded-full transition-all transform hover:scale-105 shadow-2xl hover:shadow-3xl flex items-center group"
+                           onclick="gtag('event', 'click', {'event_category': 'cta', 'event_label': 'reservar_experiencia_completa_hero'});">
+                            <i class="fas fa-calendar-check mr-3 text-xl"></i>
+                            <span class="text-lg">Reservar Experiencia Completa</span>
+                            <i class="fas fa-arrow-right ml-3 group-hover:translate-x-2 transition-transform"></i>
+                        </a>
+                        
+                        <a href="#video-experiencia" 
+                           class="bg-transparent border-2 border-white text-white hover:bg-white/10 px-8 py-4 rounded-full transition-all font-bold flex items-center"
+                           onclick="gtag('event', 'click', {'event_category': 'cta', 'event_label': 'ver_experiencia_hero'});">
+                            <i class="fas fa-play-circle mr-3"></i>
+                            Ver Experiencia
+                        </a>
+                    </div>
+                    
+                    <!-- Puntos destacados REALES -->
+                    <div class="flex flex-wrap gap-6 mt-12">
+                        <div class="flex items-center text-white">
+                            <div class="bg-white/20 p-2 rounded-lg mr-3">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold">16+ años</p>
+                                <p class="text-sm opacity-80">De experiencia</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center text-white">
+                            <div class="bg-white/20 p-2 rounded-lg mr-3">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold">2 terrazas</p>
+                                <p class="text-sm opacity-80">Espacios privados</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center text-white">
+                            <div class="bg-white/20 p-2 rounded-lg mr-3">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold">Familiar</p>
+                                <p class="text-sm opacity-80">Atención personalizada</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
+            <div class="animate-bounce">
+                <i class="fas fa-chevron-down text-white text-2xl"></i>
+            </div>
+        </div>
+    </section>
 
-<!-- NUEVA SECCIÓN HERO - DISEÑO PREMIUM -->
-<section class="relative h-screen min-h-[600px] overflow-hidden">
-    <!-- Fondo con overlay gradient -->
-    <div class="absolute inset-0 z-0">
-        <img src="https://i.postimg.cc/Y9jZwcg0/terraza.jpg" 
-             alt="Vista panorámica de Terrazas de Bayona, La Habana"
-             class="w-full h-full object-cover">
-        <div class="absolute inset-0 bg-gradient-to-r from-teal-900/70 via-teal-800/50 to-transparent"></div>
-        <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
-    </div>
-    
-    <!-- Contenido principal centrado -->
-    <div class="relative z-10 h-full flex items-center">
+    <!-- BANNER DE CONFIANZA ACTUALIZADO CON DATOS REALES -->
+    <section class="py-12 bg-white border-y border-gray-200">
         <div class="content-container mx-auto px-4">
-            <div class="max-w-2xl">
-                <!-- Badge de autenticidad -->
-                <div class="inline-flex items-center bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full mb-6">
-                    <i class="fas fa-heart mr-2"></i>
-                    <span class="text-sm font-semibold">Experiencia 100% Cubana</span>
-                </div>
-                
-                <!-- Título principal -->
-                <h1 class="text-5xl md:text-7xl font-bold text-white mb-4 leading-tight">
-                    Tu <span class="text-yellow-300">Hogar</span><br>
-                    en <span class="text-yellow-300">La Habana</span>
-                </h1>
-                
-                <!-- Subtítulo -->
-                <p class="text-xl md:text-2xl text-white/90 mb-8 font-light max-w-xl">
-                    Donde la calidez cubana se encuentra con el confort moderno. 
-                    Más que alojamiento, una experiencia familiar.
+            <div class="text-center mb-8">
+                <h3 class="text-2xl font-bold text-gray-900 mb-2">
+                    Lo que nos caracteriza
+                </h3>
+                <p class="text-gray-600">
+                    Experiencia real y servicio personalizado que nuestros huéspedes valoran
                 </p>
-                
-                <!-- CTA Principal -->
-                <div class="flex flex-wrap gap-4">
-                    <a href="#reservas" 
-                       class="bg-yellow-400 hover:bg-yellow-500 text-teal-900 font-bold px-8 py-4 rounded-full transition-all transform hover:scale-105 shadow-2xl hover:shadow-3xl flex items-center group"
-                       onclick="gtag('event', 'click', {'event_category': 'cta', 'event_label': 'reservar_experiencia_completa_hero'});">
-                        <i class="fas fa-calendar-check mr-3 text-xl"></i>
-                        <span class="text-lg">Reservar Experiencia Completa</span>
-                        <i class="fas fa-arrow-right ml-3 group-hover:translate-x-2 transition-transform"></i>
-                    </a>
-                    
-                    <a href="#video-experiencia" 
-                       class="bg-transparent border-2 border-white text-white hover:bg-white/10 px-8 py-4 rounded-full transition-all font-bold flex items-center"
-                       onclick="gtag('event', 'click', {'event_category': 'cta', 'event_label': 'ver_experiencia_hero'});">
-                        <i class="fas fa-play-circle mr-3"></i>
-                        Ver Experiencia
-                    </a>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-teal-600 mb-2">16+</div>
+                    <p class="text-gray-700 font-medium">Años de experiencia</p>
+                    <p class="text-sm text-gray-500">Como anfitriones</p>
                 </div>
                 
-                <!-- Puntos destacados REALES -->
-                <div class="flex flex-wrap gap-6 mt-12">
-                    <div class="flex items-center text-white">
-                        <div class="bg-white/20 p-2 rounded-lg mr-3">
-                            <i class="fas fa-heart"></i>
-                        </div>
-                        <div>
-                            <p class="font-bold">16+ años</p>
-                            <p class="text-sm opacity-80">De experiencia</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-center text-white">
-                        <div class="bg-white/20 p-2 rounded-lg mr-3">
-                            <i class="fas fa-home"></i>
-                        </div>
-                        <div>
-                            <p class="font-bold">2 terrazas</p>
-                            <p class="text-sm opacity-80">Espacios privados</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-center text-white">
-                        <div class="bg-white/20 p-2 rounded-lg mr-3">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <div>
-                            <p class="font-bold">Familiar</p>
-                            <p class="text-sm opacity-80">Atención personalizada</p>
-                        </div>
-                    </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-teal-600 mb-2">2</div>
+                    <p class="text-gray-700 font-medium">Terrazas privadas</p>
+                    <p class="text-sm text-gray-500">Para relajarte</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-teal-600 mb-2">24/7</div>
+                    <p class="text-gray-700 font-medium">Disponibilidad</p>
+                    <p class="text-sm text-gray-500">Atención personalizada</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-teal-600 mb-2">100%</div>
+                    <p class="text-gray-700 font-medium">Cubano auténtico</p>
+                    <p class="text-sm text-gray-500">Experiencia local</p>
+                </div>
+            </div>
+            
+            <!-- Logos de plataformas REALES donde están presentes -->
+            <div class="flex justify-center items-center space-x-8 mt-12 opacity-60">
+                <div class="text-2xl text-gray-400">
+                    <i class="fab fa-airbnb"></i>
+                </div>
+                <div class="text-2xl text-gray-400">
+                    <i class="fab fa-google"></i>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
     
-    <!-- Scroll indicator -->
-    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
-        <div class="animate-bounce">
-            <i class="fas fa-chevron-down text-white text-2xl"></i>
-        </div>
-    </div>
-</section>
-
-<!-- BANNER DE CONFIANZA ACTUALIZADO CON DATOS REALES -->
-<section class="py-12 bg-white border-y border-gray-200">
-    <div class="content-container mx-auto px-4">
-        <div class="text-center mb-8">
-            <h3 class="text-2xl font-bold text-gray-900 mb-2">
-                Lo que nos caracteriza
-            </h3>
-            <p class="text-gray-600">
-                Experiencia real y servicio personalizado que nuestros huéspedes valoran
-            </p>
-        </div>
-        
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div class="text-center">
-                <div class="text-4xl font-bold text-teal-600 mb-2">16+</div>
-                <p class="text-gray-700 font-medium">Años de experiencia</p>
-                <p class="text-sm text-gray-500">Como anfitriones</p>
-            </div>
-            
-            <div class="text-center">
-                <div class="text-4xl font-bold text-teal-600 mb-2">2</div>
-                <p class="text-gray-700 font-medium">Terrazas privadas</p>
-                <p class="text-sm text-gray-500">Para relajarte</p>
-            </div>
-            
-            <div class="text-center">
-                <div class="text-4xl font-bold text-teal-600 mb-2">24/7</div>
-                <p class="text-gray-700 font-medium">Disponibilidad</p>
-                <p class="text-sm text-gray-500">Atención personalizada</p>
-            </div>
-            
-            <div class="text-center">
-                <div class="text-4xl font-bold text-teal-600 mb-2">100%</div>
-                <p class="text-gray-700 font-medium">Cubano auténtico</p>
-                <p class="text-sm text-gray-500">Experiencia local</p>
-            </div>
-        </div>
-        
-        <!-- Logos de plataformas REALES donde están presentes -->
-        <div class="flex justify-center items-center space-x-8 mt-12 opacity-60">
-            <div class="text-2xl text-gray-400">
-                <i class="fab fa-airbnb"></i>
-            </div>
-            <div class="text-2xl text-gray-400">
-                <i class="fab fa-google"></i>
-            </div>
-        </div>
-    </div>
-</section>
     <!-- SECCIÓN SOBRE NOSOTROS -->
     <section id="about" class="py-16 bg-gray-50">
         <div class="content-container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
             <div class="order-2 md:order-1 animate-on-scroll">
                 <img src="https://i.postimg.cc/G29V10Yr/asencio-e-izaida.jpg" 
                      alt="Alexander e Isaida - Anfitriones de Terrazas de Bayona en La Habana"
-                     class="w-full h-auto rounded-xl shadow-2xl object-cover">
+                     class="w-full h-auto rounded-xl shadow-2xl object-cover"
+                     loading="lazy">
             </div>
             <div class="order-1 md:order-2 animate-on-scroll">
                 <span class="inline-block bg-teal-100 text-teal-800 px-4 py-2 rounded-full text-sm font-semibold mb-4">
@@ -635,7 +843,7 @@
                                             <i class="fas fa-calendar-alt"></i>
                                         </div>
                                         <div>
-                                            <p class="font-bold text-lg">31 de Enero 2026</p>
+                                            <p class="font-bold text-lg">30 de Junio 2024</p>
                                             <p class="text-sm opacity-80">o hasta agotar disponibilidad</p>
                                         </div>
                                     </div>
@@ -757,7 +965,8 @@
                     <div id="video-preview" class="relative">
                         <img src="https://img.youtube.com/vi/M4mBVaOqMEs/maxresdefault.jpg" 
                              alt="Video experiencia Terrazas de Bayona - La Habana Cuba"
-                             class="video-thumbnail">
+                             class="video-thumbnail"
+                             loading="lazy">
                         
                         <div class="video-overlay">
                             <div class="play-button-large" id="play-video-btn">
@@ -806,95 +1015,206 @@
         </div>
     </section>
 
-    <!-- SECCIÓN ALOJAMIENTO Y GALERÍA -->
-    <section id="alojamiento" class="py-16 bg-gray-50 border-t border-gray-100">
-        <div class="content-container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center text-teal-700 mb-12 animate-on-scroll">
-                Nuestro Alojamiento: Tu Oasis en La Habana
-            </h2>
-            <p class="text-center text-gray-600 mb-10 max-w-2xl mx-auto animate-on-scroll">
-                Descubre cada rincón de Terrazas de Bayona. Desde nuestras confortables habitaciones hasta las áreas comunes, todo diseñado para tu máximo confort y disfrute.
-            </p>
+  <!-- SECCIÓN ALOJAMIENTO Y GALERÍA - MEJORADA PARA CONEXIONES LENTAS -->
+<section id="alojamiento" class="py-16 bg-gray-50 border-t border-gray-100">
+    <div class="content-container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center text-teal-700 mb-12 animate-on-scroll">
+            Nuestro Alojamiento: Tu Oasis en La Habana
+        </h2>
+        <p class="text-center text-gray-600 mb-10 max-w-2xl mx-auto animate-on-scroll">
+            Descubre cada rincón de Terrazas de Bayona. Desde nuestras confortables habitaciones hasta las áreas comunes, todo diseñado para tu máximo confort y disfrute.
+        </p>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                <div class="gallery-item bg-white rounded-xl shadow-lg overflow-hidden animate-on-scroll">
-                    <img src="https://i.postimg.cc/MTXN8kRG/habitacion.jpg" alt="Habitación principal en Terrazas de Bayona con cama doble y aire acondicionado" class="w-full h-48 object-cover">
-                    <div class="p-4"><h3 class="font-semibold text-lg text-teal-700">Habitación Confortable</h3></div>
+        <!-- GALERÍA OPTIMIZADA - VERSIÓN CORREGIDA -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
+            <!-- Habitación 1 -->
+            <div class="gallery-item bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 animate-on-scroll">
+                <div class="relative h-48 overflow-hidden bg-gradient-to-br from-teal-50 to-amber-50">
+                    <img src="https://i.postimg.cc/MTXN8kRG/habitacion.jpg" 
+                         alt="Habitación principal en Terrazas de Bayona con cama doble y aire acondicionado"
+                         class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                         loading="lazy">
+                    <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-t from-black/10 to-transparent">
+                        <div class="text-white text-center p-2">
+                            <i class="fas fa-bed text-2xl mb-2"></i>
+                        </div>
+                    </div>
                 </div>
-                <div class="gallery-item bg-white rounded-xl shadow-lg overflow-hidden animate-on-scroll">
-                    <img src="https://i.postimg.cc/MTXN8kRK/habitacion_1.jpg" alt="Habitación secundaria en alojamiento La Habana con aire acondicionado" class="w-full h-48 object-cover">
-                    <div class="p-4"><h3 class="font-semibold text-lg text-teal-700">Espacio Adicional</h3></div>
-                </div>
-                <div class="gallery-item bg-white rounded-xl shadow-lg overflow-hidden animate-on-scroll">
-                    <img src="https://i.postimg.cc/XJXm0MFJ/sala.jpg" alt="Sala de estar en casa particular Cuba con sofá y televisión" class="w-full h-48 object-cover">
-                    <div class="p-4"><h3 class="font-semibold text-lg text-teal-700">Sala de Estar</h3></div>
-                </div>
-                <div class="gallery-item bg-white rounded-xl shadow-lg overflow-hidden animate-on-scroll">
-                    <img src="https://i.postimg.cc/RFqyzrfZ/sala_1.jpg" alt="Sala de estar vista 2 en Terrazas de Bayona con decoración cubana" class="w-full h-48 object-cover">
-                    <div class="p-4"><h3 class="font-semibold text-lg text-teal-700">Ambiente Relajado</h3></div>
-                </div>
-                <div class="gallery-item bg-white rounded-xl shadow-lg overflow-hidden animate-on-scroll">
-                    <img src="https://i.postimg.cc/k4Dzdr8n/baño.jpg" alt="Baño privado en alojamiento La Habana Cuba limpio y moderno" class="w-full h-48 object-cover">
-                    <div class="p-4"><h3 class="font-semibold text-lg text-teal-700">Baño Privado</h3></div>
-                </div>
-                <div class="gallery-item bg-white rounded-xl shadow-lg overflow-hidden animate-on-scroll">
-                    <img src="https://i.postimg.cc/Y9jZwcg0/terraza.jpg" alt="Terraza en Terrazas de Bayona con vista y plantas tropicales" class="w-full h-48 object-cover">
-                    <div class="p-4"><h3 class="font-semibold text-lg text-teal-700">Terrazas Soleadas</h3></div>
-                </div>
-                <div class="gallery-item bg-white rounded-xl shadow-lg overflow-hidden animate-on-scroll">
-                    <img src="https://i.postimg.cc/HxjRCG5Y/frente.jpg" alt="Exterior de la casa Terrazas de Bayona - Fachada principal" class="w-full h-48 object-cover">
-                    <div class="p-4"><h3 class="font-semibold text-lg text-teal-700">Fachada Principal</h3></div>
-                </div>
-                <div class="gallery-item bg-white rounded-xl shadow-lg overflow-hidden animate-on-scroll">
-                    <img src="https://i.postimg.cc/hjh6qFxK/desayuno.jpg" alt="Desayuno tradicional cubano servido en Terrazas de Bayona La Habana" class="w-full h-48 object-cover">
-                    <div class="p-4"><h3 class="font-semibold text-lg text-teal-700">Desayuno Cubano</h3></div>
+                <div class="p-4">
+                    <h3 class="font-semibold text-teal-700 text-center">Habitación Confortable</h3>
                 </div>
             </div>
 
-            <!-- Precios y comodidades -->
-            <div class="grid md:grid-cols-2 gap-12 mt-16">
-                <div class="animate-on-scroll">
-                    <h3 class="text-2xl font-bold text-teal-700 mb-6">Comodidades Incluidas</h3>
-                    <ul class="grid grid-cols-2 gap-y-4 text-gray-700">
-                        <li class="flex items-center"><span class="text-teal-500 mr-2">✔️</span>Agua caliente 24/7</li>
-                        <li class="flex items-center"><span class="text-teal-500 mr-2">✔️</span>Aire acondicionado</li>
-                        <li class="flex items-center"><span class="text-teal-500 mr-2">✔️</span>2 terrazas privadas</li>
-                        <li class="flex items-center"><span class="text-teal-500 mr-2">✔️</span>Baño privado</li>
-                        <li class="flex items-center"><span class="text-teal-500 mr-2">✔️</span>Wi-Fi gratuito</li>
-                        <li class="flex items-center"><span class="text-teal-500 mr-2">✔️</span>Cocina compartida</li>
-                        <li class="flex items-center"><span class="text-teal-500 mr-2">✔️</span>Ropa de cama</li>
-                        <li class="flex items-center"><span class="text-teal-500 mr-2">✔️</span>Toallas limpias</li>
-                    </ul>
-                </div>
-
-                <div class="animate-on-scroll">
-                    <h3 class="text-2xl font-bold text-teal-700 mb-6">Precios por Noche</h3>
-                    <div class="bg-teal-50 p-6 rounded-xl shadow-lg">
-                        <p class="text-xl font-semibold mb-4 text-teal-800">Habitación privada para 2 personas:</p>
-                        <ul class="space-y-3 text-gray-700">
-                            <li class="flex justify-between border-b pb-2">
-                                <span class="font-medium">1-6 noches:</span>
-                                <span class="font-bold text-teal-600">25 USD</span>
-                            </li>
-                            <li class="flex justify-between border-b pb-2">
-                                <span class="font-medium">7-14 noches:</span>
-                                <span class="font-bold text-teal-600">20 USD</span>
-                            </li>
-                            <li class="flex justify-between">
-                                <span class="font-medium">15+ noches:</span>
-                                <span class="font-bold text-teal-600">15 USD</span>
-                            </li>
-                        </ul>
-                        <p class="text-sm text-gray-600 mt-4">
-                            <i class="fas fa-info-circle text-teal-500 mr-1"></i>
-                            Precio por habitación, no por persona. Desayuno opcional: 5 USD/persona/día.
-                        </p>
+            <!-- Habitación 2 -->
+            <div class="gallery-item bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 animate-on-scroll">
+                <div class="relative h-48 overflow-hidden bg-gradient-to-br from-teal-50 to-amber-50">
+                    <img src="https://i.postimg.cc/MTXN8kRK/habitacion_1.jpg" 
+                         alt="Habitación secundaria en alojamiento La Habana con aire acondicionado"
+                         class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                         loading="lazy">
+                    <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-t from-black/10 to-transparent">
+                        <div class="text-white text-center p-2">
+                            <i class="fas fa-bed text-2xl mb-2"></i>
+                        </div>
                     </div>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-semibold text-teal-700 text-center">Espacio Adicional</h3>
+                </div>
+            </div>
+
+            <!-- Sala 1 -->
+            <div class="gallery-item bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 animate-on-scroll">
+                <div class="relative h-48 overflow-hidden bg-gradient-to-br from-teal-50 to-amber-50">
+                    <img src="https://i.postimg.cc/XJXm0MFJ/sala.jpg" 
+                         alt="Sala de estar en casa particular Cuba con sofá y televisión"
+                         class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                         loading="lazy">
+                    <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-t from-black/10 to-transparent">
+                        <div class="text-white text-center p-2">
+                            <i class="fas fa-couch text-2xl mb-2"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-semibold text-teal-700 text-center">Sala de Estar</h3>
+                </div>
+            </div>
+
+            <!-- Sala 2 -->
+            <div class="gallery-item bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 animate-on-scroll">
+                <div class="relative h-48 overflow-hidden bg-gradient-to-br from-teal-50 to-amber-50">
+                    <img src="https://i.postimg.cc/RFqyzrfZ/sala_1.jpg" 
+                         alt="Sala de estar vista 2 en Terrazas de Bayona con decoración cubana"
+                         class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                         loading="lazy">
+                    <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-t from-black/10 to-transparent">
+                        <div class="text-white text-center p-2">
+                            <i class="fas fa-couch text-2xl mb-2"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-semibold text-teal-700 text-center">Ambiente Relajado</h3>
+                </div>
+            </div>
+
+            <!-- Baño -->
+            <div class="gallery-item bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 animate-on-scroll">
+                <div class="relative h-48 overflow-hidden bg-gradient-to-br from-teal-50 to-amber-50">
+                    <img src="https://i.postimg.cc/k4Dzdr8n/baño.jpg" 
+                         alt="Baño privado en alojamiento La Habana Cuba limpio y moderno"
+                         class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                         loading="lazy">
+                    <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-t from-black/10 to-transparent">
+                        <div class="text-white text-center p-2">
+                            <i class="fas fa-bath text-2xl mb-2"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-semibold text-teal-700 text-center">Baño Privado</h3>
+                </div>
+            </div>
+
+            <!-- Terraza -->
+            <div class="gallery-item bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 animate-on-scroll">
+                <div class="relative h-48 overflow-hidden bg-gradient-to-br from-teal-50 to-amber-50">
+                    <img src="https://i.postimg.cc/Y9jZwcg0/terraza.jpg" 
+                         alt="Terraza en Terrazas de Bayona con vista y plantas tropicales"
+                         class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                         loading="lazy">
+                    <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-t from-black/10 to-transparent">
+                        <div class="text-white text-center p-2">
+                            <i class="fas fa-umbrella-beach text-2xl mb-2"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-semibold text-teal-700 text-center">Terrazas Soleadas</h3>
+                </div>
+            </div>
+
+            <!-- Fachada -->
+            <div class="gallery-item bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 animate-on-scroll">
+                <div class="relative h-48 overflow-hidden bg-gradient-to-br from-teal-50 to-amber-50">
+                    <img src="https://i.postimg.cc/HxjRCG5Y/frente.jpg" 
+                         alt="Exterior de la casa Terrazas de Bayona - Fachada principal"
+                         class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                         loading="lazy">
+                    <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-t from-black/10 to-transparent">
+                        <div class="text-white text-center p-2">
+                            <i class="fas fa-home text-2xl mb-2"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-semibold text-teal-700 text-center">Fachada Principal</h3>
+                </div>
+            </div>
+
+            <!-- Desayuno -->
+            <div class="gallery-item bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 animate-on-scroll">
+                <div class="relative h-48 overflow-hidden bg-gradient-to-br from-teal-50 to-amber-50">
+                    <img src="https://i.postimg.cc/hjh6qFxK/desayuno.jpg" 
+                         alt="Desayuno tradicional cubano servido en Terrazas de Bayona La Habana"
+                         class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                         loading="lazy">
+                    <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-t from-black/10 to-transparent">
+                        <div class="text-white text-center p-2">
+                            <i class="fas fa-utensils text-2xl mb-2"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-semibold text-teal-700 text-center">Desayuno Cubano</h3>
                 </div>
             </div>
         </div>
-    </section>
 
+        <!-- Precios y comodidades -->
+        <div class="grid md:grid-cols-2 gap-12 mt-16">
+            <div class="animate-on-scroll">
+                <h3 class="text-2xl font-bold text-teal-700 mb-6">Comodidades Incluidas</h3>
+                <ul class="grid grid-cols-2 gap-y-4 text-gray-700">
+                    <li class="flex items-center"><span class="text-teal-500 mr-2">✔️</span>Agua caliente 24/7</li>
+                    <li class="flex items-center"><span class="text-teal-500 mr-2">✔️</span>Aire acondicionado</li>
+                    <li class="flex items-center"><span class="text-teal-500 mr-2">✔️</span>2 terrazas privadas</li>
+                    <li class="flex items-center"><span class="text-teal-500 mr-2">✔️</span>Baño privado</li>
+                    <li class="flex items-center"><span class="text-teal-500 mr-2">✔️</span>Wi-Fi gratuito</li>
+                    <li class="flex items-center"><span class="text-teal-500 mr-2">✔️</span>Cocina compartida</li>
+                    <li class="flex items-center"><span class="text-teal-500 mr-2">✔️</span>Ropa de cama</li>
+                    <li class="flex items-center"><span class="text-teal-500 mr-2">✔️</span>Toallas limpias</li>
+                </ul>
+            </div>
+
+            <div class="animate-on-scroll">
+                <h3 class="text-2xl font-bold text-teal-700 mb-6">Precios por Noche</h3>
+                <div class="bg-teal-50 p-6 rounded-xl shadow-lg">
+                    <p class="text-xl font-semibold mb-4 text-teal-800">Habitación privada para 2 personas:</p>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex justify-between border-b pb-2">
+                            <span class="font-medium">1-6 noches:</span>
+                            <span class="font-bold text-teal-600">25 USD</span>
+                        </li>
+                        <li class="flex justify-between border-b pb-2">
+                            <span class="font-medium">7-14 noches:</span>
+                            <span class="font-bold text-teal-600">20 USD</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span class="font-medium">15+ noches:</span>
+                            <span class="font-bold text-teal-600">15 USD</span>
+                        </li>
+                    </ul>
+                    <p class="text-sm text-gray-600 mt-4">
+                        <i class="fas fa-info-circle text-teal-500 mr-1"></i>
+                        Precio por habitación, no por persona. Desayuno opcional: 5 USD/persona/día.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
     <!-- MINI SECCIÓN DE BLOG - VISTA PREVIA -->
     <section id="blog-preview" class="py-16 bg-white border-t border-gray-100">
         <div class="content-container mx-auto px-4">
@@ -921,7 +1241,8 @@
                 <div class="blog-article bg-white rounded-xl shadow-lg overflow-hidden animate-on-scroll">
                     <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
                          alt="Internet en Cuba"
-                         class="w-full h-48 object-cover">
+                         class="w-full h-48 object-cover"
+                         loading="lazy">
                     <div class="p-6">
                         <div class="flex items-center mb-3">
                             <span class="blog-tag bg-blue-100 text-blue-800">Conectividad</span>
@@ -943,31 +1264,32 @@
                     </div>
                 </div>
 
-               <!-- Artículo 2: Qué llevar a Cuba -->
-<div class="blog-article bg-white rounded-xl shadow-lg overflow-hidden animate-on-scroll">
-    <img src="https://i.postimg.cc/Sxp66YFf/703c9559a896bc738c47838ca709b8c2-(1).jpg" 
-         alt="Equipaje para Cuba - Preparativos para viajar a La Habana"
-         class="w-full h-48 object-cover">
-    <div class="p-6">
-        <div class="flex items-center mb-3">
-            <span class="blog-tag bg-green-100 text-green-800">Preparativos</span>
-            <span class="read-time ml-auto">
-                <i class="far fa-clock mr-1"></i> 7 min
-            </span>
-        </div>
-        <h3 class="text-xl font-bold text-gray-900 mb-3">
-            ¿Qué llevar a Cuba?
-        </h3>
-        <p class="text-gray-600 mb-4 text-sm">
-            La lista definitiva para preparar tu maleta
-        </p>
-        <a href="blog.html#que-llevar-cuba" 
-           class="text-teal-600 hover:text-teal-800 font-medium text-sm flex items-center">
-            <span>Leer artículo completo</span>
-            <i class="fas fa-arrow-right ml-2 text-xs"></i>
-        </a>
-    </div>
-</div>
+                <!-- Artículo 2: Qué llevar a Cuba -->
+                <div class="blog-article bg-white rounded-xl shadow-lg overflow-hidden animate-on-scroll">
+                    <img src="https://i.postimg.cc/Sxp66YFf/703c9559a896bc738c47838ca709b8c2-(1).jpg" 
+                         alt="Equipaje para Cuba - Preparativos para viajar a La Habana"
+                         class="w-full h-48 object-cover"
+                         loading="lazy">
+                    <div class="p-6">
+                        <div class="flex items-center mb-3">
+                            <span class="blog-tag bg-green-100 text-green-800">Preparativos</span>
+                            <span class="read-time ml-auto">
+                                <i class="far fa-clock mr-1"></i> 7 min
+                            </span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">
+                            ¿Qué llevar a Cuba?
+                        </h3>
+                        <p class="text-gray-600 mb-4 text-sm">
+                            La lista definitiva para preparar tu maleta
+                        </p>
+                        <a href="blog.html#que-llevar-cuba" 
+                           class="text-teal-600 hover:text-teal-800 font-medium text-sm flex items-center">
+                            <span>Leer artículo completo</span>
+                            <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -980,7 +1302,7 @@
             </h2>
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div class="animate-on-scroll">
-                    <img src="https://i.postimg.cc/hjh6qFxK/desayuno.jpg" alt="Desayuno tradicional cubano en Terrazas de Bayona con café, frutas y pan" class="w-full h-auto rounded-xl shadow-2xl object-cover">
+                    <img src="https://i.postimg.cc/hjh6qFxK/desayuno.jpg" alt="Desayuno tradicional cubano en Terrazas de Bayona con café, frutas y pan" class="w-full h-auto rounded-xl shadow-2xl object-cover" loading="lazy">
                     <div class="p-6">
                         <h3 class="text-2xl font-bold text-teal-700 mb-3">Desayunos Caseros</h3>
                         <p class="text-gray-700 leading-relaxed">
@@ -992,14 +1314,14 @@
                     </div>
                 </div>
                 <div class="animate-on-scroll">
-                    <img src="https://i.postimg.cc/k4Dzdr82/tour_habana.jpg" alt="Tour por La Habana Vieja en auto clásico desde Terrazas de Bayona" class="w-full h-auto rounded-xl shadow-2xl object-cover">
+                    <img src="https://i.postimg.cc/k4Dzdr82/tour_habana.jpg" alt="Tour por La Habana Vieja en auto clásico desde Terrazas de Bayona" class="w-full h-auto rounded-xl shadow-2xl object-cover" loading="lazy">
                     <div class="p-6">
                         <h3 class="text-2xl font-bold text-teal-700 mb-3">Tours y Traslados</h3>
                         <p class="text-gray-700 leading-relaxed">
                             ¿Quieres explorar La Habana o sus alrededores? Te ayudamos a organizar tours personalizados y traslados cómodos con nuestro chofer de confianza. Descubre los encantos de Cuba sin preocupaciones. Visita La Habana Vieja, el Malecón, playas cercanas y más.
                         </p>
                         <div class="mt-4">
-                            <img src="https://i.postimg.cc/RFqyzrf4/chofer.jpg" alt="Chofer disponible para tours y traslados en La Habana Cuba" class="w-full h-auto rounded-xl shadow-md object-cover">
+                            <img src="https://i.postimg.cc/RFqyzrf4/chofer.jpg" alt="Chofer disponible para tours y traslados en La Habana Cuba" class="w-full h-auto rounded-xl shadow-md object-cover" loading="lazy">
                         </div>
                         <p class="text-teal-600 font-semibold mt-2">
                             <i class="fas fa-car mr-2"></i>Precios según destino y duración
@@ -1416,9 +1738,67 @@
 
     <!-- LÓGICA DE LA PÁGINA -->
     <script>
-        // ========== SISTEMA COMPLETO CON FORMSPREE ==========
+        // ========== PANTALLA DE CARGA ==========
+        function initLoadingScreen() {
+            const loadingScreen = document.getElementById('loading-screen');
+            
+            // Ocultar pantalla de carga después de 1.5 segundos (o cuando todo esté cargado)
+            setTimeout(() => {
+                loadingScreen.classList.add('fade-out');
+                
+                // Remover completamente después de la animación
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                }, 500);
+            }, 1500);
+            
+            // También ocultar cuando la página esté completamente cargada
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    loadingScreen.classList.add('fade-out');
+                    setTimeout(() => {
+                        loadingScreen.style.display = 'none';
+                    }, 500);
+                }, 500);
+            });
+        }
         
-        // 1. ANIMACIONES AL SCROLL
+        // ========== OPTIMIZACIÓN DE IMÁGENES ==========
+        function optimizeImages() {
+            // Precargar imágenes críticas
+            const criticalImages = [
+                'https://i.postimg.cc/Y9jZwcg0/terraza.jpg',
+                'https://i.postimg.cc/G29V10Yr/asencio-e-izaida.jpg'
+            ];
+            
+            criticalImages.forEach(src => {
+                const img = new Image();
+                img.src = src;
+            });
+            
+            // Lazy loading para todas las imágenes
+            const images = document.querySelectorAll('img[loading="lazy"]');
+            
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.src = img.dataset.src || img.src;
+                            img.classList.remove('loading');
+                            imageObserver.unobserve(img);
+                        }
+                    });
+                }, {
+                    rootMargin: '50px 0px',
+                    threshold: 0.1
+                });
+                
+                images.forEach(img => imageObserver.observe(img));
+            }
+        }
+        
+        // ========== ANIMACIONES AL SCROLL ==========
         function initializeScrollReveal() {
             const elements = document.querySelectorAll('.animate-on-scroll');
             const observer = new IntersectionObserver((entries) => {
@@ -1437,7 +1817,7 @@
             });
         }
         
-        // 2. CONTROL DEL VIDEO PREMIUM - SIN SUGERENCIAS DE YOUTUBE
+        // ========== CONTROL DEL VIDEO PREMIUM ==========
         function setupPremiumVideoPlayer() {
             const videoPreview = document.getElementById('video-preview');
             const videoPlayer = document.getElementById('video-player');
@@ -1445,12 +1825,10 @@
             const playButton = document.getElementById('play-video-btn');
             
             if (videoPreview && videoPlayer && youtubePlayer && playButton) {
-                // URL optimizada para YouTube - SIN SUGERENCIAS
                 const videoId = 'M4mBVaOqMEs';
                 const optimizedUrl = `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&showinfo=0&controls=1&fs=1&iv_load_policy=3&disablekb=1&autohide=1&playsinline=1`;
                 
                 playButton.addEventListener('click', function() {
-                    // Animación de transición
                     videoPreview.style.opacity = '0';
                     videoPreview.style.transition = 'opacity 0.3s ease';
                     
@@ -1460,16 +1838,13 @@
                         videoPlayer.style.opacity = '0';
                         videoPlayer.style.display = 'block';
                         
-                        // Cargar el iframe con la URL optimizada
                         youtubePlayer.src = optimizedUrl + '&autoplay=1';
                         
-                        // Animación de entrada
                         setTimeout(() => {
                             videoPlayer.style.opacity = '1';
                             videoPlayer.style.transition = 'opacity 0.5s ease';
                         }, 10);
                         
-                        // Track event
                         if (typeof gtag !== 'undefined') {
                             gtag('event', 'video_play', {
                                 'event_category': 'engagement',
@@ -1479,45 +1854,15 @@
                     }, 300);
                 });
                 
-                // También hacer clickeable toda la preview
                 videoPreview.addEventListener('click', function(e) {
                     if (e.target.closest('.play-button-large') || e.target === videoPreview) {
                         playButton.click();
                     }
                 });
-                
-                // Detectar cuando el video termina para mostrar la preview nuevamente
-                window.addEventListener('message', function(e) {
-                    if (e.origin === 'https://www.youtube.com') {
-                        try {
-                            const data = JSON.parse(e.data);
-                            if (data.event === 'onStateChange') {
-                                // Estado 0 = video terminado
-                                if (data.info === 0) {
-                                    setTimeout(() => {
-                                        // Volver a mostrar la preview
-                                        youtubePlayer.src = '';
-                                        videoPlayer.style.opacity = '0';
-                                        setTimeout(() => {
-                                            videoPlayer.style.display = 'none';
-                                            videoPlayer.classList.add('hidden');
-                                            videoPreview.style.display = 'block';
-                                            setTimeout(() => {
-                                                videoPreview.style.opacity = '1';
-                                            }, 10);
-                                        }, 500);
-                                    }, 2000); // Esperar 2 segundos después de que termine
-                                }
-                            }
-                        } catch (error) {
-                            // Ignorar errores de parsing
-                        }
-                    }
-                });
             }
         }
         
-        // 3. NAVEGACIÓN SUAVE
+        // ========== NAVEGACIÓN SUAVE ==========
         function setupSmoothScroll() {
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
@@ -1535,7 +1880,7 @@
             });
         }
         
-        // 4. MENÚ MÓVIL
+        // ========== MENÚ MÓVIL ==========
         function setupMobileMenu() {
             const menuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
@@ -1553,7 +1898,7 @@
             }
         }
         
-        // 5. OPINIONES ESTÁTICAS
+        // ========== OPINIONES ESTÁTICAS ==========
         function setupReviews() {
             const reviewsContainer = document.getElementById('reviews-container');
             const opiniones = [
@@ -1626,7 +1971,7 @@
             }
         }
         
-        // 6. FORMULARIO DE OPINIONES CON FORMSPREE
+        // ========== FORMULARIO DE OPINIONES ==========
         function setupReviewForm() {
             const reviewForm = document.getElementById('review-form');
             const submitBtn = document.getElementById('submit-btn-review');
@@ -1641,7 +1986,6 @@
                 reviewForm.addEventListener('submit', async function(e) {
                     e.preventDefault();
                     
-                    // Validar calificación
                     const ratingSelected = document.querySelector('input[name="estrellas"]:checked');
                     if (!ratingSelected) {
                         formMessage.textContent = 'Por favor, selecciona una calificación con estrellas.';
@@ -1650,13 +1994,11 @@
                         return;
                     }
                     
-                    // Mostrar loading
                     submitBtn.disabled = true;
                     submitText.textContent = 'Enviando...';
                     spinner.classList.remove('hidden');
                     
                     try {
-                        // Enviar a Formspree
                         const formData = new FormData(this);
                         const response = await fetch(this.action, {
                             method: 'POST',
@@ -1667,16 +2009,13 @@
                         });
                         
                         if (response.ok) {
-                            // Éxito
                             formMessage.textContent = '¡Gracias por tu opinión! La revisaremos y publicaremos pronto.';
                             formMessage.className = 'text-center mt-4 text-sm font-semibold text-green-600';
                             formMessage.classList.remove('hidden');
                             
-                            // Reset form
                             this.reset();
                             if (star5) star5.checked = true;
                             
-                            // Track en Google Analytics
                             if (typeof gtag !== 'undefined') {
                                 gtag('event', 'review_submitted', {
                                     'event_category': 'review',
@@ -1687,7 +2026,6 @@
                             throw new Error('Error en el envío');
                         }
                     } catch (error) {
-                        // Error - ofrecer alternativa WhatsApp
                         formMessage.innerHTML = `
                             Hubo un error al enviar. Puedes compartir tu opinión por WhatsApp:<br>
                             <a href="https://wa.me/5356382909?text=Hola,%20quiero%20compartir%20mi%20opinión%20sobre%20Terrazas%20de%20Bayona" 
@@ -1698,19 +2036,17 @@
                         formMessage.className = 'text-center mt-4 text-sm font-semibold text-red-600';
                         formMessage.classList.remove('hidden');
                     } finally {
-                        // Restaurar botón
                         submitBtn.disabled = false;
                         submitText.textContent = 'Enviar Opinión';
                         spinner.classList.add('hidden');
                         
-                        // Ocultar mensaje después de 8 segundos
                         setTimeout(() => formMessage.classList.add('hidden'), 8000);
                     }
                 });
             }
         }
         
-        // 7. FORMULARIO DE RESERVAS CON FORMSPREE
+        // ========== FORMULARIO DE RESERVAS ==========
         function setupBookingForm() {
             const checkInInput = document.getElementById('check-in');
             const checkOutInput = document.getElementById('check-out');
@@ -1724,7 +2060,6 @@
             const submitText = document.getElementById('submit-text-booking');
             const spinner = document.getElementById('spinner-booking');
             
-            // Fechas por defecto
             const today = new Date();
             const todayFormatted = today.toISOString().split('T')[0];
             
@@ -1746,7 +2081,6 @@
                 checkOutInput.value = defaultOutFormatted;
             }
             
-            // Generar referencia única
             function generateReference() {
                 const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
                 let ref = 'TDB-';
@@ -1756,7 +2090,6 @@
                 return ref;
             }
             
-            // Calcular precio
             function calculatePrice() {
                 if (!checkInInput.value || !checkOutInput.value || !guestsSelect.value) {
                     return;
@@ -1786,7 +2119,6 @@
                     pricePerNight = 25;
                 }
                 
-                // Añadir desayuno si está seleccionado
                 let totalPrice = pricePerNight * nights;
                 const breakfastCheckbox = document.getElementById('breakfast');
                 if (breakfastCheckbox && breakfastCheckbox.checked) {
@@ -1795,7 +2127,6 @@
                 
                 estimatedPrice.textContent = `$${totalPrice} USD`;
                 
-                // Actualizar referencia
                 if (bookingReference && !bookingReference.value.startsWith('TDB-REF')) {
                     bookingReference.value = generateReference();
                 }
@@ -1803,7 +2134,6 @@
                 return { nights, totalPrice };
             }
             
-            // Configurar email automático
             function setupEmailAutoFill() {
                 const emailInput = document.getElementById('booking-email');
                 const clientEmail = document.getElementById('client-email');
@@ -1826,22 +2156,18 @@
                 }
             }
             
-            // Event listeners
             if (checkInInput) checkInInput.addEventListener('change', calculatePrice);
             if (checkOutInput) checkOutInput.addEventListener('change', calculatePrice);
             if (guestsSelect) guestsSelect.addEventListener('change', calculatePrice);
             
-            // Checkbox desayuno afecta precio
             const breakfastCheckbox = document.getElementById('breakfast');
             if (breakfastCheckbox) {
                 breakfastCheckbox.addEventListener('change', calculatePrice);
             }
             
-            // Calcular precio inicial
             setTimeout(calculatePrice, 500);
             setTimeout(setupEmailAutoFill, 1000);
             
-            // Manejar envío del formulario
             if (bookingForm) {
                 bookingForm.addEventListener('submit', async function(e) {
                     e.preventDefault();
@@ -1852,16 +2178,13 @@
                         return;
                     }
                     
-                    // Mostrar loading
                     submitBtn.disabled = true;
                     submitText.textContent = 'Enviando...';
                     spinner.classList.remove('hidden');
                     
                     try {
-                        // Generar referencia final
                         bookingReference.value = generateReference();
                         
-                        // Enviar a Formspree
                         const formData = new FormData(this);
                         const response = await fetch(this.action, {
                             method: 'POST',
@@ -1872,10 +2195,8 @@
                         });
                         
                         if (response.ok) {
-                            // Éxito - mostrar modal
                             showReservationSuccess(bookingReference.value);
                             
-                            // Track en Google Analytics
                             const precio = calculatePrice();
                             if (typeof gtag !== 'undefined') {
                                 gtag('event', 'reservation_submitted', {
@@ -1885,11 +2206,9 @@
                                 });
                             }
                             
-                            // Reset form después de éxito
                             setTimeout(() => {
                                 this.reset();
                                 calculatePrice();
-                                // Restaurar fechas por defecto
                                 checkInInput.value = tomorrowFormatted;
                                 checkOutInput.value = defaultOutFormatted;
                             }, 2000);
@@ -1898,10 +2217,8 @@
                             throw new Error('Error en el envío');
                         }
                     } catch (error) {
-                        // Error - ofrecer alternativa WhatsApp
                         showFormError(bookingReference.value);
                     } finally {
-                        // Restaurar botón
                         submitBtn.disabled = false;
                         submitText.textContent = 'Solicitar Reserva';
                         spinner.classList.add('hidden');
@@ -1910,7 +2227,7 @@
             }
         }
         
-        // 8. MOSTRAR MODAL DE ÉXITO
+        // ========== MODALES ==========
         function showReservationSuccess(reference) {
             const modalHTML = `
                 <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 modal-overlay">
@@ -1950,7 +2267,6 @@
             });
         }
         
-        // 9. MOSTRAR ERROR Y ALTERNATIVA
         function showFormError(reference) {
             const modalHTML = `
                 <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4 modal-overlay">
@@ -1993,9 +2309,8 @@
             });
         }
         
-        // 10. MEJORAS INTERACTIVAS
+        // ========== MEJORAS INTERACTIVAS ==========
         function setupInteractions() {
-            // Efecto en header al hacer scroll
             window.addEventListener('scroll', function() {
                 const header = document.getElementById('main-header');
                 if (window.scrollY > 50) {
@@ -2006,10 +2321,12 @@
             });
         }
         
-        // 11. INICIALIZAR TODO
+        // ========== INICIALIZAR TODO ==========
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('🏠 Terrazas de Bayona - Rediseño Premium Activado');
+            console.log('🏠 Terrazas de Bayona - Optimizado para conexiones lentas');
             
+            initLoadingScreen();
+            optimizeImages();
             initializeScrollReveal();
             setupPremiumVideoPlayer();
             setupSmoothScroll();
@@ -2019,13 +2336,10 @@
             setupBookingForm();
             setupInteractions();
             
-            // Año actual en footer
             document.getElementById('current-year').textContent = new Date().getFullYear();
             
-            // Silenciar advertencias
             console.warn = function() {};
             
-            // Track page view
             if (typeof gtag !== 'undefined') {
                 gtag('event', 'page_view', {
                     page_title: document.title,
@@ -2035,7 +2349,7 @@
             }
         });
         
-        // 12. RECARGAR ANIMACIONES
+        // Recargar animaciones al scroll
         window.addEventListener('scroll', function() {
             setTimeout(initializeScrollReveal, 1000);
         });

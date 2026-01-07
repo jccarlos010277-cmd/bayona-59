@@ -1,4 +1,4 @@
-8 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -28,7 +28,7 @@
       },
       "priceRange": "$15-$25",
       "telephone": "+5356382909",
-      "image": "https://i.postimg.cc/rFpzmXnR/terraza-2.jpg",
+      "image": "https://i.postimg.cc/Y9jZwcg0/terraza.jpg",
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "4.8",
@@ -312,6 +312,51 @@
             border: none;
             border-radius: 1rem;
         }
+        
+        /* Estilos para la sección de blog */
+        .blog-article {
+            transition: all 0.3s ease;
+        }
+        
+        .blog-article:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .blog-tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .read-time {
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+        
+        .blog-content h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark-teal);
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .blog-content ul, .blog-content ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .blog-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .blog-content p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
     </style>
 </head>
 <body class="text-gray-800 fade-in">
@@ -337,6 +382,7 @@
             <nav class="hidden md:flex items-center space-x-6">
                 <a href="#about" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Nosotros</a>
                 <a href="#alojamiento" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Alojamiento</a>
+                <a href="#blog" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Consejos Cuba</a>
                 <a href="#servicios" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Servicios</a>
                 <a href="#ubicacion" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Ubicación</a>
                 <a href="#opiniones" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Opiniones</a>
@@ -355,6 +401,7 @@
         <div id="mobile-menu" class="hidden md:hidden px-4 pb-4 bg-gray-50 border-t border-gray-200">
             <a href="#about" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Nosotros</a>
             <a href="#alojamiento" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Alojamiento</a>
+            <a href="#blog" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Consejos Cuba</a>
             <a href="#servicios" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Servicios</a>
             <a href="#ubicacion" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Ubicación</a>
             <a href="#opiniones" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Opiniones</a>
@@ -414,15 +461,15 @@
                         </a>
                     </div>
                     
-                    <!-- Puntos destacados REALES -->
+                    <!-- Puntos destacados -->
                     <div class="flex flex-wrap gap-6 mt-12">
                         <div class="flex items-center text-white">
                             <div class="bg-white/20 p-2 rounded-lg mr-3">
-                                <i class="fas fa-heart"></i>
+                                <i class="fas fa-star"></i>
                             </div>
                             <div>
-                                <p class="font-bold">16+ años</p>
-                                <p class="text-sm opacity-80">De experiencia</p>
+                                <p class="font-bold">4.8/5</p>
+                                <p class="text-sm opacity-80">En todas las plataformas</p>
                             </div>
                         </div>
                         
@@ -431,8 +478,8 @@
                                 <i class="fas fa-home"></i>
                             </div>
                             <div>
-                                <p class="font-bold">2 terrazas</p>
-                                <p class="text-sm opacity-80">Espacios privados</p>
+                                <p class="font-bold">16+ años</p>
+                                <p class="text-sm opacity-80">Recibiendo huéspedes</p>
                             </div>
                         </div>
                         
@@ -458,19 +505,31 @@
         </div>
     </section>
 
-    <!-- BANNER DE CONFIANZA ACTUALIZADO CON DATOS REALES -->
+    <!-- BANNER DE CONFIANZA -->
     <section class="py-12 bg-white border-y border-gray-200">
         <div class="content-container mx-auto px-4">
             <div class="text-center mb-8">
                 <h3 class="text-2xl font-bold text-gray-900 mb-2">
-                    Lo que nos caracteriza
+                    Confían en nuestra experiencia
                 </h3>
                 <p class="text-gray-600">
-                    Experiencia real y servicio personalizado que nuestros huéspedes valoran
+                    Huéspedes de más de 25 países han vivido la auténtica Cuba con nosotros
                 </p>
             </div>
             
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-teal-600 mb-2">98%</div>
+                    <p class="text-gray-700 font-medium">Tasa de repetición</p>
+                    <p class="text-sm text-gray-500">Huéspedes que regresan</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-teal-600 mb-2">4.8★</div>
+                    <p class="text-gray-700 font-medium">Calificación promedio</p>
+                    <p class="text-sm text-gray-500">En todas las plataformas</p>
+                </div>
+                
                 <div class="text-center">
                     <div class="text-4xl font-bold text-teal-600 mb-2">16+</div>
                     <p class="text-gray-700 font-medium">Años de experiencia</p>
@@ -478,28 +537,19 @@
                 </div>
                 
                 <div class="text-center">
-                    <div class="text-4xl font-bold text-teal-600 mb-2">2</div>
-                    <p class="text-gray-700 font-medium">Terrazas privadas</p>
-                    <p class="text-sm text-gray-500">Para relajarte</p>
-                </div>
-                
-                <div class="text-center">
                     <div class="text-4xl font-bold text-teal-600 mb-2">24/7</div>
                     <p class="text-gray-700 font-medium">Disponibilidad</p>
                     <p class="text-sm text-gray-500">Atención personalizada</p>
                 </div>
-                
-                <div class="text-center">
-                    <div class="text-4xl font-bold text-teal-600 mb-2">100%</div>
-                    <p class="text-gray-700 font-medium">Cubano auténtico</p>
-                    <p class="text-sm text-gray-500">Experiencia local</p>
-                </div>
             </div>
             
-            <!-- Logos de plataformas REALES donde están presentes -->
+            <!-- Logos de plataformas -->
             <div class="flex justify-center items-center space-x-8 mt-12 opacity-60">
                 <div class="text-2xl text-gray-400">
                     <i class="fab fa-airbnb"></i>
+                </div>
+                <div class="text-2xl text-gray-400">
+                    <i class="fas fa-b"></i>
                 </div>
                 <div class="text-2xl text-gray-400">
                     <i class="fab fa-google"></i>
@@ -589,7 +639,7 @@
                                             <i class="fas fa-calendar-alt"></i>
                                         </div>
                                         <div>
-                                            <p class="font-bold text-lg">31 de enero 2026</p>
+                                            <p class="font-bold text-lg">30 de Junio 2024</p>
                                             <p class="text-sm opacity-80">o hasta agotar disponibilidad</p>
                                         </div>
                                     </div>
@@ -650,15 +700,15 @@
                                 <div class="flex justify-between items-center mb-4">
                                     <div>
                                         <p class="font-bold text-gray-800">Disponibilidad limitada</p>
-                                        <p class="text-sm text-gray-600">Solo 2 habitaciones con esta promoción</p>
+                                        <p class="text-sm text-gray-600">Solo 3 habitaciones con esta promoción</p>
                                     </div>
                                     <div class="text-right">
-                                        <p class="text-2xl font-bold text-teal-600">2/2</p>
+                                        <p class="text-2xl font-bold text-teal-600">2/3</p>
                                         <p class="text-sm text-gray-600">habitaciones disponibles</p>
                                     </div>
                                 </div>
                                 <div class="w-full bg-gray-300 rounded-full h-3">
-                                    <div class="bg-teal-600 h-3 rounded-full" style="width: 100%"></div>
+                                    <div class="bg-teal-600 h-3 rounded-full" style="width: 33%"></div>
                                 </div>
                             </div>
                             
@@ -849,6 +899,218 @@
         </div>
     </section>
 
+    <!-- NUEVA SECCIÓN DE BLOG -->
+    <section id="blog" class="py-16 bg-white border-t border-gray-100">
+        <div class="content-container mx-auto px-4">
+            <div class="text-center mb-12 animate-on-scroll">
+                <span class="inline-block bg-teal-100 text-teal-800 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                    <i class="fas fa-lightbulb mr-2"></i> Consejos útiles
+                </span>
+                <h2 class="text-3xl font-bold text-teal-700 mb-4">
+                    Todo lo que necesitas saber para tu viaje a Cuba
+                </h2>
+                <p class="text-gray-600 max-w-3xl mx-auto">
+                    Información práctica y actualizada para que tu estancia en Cuba sea perfecta
+                </p>
+            </div>
+
+            <!-- Artículo 1: Internet en Cuba 2026 -->
+            <div class="mb-16 blog-article bg-white rounded-2xl shadow-lg overflow-hidden animate-on-scroll">
+                <div class="md:flex">
+                    <div class="md:w-2/5">
+                        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Persona usando internet en Cuba con teléfono móvil"
+                             class="w-full h-full object-cover min-h-[300px]">
+                    </div>
+                    <div class="md:w-3/5 p-8">
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <span class="blog-tag bg-blue-100 text-blue-800">Conectividad</span>
+                                <span class="blog-tag bg-purple-100 text-purple-800 ml-2">Actualizado 2026</span>
+                            </div>
+                            <div class="read-time">
+                                <i class="far fa-clock mr-1"></i> 5 min lectura
+                            </div>
+                        </div>
+                        
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">
+                            Internet en Cuba 2026: Guía Completa para Turistas
+                        </h3>
+                        
+                        <p class="text-gray-600 mb-6">
+                            Conectarse en Cuba ha evolucionado mucho en los últimos años. Te explicamos todo lo que necesitas saber para estar conectado durante tu viaje.
+                        </p>
+                        
+                        <div class="blog-content">
+                            <h4 class="text-lg font-semibold text-teal-700 mb-3">📶 Opciones de conexión:</h4>
+                            <ul class="list-disc pl-5 mb-4 text-gray-700">
+                                <li><strong>Wi-Fi en Terrazas de Bayona:</strong> Ofrecemos conexión gratuita a nuestros huéspedes</li>
+                                <li><strong>Tarjetas Nauta:</strong> Disponibles en Etecsa, hoteles y algunos puntos de venta</li>
+                                <li><strong>Roaming internacional:</strong> Funciona con la mayoría de operadoras extranjeras</li>
+                                <li><strong>Zonas Wi-Fi públicas:</strong> Parques y lugares turísticos principales</li>
+                            </ul>
+                            
+                            <h4 class="text-lg font-semibold text-teal-700 mb-3">💡 Consejos prácticos:</h4>
+                            <ol class="list-decimal pl-5 mb-4 text-gray-700">
+                                <li><strong>Descarga mapas offline</strong> antes de llegar (Google Maps, Maps.me)</li>
+                                <li><strong>Usa aplicaciones de mensajería</strong> como WhatsApp que funcionan bien con conexión intermitente</li>
+                                <li><strong>Considera comprar una SIM cubana</strong> si tu estancia será larga</li>
+                                <li><strong>Desactiva actualizaciones automáticas</strong> para ahorrar datos</li>
+                            </ol>
+                            
+                            <div class="bg-blue-50 p-4 rounded-lg mb-4">
+                                <p class="text-blue-800 font-semibold">
+                                    <i class="fas fa-wifi mr-2"></i> En Terrazas de Bayona:
+                                </p>
+                                <p class="text-blue-700 text-sm">
+                                    Ofrecemos Wi-Fi gratuito a nuestros huéspedes, además de asesoramiento para adquirir tarjetas Nauta y los mejores lugares para conectarse en La Habana.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center justify-between mt-6 pt-6 border-t border-gray-100">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-teal-100 rounded-full flex items-center justify-center mr-3">
+                                    <i class="fas fa-user text-teal-600"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-gray-900">Alexander & Isaida</p>
+                                    <p class="text-sm text-gray-500">Anfitriones expertos</p>
+                                </div>
+                            </div>
+                            <a href="#contacto" 
+                               class="text-teal-600 hover:text-teal-800 font-medium flex items-center"
+                               onclick="gtag('event', 'click', {'event_category': 'blog', 'event_label': 'consulta_internet'});">
+                                <i class="fas fa-question-circle mr-2"></i> ¿Dudas sobre internet?
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Artículo 2: Qué llevar a Cuba -->
+            <div class="blog-article bg-white rounded-2xl shadow-lg overflow-hidden animate-on-scroll">
+                <div class="md:flex">
+                    <div class="md:w-2/5 order-2">
+                        <img src="https://images.unsplash.com/photo-1586294096485-917d6a0d7bae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Maleta de viaje con artículos esenciales para Cuba"
+                             class="w-full h-full object-cover min-h-[300px]">
+                    </div>
+                    <div class="md:w-3/5 p-8 order-1">
+                        <div class="flex items-center justify-between mb-4">
+                            <div>
+                                <span class="blog-tag bg-green-100 text-green-800">Preparativos</span>
+                                <span class="blog-tag bg-yellow-100 text-yellow-800 ml-2">Lista de equipaje</span>
+                            </div>
+                            <div class="read-time">
+                                <i class="far fa-clock mr-1"></i> 7 min lectura
+                            </div>
+                        </div>
+                        
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">
+                            ¿Qué llevar a Cuba? La Lista Definitiva para Turistas
+                        </h3>
+                        
+                        <p class="text-gray-600 mb-6">
+                            Preparar tu maleta para Cuba requiere consideraciones especiales. Te ayudamos a empacar solo lo esencial y lo que realmente necesitarás.
+                        </p>
+                        
+                        <div class="blog-content">
+                            <h4 class="text-lg font-semibold text-teal-700 mb-3">🎒 Imprescindibles en tu maleta:</h4>
+                            
+                            <div class="grid md:grid-cols-2 gap-4 mb-6">
+                                <div>
+                                    <h5 class="font-bold text-gray-800 mb-2">🧴 Artículos de farmacia:</h5>
+                                    <ul class="list-disc pl-5 text-gray-700 text-sm">
+                                        <li>Protector solar (SPF 50+)</li>
+                                        <li>Repelente de insectos</li>
+                                        <li>Medicamentos personales</li>
+                                        <li>Analgésicos básicos</li>
+                                        <li>Pastillas para el mareo</li>
+                                    </ul>
+                                </div>
+                                
+                                <div>
+                                    <h5 class="font-bold text-gray-800 mb-2">📱 Electrónica:</h5>
+                                    <ul class="list-disc pl-5 text-gray-700 text-sm">
+                                        <li>Adaptador de corriente (110V)</li>
+                                        <li>Power bank/batería externa</li>
+                                        <li>Cables de carga extra</li>
+                                        <li>Auriculares</li>
+                                        <li>Cámara fotográfica</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <h4 class="text-lg font-semibold text-teal-700 mb-3">👗 Ropa adecuada:</h4>
+                            <p class="text-gray-700 mb-3">
+                                Cuba tiene un clima tropical cálido, pero con aire acondicionado en interiores:
+                            </p>
+                            <ul class="list-disc pl-5 mb-4 text-gray-700">
+                                <li><strong>Ropa ligera y transpirable:</strong> Algodón, lino</li>
+                                <li><strong>Un suéter ligero:</strong> Para interiores con aire acondicionado</li>
+                                <li><strong>Calzado cómodo:</strong> Para caminar por calles adoquinadas</li>
+                                <li><strong>Traje de baño:</strong> ¡No olvides disfrutar de las playas!</li>
+                                <li><strong>Impermeable ligero:</strong> Para lluvias tropicales repentinas</li>
+                            </ul>
+                            
+                            <div class="bg-yellow-50 p-4 rounded-lg mb-4">
+                                <p class="text-yellow-800 font-semibold">
+                                    <i class="fas fa-gift mr-2"></i> Regalos y propinas:
+                                </p>
+                                <p class="text-yellow-700 text-sm">
+                                    Los cubanos aprecian regalos útiles: medicamentos básicos, productos de higiene, ropa, dulces o material escolar. Son gestos muy valorados.
+                                </p>
+                            </div>
+                            
+                            <h4 class="text-lg font-semibold text-teal-700 mb-3">❌ Lo que NO necesitas llevar:</h4>
+                            <ul class="list-disc pl-5 text-gray-700">
+                                <li>Demasiada ropa formal (el ambiente es casual)</li>
+                                <li>Joyas o objetos de valor innecesarios</li>
+                                <li>Productos que puedas comprar aquí</li>
+                                <li>Equipaje excesivo (mejor viajar ligero)</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="flex items-center justify-between mt-6 pt-6 border-t border-gray-100">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-teal-100 rounded-full flex items-center justify-center mr-3">
+                                    <i class="fas fa-suitcase-rolling text-teal-600"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium text-gray-900">Basado en 16+ años de experiencia</p>
+                                    <p class="text-sm text-gray-500">Consejos de viajeros expertos</p>
+                                </div>
+                            </div>
+                            <a href="https://wa.me/5356382909?text=Hola,%20tengo%20dudas%20sobre%20qué%20llevar%20a%20Cuba" 
+                               target="_blank"
+                               class="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-lg font-medium flex items-center"
+                               onclick="trackWhatsAppClick('blog_packing_advice');">
+                                <i class="fab fa-whatsapp mr-2"></i> Consultar por WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Newsletter/Consejos adicionales -->
+            <div class="mt-12 text-center animate-on-scroll">
+                <div class="bg-gradient-to-r from-teal-50 to-blue-50 p-8 rounded-2xl border border-teal-200">
+                    <h4 class="text-xl font-bold text-teal-700 mb-3">¿Más dudas sobre tu viaje a Cuba?</h4>
+                    <p class="text-gray-600 mb-6 max-w-2xl mx-auto">
+                        Nuestros anfitriones tienen respuestas para todas tus preguntas. Contáctanos y te ayudaremos a planificar el viaje perfecto.
+                    </p>
+                    <a href="#contacto" 
+                       class="inline-flex items-center bg-teal-600 hover:bg-teal-700 text-white font-bold px-6 py-3 rounded-lg transition transform hover:scale-105"
+                       onclick="gtag('event', 'click', {'event_category': 'blog', 'event_label': 'mas_consejos'});">
+                        <i class="fas fa-comments mr-3"></i>
+                        Obtener consejos personalizados
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- SECCIÓN SERVICIOS ADICIONALES -->
     <section id="servicios" class="py-16 bg-white border-t border-gray-100">
         <div class="content-container mx-auto px-4">
@@ -961,15 +1223,13 @@
                 <div class="bg-white p-8 rounded-xl shadow-xl">
                     <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Comparte tu experiencia</h3>
                     
-                    <!-- FORMULARIO DE OPINIONES CON FORMSPREE - URL CORREGIDA -->
-                    <form id="review-form" action="https://formspree.io/f/xvzolnyg" method="POST">
-                        <!-- Configuración correcta de Formspree -->
+                    <!-- FORMULARIO DE OPINIONES CON FORMSPREE -->
+                    <form id="review-form" action="https://formspree.io/f/rsvodpy" method="POST">
                         <input type="hidden" name="_subject" value="⭐ NUEVA OPINIÓN - Terrazas de Bayona">
-                        <input type="hidden" name="_replyto" value="alexanderacensio1234@gmail.com">
+                        <input type="hidden" name="_replyto" id="review-email" value="alexanderacensio1234@gmail.com">
                         <!-- Configuración para redirigir a ambos correos -->
                         <input type="hidden" name="_cc" value="jccarlos010277@gmail.com,info@reservaterrazasdebayona59.com">
                         <input type="hidden" name="_language" value="es">
-                        <input type="hidden" name="form_type" value="opinion">
                         
                         <div class="mb-4">
                             <label for="review-name" class="block text-gray-700 text-sm font-bold mb-2">Tu nombre *</label>
@@ -1052,12 +1312,15 @@
 
             <div class="max-w-3xl mx-auto animate-on-scroll">
                 <div class="bg-white p-8 rounded-xl shadow-2xl border border-gray-100">
-                    <!-- FORMULARIO DE RESERVAS CON FORMSPREE - URL CORREGIDA -->
-                    <form id="booking-form" action="https://formspree.io/f/mqavrlvg" method="POST">
-                        <!-- Configuración correcta de Formspree -->
+                    <!-- FORMULARIO DE RESERVAS CON FORMSPREE -->
+                    <form id="booking-form" action="https://formspree.io/f/rsvodpy" method="POST">
+                        <!-- Configuración de Formspree -->
                         <input type="hidden" name="_subject" id="email-subject" value="📅 NUEVA RESERVA - Terrazas de Bayona">
+                        <input type="hidden" name="_replyto" id="client-email" value="alexanderacensio1234@gmail.com">
+                        <!-- Redirigir a ambos correos -->
+                        <input type="hidden" name="_cc" value="jccarlos010277@gmail.com,info@reservaterrazasdebayona59.com">
                         <input type="hidden" name="_language" value="es">
-                        <input type="hidden" name="form_type" value="reserva">
+                        <input type="hidden" name="tipo" value="reserva">
                         <input type="hidden" name="referencia" id="booking-reference" value="TDB-REF">
                         
                         <!-- SECCIÓN 1: DATOS PERSONALES -->
@@ -1177,6 +1440,7 @@
                                     <option value="Google/Buscador">Google / Buscador</option>
                                     <option value="Recomendación">Recomendación de amigos/familia</option>
                                     <option value="Airbnb">Airbnb</option>
+                                    <option value="Booking.com">Booking.com</option>
                                     <option value="Redes sociales">Redes sociales</option>
                                     <option value="Otro">Otro</option>
                                 </select>
@@ -1360,6 +1624,35 @@
                         playButton.click();
                     }
                 });
+                
+                // Detectar cuando el video termina para mostrar la preview nuevamente
+                window.addEventListener('message', function(e) {
+                    if (e.origin === 'https://www.youtube.com') {
+                        try {
+                            const data = JSON.parse(e.data);
+                            if (data.event === 'onStateChange') {
+                                // Estado 0 = video terminado
+                                if (data.info === 0) {
+                                    setTimeout(() => {
+                                        // Volver a mostrar la preview
+                                        youtubePlayer.src = '';
+                                        videoPlayer.style.opacity = '0';
+                                        setTimeout(() => {
+                                            videoPlayer.style.display = 'none';
+                                            videoPlayer.classList.add('hidden');
+                                            videoPreview.style.display = 'block';
+                                            setTimeout(() => {
+                                                videoPreview.style.opacity = '1';
+                                            }, 10);
+                                        }, 500);
+                                    }, 2000); // Esperar 2 segundos después de que termine
+                                }
+                            }
+                        } catch (error) {
+                            // Ignorar errores de parsing
+                        }
+                    }
+                });
             }
         }
         
@@ -1472,7 +1765,7 @@
             }
         }
         
-        // 6. FORMULARIO DE OPINIONES CON FORMSPREE CORREGIDO
+        // 6. FORMULARIO DE OPINIONES CON FORMSPREE
         function setupReviewForm() {
             const reviewForm = document.getElementById('review-form');
             const submitBtn = document.getElementById('submit-btn-review');
@@ -1556,7 +1849,7 @@
             }
         }
         
-        // 7. FORMULARIO DE RESERVAS CON FORMSPREE CORREGIDO
+        // 7. FORMULARIO DE RESERVAS CON FORMSPREE
         function setupBookingForm() {
             const checkInInput = document.getElementById('check-in');
             const checkOutInput = document.getElementById('check-out');
@@ -1649,6 +1942,29 @@
                 return { nights, totalPrice };
             }
             
+            // Configurar email automático
+            function setupEmailAutoFill() {
+                const emailInput = document.getElementById('booking-email');
+                const clientEmail = document.getElementById('client-email');
+                const nameInput = document.getElementById('booking-name');
+                const emailSubject = document.getElementById('email-subject');
+                
+                if (emailInput && clientEmail) {
+                    emailInput.addEventListener('input', function() {
+                        clientEmail.value = this.value;
+                    });
+                }
+                
+                if (nameInput && emailSubject) {
+                    nameInput.addEventListener('input', function() {
+                        const fecha = document.getElementById('check-in')?.value || 'NODATE';
+                        const nombreCorto = this.value.substring(0, 15).replace(/\s+/g, '');
+                        const ref = bookingReference?.value || 'NOREF';
+                        emailSubject.value = `📅 RESERVA ${ref} - ${nombreCorto} (${fecha})`;
+                    });
+                }
+            }
+            
             // Event listeners
             if (checkInInput) checkInInput.addEventListener('change', calculatePrice);
             if (checkOutInput) checkOutInput.addEventListener('change', calculatePrice);
@@ -1662,6 +1978,7 @@
             
             // Calcular precio inicial
             setTimeout(calculatePrice, 500);
+            setTimeout(setupEmailAutoFill, 1000);
             
             // Manejar envío del formulario
             if (bookingForm) {
@@ -1682,15 +1999,6 @@
                     try {
                         // Generar referencia final
                         bookingReference.value = generateReference();
-                        
-                        // Configurar el asunto del email dinámicamente
-                        const nameInput = document.getElementById('booking-name');
-                        const emailSubject = document.getElementById('email-subject');
-                        if (nameInput && emailSubject) {
-                            const fecha = document.getElementById('check-in')?.value || 'NODATE';
-                            const nombreCorto = nameInput.value.substring(0, 15).replace(/\s+/g, '');
-                            emailSubject.value = `📅 RESERVA ${bookingReference.value} - ${nombreCorto} (${fecha})`;
-                        }
                         
                         // Enviar a Formspree
                         const formData = new FormData(this);

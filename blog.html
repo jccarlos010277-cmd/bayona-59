@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consejos Cuba | Terrazas de Bayona - La Habana</title>
+    <meta name="description" content="Guías completas para viajar a Cuba: internet, qué llevar, transporte y más consejos útiles para tu estancia en La Habana.">
+    
+    <!-- Mismo head que la página principal -->
+    <link rel="canonical" href="https://reservaterrazasdebayona59.com/blog.html">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-teal: #0d9488;
+            --accent-yellow: #fbbf24;
+            --dark-teal: #115e59;
+            --light-teal: #ccfbf1;
+        }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #f7f7f7; 
+        }
+        
+        .content-container { 
+            max-width: 1200px; 
+            margin: 0 auto;
+        }
+        
+        .blog-article {
+            transition: all 0.3s ease;
+        }
+        
+        .blog-article:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .blog-tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .read-time {
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+        
+        .blog-content h2 {
+            font-size: 1.875rem;
+            font-weight: 700;
+            color: var(--dark-teal);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .blog-content h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark-teal);
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .blog-content ul, .blog-content ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .blog-content li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+        
+        .blog-content p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+        
+        .table-of-contents {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-left: 4px solid var(--primary-teal);
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--primary-teal);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(13, 148, 136, 0.3);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .back-to-top:hover {
+            background-color: var(--dark-teal);
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+    
+    <!-- BOTÓN FLOTANTE WHATSAPP -->
+    <div class="whatsapp-float">
+        <a href="https://wa.me/5356382909?text=Hola,%20tengo%20dudas%20sobre%20viajar%20a%20Cuba" 
+           target="_blank"
+           class="bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition transform hover:scale-110 flex items-center"
+           aria-label="Consultar por WhatsApp">
+            <i class="fab fa-whatsapp text-2xl"></i>
+        </a>
+    </div>
+
+    <!-- CABECERA FIJA Y NAVEGACIÓN -->
+    <header id="main-header" class="bg-white shadow-md sticky top-0 z-50">
+        <div class="content-container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-teal-600 hover:text-teal-800 transition duration-300">
+                <i class="fas fa-home mr-2"></i>Terrazas de Bayona
+            </a>
+            
+            <nav class="hidden md:flex items-center space-x-6">
+                <a href="index.html#about" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Nosotros</a>
+                <a href="index.html#alojamiento" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Alojamiento</a>
+                <a href="blog.html" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition font-bold text-teal-700">Consejos Cuba</a>
+                <a href="index.html#servicios" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Servicios</a>
+                <a href="index.html#ubicacion" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Ubicación</a>
+                <a href="index.html#reservas" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Reservas</a>
+                <a href="index.html#contacto" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Contáctanos</a>
+            </nav>
+
+            <button id="mobile-menu-button" class="md:hidden p-2 text-gray-600 hover:text-teal-600 rounded-lg transition duration-300"
+                    aria-label="Abrir menú móvil">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+        
+        <div id="mobile-menu" class="hidden md:hidden px-4 pb-4 bg-gray-50 border-t border-gray-200">
+            <a href="index.html#about" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Nosotros</a>
+            <a href="index.html#alojamiento" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Alojamiento</a>
+            <a href="blog.html" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600 font-bold text-teal-700">Consejos Cuba</a>
+            <a href="index.html#servicios" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Servicios</a>
+            <a href="index.html#ubicacion" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Ubicación</a>
+            <a href="index.html#reservas" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Reservas</a>
+            <a href="index.html#contacto" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Contáctanos</a>
+        </div>
+    </header>
+
+    <!-- HERO DEL BLOG -->
+    <section class="py-20 bg-gradient-to-r from-teal-600 to-teal-800 text-white">
+        <div class="content-container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">Consejos para viajar a Cuba</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto font-light">
+                Guías prácticas basadas en nuestra experiencia de 16+ años recibiendo viajeros en La Habana
+            </p>
+            <div class="inline-flex items-center bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full">
+                <i class="fas fa-lightbulb mr-3"></i>
+                <span class="font-semibold">Información actualizada 2026</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- TABLA DE CONTENIDOS -->
+    <section class="py-12 bg-white">
+        <div class="content-container mx-auto px-4">
+            <div class="table-of-contents p-8 rounded-2xl max-w-4xl mx-auto">
+                <h2 class="text-2xl font-bold text-teal-800 mb-6">
+                    <i class="fas fa-bookmark mr-3"></i>Artículos disponibles
+                </h2>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <a href="#internet-cuba" class="flex items-center p-4 bg-white rounded-lg hover:shadow-md transition">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-wifi text-blue-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-900">Internet en Cuba 2026</h3>
+                            <p class="text-sm text-gray-600">Cómo conectarse durante tu viaje</p>
+                        </div>
+                    </a>
+                    
+                    <a href="#que-llevar-cuba" class="flex items-center p-4 bg-white rounded-lg hover:shadow-md transition">
+                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-suitcase-rolling text-green-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-900">¿Qué llevar a Cuba?</h3>
+                            <p class="text-sm text-gray-600">Lista definitiva de equipaje</p>
+                        </div>
+                    </a>
+                    
+                    <a href="#transporte-cuba" class="flex items-center p-4 bg-white rounded-lg hover:shadow-md transition">
+                        <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-bus text-purple-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-900">Transporte en Cuba</h3>
+                            <p class="text-sm text-gray-600">Cómo moverte por La Habana</p>
+                        </div>
+                    </a>
+                    
+                    <a href="#comida-cuba" class="flex items-center p-4 bg-white rounded-lg hover:shadow-md transition">
+                        <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mr-4">
+                            <i class="fas fa-utensils text-yellow-600"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-gray-900">Comida cubana</h3>
+                            <p class="text-sm text-gray-600">Qué probar y dónde comer</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ARTÍCULOS DEL BLOG -->
+    <main class="py-12 bg-gray-50">
+        <div class="content-container mx-auto px-4">
+            
+            <!-- Artículo 1: Internet en Cuba -->
+            <article id="internet-cuba" class="bg-white rounded-2xl shadow-xl overflow-hidden mb-16 blog-article">
+                <div class="md:flex">
+                    <div class="md:w-2/5">
+                        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                             alt="Internet en Cuba"
+                             class="w-full h-full object-cover min-h-[400px]">
+                    </div>
+                    <div class="md:w-3/5 p-8">
+                        <!-- Encabezado del artículo -->
+                        <div class="flex items-center justify-between mb-6">
+                            <div>
+                                <span class="blog-tag bg-blue-100 text-blue-800">Conectividad</span>
+                                <span class="blog-tag bg-purple-100 text-purple-800 ml-2">Actualizado 2026</span>
+                            </div>
+                            <div class="read-time">
+                                <i class="far fa-clock mr-1"></i> 8 min lectura
+                            </div>
+                        </div>
+                        
+                        <h2 class="text-3xl font-bold text-gray-900 mb-6">
+                            Internet en Cuba 2026: Guía Completa para Turistas
+                        </h2>
+                        
+                        <div class="flex items-center mb-8">
+                            <div class="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-user text-teal-600"></i>
+                            </div>
+                            <div>
+                                <p class="font-medium text-gray-900">Alexander & Isaida</p>
+                                <p class="text-sm text-gray-500">Anfitriones expertos • Actualizado: Enero 2026</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Contenido del artículo (se puede expandir) -->
+                        <div class="blog-content">
+                            <p class="text-lg text-gray-700 mb-6">
+                                Conectarse en Cuba ha evolucionado mucho en los últimos años. Te explicamos todo lo que necesitas saber para estar conectado durante tu viaje.
+                            </p>
+                            
+                            <h3>📶 Opciones de conexión disponibles</h3>
+                            <ul>
+                                <li><strong>Wi-Fi en Terrazas de Bayona:</strong> Ofrecemos conexión gratuita a nuestros huéspedes</li>
+                                <li><strong>Tarjetas Nauta:</strong> Disponibles en Etecsa, hoteles y algunos puntos de venta</li>
+                                <li><strong>Roaming internacional:</strong> Funciona con la mayoría de operadoras extranjeras</li>
+                                <li><strong>Zonas Wi-Fi públicas:</strong> Parques y lugares turísticos principales</li>
+                            </ul>
+                            
+                            <!-- Más contenido del artículo... -->
+                        </div>
+                        
+                        <!-- Botón para volver a la tabla de contenidos -->
+                        <div class="mt-8 pt-6 border-t border-gray-200">
+                            <a href="#" class="text-teal-600 hover:text-teal-800 font-medium flex items-center">
+                                <i class="fas fa-arrow-up mr-2"></i>
+                                Volver a la tabla de contenidos
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            
+            <!-- Artículo 2: Qué llevar a Cuba -->
+            <article id="que-llevar-cuba" class="bg-white rounded-2xl shadow-xl overflow-hidden mb-16 blog-article">
+                <!-- Estructura similar al artículo anterior -->
+            </article>
+            
+            <!-- Más artículos... -->
+            
+        </div>
+    </main>
+
+    <!-- BOTÓN FLOTANTE PARA VOLVER ARRIBA -->
+    <a href="#" class="back-to-top" id="backToTop" style="display: none;">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="content-container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Terrazas de Bayona</h3>
+                    <p class="text-gray-300">Tu hogar en La Habana. Experiencia familiar cubana auténtica desde 2008.</p>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Enlaces rápidos</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-300 hover:text-white">Inicio</a></li>
+                        <li><a href="index.html#alojamiento" class="text-gray-300 hover:text-white">Alojamiento</a></li>
+                        <li><a href="index.html#reservas" class="text-gray-300 hover:text-white">Reservas</a></li>
+                        <li><a href="blog.html" class="text-gray-300 hover:text-white">Consejos Cuba</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contacto</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fab fa-whatsapp mr-3 text-green-400"></i>
+                            <a href="https://wa.me/5356382909" class="text-gray-300 hover:text-white">+53 56382909</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-3 text-teal-400"></i>
+                            <a href="mailto:alexanderacensio1234@gmail.com" class="text-gray-300 hover:text-white">alexanderacensio1234@gmail.com</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center">
+                <p>&copy; 2026 Terrazas de Bayona. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Script para el botón de volver arriba
+        window.addEventListener('scroll', function() {
+            const backToTop = document.getElementById('backToTop');
+            if (window.scrollY > 300) {
+                backToTop.style.display = 'flex';
+            } else {
+                backToTop.style.display = 'none';
+            }
+        });
+
+        // Script para el menú móvil
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>

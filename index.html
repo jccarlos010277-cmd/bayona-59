@@ -361,203 +361,199 @@
 </head>
 <body class="text-gray-800 fade-in">
 
-    <!-- BOTÓN FLOTANTE WHATSAPP -->
-    <div class="whatsapp-float">
-        <a href="https://wa.me/5356382909?text=Hola,%20quiero%20más%20información%20sobre%20Terrazas%20de%20Bayona" 
-           target="_blank"
-           class="bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition transform hover:scale-110 flex items-center"
-           aria-label="Contactar por WhatsApp"
-           onclick="trackWhatsAppClick('float_button')">
-            <i class="fab fa-whatsapp text-2xl"></i>
+   <!-- BOTÓN FLOTANTE WHATSAPP -->
+<div class="whatsapp-float">
+    <a href="https://wa.me/5356382909?text=Hola,%20quiero%20más%20información%20sobre%20Terrazas%20de%20Bayona" 
+       target="_blank"
+       class="bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition transform hover:scale-110 flex items-center"
+       aria-label="Contactar por WhatsApp"
+       onclick="trackWhatsAppClick('float_button')">
+        <i class="fab fa-whatsapp text-2xl"></i>
+    </a>
+</div>
+
+<!-- CABECERA FIJA Y NAVEGACIÓN -->
+<header id="main-header" class="bg-white shadow-md sticky top-0 z-50">
+    <div class="content-container mx-auto px-4 py-3 flex justify-between items-center">
+        <a href="#" class="text-2xl font-bold text-teal-600 hover:text-teal-800 transition duration-300">
+            <i class="fas fa-home mr-2"></i>Terrazas de Bayona
         </a>
+        
+        <nav class="hidden md:flex items-center space-x-6">
+            <a href="#about" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Nosotros</a>
+            <a href="#alojamiento" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Alojamiento</a>
+            <a href="#blog" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Consejos Cuba</a>
+            <a href="#servicios" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Servicios</a>
+            <a href="#ubicacion" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Ubicación</a>
+            <a href="#opiniones" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Opiniones</a>
+            <a href="#reservas" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Reservas</a>
+            <a href="#contacto" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition duration-300">Contáctanos</a>
+        </nav>
+
+        <button id="mobile-menu-button" class="md:hidden p-2 text-gray-600 hover:text-teal-600 rounded-lg transition duration-300"
+                aria-label="Abrir menú móvil">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+            </svg>
+        </button>
     </div>
+    
+    <div id="mobile-menu" class="hidden md:hidden px-4 pb-4 bg-gray-50 border-t border-gray-200">
+        <a href="#about" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Nosotros</a>
+        <a href="#alojamiento" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Alojamiento</a>
+        <a href="#blog" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Consejos Cuba</a>
+        <a href="#servicios" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Servicios</a>
+        <a href="#ubicacion" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Ubicación</a>
+        <a href="#opiniones" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Opiniones</a>
+        <a href="#reservas" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Reservas</a>
+        <a href="#contacto" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Contáctanos</a>
+    </div>
+</header>
 
-    <!-- CABECERA FIJA Y NAVEGACIÓN -->
-    <header id="main-header" class="bg-white shadow-md sticky top-0 z-50">
-        <div class="content-container mx-auto px-4 py-3 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-teal-600 hover:text-teal-800 transition duration-300">
-                <i class="fas fa-home mr-2"></i>Terrazas de Bayona
-            </a>
-            
-            <nav class="hidden md:flex items-center space-x-6">
-                <a href="#about" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Nosotros</a>
-                <a href="#alojamiento" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Alojamiento</a>
-                <a href="#blog" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Consejos Cuba</a>
-                <a href="#servicios" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Servicios</a>
-                <a href="#ubicacion" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Ubicación</a>
-                <a href="#opiniones" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Opiniones</a>
-                <a href="#reservas" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition">Reservas</a>
-                <a href="#contacto" class="text-sm font-medium text-gray-600 hover:text-teal-600 transition duration-300">Contáctanos</a>
-            </nav>
-
-            <button id="mobile-menu-button" class="md:hidden p-2 text-gray-600 hover:text-teal-600 rounded-lg transition duration-300"
-                    aria-label="Abrir menú móvil">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                </svg>
-            </button>
-        </div>
-        
-        <div id="mobile-menu" class="hidden md:hidden px-4 pb-4 bg-gray-50 border-t border-gray-200">
-            <a href="#about" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Nosotros</a>
-            <a href="#alojamiento" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Alojamiento</a>
-            <a href="#blog" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Consejos Cuba</a>
-            <a href="#servicios" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Servicios</a>
-            <a href="#ubicacion" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Ubicación</a>
-            <a href="#opiniones" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Opiniones</a>
-            <a href="#reservas" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Reservas</a>
-            <a href="#contacto" class="block py-2 text-sm font-medium text-gray-700 hover:text-teal-600">Contáctanos</a>
-        </div>
-    </header>
-
-    <!-- NUEVA SECCIÓN HERO - DISEÑO PREMIUM -->
-    <section class="relative h-screen min-h-[600px] overflow-hidden">
-        <!-- Fondo con overlay gradient -->
-        <div class="absolute inset-0 z-0">
-            <img src="https://i.postimg.cc/Y9jZwcg0/terraza.jpg" 
-                 alt="Vista panorámica de Terrazas de Bayona, La Habana"
-                 class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-gradient-to-r from-teal-900/70 via-teal-800/50 to-transparent"></div>
-            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
-        </div>
-        
-        <!-- Contenido principal centrado -->
-        <div class="relative z-10 h-full flex items-center">
-            <div class="content-container mx-auto px-4">
-                <div class="max-w-2xl">
-                    <!-- Badge de autenticidad -->
-                    <div class="inline-flex items-center bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full mb-6">
-                        <i class="fas fa-heart mr-2"></i>
-                        <span class="text-sm font-semibold">Experiencia 100% Cubana</span>
-                    </div>
-                    
-                    <!-- Título principal -->
-                    <h1 class="text-5xl md:text-7xl font-bold text-white mb-4 leading-tight">
-                        Tu <span class="text-yellow-300">Hogar</span><br>
-                        en <span class="text-yellow-300">La Habana</span>
-                    </h1>
-                    
-                    <!-- Subtítulo -->
-                    <p class="text-xl md:text-2xl text-white/90 mb-8 font-light max-w-xl">
-                        Donde la calidez cubana se encuentra con el confort moderno. 
-                        Más que alojamiento, una experiencia familiar.
-                    </p>
-                    
-                    <!-- CTA Principal -->
-                    <div class="flex flex-wrap gap-4">
-                        <a href="#reservas" 
-                           class="bg-yellow-400 hover:bg-yellow-500 text-teal-900 font-bold px-8 py-4 rounded-full transition-all transform hover:scale-105 shadow-2xl hover:shadow-3xl flex items-center group"
-                           onclick="gtag('event', 'click', {'event_category': 'cta', 'event_label': 'reservar_experiencia_completa_hero'});">
-                            <i class="fas fa-calendar-check mr-3 text-xl"></i>
-                            <span class="text-lg">Reservar Experiencia Completa</span>
-                            <i class="fas fa-arrow-right ml-3 group-hover:translate-x-2 transition-transform"></i>
-                        </a>
-                        
-                        <a href="#video-experiencia" 
-                           class="bg-transparent border-2 border-white text-white hover:bg-white/10 px-8 py-4 rounded-full transition-all font-bold flex items-center"
-                           onclick="gtag('event', 'click', {'event_category': 'cta', 'event_label': 'ver_experiencia_hero'});">
-                            <i class="fas fa-play-circle mr-3"></i>
-                            Ver Experiencia
-                        </a>
-                    </div>
-                    
-                    <!-- Puntos destacados -->
-                    <div class="flex flex-wrap gap-6 mt-12">
-                        <div class="flex items-center text-white">
-                            <div class="bg-white/20 p-2 rounded-lg mr-3">
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <div>
-                                <p class="font-bold">16+ años </p>
-                                <p class="text-sm opacity-80">de experiencias</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-center text-white">
-                            <div class="bg-white/20 p-2 rounded-lg mr-3">
-                                <i class="fas fa-home"></i>
-                            </div>
-                            <div>
-                                <p class="font-bold">2 terrazas</p>
-                                <p class="text-sm opacity-80">espacios privados</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-center text-white">
-                            <div class="bg-white/20 p-2 rounded-lg mr-3">
-                                <i class="fas fa-users"></i>
-                            </div>
-                            <div>
-                                <p class="font-bold">Familiar</p>
-                                <p class="text-sm opacity-80">Atención personalizada</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Scroll indicator -->
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
-            <div class="animate-bounce">
-                <i class="fas fa-chevron-down text-white text-2xl"></i>
-            </div>
-        </div>
-    </section>
-
-    <!-- BANNER DE CONFIANZA -->
-    <section class="py-12 bg-white border-y border-gray-200">
+<!-- NUEVA SECCIÓN HERO - DISEÑO PREMIUM -->
+<section class="relative h-screen min-h-[600px] overflow-hidden">
+    <!-- Fondo con overlay gradient -->
+    <div class="absolute inset-0 z-0">
+        <img src="https://i.postimg.cc/Y9jZwcg0/terraza.jpg" 
+             alt="Vista panorámica de Terrazas de Bayona, La Habana"
+             class="w-full h-full object-cover">
+        <div class="absolute inset-0 bg-gradient-to-r from-teal-900/70 via-teal-800/50 to-transparent"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+    </div>
+    
+    <!-- Contenido principal centrado -->
+    <div class="relative z-10 h-full flex items-center">
         <div class="content-container mx-auto px-4">
-            <div class="text-center mb-8">
-                <h3 class="text-2xl font-bold text-gray-900 mb-2">
-                    Confían en nuestra experiencia
-                </h3>
-                <p class="text-gray-600">
-                    Huéspedes de más de 25 países han vivido la auténtica Cuba con nosotros
+            <div class="max-w-2xl">
+                <!-- Badge de autenticidad -->
+                <div class="inline-flex items-center bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full mb-6">
+                    <i class="fas fa-heart mr-2"></i>
+                    <span class="text-sm font-semibold">Experiencia 100% Cubana</span>
+                </div>
+                
+                <!-- Título principal -->
+                <h1 class="text-5xl md:text-7xl font-bold text-white mb-4 leading-tight">
+                    Tu <span class="text-yellow-300">Hogar</span><br>
+                    en <span class="text-yellow-300">La Habana</span>
+                </h1>
+                
+                <!-- Subtítulo -->
+                <p class="text-xl md:text-2xl text-white/90 mb-8 font-light max-w-xl">
+                    Donde la calidez cubana se encuentra con el confort moderno. 
+                    Más que alojamiento, una experiencia familiar.
                 </p>
-            </div>
-            
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <div class="text-center">
-                    <div class="text-4xl font-bold text-teal-600 mb-2">98%</div>
-                    <p class="text-gray-700 font-medium">Tasa de repetición</p>
-                    <p class="text-sm text-gray-500">Huéspedes que regresan</p>
+                
+                <!-- CTA Principal -->
+                <div class="flex flex-wrap gap-4">
+                    <a href="#reservas" 
+                       class="bg-yellow-400 hover:bg-yellow-500 text-teal-900 font-bold px-8 py-4 rounded-full transition-all transform hover:scale-105 shadow-2xl hover:shadow-3xl flex items-center group"
+                       onclick="gtag('event', 'click', {'event_category': 'cta', 'event_label': 'reservar_experiencia_completa_hero'});">
+                        <i class="fas fa-calendar-check mr-3 text-xl"></i>
+                        <span class="text-lg">Reservar Experiencia Completa</span>
+                        <i class="fas fa-arrow-right ml-3 group-hover:translate-x-2 transition-transform"></i>
+                    </a>
+                    
+                    <a href="#video-experiencia" 
+                       class="bg-transparent border-2 border-white text-white hover:bg-white/10 px-8 py-4 rounded-full transition-all font-bold flex items-center"
+                       onclick="gtag('event', 'click', {'event_category': 'cta', 'event_label': 'ver_experiencia_hero'});">
+                        <i class="fas fa-play-circle mr-3"></i>
+                        Ver Experiencia
+                    </a>
                 </div>
                 
-                <div class="text-center">
-                    <div class="text-4xl font-bold text-teal-600 mb-2">4.8★</div>
-                    <p class="text-gray-700 font-medium">Calificación promedio</p>
-                    <p class="text-sm text-gray-500">En todas las plataformas</p>
-                </div>
-                
-                <div class="text-center">
-                    <div class="text-4xl font-bold text-teal-600 mb-2">16+</div>
-                    <p class="text-gray-700 font-medium">Años de experiencia</p>
-                    <p class="text-sm text-gray-500">Como anfitriones</p>
-                </div>
-                
-                <div class="text-center">
-                    <div class="text-4xl font-bold text-teal-600 mb-2">24/7</div>
-                    <p class="text-gray-700 font-medium">Disponibilidad</p>
-                    <p class="text-sm text-gray-500">Atención personalizada</p>
-                </div>
-            </div>
-            
-            <!-- Logos de plataformas -->
-            <div class="flex justify-center items-center space-x-8 mt-12 opacity-60">
-                <div class="text-2xl text-gray-400">
-                    <i class="fab fa-airbnb"></i>
-                </div>
-                <div class="text-2xl text-gray-400">
-                    <i class="fas fa-b"></i>
-                </div>
-                <div class="text-2xl text-gray-400">
-                    <i class="fab fa-google"></i>
+                <!-- Puntos destacados REALES -->
+                <div class="flex flex-wrap gap-6 mt-12">
+                    <div class="flex items-center text-white">
+                        <div class="bg-white/20 p-2 rounded-lg mr-3">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold">16+ años</p>
+                            <p class="text-sm opacity-80">De experiencia</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center text-white">
+                        <div class="bg-white/20 p-2 rounded-lg mr-3">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold">2 terrazas</p>
+                            <p class="text-sm opacity-80">Espacios privados</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center text-white">
+                        <div class="bg-white/20 p-2 rounded-lg mr-3">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div>
+                            <p class="font-bold">Familiar</p>
+                            <p class="text-sm opacity-80">Atención personalizada</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+    
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
+        <div class="animate-bounce">
+            <i class="fas fa-chevron-down text-white text-2xl"></i>
+        </div>
+    </div>
+</section>
 
+<!-- BANNER DE CONFIANZA ACTUALIZADO CON DATOS REALES -->
+<section class="py-12 bg-white border-y border-gray-200">
+    <div class="content-container mx-auto px-4">
+        <div class="text-center mb-8">
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">
+                Lo que nos caracteriza
+            </h3>
+            <p class="text-gray-600">
+                Experiencia real y servicio personalizado que nuestros huéspedes valoran
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div class="text-center">
+                <div class="text-4xl font-bold text-teal-600 mb-2">16+</div>
+                <p class="text-gray-700 font-medium">Años de experiencia</p>
+                <p class="text-sm text-gray-500">Como anfitriones</p>
+            </div>
+            
+            <div class="text-center">
+                <div class="text-4xl font-bold text-teal-600 mb-2">2</div>
+                <p class="text-gray-700 font-medium">Terrazas privadas</p>
+                <p class="text-sm text-gray-500">Para relajarte</p>
+            </div>
+            
+            <div class="text-center">
+                <div class="text-4xl font-bold text-teal-600 mb-2">24/7</div>
+                <p class="text-gray-700 font-medium">Disponibilidad</p>
+                <p class="text-sm text-gray-500">Atención personalizada</p>
+            </div>
+            
+            <div class="text-center">
+                <div class="text-4xl font-bold text-teal-600 mb-2">100%</div>
+                <p class="text-gray-700 font-medium">Cubano auténtico</p>
+                <p class="text-sm text-gray-500">Experiencia local</p>
+            </div>
+        </div>
+        
+        <!-- Logos de plataformas REALES donde están presentes -->
+        <div class="flex justify-center items-center space-x-8 mt-12 opacity-60">
+            <div class="text-2xl text-gray-400">
+                <i class="fab fa-airbnb"></i>
+            </div>
+            <div class="text-2xl text-gray-400">
+                <i class="fab fa-google"></i>
+            </div>
+        </div>
+    </div>
+</section>
     <!-- SECCIÓN SOBRE NOSOTROS -->
     <section id="about" class="py-16 bg-gray-50">
         <div class="content-container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">

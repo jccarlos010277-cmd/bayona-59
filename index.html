@@ -1436,7 +1436,7 @@
         </div>
     </section>
 
- <!-- SECCIÓN UBICACIÓN -->
+<!-- SECCIÓN UBICACIÓN -->
 <section id="ubicacion" class="py-16 bg-white border-t border-gray-100">
     <div class="content-container mx-auto px-4">
         <h2 class="text-3xl font-bold text-center text-teal-700 mb-12 animate-on-scroll">
@@ -1449,7 +1449,7 @@
             <div class="animate-on-scroll">
                 <!-- MAPA CORREGIDO - Ubicación EXACTA de Terrazas de Bayona -->
                 <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3684.1526847837847!2d-82.47256692431887!3d22.57293233304546!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88cd62c0b96b6e17%3A0x9a62e02a36eab9f8!2sTerrazas%20de%20Bayona!5e0!3m2!1ses!2sus!4v1700000000000!5m2!1ses!2sus"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3683.946752150858!2d-82.35477392431876!3d22.578399232996197!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88cd79e6d6a2c7a9%3A0x3b8e1f0f4c9c0b1d!2sTerrazas%20de%20Bayona!5e0!3m2!1ses!2sus!4v1700000000000!5m2!1ses!2sus"
                     width="100%" 
                     height="450" 
                     style="border:0;" 
@@ -1461,8 +1461,16 @@
                 </iframe>
                 <p class="text-center text-gray-500 text-sm mt-2">
                     <i class="fas fa-map-marker-alt text-teal-500 mr-2"></i>
-                    4JJW+5XC, Bayona, La Habana, Cuba
+                    Calle 23 #156, Vedado, La Habana, Cuba
                 </p>
+                <div class="text-center mt-1">
+                    <a href="https://www.google.com/maps/dir//23.130517,-82.352525/@23.130517,-82.352525,17z?hl=es" 
+                       target="_blank" 
+                       class="inline-flex items-center text-teal-600 hover:text-teal-800 text-sm font-medium transition duration-300">
+                        <i class="fas fa-directions mr-2"></i>
+                        Ver indicaciones para llegar
+                    </a>
+                </div>
             </div>
             <div class="animate-on-scroll">
                 <h3 class="text-2xl font-bold text-teal-700 mb-6">Puntos de Interés Cercanos</h3>
@@ -1497,16 +1505,39 @@
                     </li>
                 </ul>
                 
-                <!-- Añade esta información adicional -->
+                <!-- Información adicional de ubicación -->
                 <div class="mt-8 p-4 bg-teal-50 rounded-lg border border-teal-100">
                     <h4 class="font-bold text-teal-700 mb-2 flex items-center">
-                        <i class="fas fa-info-circle mr-2"></i> ¿Cómo llegar?
+                        <i class="fas fa-map-signs mr-2"></i> Información de Ubicación
                     </h4>
-                    <ul class="text-sm text-gray-600 space-y-1">
-                        <li><span class="font-medium">Desde el Aeropuerto:</span> 25-30 minutos en taxi</li>
-                        <li><span class="font-medium">Desde La Habana Vieja:</span> 10-15 minutos en coche</li>
-                        <li><span class="font-medium">Coordenadas:</span> 23.130516979104637, -82.35252535909729</li>
-                    </ul>
+                    <div class="grid grid-cols-2 gap-3 text-sm">
+                        <div>
+                            <p class="font-medium text-gray-700">Barrio:</p>
+                            <p class="text-gray-600">Vedado</p>
+                        </div>
+                        <div>
+                            <p class="font-medium text-gray-700">Municipio:</p>
+                            <p class="text-gray-600">Plaza de la Revolución</p>
+                        </div>
+                        <div>
+                            <p class="font-medium text-gray-700">Coordenadas:</p>
+                            <p class="text-gray-600">23.130517, -82.352525</p>
+                        </div>
+                        <div>
+                            <p class="font-medium text-gray-700">Zona:</p>
+                            <p class="text-gray-600">Centro de La Habana</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Botón para abrir en Google Maps -->
+                <div class="mt-4">
+                    <a href="https://www.google.com/maps?q=23.130517,-82.352525&z=17&hl=es" 
+                       target="_blank"
+                       class="inline-flex items-center justify-center w-full px-4 py-3 bg-teal-600 hover:bg-teal-700 text-white font-semibold rounded-lg transition duration-300 shadow-md">
+                        <i class="fab fa-google mr-2"></i>
+                        Abrir en Google Maps
+                    </a>
                 </div>
             </div>
         </div>

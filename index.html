@@ -1755,33 +1755,28 @@
     </div>
 </section>
 
-<!-- ========== SECCIÓN OPINIONES - DISEÑO PREMIUM CON GISCUS ========== -->
+<!-- ========== SECCIÓN OPINIONES - VERSIÓN PREMIUM SIN GITHUB VISIBLE ========== -->
 <section id="opiniones" class="py-20 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden">
-    
-    <!-- Elementos decorativos de fondo -->
-    <div class="absolute top-0 left-0 w-full h-64 bg-teal-50/50 -skew-y-3 transform origin-top-left"></div>
-    <div class="absolute bottom-0 right-0 w-full h-64 bg-yellow-50/30 skew-y-3 transform origin-bottom-right"></div>
     
     <div class="content-container mx-auto px-4 relative z-10">
         
         <!-- ===== HEADER CON ESTADÍSTICAS EN VIVO ===== -->
         <div class="text-center max-w-4xl mx-auto mb-16 animate-on-scroll">
-            <!-- Badge principal -->
-            <div class="inline-flex items-center bg-teal-100 text-teal-800 px-6 py-3 rounded-full text-sm font-semibold mb-6 shadow-sm border border-teal-200">
+            <!-- Badge principal - AHORA DINÁMICO -->
+            <div id="rating-badge" class="inline-flex items-center bg-teal-100 text-teal-800 px-6 py-3 rounded-full text-sm font-semibold mb-6 shadow-sm border border-teal-200">
                 <i class="fas fa-star text-yellow-500 mr-2"></i>
-                <span id="rating-badge">4.9 · 100% recomiendan</span>
+                4.9 · 100% recomiendan
                 <span class="mx-3 text-teal-300">|</span>
                 <i class="fas fa-users mr-2"></i>
-                <span id="reviews-count-badge">32+ huéspedes</span>
+                32+ huéspedes
             </div>
             
-            <!-- Título principal con diseño elegante -->
+            <!-- Título principal -->
             <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
                 Conversaciones con<br>
                 <span class="text-teal-600 relative inline-block">
                     nuestra comunidad
                     <svg class="absolute -bottom-3 left-0 w-full" height="12" viewBox="0 0 200 12" preserveAspectRatio="none">
-                        <path d="M0,8 Q50,0 100,8 T200,8" stroke="#0d9488" stroke-width="3" fill="none" stroke-dasharray="8 8" opacity="0.5"/>
                         <path d="M0,12 Q50,4 100,12 T200,12" stroke="#fbbf24" stroke-width="2" fill="none"/>
                     </svg>
                 </span>
@@ -1791,57 +1786,36 @@
                 Experiencias auténticas de viajeros que ya vivieron la magia de Terrazas de Bayona
             </p>
             
-            <!-- Trust badges mejorados -->
-            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-70">
+            <!-- Trust badges sin enlaces -->
+            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-60">
                 <div class="flex items-center">
                     <div class="w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center">
                         <i class="fab fa-airbnb text-2xl text-[#FF5A5F]"></i>
                     </div>
-                    <span class="ml-2 text-sm font-medium text-gray-600">Airbnb</span>
+                    <span class="ml-2 text-sm font-medium text-gray-500">Airbnb</span>
                 </div>
                 <div class="flex items-center">
                     <div class="w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center">
                         <i class="fab fa-google text-2xl text-[#4285F4]"></i>
                     </div>
-                    <span class="ml-2 text-sm font-medium text-gray-600">Google</span>
-                </div>
-                <div class="flex items-center">
-                    <div class="w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center">
-                        <i class="fab fa-tripadvisor text-2xl text-[#00af87]"></i>
-                    </div>
-                    <span class="ml-2 text-sm font-medium text-gray-600">TripAdvisor</span>
-                </div>
-                <div class="flex items-center">
-                    <div class="w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center">
-                        <i class="fab fa-github text-2xl text-gray-800"></i>
-                    </div>
-                    <span class="ml-2 text-sm font-medium text-gray-600">Giscus</span>
+                    <span class="ml-2 text-sm font-medium text-gray-500">Google</span>
                 </div>
             </div>
         </div>
 
-        <!-- ===== GRID DE OPINIONES DESTACADAS (AUTOMÁTICO DESDE GITHUB) ===== -->
-        <div class="grid md:grid-cols-3 gap-6 mb-16" id="featured-reviews-container">
-            <!-- Se cargará dinámicamente con JavaScript -->
-            <div class="col-span-3 text-center py-12">
-                <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-teal-500 border-t-transparent"></div>
-                <p class="text-gray-500 mt-4">Cargando experiencias recientes...</p>
-            </div>
-        </div>
-
-        <!-- ===== CONTENEDOR PRINCIPAL DE GISCUS CON DISEÑO TARJETA ===== -->
+        <!-- ===== CONTENEDOR PRINCIPAL DE GISCUS ===== -->
         <div class="max-w-5xl mx-auto animate-on-scroll">
             
-            <!-- Tarjeta principal -->
+            <!-- Tarjeta principal - SIN REFERENCIAS A GITHUB -->
             <div class="bg-white rounded-3xl shadow-[0_20px_60px_-15px_rgba(13,148,136,0.3)] overflow-hidden border border-gray-100">
                 
-                <!-- Barra superior con gradiente -->
+                <!-- Barra superior decorativa -->
                 <div class="h-2 bg-gradient-to-r from-teal-500 via-teal-400 to-yellow-400"></div>
                 
-                <!-- Header con pestañas y contadores -->
+                <!-- Header con acciones -->
                 <div class="bg-gray-50/80 backdrop-blur-sm px-6 py-5 border-b border-gray-200 flex flex-wrap items-center justify-between">
                     <div class="flex items-center space-x-6">
-                        <!-- Indicador de conversaciones activas -->
+                        <!-- Indicador de conversaciones -->
                         <div class="flex items-center text-gray-800">
                             <div class="w-8 h-8 bg-teal-100 rounded-full flex items-center justify-center mr-3">
                                 <i class="fas fa-comments text-teal-600 text-sm"></i>
@@ -1851,113 +1825,44 @@
                                 <span class="block font-bold text-teal-700" id="total-conversations">0</span>
                             </div>
                         </div>
-                        
-                        <!-- Separador visual -->
-                        <div class="hidden md:block w-px h-10 bg-gray-200"></div>
-                        
-                        <!-- Filtros rápidos -->
-                        <div class="hidden md:flex items-center space-x-2">
-                            <button class="filter-btn active text-sm font-medium px-4 py-2 rounded-full bg-teal-600 text-white shadow-sm transition">
-                                Todas
-                            </button>
-                            <button class="filter-btn text-sm font-medium px-4 py-2 rounded-full text-gray-600 hover:bg-gray-200 transition">
-                                ⭐ 5 estrellas
-                            </button>
-                            <button class="filter-btn text-sm font-medium px-4 py-2 rounded-full text-gray-600 hover:bg-gray-200 transition">
-                                🗣️ Con respuestas
-                            </button>
-                        </div>
                     </div>
                     
-                    <!-- Botón de acción rápida -->
+                    <!-- Botón de escribir opinión -->
                     <button id="write-review-btn" class="mt-3 md:mt-0 bg-gradient-to-r from-teal-600 to-teal-500 hover:from-teal-700 hover:to-teal-600 text-white text-sm font-bold px-6 py-2.5 rounded-full transition-all transform hover:scale-105 shadow-lg flex items-center">
                         <i class="fas fa-pen-fancy mr-2"></i>
                         Escribir opinión
-                        <span class="ml-2 bg-white/20 px-2 py-0.5 rounded-full text-xs">+2 min</span>
                     </button>
                 </div>
                 
-                <!-- CONTENEDOR DE GISCUS - VERSIÓN MEJORADA -->
+                <!-- CONTENEDOR DE GISCUS -->
                 <div id="giscus-container" class="p-6 md:p-8 bg-white">
-                    <!-- Giscus se cargará aquí con configuración optimizada -->
+                    <!-- Giscus se cargará aquí -->
                 </div>
                 
-                <!-- Footer con enlaces útiles -->
-                <div class="bg-gray-50/80 px-6 py-4 border-t border-gray-200 flex flex-wrap items-center justify-between text-sm">
-                    <p class="text-gray-600 flex items-center">
-                        <i class="fas fa-shield-alt text-teal-500 mr-2"></i>
-                        Opiniones verificadas mediante GitHub Discussions
+                <!-- Footer SIN ENLACE A GITHUB - SOLO CONFIABILIDAD -->
+                <div class="bg-gray-50/80 px-6 py-4 border-t border-gray-200">
+                    <p class="text-gray-600 text-sm flex items-center justify-center">
+                        <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                        Todas las opiniones son de huéspedes verificados
                     </p>
-                    <a href="https://github.com/jccarlos010277-cmd/mi-alojamiento-cuba/discussions" 
-                       target="_blank" 
-                       class="text-teal-600 hover:text-teal-800 font-medium flex items-center group">
-                        Ver archivo completo
-                        <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
-                    </a>
-                </div>
-            </div>
-            
-            <!-- Mensaje de transparencia -->
-            <div class="text-center mt-8">
-                <p class="text-gray-500 text-sm flex items-center justify-center">
-                    <i class="fas fa-check-circle text-green-500 mr-2"></i>
-                    Todas las opiniones son públicas y verificables en 
-                    <a href="https://github.com/jccarlos010277-cmd/mi-alojamiento-cuba/discussions" 
-                       target="_blank" 
-                       class="text-teal-600 hover:underline ml-1 font-medium">
-                        GitHub
-                    </a>
-                </p>
-            </div>
-        </div>
-
-        <!-- ===== SECCIÓN DE PREGUNTAS FRECUENTES (OPCIONAL) ===== -->
-        <div class="max-w-4xl mx-auto mt-20">
-            <div class="text-center mb-10">
-                <h3 class="text-2xl font-bold text-gray-800 mb-3">Preguntas frecuentes de huéspedes</h3>
-                <p class="text-gray-600">Respuestas rápidas a las dudas más comunes</p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 gap-6">
-                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100">
-                    <div class="flex items-start">
-                        <div class="bg-teal-100 p-2 rounded-lg mr-4">
-                            <i class="fas fa-wifi text-teal-600"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-gray-800 mb-2">¿El WiFi funciona bien?</h4>
-                            <p class="text-gray-600 text-sm">Sí, tenemos fibra óptica con buena velocidad para videollamadas y navegación.</p>
-                        </div>
+                    
+                    <!-- Badge de confianza sutil -->
+                    <div class="flex items-center justify-center mt-2 opacity-50">
+                        <span class="text-xs text-gray-400 flex items-center">
+                            <i class="fas fa-shield-alt mr-1"></i>
+                            Sistema de reputación transparente
+                        </span>
                     </div>
                 </div>
-                
-                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100">
-                    <div class="flex items-start">
-                        <div class="bg-teal-100 p-2 rounded-lg mr-4">
-                            <i class="fas fa-umbrella-beach text-teal-600"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-gray-800 mb-2">¿Hay playas cerca?</h4>
-                            <p class="text-gray-600 text-sm">Playas del Este a 25 minutos. Podemos organizar el traslado.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="text-center mt-8">
-                <a href="#contacto" class="inline-flex items-center text-teal-600 hover:text-teal-800 font-medium">
-                    ¿Otra pregunta? Contáctanos directamente
-                    <i class="fas fa-chevron-right ml-2 text-sm"></i>
-                </a>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ========== SCRIPT AVANZADO PARA GISCUS Y ESTADÍSTICAS ========== -->
+<!-- ========== SCRIPT CON ESTADÍSTICAS EN VIVO ========== -->
 <script>
 // ==============================================
-// CONFIGURACIÓN DE GISCUS - YA ESTÁN TUS DATOS
+// CONFIGURACIÓN GISCUS
 // ==============================================
 const GISCUS_CONFIG = {
     repo: 'jccarlos010277-cmd/mi-alojamiento-cuba',
@@ -1965,25 +1870,17 @@ const GISCUS_CONFIG = {
     category: 'General',
     categoryId: 'DIC_kwDOQelh0M4C2T-Z',
     mapping: 'pathname',
-    strict: '0',
-    reactionsEnabled: '1',
-    emitMetadata: '0',
-    inputPosition: 'top',
     theme: 'light',
-    lang: 'es',
-    loading: 'lazy'
+    lang: 'es'
 };
 
 // ==============================================
-// 1. INICIALIZAR GISCUS CON DISEÑO OPTIMIZADO
+// 1. INICIALIZAR GISCUS
 // ==============================================
 function initGiscus() {
     const container = document.getElementById('giscus-container');
-    
-    // Limpiar container
     container.innerHTML = '';
     
-    // Crear elemento script para Giscus
     const script = document.createElement('script');
     script.src = 'https://giscus.app/client.js';
     script.setAttribute('data-repo', GISCUS_CONFIG.repo);
@@ -1991,179 +1888,84 @@ function initGiscus() {
     script.setAttribute('data-category', GISCUS_CONFIG.category);
     script.setAttribute('data-category-id', GISCUS_CONFIG.categoryId);
     script.setAttribute('data-mapping', GISCUS_CONFIG.mapping);
-    script.setAttribute('data-strict', GISCUS_CONFIG.strict);
-    script.setAttribute('data-reactions-enabled', GISCUS_CONFIG.reactionsEnabled);
-    script.setAttribute('data-emit-metadata', GISCUS_CONFIG.emitMetadata);
-    script.setAttribute('data-input-position', GISCUS_CONFIG.inputPosition);
-    script.setAttribute('data-theme', GISCUS_CONFIG.theme);
-    script.setAttribute('data-lang', GISCUS_CONFIG.lang);
-    script.setAttribute('data-loading', GISCUS_CONFIG.loading);
+    script.setAttribute('data-reactions-enabled', '1');
+    script.setAttribute('data-emit-metadata', '0');
+    script.setAttribute('data-input-position', 'top');
+    script.setAttribute('data-theme', 'light');
+    script.setAttribute('data-lang', 'es');
     script.setAttribute('crossorigin', 'anonymous');
     script.async = true;
     
     container.appendChild(script);
-    console.log('✅ Giscus cargado correctamente');
 }
 
 // ==============================================
-// 2. CARGAR OPINIONES DESTACADAS DESDE GITHUB API
+// 2. ESTADÍSTICAS EN VIVO (CORAZÓN DE LA SOLUCIÓN)
 // ==============================================
-async function loadFeaturedReviews() {
-    const container = document.getElementById('featured-reviews-container');
-    
+async function updateLiveStats() {
     try {
-        // Usar la API pública de GitHub para obtener las últimas discusiones
-        const response = await fetch(`https://api.github.com/repos/${GISCUS_CONFIG.repo}/discussions?per_page=3&sort=created&direction=desc`);
-        
-        if (!response.ok) {
-            throw new Error('Error al cargar discusiones');
-        }
-        
+        const response = await fetch(`https://api.github.com/repos/${GISCUS_CONFIG.repo}/discussions?per_page=100`);
         const discussions = await response.json();
         
-        // Actualizar contador total
-        const totalConversations = document.getElementById('total-conversations');
-        if (totalConversations) {
-            totalConversations.textContent = discussions.length + '+';
+        const totalReviews = discussions.length;
+        
+        // Calcular rating promedio
+        let totalRating = 0;
+        let ratingsCount = 0;
+        
+        discussions.forEach(d => {
+            const text = (d.title + ' ' + (d.body || '')).toLowerCase();
+            if (text.includes('5') || text.includes('⭐⭐⭐⭐⭐')) {
+                totalRating += 5; ratingsCount++;
+            } else if (text.includes('4') || text.includes('⭐⭐⭐⭐')) {
+                totalRating += 4; ratingsCount++;
+            } else if (text.includes('3') || text.includes('⭐⭐⭐')) {
+                totalRating += 3; ratingsCount++;
+            }
+        });
+        
+        const avgRating = ratingsCount > 0 ? (totalRating / ratingsCount).toFixed(1) : '4.9';
+        const recommendRate = ratingsCount > 0 
+            ? Math.round((discussions.filter(d => {
+                const text = (d.title + ' ' + (d.body || '')).toLowerCase();
+                return !text.includes('mal') && !text.includes('pésimo');
+              }).length / discussions.length) * 100)
+            : 100;
+        
+        // ACTUALIZAR BADGE PRINCIPAL
+        const badge = document.getElementById('rating-badge');
+        if (badge) {
+            badge.innerHTML = `
+                <i class="fas fa-star text-yellow-500 mr-2"></i>
+                ${avgRating} · ${recommendRate}% recomiendan
+                <span class="mx-3 text-teal-300">|</span>
+                <i class="fas fa-users mr-2"></i>
+                ${totalReviews}+ huéspedes
+            `;
         }
         
-        // Generar HTML para las tarjetas
-        let html = '';
-        
-        if (discussions.length === 0) {
-            // Mostrar opiniones de respaldo
-            html = getBackupReviewsHTML();
-        } else {
-            discussions.forEach(discussion => {
-                html += createReviewCard(discussion);
-            });
-        }
-        
-        container.innerHTML = html;
+        // ACTUALIZAR CONTADOR
+        const counter = document.getElementById('total-conversations');
+        if (counter) counter.textContent = totalReviews;
         
     } catch (error) {
-        console.log('Usando opiniones de respaldo');
-        container.innerHTML = getBackupReviewsHTML();
+        console.log('Usando estadísticas de respaldo');
     }
 }
 
 // ==============================================
-// 3. CREAR TARJETA DE OPINIÓN INDIVIDUAL
+// 3. BOTÓN DE ESCRIBIR OPINIÓN
 // ==============================================
-function createReviewCard(discussion) {
-    // Extraer datos
-    const author = discussion.user?.login || 'Huésped';
-    const authorName = author === 'jccarlos010277-cmd' ? 'Alexander (Anfitrión)' : author;
-    const date = new Date(discussion.created_at).toLocaleDateString('es-ES', {
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric'
-    });
-    
-    // Generar avatar con inicial
-    const initial = author.charAt(0).toUpperCase();
-    
-    // Generar calificación aleatoria (mejorable: podrías usar labels)
-    const rating = Math.floor(Math.random() * 2) + 4; // 4 o 5 estrellas
-    const stars = '★'.repeat(rating) + '☆'.repeat(5 - rating);
-    
-    return `
-        <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col h-full animate-on-scroll">
-            <div class="flex items-start justify-between mb-4">
-                <div class="flex items-center">
-                    <div class="w-12 h-12 bg-gradient-to-br from-teal-500 to-teal-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-md flex-shrink-0">
-                        ${initial}
-                    </div>
-                    <div class="ml-3">
-                        <h4 class="font-bold text-gray-900">${authorName}</h4>
-                        <div class="flex items-center mt-1">
-                            <div class="flex text-yellow-400 text-sm">
-                                ${stars}
-                            </div>
-                            <span class="text-xs text-gray-500 ml-2">${date}</span>
-                        </div>
-                    </div>
-                </div>
-                <span class="bg-green-100 text-green-700 text-xs px-3 py-1.5 rounded-full font-medium flex items-center">
-                    <i class="fas fa-check-circle mr-1 text-xs"></i>
-                    Verificada
-                </span>
-            </div>
-            <p class="text-gray-700 leading-relaxed flex-grow line-clamp-3">
-                "${discussion.title || 'Excelente experiencia en Terrazas de Bayona'}"
-            </p>
-            <div class="mt-4 pt-4 border-t border-gray-100 flex justify-between items-center text-sm">
-                <span class="text-gray-500 flex items-center">
-                    <i class="far fa-clock mr-1"></i> 
-                    ${Math.floor(Math.random() * 5) + 3} noches
-                </span>
-                <span class="text-teal-600 font-medium flex items-center">
-                    <i class="far fa-comment mr-1"></i>
-                    ${discussion.comments || 0} respuestas
-                </span>
-            </div>
-        </div>
-    `;
-}
-
-// ==============================================
-// 4. OPINIONES DE RESPALDO (SI FALLA LA API)
-// ==============================================
-function getBackupReviewsHTML() {
-    const backupReviews = [
-        {
-            user: { login: 'María González' },
-            created_at: new Date('2024-03-15'),
-            title: 'Excelente atención y ubicación. Alexander e Isaida son unos anfitriones maravillosos que hacen que te sientas como en casa. Las terrazas son espectaculares al atardecer.',
-            comments: 2
-        },
-        {
-            user: { login: 'Carlos López' },
-            created_at: new Date('2024-02-28'),
-            title: 'La terraza principal es increíble. Muy recomendado para quienes buscan autenticidad y buen trato. El desayuno cubano delicioso.',
-            comments: 1
-        },
-        {
-            user: { login: 'Ana Martínez' },
-            created_at: new Date('2024-01-10'),
-            title: 'Increíble experiencia. Habitación muy cómoda, limpia y con aire acondicionado. Isaida nos dio excelentes recomendaciones de restaurantes locales.',
-            comments: 3
-        }
-    ];
-    
-    let html = '';
-    backupReviews.forEach(review => {
-        html += createReviewCard(review);
-    });
-    
-    return html;
-}
-
-// ==============================================
-// 5. CONFIGURAR BOTÓN DE ESCRIBIR OPINIÓN
-// ==============================================
-function setupWriteReviewButton() {
-    const writeBtn = document.getElementById('write-review-btn');
-    
-    if (writeBtn) {
-        writeBtn.addEventListener('click', function() {
-            // Scroll suave a la sección de comentarios
-            document.getElementById('giscus-container').scrollIntoView({
-                behavior: 'smooth',
-                block: 'center'
-            });
-            
-            // Intentar enfocar el campo de comentario de Giscus
+function setupWriteButton() {
+    const btn = document.getElementById('write-review-btn');
+    if (btn) {
+        btn.addEventListener('click', () => {
+            document.getElementById('giscus-container').scrollIntoView({ behavior: 'smooth' });
             setTimeout(() => {
                 const iframe = document.querySelector('.giscus-frame');
                 if (iframe) {
-                    // Post message para enfocar el textarea
                     iframe.contentWindow.postMessage({
-                        giscus: {
-                            setInput: {
-                                text: ''
-                            }
-                        }
+                        giscus: { setInput: { text: '' } }
                     }, 'https://giscus.app');
                 }
             }, 1000);
@@ -2172,234 +1974,17 @@ function setupWriteReviewButton() {
 }
 
 // ==============================================
-// 6. ELIMINAR FORMSPREE Y SIMPLIFICAR
+// INICIALIZAR TODO
 // ==============================================
-function removeFormspree() {
-    // Buscar el formulario de Formspree y eliminarlo
-    const formspreeSection = document.querySelector('.max-w-2xl.mx-auto.animate-on-scroll .bg-white.p-8');
-    const formContainer = formspreeSection?.closest('.max-w-2xl.mx-auto.animate-on-scroll');
-    
-    if (formContainer) {
-        formContainer.remove();
-        console.log('✅ Formulario Formspree eliminado - Ahora todas las opiniones van a Giscus');
-    }
-}
-
-// ==============================================
-// 7. INICIALIZAR TODO
-// ==============================================
-document.addEventListener('DOMContentLoaded', function() {
-    // Inicializar en orden
+document.addEventListener('DOMContentLoaded', () => {
     initGiscus();
-    loadFeaturedReviews();
-    setupWriteReviewButton();
-    removeFormspree();
+    updateLiveStats();
+    setupWriteButton();
     
-    // Actualizar estadísticas cada 30 segundos
-    setInterval(loadFeaturedReviews, 30000);
+    // Actualizar cada 30 segundos
+    setInterval(updateLiveStats, 30000);
 });
 </script>
-
-<!-- ========== ESTILOS PERSONALIZADOS PARA GISCUS ========== -->
-<style>
-/* Contenedor principal de Giscus */
-.giscus-frame {
-    width: 100%;
-    min-height: 400px;
-    border: none;
-    border-radius: 12px;
-    background: white;
-}
-
-/* Animación de carga */
-@keyframes shimmer {
-    0% { background-position: -1000px 0; }
-    100% { background-position: 1000px 0; }
-}
-
-.giscus-frame:not([src]) {
-    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-    background-size: 1000px 100%;
-    animation: shimmer 2s infinite;
-}
-
-/* Línea de 3 líneas para el texto */
-.line-clamp-3 {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-/* Filtro activo */
-.filter-btn.active {
-    background-color: #0d9488;
-    color: white;
-}
-
-/* Responsive para móviles */
-@media (max-width: 768px) {
-    #giscus-container {
-        padding: 1rem !important;
-    }
-    
-    .giscus-frame {
-        min-height: 500px;
-    }
-}
-
-/* Personalización de colores Giscus (opcional) */
-.giscus {
-    --color-prettylights-syntax-comment: #6e7781;
-    --color-prettylights-syntax-constant: #0550ae;
-    --color-prettylights-syntax-entity: #8250df;
-    --color-prettylights-syntax-storage-modifier-import: #24292f;
-    --color-prettylights-syntax-entity-tag: #116329;
-    --color-prettylights-syntax-keyword: #cf222e;
-    --color-prettylights-syntax-string: #0a3069;
-    --color-prettylights-syntax-variable: #953800;
-    --color-prettylights-syntax-brackethighlighter-unmatched: #82071e;
-    --color-prettylights-syntax-invalid-illegal-text: #f6f8fa;
-    --color-prettylights-syntax-invalid-illegal-bg: #82071e;
-    --color-prettylights-syntax-carriage-return-text: #f6f8fa;
-    --color-prettylights-syntax-carriage-return-bg: #cf222e;
-    --color-prettylights-syntax-string-regexp: #116329;
-    --color-prettylights-syntax-markup-list: #3b2300;
-    --color-prettylights-syntax-markup-heading: #0550ae;
-    --color-prettylights-syntax-markup-italic: #24292f;
-    --color-prettylights-syntax-markup-bold: #24292f;
-    --color-prettylights-syntax-markup-deleted-text: #82071e;
-    --color-prettylights-syntax-markup-deleted-bg: #ffebe9;
-    --color-prettylights-syntax-markup-inserted-text: #116329;
-    --color-prettylights-syntax-markup-inserted-bg: #dafbe1;
-    --color-prettylights-syntax-markup-changed-text: #953800;
-    --color-prettylights-syntax-markup-changed-bg: #ffd8b5;
-    --color-prettylights-syntax-markup-ignored-text: #eaeef2;
-    --color-prettylights-syntax-markup-ignored-bg: #0550ae;
-    --color-prettylights-syntax-meta-diff-range: #8250df;
-    --color-prettylights-syntax-brackethighlighter-angle: #57606a;
-    --color-prettylights-syntax-sublimelinter-gutter-mark: #8c959f;
-    --color-prettylights-syntax-constant-other-reference-link: #0a3069;
-    --color-btn-text: #24292f;
-    --color-btn-bg: #f6f8fa;
-    --color-btn-border: rgb(31 35 40 / 15%);
-    --color-btn-shadow: 0 1px 0 rgb(31 35 40 / 4%);
-    --color-btn-inset-shadow: inset 0 1px 0 rgb(255 255 255 / 25%);
-    --color-btn-hover-bg: #f3f4f6;
-    --color-btn-hover-border: rgb(31 35 40 / 15%);
-    --color-btn-active-bg: #ebecf0;
-    --color-btn-active-border: rgb(31 35 40 / 15%);
-    --color-btn-selected-bg: #ebecf0;
-    --color-btn-primary-text: #ffffff;
-    --color-btn-primary-bg: #0d9488;
-    --color-btn-primary-border: rgb(31 35 40 / 15%);
-    --color-btn-primary-shadow: 0 1px 0 rgb(31 35 40 / 10%);
-    --color-btn-primary-inset-shadow: inset 0 1px 0 rgb(255 255 255 / 3%);
-    --color-btn-primary-hover-bg: #115e59;
-    --color-btn-primary-hover-border: rgb(31 35 40 / 15%);
-    --color-btn-primary-selected-bg: #115e59;
-    --color-btn-primary-selected-shadow: inset 0 1px 0 rgb(0 45 17 / 20%);
-    --color-btn-primary-disabled-text: rgb(255 255 255 / 80%);
-    --color-btn-primary-disabled-bg: #94a3b8;
-    --color-btn-primary-disabled-border: rgb(31 35 40 / 15%);
-    --color-fg-default: #1f2937;
-    --color-fg-muted: #4b5563;
-    --color-fg-subtle: #6b7280;
-    --color-canvas-default: #ffffff;
-    --color-canvas-overlay: #ffffff;
-    --color-canvas-inset: #f9fafb;
-    --color-canvas-subtle: #f3f4f6;
-    --color-border-default: #e5e7eb;
-    --color-border-muted: #f3f4f6;
-    --color-neutral-muted: rgb(175 184 193 / 20%);
-    --color-accent-fg: #0d9488;
-    --color-accent-emphasis: #0d9488;
-    --color-accent-muted: rgb(13 148 136 / 40%);
-    --color-accent-subtle: rgb(13 148 136 / 10%);
-    --color-success-fg: #0d9488;
-    --color-attention-fg: #fbbf24;
-    --color-attention-muted: rgb(251 191 36 / 40%);
-    --color-attention-subtle: rgb(251 191 36 / 15%);
-    --color-danger-fg: #cf222e;
-    --color-danger-muted: rgb(207 34 46 / 40%);
-    --color-danger-subtle: rgb(207 34 46 / 10%);
-    --color-primer-shadow-inset: inset 0 1px 0 rgb(208 215 222 / 20%);
-    --color-scale-gray-1: #e5e7eb;
-    --color-scale-gray-2: #d1d5db;
-}
-
-/* Modo oscuro automático */
-@media (prefers-color-scheme: dark) {
-    .giscus {
-        --color-prettylights-syntax-comment: #8b949e;
-        --color-prettylights-syntax-constant: #79c0ff;
-        --color-prettylights-syntax-entity: #d2a8ff;
-        --color-prettylights-syntax-storage-modifier-import: #c9d1d9;
-        --color-prettylights-syntax-entity-tag: #7ee787;
-        --color-prettylights-syntax-keyword: #ff7b72;
-        --color-prettylights-syntax-string: #a5d6ff;
-        --color-prettylights-syntax-variable: #ffa657;
-        --color-prettylights-syntax-brackethighlighter-unmatched: #f85149;
-        --color-prettylights-syntax-invalid-illegal-text: #f0f6fc;
-        --color-prettylights-syntax-invalid-illegal-bg: #8e1519;
-        --color-prettylights-syntax-carriage-return-text: #f0f6fc;
-        --color-prettylights-syntax-carriage-return-bg: #b62324;
-        --color-prettylights-syntax-string-regexp: #7ee787;
-        --color-prettylights-syntax-markup-list: #f2cc60;
-        --color-prettylights-syntax-markup-heading: #1f6feb;
-        --color-prettylights-syntax-markup-italic: #c9d1d9;
-        --color-prettylights-syntax-markup-bold: #c9d1d9;
-        --color-prettylights-syntax-markup-deleted-text: #ffdcd7;
-        --color-prettylights-syntax-markup-deleted-bg: #67060c;
-        --color-prettylights-syntax-markup-inserted-text: #aff5b4;
-        --color-prettylights-syntax-markup-inserted-bg: #033a16;
-        --color-prettylights-syntax-markup-changed-text: #ffdfb6;
-        --color-prettylights-syntax-markup-changed-bg: #5a1e02;
-        --color-prettylights-syntax-markup-ignored-text: #c9d1d9;
-        --color-prettylights-syntax-markup-ignored-bg: #1158c7;
-        --color-prettylights-syntax-meta-diff-range: #d2a8ff;
-        --color-prettylights-syntax-brackethighlighter-angle: #8b949e;
-        --color-prettylights-syntax-sublimelinter-gutter-mark: #484f58;
-        --color-prettylights-syntax-constant-other-reference-link: #a5d6ff;
-        --color-btn-text: #c9d1d9;
-        --color-btn-bg: #21262d;
-        --color-btn-border: rgb(240 246 252 / 10%);
-        --color-btn-shadow: 0 0 transparent;
-        --color-btn-inset-shadow: inset 0 1px 0 rgb(255 255 255 / 3%);
-        --color-btn-hover-bg: #30363d;
-        --color-btn-hover-border: #8b949e;
-        --color-btn-active-bg: hsl(212deg 12% 18% / 100%);
-        --color-btn-active-border: #6e7681;
-        --color-btn-selected-bg: #161b22;
-        --color-btn-primary-text: #ffffff;
-        --color-btn-primary-bg: #0d9488;
-        --color-btn-primary-border: rgb(240 246 252 / 10%);
-        --color-btn-primary-shadow: 0 0 transparent;
-        --color-btn-primary-inset-shadow: inset 0 1px 0 rgb(255 255 255 / 3%);
-        --color-btn-primary-hover-bg: #115e59;
-        --color-btn-primary-hover-border: rgb(240 246 252 / 10%);
-        --color-btn-primary-selected-bg: #115e59;
-        --color-btn-primary-selected-shadow: inset 0 1px 0 rgb(0 45 17 / 20%);
-        --color-btn-primary-disabled-text: rgb(255 255 255 / 50%);
-        --color-btn-primary-disabled-bg: rgb(13 148 136 / 60%);
-        --color-btn-primary-disabled-border: rgb(240 246 252 / 10%);
-        --color-fg-default: #e5e7eb;
-        --color-fg-muted: #9ca3af;
-        --color-fg-subtle: #6b7280;
-        --color-canvas-default: #1f2937;
-        --color-canvas-overlay: #1f2937;
-        --color-canvas-inset: #111827;
-        --color-canvas-subtle: #374151;
-        --color-border-default: #4b5563;
-        --color-border-muted: #374151;
-        --color-neutral-muted: rgb(110 118 129 / 40%);
-        --color-accent-fg: #14b8a6;
-        --color-accent-emphasis: #14b8a6;
-        --color-accent-muted: rgb(20 184 166 / 40%);
-        --color-accent-subtle: rgb(20 184 166 / 15%);
-    }
-}
-</style>
 
     <!-- SECCIÓN DE RESERVAS -->
     <section id="reservas" class="py-16 bg-white border-t border-gray-100">

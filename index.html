@@ -1755,237 +1755,287 @@
     </div>
 </section>
 
-<!-- ========== SECCIÓN OPINIONES - VERSIÓN PREMIUM SIN GITHUB VISIBLE ========== -->
-<section id="opiniones" class="py-20 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden">
-    
-    <div class="content-container mx-auto px-4 relative z-10">
-        
-        <!-- ===== HEADER CON ESTADÍSTICAS EN VIVO ===== -->
-        <div class="text-center max-w-4xl mx-auto mb-16 animate-on-scroll">
-            <!-- Badge principal - AHORA DINÁMICO -->
-            <div id="rating-badge" class="inline-flex items-center bg-teal-100 text-teal-800 px-6 py-3 rounded-full text-sm font-semibold mb-6 shadow-sm border border-teal-200">
+<!-- ========== SECCIÓN OPINIONES - FORMULARIO + TARJETAS ========== -->
+<section id="opiniones" class="py-20 bg-gradient-to-b from-white to-gray-50">
+    <div class="content-container mx-auto px-4">
+
+        <!-- HEADER -->
+        <div class="text-center max-w-4xl mx-auto mb-12">
+            <div class="inline-flex items-center bg-teal-100 text-teal-800 px-6 py-3 rounded-full text-sm font-semibold mb-6">
                 <i class="fas fa-star text-yellow-500 mr-2"></i>
-                4.9 · 100% recomiendan
-                <span class="mx-3 text-teal-300">|</span>
-                <i class="fas fa-users mr-2"></i>
-                32+ huéspedes
+                4.9 · 4 opiniones verificadas
             </div>
-            
-            <!-- Título principal -->
-            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                Conversaciones con<br>
-                <span class="text-teal-600 relative inline-block">
-                    nuestra comunidad
-                    <svg class="absolute -bottom-3 left-0 w-full" height="12" viewBox="0 0 200 12" preserveAspectRatio="none">
-                        <path d="M0,12 Q50,4 100,12 T200,12" stroke="#fbbf24" stroke-width="2" fill="none"/>
-                    </svg>
-                </span>
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                Opiniones de <span class="text-teal-600">nuestros huéspedes</span>
             </h2>
-            
-            <p class="text-xl text-gray-600 mb-10 max-w-2xl mx-auto">
-                Experiencias auténticas de viajeros que ya vivieron la magia de Terrazas de Bayona
+            <p class="text-xl text-gray-600">
+                Experiencias reales de viajeros como tú
             </p>
+        </div>
+
+        <!-- ===== TARJETAS DE OPINIONES (LAS 4 QUE YA TIENES) ===== -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto mb-16">
             
-            <!-- Trust badges sin enlaces -->
-            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-60">
-                <div class="flex items-center">
-                    <div class="w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center">
-                        <i class="fab fa-airbnb text-2xl text-[#FF5A5F]"></i>
+            <!-- OPINIÓN 1 - María González -->
+            <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition">
+                <div class="flex items-start mb-4">
+                    <div class="w-12 h-12 bg-gradient-to-br from-teal-500 to-teal-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                        M
                     </div>
-                    <span class="ml-2 text-sm font-medium text-gray-500">Airbnb</span>
+                    <div class="ml-3">
+                        <h4 class="font-bold text-gray-900">María González</h4>
+                        <div class="flex text-yellow-400 text-lg">★★★★★</div>
+                        <span class="text-xs text-gray-500">España · Marzo 2023</span>
+                    </div>
                 </div>
-                <div class="flex items-center">
-                    <div class="w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center">
-                        <i class="fab fa-google text-2xl text-[#4285F4]"></i>
+                <p class="text-gray-700">
+                    "Excelente atención y ubicación. Alexander e Isaida son unos anfitriones maravillosos que hacen que te sientas como en casa. Las terrazas son el lugar perfecto para relajarse después de un día de turismo."
+                </p>
+                <p class="text-gray-400 text-xs mt-4 flex items-center">
+                    <i class="fas fa-check-circle text-green-500 mr-1"></i> Reserva verificada · 5 noches
+                </p>
+            </div>
+
+            <!-- OPINIÓN 2 - Carlos López -->
+            <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition">
+                <div class="flex items-start mb-4">
+                    <div class="w-12 h-12 bg-gradient-to-br from-teal-500 to-teal-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                        C
                     </div>
-                    <span class="ml-2 text-sm font-medium text-gray-500">Google</span>
+                    <div class="ml-3">
+                        <h4 class="font-bold text-gray-900">Carlos López</h4>
+                        <div class="flex text-yellow-400 text-lg">★★★★☆</div>
+                        <span class="text-xs text-gray-500">Argentina · Febrero 2024</span>
+                    </div>
+                </div>
+                <p class="text-gray-700">
+                    "La terraza es espectacular al atardecer. Muy recomendado para quienes buscan autenticidad y buen trato. El desayuno cubano es delicioso y el tour que nos organizaron fue perfecto."
+                </p>
+                <p class="text-gray-400 text-xs mt-4 flex items-center">
+                    <i class="fas fa-check-circle text-green-500 mr-1"></i> Reserva verificada · 7 noches
+                </p>
+            </div>
+
+            <!-- OPINIÓN 3 - Ana Martínez -->
+            <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition">
+                <div class="flex items-start mb-4">
+                    <div class="w-12 h-12 bg-gradient-to-br from-teal-500 to-teal-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                        A
+                    </div>
+                    <div class="ml-3">
+                        <h4 class="font-bold text-gray-900">Ana Martínez</h4>
+                        <div class="flex text-yellow-400 text-lg">★★★★★</div>
+                        <span class="text-xs text-gray-500">México · Enero 2024</span>
+                    </div>
+                </div>
+                <p class="text-gray-700">
+                    "Increíble experiencia. La habitación muy cómoda y limpia. La ubicación es ideal para visitar La Habana Vieja a pie. Isaida nos dio excelentes recomendaciones de restaurantes locales auténticos."
+                </p>
+                <p class="text-gray-400 text-xs mt-4 flex items-center">
+                    <i class="fas fa-check-circle text-green-500 mr-1"></i> Reserva verificada · 3 noches
+                </p>
+            </div>
+
+            <!-- OPINIÓN 4 - Pierre Dubois (ocupa 2 columnas en desktop) -->
+            <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition md:col-span-2 lg:col-span-1">
+                <div class="flex items-start mb-4">
+                    <div class="w-12 h-12 bg-gradient-to-br from-teal-500 to-teal-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                        P
+                    </div>
+                    <div class="ml-3">
+                        <h4 class="font-bold text-gray-900">Pierre Dubois</h4>
+                        <div class="flex text-yellow-400 text-lg">★★★★★</div>
+                        <span class="text-xs text-gray-500">Francia · Diciembre 2024</span>
+                    </div>
+                </div>
+                <p class="text-gray-700">
+                    "Authentic Cuban experience! The hosts are wonderful and helped us discover hidden gems in Havana. The breakfast is amazing and the terraces have the best views of the neighborhood. 100% recommended."
+                </p>
+                <p class="text-gray-400 text-xs mt-4 flex items-center">
+                    <i class="fas fa-check-circle text-green-500 mr-1"></i> Reserva verificada · 4 noches
+                </p>
+            </div>
+        </div>
+
+        <!-- ===== FORMULARIO PARA NUEVAS OPINIONES (FORMSPREE) ===== -->
+        <div class="max-w-2xl mx-auto">
+            <div class="bg-white p-8 rounded-2xl shadow-xl border border-teal-100">
+                
+                <div class="text-center mb-6">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-2">Comparte tu experiencia</h3>
+                    <p class="text-gray-600">¿Ya te hospedaste con nosotros? ¡Cuéntanos cómo fue!</p>
+                </div>
+
+                <form id="review-form" action="https://formspree.io/f/xvzolnyg" method="POST">
+                    <input type="hidden" name="_subject" value="⭐ NUEVA OPINIÓN - Terrazas de Bayona">
+                    <input type="hidden" name="_cc" value="jccarlos010277@gmail.com,info@reservaterrazasdebayona59.com">
+
+                    <!-- Nombre -->
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">
+                            <i class="fas fa-user text-teal-500 mr-1"></i> Tu nombre *
+                        </label>
+                        <input type="text" name="nombre" placeholder="Ej: Juan Pérez" 
+                               class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-100"
+                               required>
+                    </div>
+
+                    <!-- País (nuevo) -->
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">
+                            <i class="fas fa-globe text-teal-500 mr-1"></i> País
+                        </label>
+                        <input type="text" name="pais" placeholder="Ej: España, México, Argentina..." 
+                               class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-100">
+                    </div>
+
+                    <!-- Estrellas -->
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">
+                            <i class="fas fa-star text-teal-500 mr-1"></i> Calificación *
+                        </label>
+                        <div class="flex flex-row-reverse justify-end space-x-reverse space-x-1">
+                            <input type="radio" id="star5" name="estrellas" value="5" class="hidden" checked>
+                            <label for="star5" class="text-2xl text-gray-300 hover:text-yellow-400 cursor-pointer transition">★</label>
+                            <input type="radio" id="star4" name="estrellas" value="4" class="hidden">
+                            <label for="star4" class="text-2xl text-gray-300 hover:text-yellow-400 cursor-pointer transition">★</label>
+                            <input type="radio" id="star3" name="estrellas" value="3" class="hidden">
+                            <label for="star3" class="text-2xl text-gray-300 hover:text-yellow-400 cursor-pointer transition">★</label>
+                            <input type="radio" id="star2" name="estrellas" value="2" class="hidden">
+                            <label for="star2" class="text-2xl text-gray-300 hover:text-yellow-400 cursor-pointer transition">★</label>
+                            <input type="radio" id="star1" name="estrellas" value="1" class="hidden">
+                            <label for="star1" class="text-2xl text-gray-300 hover:text-yellow-400 cursor-pointer transition">★</label>
+                        </div>
+                    </div>
+
+                    <!-- Opinión -->
+                    <div class="mb-6">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">
+                            <i class="fas fa-comment text-teal-500 mr-1"></i> Tu opinión *
+                        </label>
+                        <textarea name="opinion" rows="4" 
+                                  placeholder="¿Cómo fue tu estancia? ¿Qué fue lo que más te gustó? ¿Algo que mejorar?" 
+                                  class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-100"
+                                  required></textarea>
+                    </div>
+
+                    <!-- Email (oculto, para responder) -->
+                    <input type="hidden" name="_replyto" value="cliente@email.com" id="hidden-email">
+
+                    <!-- Botón -->
+                    <button type="submit" 
+                            class="w-full bg-gradient-to-r from-teal-600 to-teal-500 hover:from-teal-700 hover:to-teal-600 text-white font-bold py-3 px-6 rounded-lg transition-all transform hover:scale-105 shadow-lg flex items-center justify-center">
+                        <i class="fas fa-paper-plane mr-2"></i>
+                        Publicar mi opinión
+                    </button>
+
+                    <p class="text-xs text-gray-500 text-center mt-4">
+                        <i class="fas fa-shield-alt text-teal-500 mr-1"></i>
+                        Tu opinión será revisada y publicada en los próximos días. Gracias por ayudarnos 🙌
+                    </p>
+                </form>
+
+                <!-- Mensaje de éxito (oculto inicialmente) -->
+                <div id="form-success" class="hidden mt-6 p-6 bg-green-50 border border-green-200 rounded-lg text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-check-circle text-green-600 text-3xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-800 mb-2">¡Gracias por tu opinión!</h4>
+                    <p class="text-gray-600">La revisaremos y la publicaremos pronto en nuestra web.</p>
                 </div>
             </div>
         </div>
 
-        <!-- ===== CONTENEDOR PRINCIPAL DE GISCUS ===== -->
-        <div class="max-w-5xl mx-auto animate-on-scroll">
-            
-            <!-- Tarjeta principal - SIN REFERENCIAS A GITHUB -->
-            <div class="bg-white rounded-3xl shadow-[0_20px_60px_-15px_rgba(13,148,136,0.3)] overflow-hidden border border-gray-100">
-                
-                <!-- Barra superior decorativa -->
-                <div class="h-2 bg-gradient-to-r from-teal-500 via-teal-400 to-yellow-400"></div>
-                
-                <!-- Header con acciones -->
-                <div class="bg-gray-50/80 backdrop-blur-sm px-6 py-5 border-b border-gray-200 flex flex-wrap items-center justify-between">
-                    <div class="flex items-center space-x-6">
-                        <!-- Indicador de conversaciones -->
-                        <div class="flex items-center text-gray-800">
-                            <div class="w-8 h-8 bg-teal-100 rounded-full flex items-center justify-center mr-3">
-                                <i class="fas fa-comments text-teal-600 text-sm"></i>
-                            </div>
-                            <div>
-                                <span class="text-sm text-gray-500">Conversaciones</span>
-                                <span class="block font-bold text-teal-700" id="total-conversations">0</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Botón de escribir opinión -->
-                    <button id="write-review-btn" class="mt-3 md:mt-0 bg-gradient-to-r from-teal-600 to-teal-500 hover:from-teal-700 hover:to-teal-600 text-white text-sm font-bold px-6 py-2.5 rounded-full transition-all transform hover:scale-105 shadow-lg flex items-center">
-                        <i class="fas fa-pen-fancy mr-2"></i>
-                        Escribir opinión
-                    </button>
-                </div>
-                
-                <!-- CONTENEDOR DE GISCUS -->
-                <div id="giscus-container" class="p-6 md:p-8 bg-white">
-                    <!-- Giscus se cargará aquí -->
-                </div>
-                
-                <!-- Footer SIN ENLACE A GITHUB - SOLO CONFIABILIDAD -->
-                <div class="bg-gray-50/80 px-6 py-4 border-t border-gray-200">
-                    <p class="text-gray-600 text-sm flex items-center justify-center">
-                        <i class="fas fa-check-circle text-green-500 mr-2"></i>
-                        Todas las opiniones son de huéspedes verificados
-                    </p>
-                    
-                    <!-- Badge de confianza sutil -->
-                    <div class="flex items-center justify-center mt-2 opacity-50">
-                        <span class="text-xs text-gray-400 flex items-center">
-                            <i class="fas fa-shield-alt mr-1"></i>
-                            Sistema de reputación transparente
-                        </span>
-                    </div>
-                </div>
+        <!-- Pie de página de confianza -->
+        <div class="text-center mt-16">
+            <div class="inline-flex items-center bg-gray-100 px-6 py-3 rounded-full text-sm text-gray-600">
+                <i class="fas fa-shield-alt text-teal-500 mr-2"></i>
+                Todas las opiniones son de huéspedes que realmente se han hospedado con nosotros
             </div>
+            <p class="text-xs text-gray-400 mt-4">
+                ⚡ Tú recibes las opiniones por email y las publicas manualmente · Sistema simple y confiable
+            </p>
         </div>
+
     </div>
 </section>
 
-<!-- ========== SCRIPT CON ESTADÍSTICAS EN VIVO ========== -->
 <script>
 // ==============================================
-// CONFIGURACIÓN GISCUS
+// MANEJO DEL FORMULARIO FORMSPREE
 // ==============================================
-const GISCUS_CONFIG = {
-    repo: 'jccarlos010277-cmd/mi-alojamiento-cuba',
-    repoId: 'R_kgDOQelh0A',
-    category: 'General',
-    categoryId: 'DIC_kwDOQelh0M4C2T-Z',
-    mapping: 'pathname',
-    theme: 'light',
-    lang: 'es'
-};
-
-// ==============================================
-// 1. INICIALIZAR GISCUS
-// ==============================================
-function initGiscus() {
-    const container = document.getElementById('giscus-container');
-    container.innerHTML = '';
+document.getElementById('review-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
     
-    const script = document.createElement('script');
-    script.src = 'https://giscus.app/client.js';
-    script.setAttribute('data-repo', GISCUS_CONFIG.repo);
-    script.setAttribute('data-repo-id', GISCUS_CONFIG.repoId);
-    script.setAttribute('data-category', GISCUS_CONFIG.category);
-    script.setAttribute('data-category-id', GISCUS_CONFIG.categoryId);
-    script.setAttribute('data-mapping', GISCUS_CONFIG.mapping);
-    script.setAttribute('data-reactions-enabled', '1');
-    script.setAttribute('data-emit-metadata', '0');
-    script.setAttribute('data-input-position', 'top');
-    script.setAttribute('data-theme', 'light');
-    script.setAttribute('data-lang', 'es');
-    script.setAttribute('crossorigin', 'anonymous');
-    script.async = true;
+    const submitBtn = this.querySelector('button[type="submit"]');
+    const originalText = submitBtn.innerHTML;
     
-    container.appendChild(script);
-}
-
-// ==============================================
-// 2. ESTADÍSTICAS EN VIVO (CORAZÓN DE LA SOLUCIÓN)
-// ==============================================
-async function updateLiveStats() {
+    // Mostrar loading
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Enviando...';
+    submitBtn.disabled = true;
+    
     try {
-        const response = await fetch(`https://api.github.com/repos/${GISCUS_CONFIG.repo}/discussions?per_page=100`);
-        const discussions = await response.json();
+        const formData = new FormData(this);
+        const response = await fetch(this.action, {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+        });
         
-        const totalReviews = discussions.length;
-        
-        // Calcular rating promedio
-        let totalRating = 0;
-        let ratingsCount = 0;
-        
-        discussions.forEach(d => {
-            const text = (d.title + ' ' + (d.body || '')).toLowerCase();
-            if (text.includes('5') || text.includes('⭐⭐⭐⭐⭐')) {
-                totalRating += 5; ratingsCount++;
-            } else if (text.includes('4') || text.includes('⭐⭐⭐⭐')) {
-                totalRating += 4; ratingsCount++;
-            } else if (text.includes('3') || text.includes('⭐⭐⭐')) {
-                totalRating += 3; ratingsCount++;
+        if (response.ok) {
+            // Ocultar formulario, mostrar éxito
+            this.style.display = 'none';
+            document.getElementById('form-success').classList.remove('hidden');
+            
+            // Opcional: enviar a Google Analytics
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'review_submitted', { 'event_category': 'opiniones' });
             }
-        });
-        
-        const avgRating = ratingsCount > 0 ? (totalRating / ratingsCount).toFixed(1) : '4.9';
-        const recommendRate = ratingsCount > 0 
-            ? Math.round((discussions.filter(d => {
-                const text = (d.title + ' ' + (d.body || '')).toLowerCase();
-                return !text.includes('mal') && !text.includes('pésimo');
-              }).length / discussions.length) * 100)
-            : 100;
-        
-        // ACTUALIZAR BADGE PRINCIPAL
-        const badge = document.getElementById('rating-badge');
-        if (badge) {
-            badge.innerHTML = `
-                <i class="fas fa-star text-yellow-500 mr-2"></i>
-                ${avgRating} · ${recommendRate}% recomiendan
-                <span class="mx-3 text-teal-300">|</span>
-                <i class="fas fa-users mr-2"></i>
-                ${totalReviews}+ huéspedes
-            `;
+        } else {
+            throw new Error('Error al enviar');
         }
-        
-        // ACTUALIZAR CONTADOR
-        const counter = document.getElementById('total-conversations');
-        if (counter) counter.textContent = totalReviews;
-        
     } catch (error) {
-        console.log('Usando estadísticas de respaldo');
+        alert('Hubo un error. Por favor intenta de nuevo o envíanos un WhatsApp.');
+    } finally {
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
     }
-}
+});
 
-// ==============================================
-// 3. BOTÓN DE ESCRIBIR OPINIÓN
-// ==============================================
-function setupWriteButton() {
-    const btn = document.getElementById('write-review-btn');
-    if (btn) {
-        btn.addEventListener('click', () => {
-            document.getElementById('giscus-container').scrollIntoView({ behavior: 'smooth' });
-            setTimeout(() => {
-                const iframe = document.querySelector('.giscus-frame');
-                if (iframe) {
-                    iframe.contentWindow.postMessage({
-                        giscus: { setInput: { text: '' } }
-                    }, 'https://giscus.app');
-                }
-            }, 1000);
-        });
-    }
-}
-
-// ==============================================
-// INICIALIZAR TODO
-// ==============================================
-document.addEventListener('DOMContentLoaded', () => {
-    initGiscus();
-    updateLiveStats();
-    setupWriteButton();
-    
-    // Actualizar cada 30 segundos
-    setInterval(updateLiveStats, 30000);
+// Estrellas interactivas
+document.querySelectorAll('input[name="estrellas"]').forEach(star => {
+    star.addEventListener('change', function() {
+        const labels = document.querySelectorAll('label[for^="star"]');
+        labels.forEach(label => label.style.color = '#d1d5db');
+        
+        for (let i = 5; i >= 6 - this.value; i--) {
+            const label = document.querySelector(`label[for="star${i}"]`);
+            if (label) label.style.color = '#fbbf24';
+        }
+    });
 });
 </script>
 
+<style>
+/* Estilo para estrellas */
+input[type="radio"]:checked + label,
+input[type="radio"]:hover + label,
+label:hover ~ label {
+    color: #fbbf24 !important;
+}
+
+/* Animación suave */
+.bg-white {
+    transition: all 0.3s ease;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .grid {
+        gap: 1rem;
+    }
+}
+</style>
     <!-- SECCIÓN DE RESERVAS -->
     <section id="reservas" class="py-16 bg-white border-t border-gray-100">
         <div class="content-container mx-auto px-4">

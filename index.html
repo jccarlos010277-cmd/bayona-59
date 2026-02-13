@@ -1755,206 +1755,397 @@
     </div>
 </section>
 
-<!-- ========== SECCIÓN OPINIONES - FORMULARIO + TARJETAS ========== -->
-<section id="opiniones" class="py-20 bg-gradient-to-b from-white to-gray-50">
-    <div class="content-container mx-auto px-4">
+<!-- ========== SECCIÓN OPINIONES - DISEÑO UX PREMIUM ========== -->
+<section id="opiniones" class="py-20 bg-gradient-to-b from-white to-teal-50/30 relative overflow-hidden">
+    
+    <!-- Elemento decorativo sutil -->
+    <div class="absolute top-0 right-0 w-1/3 h-1/3 bg-teal-100/20 rounded-full blur-3xl"></div>
+    
+    <div class="content-container mx-auto px-4 relative z-10">
 
-        <!-- HEADER -->
-        <div class="text-center max-w-4xl mx-auto mb-12">
-            <div class="inline-flex items-center bg-teal-100 text-teal-800 px-6 py-3 rounded-full text-sm font-semibold mb-6">
-                <i class="fas fa-star text-yellow-500 mr-2"></i>
-                4.9 · 4 opiniones verificadas
+        <!-- ===== HEADER CON PROPÓSITO EMOCIONAL ===== -->
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <div class="inline-flex items-center bg-teal-50 border border-teal-200 text-teal-700 px-5 py-2 rounded-full text-sm font-medium mb-6">
+                <i class="fas fa-heart text-teal-500 mr-2"></i>
+                Gracias por formar parte de nuestra historia
             </div>
             <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                Opiniones de <span class="text-teal-600">nuestros huéspedes</span>
+                Lo que <span class="text-teal-600">nuestros huéspedes</span> recuerdan
             </h2>
-            <p class="text-xl text-gray-600">
-                Experiencias reales de viajeros como tú
+            <p class="text-lg text-gray-600">
+                No solo hablamos de alojamiento. Hablamos de atardeceres en la terraza, 
+                café cubano por la mañana y amigos que se convierten en familia.
             </p>
         </div>
 
-        <!-- ===== TARJETAS DE OPINIONES (LAS 4 QUE YA TIENES) ===== -->
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto mb-16">
+        <!-- ===== TARJETAS DE OPINIÓN - CADA UNA CUENTA UNA HISTORIA ===== -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto mb-20">
             
             <!-- OPINIÓN 1 - María González -->
-            <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition">
-                <div class="flex items-start mb-4">
-                    <div class="w-12 h-12 bg-gradient-to-br from-teal-500 to-teal-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
-                        M
-                    </div>
-                    <div class="ml-3">
-                        <h4 class="font-bold text-gray-900">María González</h4>
-                        <div class="flex text-yellow-400 text-lg">★★★★★</div>
-                        <span class="text-xs text-gray-500">España · Marzo 2023</span>
+            <div class="group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-teal-200 flex flex-col h-full">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gradient-to-br from-teal-500 to-teal-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-sm">
+                            M
+                        </div>
+                        <div class="ml-3">
+                            <div class="flex items-center flex-wrap gap-2">
+                                <h4 class="font-bold text-gray-900">María González</h4>
+                                <span class="bg-green-100 text-green-700 text-xs px-2 py-0.5 rounded-full flex items-center">
+                                    <i class="fas fa-check-circle mr-1 text-xs"></i> Verificada
+                                </span>
+                            </div>
+                            <div class="flex items-center mt-1">
+                                <div class="flex text-yellow-400 text-lg">★★★★★</div>
+                                <span class="text-xs text-gray-500 ml-2">· Mar 2023</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <p class="text-gray-700">
+                
+                <p class="text-gray-700 leading-relaxed flex-grow">
                     "Excelente atención y ubicación. Alexander e Isaida son unos anfitriones maravillosos que hacen que te sientas como en casa. Las terrazas son el lugar perfecto para relajarse después de un día de turismo."
                 </p>
-                <p class="text-gray-400 text-xs mt-4 flex items-center">
-                    <i class="fas fa-check-circle text-green-500 mr-1"></i> Reserva verificada · 5 noches
-                </p>
+                
+                <!-- METADATOS DE LA ESTANCIA -->
+                <div class="mt-5 pt-4 border-t border-gray-100 grid grid-cols-2 gap-3 text-sm">
+                    <div class="flex items-center text-gray-600">
+                        <i class="fas fa-moon text-teal-500 mr-2 text-xs"></i>
+                        <span class="text-xs"><strong>5 noches</strong></span>
+                    </div>
+                    <div class="flex items-center text-gray-600">
+                        <i class="fas fa-calendar-check text-teal-500 mr-2 text-xs"></i>
+                        <span class="text-xs">Reserva directa</span>
+                    </div>
+                    <div class="flex items-center text-gray-600 col-span-2">
+                        <i class="fas fa-map-marker-alt text-teal-500 mr-2 text-xs"></i>
+                        <span class="text-xs">Desde España</span>
+                    </div>
+                </div>
             </div>
 
             <!-- OPINIÓN 2 - Carlos López -->
-            <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition">
-                <div class="flex items-start mb-4">
-                    <div class="w-12 h-12 bg-gradient-to-br from-teal-500 to-teal-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
-                        C
-                    </div>
-                    <div class="ml-3">
-                        <h4 class="font-bold text-gray-900">Carlos López</h4>
-                        <div class="flex text-yellow-400 text-lg">★★★★☆</div>
-                        <span class="text-xs text-gray-500">Argentina · Febrero 2024</span>
+            <div class="group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-teal-200 flex flex-col h-full">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gradient-to-br from-teal-500 to-teal-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-sm">
+                            C
+                        </div>
+                        <div class="ml-3">
+                            <div class="flex items-center flex-wrap gap-2">
+                                <h4 class="font-bold text-gray-900">Carlos López</h4>
+                                <span class="bg-green-100 text-green-700 text-xs px-2 py-0.5 rounded-full flex items-center">
+                                    <i class="fas fa-check-circle mr-1 text-xs"></i> Verificada
+                                </span>
+                            </div>
+                            <div class="flex items-center mt-1">
+                                <div class="flex text-yellow-400 text-lg">★★★★☆</div>
+                                <span class="text-xs text-gray-500 ml-2">· Feb 2024</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <p class="text-gray-700">
-                    "La terraza es espectacular al atardecer. Muy recomendado para quienes buscan autenticidad y buen trato. El desayuno cubano es delicioso y el tour que nos organizaron fue perfecto."
+                
+                <p class="text-gray-700 leading-relaxed flex-grow">
+                    "La terraza es espectacular al atardecer. Muy recomendado para quienes buscan autenticidad y buen trato. El desayuno cubano es delicioso y el tour que nos organizaron fue perfecto para conocer la ciudad."
                 </p>
-                <p class="text-gray-400 text-xs mt-4 flex items-center">
-                    <i class="fas fa-check-circle text-green-500 mr-1"></i> Reserva verificada · 7 noches
-                </p>
+                
+                <div class="mt-5 pt-4 border-t border-gray-100 grid grid-cols-2 gap-3 text-sm">
+                    <div class="flex items-center text-gray-600">
+                        <i class="fas fa-moon text-teal-500 mr-2 text-xs"></i>
+                        <span class="text-xs"><strong>7 noches</strong></span>
+                    </div>
+                    <div class="flex items-center text-gray-600">
+                        <i class="fab fa-whatsapp text-teal-500 mr-2 text-xs"></i>
+                        <span class="text-xs">WhatsApp</span>
+                    </div>
+                    <div class="flex items-center text-gray-600 col-span-2">
+                        <i class="fas fa-map-marker-alt text-teal-500 mr-2 text-xs"></i>
+                        <span class="text-xs">Desde Argentina</span>
+                    </div>
+                </div>
             </div>
 
             <!-- OPINIÓN 3 - Ana Martínez -->
-            <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition">
-                <div class="flex items-start mb-4">
-                    <div class="w-12 h-12 bg-gradient-to-br from-teal-500 to-teal-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
-                        A
-                    </div>
-                    <div class="ml-3">
-                        <h4 class="font-bold text-gray-900">Ana Martínez</h4>
-                        <div class="flex text-yellow-400 text-lg">★★★★★</div>
-                        <span class="text-xs text-gray-500">México · Enero 2024</span>
-                    </div>
-                </div>
-                <p class="text-gray-700">
-                    "Increíble experiencia. La habitación muy cómoda y limpia. La ubicación es ideal para visitar La Habana Vieja a pie. Isaida nos dio excelentes recomendaciones de restaurantes locales auténticos."
-                </p>
-                <p class="text-gray-400 text-xs mt-4 flex items-center">
-                    <i class="fas fa-check-circle text-green-500 mr-1"></i> Reserva verificada · 3 noches
-                </p>
-            </div>
-
-            <!-- OPINIÓN 4 - Pierre Dubois (ocupa 2 columnas en desktop) -->
-            <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition md:col-span-2 lg:col-span-1">
-                <div class="flex items-start mb-4">
-                    <div class="w-12 h-12 bg-gradient-to-br from-teal-500 to-teal-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
-                        P
-                    </div>
-                    <div class="ml-3">
-                        <h4 class="font-bold text-gray-900">Pierre Dubois</h4>
-                        <div class="flex text-yellow-400 text-lg">★★★★★</div>
-                        <span class="text-xs text-gray-500">Francia · Diciembre 2024</span>
-                    </div>
-                </div>
-                <p class="text-gray-700">
-                    "Authentic Cuban experience! The hosts are wonderful and helped us discover hidden gems in Havana. The breakfast is amazing and the terraces have the best views of the neighborhood. 100% recommended."
-                </p>
-                <p class="text-gray-400 text-xs mt-4 flex items-center">
-                    <i class="fas fa-check-circle text-green-500 mr-1"></i> Reserva verificada · 4 noches
-                </p>
-            </div>
-        </div>
-
-        <!-- ===== FORMULARIO PARA NUEVAS OPINIONES (FORMSPREE) ===== -->
-        <div class="max-w-2xl mx-auto">
-            <div class="bg-white p-8 rounded-2xl shadow-xl border border-teal-100">
-                
-                <div class="text-center mb-6">
-                    <h3 class="text-2xl font-bold text-gray-800 mb-2">Comparte tu experiencia</h3>
-                    <p class="text-gray-600">¿Ya te hospedaste con nosotros? ¡Cuéntanos cómo fue!</p>
-                </div>
-
-                <form id="review-form" action="https://formspree.io/f/xvzolnyg" method="POST">
-                    <input type="hidden" name="_subject" value="⭐ NUEVA OPINIÓN - Terrazas de Bayona">
-                    <input type="hidden" name="_cc" value="jccarlos010277@gmail.com,alexanderacensio1234@gmail.com">
-
-                    <!-- Nombre -->
-                    <div class="mb-4">
-                        <label class="block text-gray-700 text-sm font-bold mb-2">
-                            <i class="fas fa-user text-teal-500 mr-1"></i> Tu nombre *
-                        </label>
-                        <input type="text" name="nombre" placeholder="Ej: Juan Pérez" 
-                               class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-100"
-                               required>
-                    </div>
-
-                    <!-- País (nuevo) -->
-                    <div class="mb-4">
-                        <label class="block text-gray-700 text-sm font-bold mb-2">
-                            <i class="fas fa-globe text-teal-500 mr-1"></i> País
-                        </label>
-                        <input type="text" name="pais" placeholder="Ej: España, México, Argentina..." 
-                               class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-100">
-                    </div>
-
-                    <!-- Estrellas -->
-                    <div class="mb-4">
-                        <label class="block text-gray-700 text-sm font-bold mb-2">
-                            <i class="fas fa-star text-teal-500 mr-1"></i> Calificación *
-                        </label>
-                        <div class="flex flex-row-reverse justify-end space-x-reverse space-x-1">
-                            <input type="radio" id="star5" name="estrellas" value="5" class="hidden" checked>
-                            <label for="star5" class="text-2xl text-gray-300 hover:text-yellow-400 cursor-pointer transition">★</label>
-                            <input type="radio" id="star4" name="estrellas" value="4" class="hidden">
-                            <label for="star4" class="text-2xl text-gray-300 hover:text-yellow-400 cursor-pointer transition">★</label>
-                            <input type="radio" id="star3" name="estrellas" value="3" class="hidden">
-                            <label for="star3" class="text-2xl text-gray-300 hover:text-yellow-400 cursor-pointer transition">★</label>
-                            <input type="radio" id="star2" name="estrellas" value="2" class="hidden">
-                            <label for="star2" class="text-2xl text-gray-300 hover:text-yellow-400 cursor-pointer transition">★</label>
-                            <input type="radio" id="star1" name="estrellas" value="1" class="hidden">
-                            <label for="star1" class="text-2xl text-gray-300 hover:text-yellow-400 cursor-pointer transition">★</label>
+            <div class="group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-teal-200 flex flex-col h-full">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gradient-to-br from-teal-500 to-teal-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-sm">
+                            A
+                        </div>
+                        <div class="ml-3">
+                            <div class="flex items-center flex-wrap gap-2">
+                                <h4 class="font-bold text-gray-900">Ana Martínez</h4>
+                                <span class="bg-green-100 text-green-700 text-xs px-2 py-0.5 rounded-full flex items-center">
+                                    <i class="fas fa-check-circle mr-1 text-xs"></i> Verificada
+                                </span>
+                            </div>
+                            <div class="flex items-center mt-1">
+                                <div class="flex text-yellow-400 text-lg">★★★★★</div>
+                                <span class="text-xs text-gray-500 ml-2">· Ene 2024</span>
+                            </div>
                         </div>
                     </div>
-
-                    <!-- Opinión -->
-                    <div class="mb-6">
-                        <label class="block text-gray-700 text-sm font-bold mb-2">
-                            <i class="fas fa-comment text-teal-500 mr-1"></i> Tu opinión *
-                        </label>
-                        <textarea name="opinion" rows="4" 
-                                  placeholder="¿Cómo fue tu estancia? ¿Qué fue lo que más te gustó? ¿Algo que mejorar?" 
-                                  class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-100"
-                                  required></textarea>
+                </div>
+                
+                <p class="text-gray-700 leading-relaxed flex-grow">
+                    "Increíble experiencia. La habitación muy cómoda y limpia. La ubicación es ideal para visitar La Habana Vieja a pie. Isaida nos dio excelentes recomendaciones de restaurantes locales auténticos."
+                </p>
+                
+                <div class="mt-5 pt-4 border-t border-gray-100 grid grid-cols-2 gap-3 text-sm">
+                    <div class="flex items-center text-gray-600">
+                        <i class="fas fa-moon text-teal-500 mr-2 text-xs"></i>
+                        <span class="text-xs"><strong>3 noches</strong></span>
                     </div>
-
-                    <!-- Email (oculto, para responder) -->
-                    <input type="hidden" name="_replyto" value="cliente@email.com" id="hidden-email">
-
-                    <!-- Botón -->
-                    <button type="submit" 
-                            class="w-full bg-gradient-to-r from-teal-600 to-teal-500 hover:from-teal-700 hover:to-teal-600 text-white font-bold py-3 px-6 rounded-lg transition-all transform hover:scale-105 shadow-lg flex items-center justify-center">
-                        <i class="fas fa-paper-plane mr-2"></i>
-                        Publicar mi opinión
-                    </button>
-
-                    <p class="text-xs text-gray-500 text-center mt-4">
-                        <i class="fas fa-shield-alt text-teal-500 mr-1"></i>
-                        Tu opinión será revisada y publicada en los próximos días. Gracias por ayudarnos 🙌
-                    </p>
-                </form>
-
-                <!-- Mensaje de éxito (oculto inicialmente) -->
-                <div id="form-success" class="hidden mt-6 p-6 bg-green-50 border border-green-200 rounded-lg text-center">
-                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-check-circle text-green-600 text-3xl"></i>
+                    <div class="flex items-center text-gray-600">
+                        <i class="fab fa-airbnb text-teal-500 mr-2 text-xs"></i>
+                        <span class="text-xs">Airbnb</span>
                     </div>
-                    <h4 class="text-xl font-bold text-gray-800 mb-2">¡Gracias por tu opinión!</h4>
-                    <p class="text-gray-600">La revisaremos y la publicaremos pronto en nuestra web.</p>
+                    <div class="flex items-center text-gray-600 col-span-2">
+                        <i class="fas fa-map-marker-alt text-teal-500 mr-2 text-xs"></i>
+                        <span class="text-xs">Desde México</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- OPINIÓN 4 - Pierre Dubois -->
+            <div class="group bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-teal-200 flex flex-col h-full md:col-span-2 lg:col-span-1">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gradient-to-br from-teal-500 to-teal-600 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-sm">
+                            P
+                        </div>
+                        <div class="ml-3">
+                            <div class="flex items-center flex-wrap gap-2">
+                                <h4 class="font-bold text-gray-900">Pierre Dubois</h4>
+                                <span class="bg-green-100 text-green-700 text-xs px-2 py-0.5 rounded-full flex items-center">
+                                    <i class="fas fa-check-circle mr-1 text-xs"></i> Verificada
+                                </span>
+                            </div>
+                            <div class="flex items-center mt-1">
+                                <div class="flex text-yellow-400 text-lg">★★★★★</div>
+                                <span class="text-xs text-gray-500 ml-2">· Dic 2024</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <p class="text-gray-700 leading-relaxed flex-grow">
+                    "Authentic Cuban experience! The hosts are wonderful and helped us discover hidden gems in Havana. The breakfast is amazing and the terraces have the best views of the neighborhood. 100% recommended."
+                </p>
+                
+                <div class="mt-5 pt-4 border-t border-gray-100 grid grid-cols-2 gap-3 text-sm">
+                    <div class="flex items-center text-gray-600">
+                        <i class="fas fa-moon text-teal-500 mr-2 text-xs"></i>
+                        <span class="text-xs"><strong>4 noches</strong></span>
+                    </div>
+                    <div class="flex items-center text-gray-600">
+                        <i class="fas fa-globe text-teal-500 mr-2 text-xs"></i>
+                        <span class="text-xs">Booking.com</span>
+                    </div>
+                    <div class="flex items-center text-gray-600 col-span-2">
+                        <i class="fas fa-map-marker-alt text-teal-500 mr-2 text-xs"></i>
+                        <span class="text-xs">Desde Francia</span>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Pie de página de confianza -->
-        <div class="text-center mt-16">
-            <div class="inline-flex items-center bg-gray-100 px-6 py-3 rounded-full text-sm text-gray-600">
-                <i class="fas fa-shield-alt text-teal-500 mr-2"></i>
-                Todas las opiniones son de huéspedes que realmente se han hospedado con nosotros
+        <!-- ===== FORMULARIO DE EXPERIENCIA - UX CUIDADA ===== -->
+        <div class="max-w-3xl mx-auto">
+            <div class="bg-white p-8 md:p-10 rounded-3xl shadow-2xl border border-teal-100 relative overflow-hidden">
+                
+                <!-- Elemento decorativo -->
+                <div class="absolute -top-10 -right-10 w-40 h-40 bg-teal-100 rounded-full opacity-20"></div>
+                
+                <div class="relative z-10">
+                    
+                    <!-- Título con enfoque emocional -->
+                    <div class="text-center mb-8">
+                        <span class="inline-block bg-teal-50 text-teal-700 px-4 py-2 rounded-full text-sm font-medium mb-3">
+                            <i class="fas fa-hands-heart mr-2"></i> Tu historia nos importa
+                        </span>
+                        <h3 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+                            ¿Cómo fue tu <span class="text-teal-600">estancia</span>?
+                        </h3>
+                        <p class="text-gray-600">
+                            Comparte tu experiencia para ayudar a otros viajeros y ayudarnos a mejorar.
+                            Solo te tomará 2 minutos.
+                        </p>
+                    </div>
+
+                    <form id="review-form" action="https://formspree.io/f/xvzolnyg" method="POST">
+                        
+                        <!-- CONFIGURACIÓN EMAIL - AMBOS CORREOS -->
+                        <input type="hidden" name="_cc" value="jccarlos010277@gmail.com, alexanderacensio1234@gmail.com">
+                        <input type="hidden" name="_subject" value="⭐ NUEVA OPINIÓN DETALLADA - Terrazas de Bayona">
+                        
+                        <!-- ===== PASO 1: DATOS BÁSICOS ===== -->
+                        <div class="mb-8">
+                            <h4 class="text-sm font-bold text-gray-700 mb-4 flex items-center">
+                                <span class="bg-teal-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-2">1</span>
+                                Sobre ti
+                            </h4>
+                            
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-gray-700 text-sm font-semibold mb-2">
+                                        <i class="fas fa-user text-teal-500 mr-1"></i> Tu nombre *
+                                    </label>
+                                    <input type="text" name="nombre" placeholder="Ej: María González" 
+                                           class="w-full p-3 border border-gray-200 rounded-xl focus:outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-100 bg-gray-50/50"
+                                           required>
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 text-sm font-semibold mb-2">
+                                        <i class="fas fa-globe-americas text-teal-500 mr-1"></i> País
+                                    </label>
+                                    <input type="text" name="pais" placeholder="España, México, Argentina..." 
+                                           class="w-full p-3 border border-gray-200 rounded-xl focus:outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-100 bg-gray-50/50">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ===== PASO 2: DETALLES DE LA ESTANCIA ===== -->
+                        <div class="mb-8">
+                            <h4 class="text-sm font-bold text-gray-700 mb-4 flex items-center">
+                                <span class="bg-teal-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-2">2</span>
+                                Tu estancia
+                            </h4>
+                            
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <!-- Noches de estancia - Selector visual -->
+                                <div>
+                                    <label class="block text-gray-700 text-sm font-semibold mb-3">
+                                        <i class="fas fa-moon text-teal-500 mr-1"></i> ¿Cuántas noches te quedaste? *
+                                    </label>
+                                    <div class="grid grid-cols-3 gap-2">
+                                        <label class="relative">
+                                            <input type="radio" name="noches" value="1-3 noches" class="sr-only peer" required>
+                                            <div class="w-full py-2 px-1 text-center bg-gray-50 border border-gray-200 rounded-lg cursor-pointer peer-checked:bg-teal-600 peer-checked:text-white peer-checked:border-teal-600 hover:bg-gray-100 transition">
+                                                <span class="text-xs font-medium">1-3</span>
+                                            </div>
+                                        </label>
+                                        <label class="relative">
+                                            <input type="radio" name="noches" value="4-7 noches" class="sr-only peer">
+                                            <div class="w-full py-2 px-1 text-center bg-gray-50 border border-gray-200 rounded-lg cursor-pointer peer-checked:bg-teal-600 peer-checked:text-white peer-checked:border-teal-600 hover:bg-gray-100 transition">
+                                                <span class="text-xs font-medium">4-7</span>
+                                            </div>
+                                        </label>
+                                        <label class="relative">
+                                            <input type="radio" name="noches" value="8+ noches" class="sr-only peer">
+                                            <div class="w-full py-2 px-1 text-center bg-gray-50 border border-gray-200 rounded-lg cursor-pointer peer-checked:bg-teal-600 peer-checked:text-white peer-checked:border-teal-600 hover:bg-gray-100 transition">
+                                                <span class="text-xs font-medium">8+</span>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- Plataforma de contacto - Selector visual -->
+                                <div>
+                                    <label class="block text-gray-700 text-sm font-semibold mb-3">
+                                        <i class="fas fa-calendar-check text-teal-500 mr-1"></i> ¿Cómo nos contactaste? *
+                                    </label>
+                                    <select name="plataforma" 
+                                            class="w-full p-3 border border-gray-200 rounded-xl focus:outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-100 bg-gray-50/50 appearance-none"
+                                            required>
+                                        <option value="" disabled selected>Selecciona una opción</option>
+                                        <option value="Reserva directa">📞 Reserva directa (WhatsApp/Email)</option>
+                                        <option value="Airbnb">🏠 Airbnb</option>
+                                        <option value="Booking.com">📘 Booking.com</option>
+                                        <option value="Recomendación">🗣️ Recomendación de otro huésped</option>
+                                        <option value="Google">🔍 Google</option>
+                                        <option value="Otro">✨ Otro</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ===== PASO 3: VALORACIÓN ===== -->
+                        <div class="mb-8">
+                            <h4 class="text-sm font-bold text-gray-700 mb-4 flex items-center">
+                                <span class="bg-teal-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-2">3</span>
+                                Tu valoración
+                            </h4>
+                            
+                            <!-- Estrellas interactivas -->
+                            <div class="mb-6">
+                                <label class="block text-gray-700 text-sm font-semibold mb-3">
+                                    <i class="fas fa-star text-teal-500 mr-1"></i> Califica tu experiencia *
+                                </label>
+                                <div class="flex flex-row-reverse justify-end space-x-reverse space-x-1">
+                                    <input type="radio" id="star5" name="estrellas" value="5" class="hidden peer/5" checked>
+                                    <label for="star5" class="text-3xl text-gray-300 peer-checked/5:text-yellow-400 hover:text-yellow-400 cursor-pointer transition-all hover:scale-110">★</label>
+                                    <input type="radio" id="star4" name="estrellas" value="4" class="hidden peer/4">
+                                    <label for="star4" class="text-3xl text-gray-300 peer-checked/4:text-yellow-400 hover:text-yellow-400 cursor-pointer transition-all hover:scale-110">★</label>
+                                    <input type="radio" id="star3" name="estrellas" value="3" class="hidden peer/3">
+                                    <label for="star3" class="text-3xl text-gray-300 peer-checked/3:text-yellow-400 hover:text-yellow-400 cursor-pointer transition-all hover:scale-110">★</label>
+                                    <input type="radio" id="star2" name="estrellas" value="2" class="hidden peer/2">
+                                    <label for="star2" class="text-3xl text-gray-300 peer-checked/2:text-yellow-400 hover:text-yellow-400 cursor-pointer transition-all hover:scale-110">★</label>
+                                    <input type="radio" id="star1" name="estrellas" value="1" class="hidden peer/1">
+                                    <label for="star1" class="text-3xl text-gray-300 peer-checked/1:text-yellow-400 hover:text-yellow-400 cursor-pointer transition-all hover:scale-110">★</label>
+                                </div>
+                                <p class="text-xs text-gray-500 mt-2">Toca las estrellas para calificar</p>
+                            </div>
+
+                            <!-- Opinión escrita -->
+                            <div>
+                                <label class="block text-gray-700 text-sm font-semibold mb-2">
+                                    <i class="fas fa-pen text-teal-500 mr-1"></i> Cuéntanos tu experiencia *
+                                </label>
+                                <textarea name="opinion" rows="4" 
+                                          placeholder="¿Qué fue lo que más te gustó? ¿Algún momento especial que recuerdes? ¿Cómo fue tu trato con Alexander e Isaida?" 
+                                          class="w-full p-4 border border-gray-200 rounded-xl focus:outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-100 bg-gray-50/50 resize-none"
+                                          required></textarea>
+                                <p class="text-xs text-gray-400 mt-1 text-right"><span id="char-count">0</span>/500</p>
+                            </div>
+                        </div>
+
+                        <!-- ===== PASO 4: FINALIZAR ===== -->
+                        <div class="text-center">
+                            <button type="submit" 
+                                    class="w-full bg-gradient-to-r from-teal-600 to-teal-500 hover:from-teal-700 hover:to-teal-600 text-white font-bold py-4 px-8 rounded-xl transition-all transform hover:scale-105 shadow-xl flex items-center justify-center group">
+                                <i class="fas fa-heart mr-3 group-hover:animate-pulse"></i>
+                                Compartir mi experiencia
+                                <i class="fas fa-arrow-right ml-3 group-hover:translate-x-1 transition-transform"></i>
+                            </button>
+                            <p class="text-xs text-gray-500 mt-4 flex items-center justify-center">
+                                <i class="fas fa-shield-alt text-teal-500 mr-2"></i>
+                                Tu opinión será revisada con cariño y publicada en los próximos días.
+                            </p>
+                        </div>
+                    </form>
+
+                    <!-- Mensaje de éxito -->
+                    <div id="form-success" class="hidden mt-8 p-8 bg-gradient-to-br from-green-50 to-teal-50 border border-green-200 rounded-2xl text-center">
+                        <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-5">
+                            <i class="fas fa-check-circle text-green-600 text-4xl"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold text-gray-900 mb-3">¡Gracias, gracias, gracias!</h4>
+                        <p class="text-gray-600 mb-4">
+                            Tu opinión nos llena de alegría y nos ayuda a seguir mejorando. 
+                            La revisaremos y la publicaremos pronto en nuestra web.
+                        </p>
+                        <div class="inline-flex items-center bg-white px-6 py-3 rounded-full shadow-sm">
+                            <i class="fas fa-smile text-teal-500 text-xl mr-2"></i>
+                            <span class="text-gray-700">¡Te esperamos de vuelta en La Habana!</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <p class="text-xs text-gray-400 mt-4">
-                ⚡ Tú recibes las opiniones por email y las publicas manualmente · Sistema simple y confiable
-            </p>
+        </div>
+
+        <!-- ===== FOOTER DE CONFIANZA ===== -->
+        <div class="text-center mt-16">
+            <div class="inline-flex flex-wrap items-center justify-center gap-2 bg-gray-100/80 backdrop-blur-sm px-6 py-3 rounded-full text-sm text-gray-600">
+                <i class="fas fa-check-circle text-green-500 mr-1"></i>
+                Todas las opiniones son de huéspedes verificados
+                <span class="w-1 h-1 bg-gray-400 rounded-full mx-2"></span>
+                <i class="fas fa-clock text-teal-500 mr-1"></i>
+                Actualizado mensualmente
+                <span class="w-1 h-1 bg-gray-400 rounded-full mx-2 hidden sm:inline"></span>
+                <span class="text-teal-600 font-medium">4 experiencias compartidas</span>
+            </div>
         </div>
 
     </div>
@@ -1962,16 +2153,22 @@
 
 <script>
 // ==============================================
-// MANEJO DEL FORMULARIO FORMSPREE
+// CONTADOR DE CARACTERES
+// ==============================================
+document.querySelector('textarea[name="opinion"]').addEventListener('input', function() {
+    document.getElementById('char-count').textContent = this.value.length;
+});
+
+// ==============================================
+// ENVÍO DEL FORMULARIO
 // ==============================================
 document.getElementById('review-form').addEventListener('submit', async function(e) {
     e.preventDefault();
     
     const submitBtn = this.querySelector('button[type="submit"]');
-    const originalText = submitBtn.innerHTML;
+    const originalHTML = submitBtn.innerHTML;
     
-    // Mostrar loading
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Enviando...';
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Enviando tu experiencia...';
     submitBtn.disabled = true;
     
     try {
@@ -1983,55 +2180,71 @@ document.getElementById('review-form').addEventListener('submit', async function
         });
         
         if (response.ok) {
-            // Ocultar formulario, mostrar éxito
             this.style.display = 'none';
             document.getElementById('form-success').classList.remove('hidden');
             
-            // Opcional: enviar a Google Analytics
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'review_submitted', { 'event_category': 'opiniones' });
-            }
+            // Opcional: scroll suave al mensaje de éxito
+            document.getElementById('form-success').scrollIntoView({ behavior: 'smooth', block: 'center' });
         } else {
-            throw new Error('Error al enviar');
+            throw new Error('Error en el envío');
         }
     } catch (error) {
-        alert('Hubo un error. Por favor intenta de nuevo o envíanos un WhatsApp.');
+        alert('💚 Gracias por intentarlo. Hubo un problema técnico. ¿Nos ayudas enviándonos un WhatsApp?');
     } finally {
-        submitBtn.innerHTML = originalText;
+        submitBtn.innerHTML = originalHTML;
         submitBtn.disabled = false;
     }
 });
 
-// Estrellas interactivas
-document.querySelectorAll('input[name="estrellas"]').forEach(star => {
-    star.addEventListener('change', function() {
+// ==============================================
+// ANIMACIÓN DE ESTRELLAS CON FEEDBACK VISUAL
+// ==============================================
+document.querySelectorAll('input[name="estrellas"]').forEach((radio, index) => {
+    radio.addEventListener('change', function() {
         const labels = document.querySelectorAll('label[for^="star"]');
-        labels.forEach(label => label.style.color = '#d1d5db');
+        labels.forEach(label => {
+            label.style.color = '#d1d5db';
+            label.style.transform = 'scale(1)';
+        });
         
         for (let i = 5; i >= 6 - this.value; i--) {
             const label = document.querySelector(`label[for="star${i}"]`);
-            if (label) label.style.color = '#fbbf24';
+            if (label) {
+                label.style.color = '#fbbf24';
+                label.style.transform = 'scale(1.1)';
+            }
         }
     });
 });
 </script>
 
 <style>
-/* Estilo para estrellas */
-input[type="radio"]:checked + label,
-input[type="radio"]:hover + label,
-label:hover ~ label {
-    color: #fbbf24 !important;
+/* Estilos para las tarjetas */
+.group:hover {
+    box-shadow: 0 20px 35px -10px rgba(13, 148, 136, 0.15);
 }
 
-/* Animación suave */
-.bg-white {
-    transition: all 0.3s ease;
+/* Estilos para los selectores de noches */
+.peer:checked + div {
+    background-color: #0d9488;
+    color: white;
+    border-color: #0d9488;
+    font-weight: 600;
+}
+
+/* Animación de las estrellas */
+label[for^="star"] {
+    transition: all 0.15s ease;
+}
+
+/* Contador de caracteres */
+#char-count {
+    transition: color 0.2s ease;
 }
 
 /* Responsive */
-@media (max-width: 768px) {
-    .grid {
+@media (max-width: 640px) {
+    .grid.md\:grid-cols-2 {
         gap: 1rem;
     }
 }

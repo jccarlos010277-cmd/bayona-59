@@ -1973,10 +1973,17 @@
 
                     <form id="review-form" action="https://formspree.io/f/xvzolnyg" method="POST">
                         
-                        <!-- ✅ CONFIGURACIÓN EMAIL - AMBOS CORREOS -->
-                        <input type="hidden" name="_cc" value="jccarlos010277@gmail.com, alexanderacensio1234@gmail.com">
-                        <input type="hidden" name="_subject" value="⭐ NUEVA OPINIÓN DETALLADA - Terrazas de Bayona">
-                        
+                     <!-- ===== FORMULARIO DE OPINIONES - CORREGIDO ===== -->
+<form id="review-form" action="https://formspree.io/f/xvzolnyg" method="POST">
+    
+    <!-- ✅ 1. PRIMERO: A QUIÉN RESPONDER (DESTINATARIO PRINCIPAL) -->
+    <input type="hidden" name="_replyto" value="jccarlos010277@gmail.com">
+    
+    <!-- ✅ 2. SEGUNDO: COPIAS (CC) -->
+    <input type="hidden" name="_cc" value="alexanderacensio1234@gmail.com">
+    
+    <!-- ✅ 3. ASUNTO -->
+    <input type="hidden" name="_subject" value="⭐ NUEVA OPINIÓN - Terrazas de Bayona">
                         <!-- PASO 1: DATOS BÁSICOS -->
                         <div class="mb-8">
                             <h4 class="text-sm font-bold text-gray-700 mb-4 flex items-center">

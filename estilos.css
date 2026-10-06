@@ -301,9 +301,8 @@ img { max-width: 100%; height: auto; display: block; }
 .hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(199, 91, 57, 0.85) 0%, rgba(168, 70, 42, 0.75) 100%);
+    background: linear-gradient(135deg, rgba(199, 91, 57, 0.55) 0%, rgba(168, 70, 42, 0.45) 100%);
 }
-
 .hero-contenido {
     position: relative;
     z-index: 2;

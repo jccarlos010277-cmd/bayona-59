@@ -3,4 +3,4 @@ Allow: /
 Disallow: /admin/
 Disallow: /private/
 
-Sitemap: https://reservaterrazasdebayona59.com/sitemap.xml
+Sitemap: https://jccarlos010277-cmd.github.io/sitemap.xml

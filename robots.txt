@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
-Sitemap: https://reservaterrazasdebayona59.com/sitemap.xml
+Disallow: /admin/
+Disallow: /private/
 
+Sitemap: https://jccarlos010277-cmd.github.io/sitemap.xml

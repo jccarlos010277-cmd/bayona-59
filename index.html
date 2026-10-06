@@ -37,14 +37,16 @@
     </div>
 
     <!-- HEADER -->
-    <header class="header">
+    <header class="header" id="header">
         <div class="contenedor header-contenido">
             <a href="#" class="logo">
                 <i class="fas fa-home"></i> Terrazas de Bayona
             </a>
             <nav class="nav-desktop">
                 <a href="#habitacion">Habitación</a>
+                <a href="#bano">Baño</a>
                 <a href="#terraza">Terraza</a>
+                <a href="#desayuno">Desayuno</a>
                 <a href="#precios">Precios</a>
                 <a href="#reservas">Reservar</a>
             </nav>
@@ -54,7 +56,9 @@
         </div>
         <div class="menu-mobile" id="menuMobile">
             <a href="#habitacion">Habitación</a>
+            <a href="#bano">Baño</a>
             <a href="#terraza">Terraza</a>
+            <a href="#desayuno">Desayuno</a>
             <a href="#precios">Precios</a>
             <a href="#reservas">Reservar</a>
         </div>
@@ -64,24 +68,24 @@
     <section class="hero">
         <div class="hero-overlay"></div>
         <div class="contenedor hero-contenido">
-            <span class="hero-badge">⭐ Experiencia 100% Cubana</span>
-            <h1 class="hero-titulo">
+            <span class="hero-badge animar-aparecer">⭐ Experiencia 100% Cubana</span>
+            <h1 class="hero-titulo animar-aparecer">
                 Tu <span class="text-acento">Terraza Privada</span><br>
                 en La Habana
             </h1>
-            <p class="hero-descripcion">
+            <p class="hero-descripcion animar-aparecer">
                 Habitación con A/C, Wi-Fi y 2 terrazas espectaculares.<br>
                 A solo 10 minutos de La Habana Vieja.
             </p>
-            <div class="hero-botones">
+            <div class="hero-botones animar-aparecer">
                 <a href="#precios" class="boton boton-primario">
                     <i class="fas fa-calendar-check"></i> Ver precios
                 </a>
-                <a href="https://wa.me/5356382909" target="_blank" class="boton boton-secundario">
-                    <i class="fab fa-whatsapp"></i> WhatsApp
+                <a href="https://wa.me/5356382909" target="_blank" class="boton boton-whatsapp">
+                    <i class="fab fa-whatsapp"></i> Escribir por WhatsApp
                 </a>
             </div>
-            <div class="hero-stats">
+            <div class="hero-stats animar-aparecer">
                 <div><strong>16+ años</strong><span>de experiencia</span></div>
                 <div><strong>2 terrazas</strong><span>privadas</span></div>
                 <div><strong>24/7</strong><span>atención personal</span></div>
@@ -90,7 +94,7 @@
     </section>
 
     <!-- OFERTA ESPECIAL -->
-    <section class="oferta-especial">
+    <section class="oferta-especial animar-seccion">
         <div class="contenedor oferta-contenido">
             <div class="oferta-info">
                 <span class="oferta-tag">🔥 OFERTA LIMITADA</span>
@@ -112,46 +116,68 @@
         </div>
     </section>
 
-    <!-- SECCIÓN HABITACIÓN (NUEVAS IMÁGENES) -->
-    <section id="habitacion" class="seccion habitacion">
+    <!-- SECCIÓN HABITACIÓN -->
+    <section id="habitacion" class="seccion habitacion animar-seccion">
         <div class="contenedor">
             <h2 class="seccion-titulo">Tu <span class="text-principal">Habitación Privada</span></h2>
             <p class="seccion-subtitulo">Espacios cómodos y acogedores para tu descanso</p>
             
             <div class="galeria-habitacion">
                 <div class="galeria-grid">
-                    <img src="https://i.postimg.cc/ncsVnw9n/cuarto.jpg" alt="Habitación principal" loading="lazy">
-                    <img src="https://i.postimg.cc/k4fMg0yg/cuarto-1.jpg" alt="Vista de la habitación" loading="lazy">
-                    <img src="https://i.postimg.cc/ZqmJFb7K/cuarto-3.jpg" alt="Detalle de la habitación" loading="lazy">
-                    <img src="https://i.postimg.cc/59YDycgG/entrada-de-vivienda-imagen-1.jpg" alt="Entrada de la vivienda" loading="lazy">
-                    <img src="https://i.postimg.cc/1zDfs7TZ/pasillo-hacia-habitacion-cocina-y-terraza.jpg" alt="Pasillo hacia la habitación" loading="lazy">
+                    <img src="https://i.postimg.cc/ncsVnw9n/cuarto.jpg" alt="Habitación principal" loading="lazy" class="animar-tarjeta">
+                    <img src="https://i.postimg.cc/k4fMg0yg/cuarto-1.jpg" alt="Vista de la habitación" loading="lazy" class="animar-tarjeta">
+                    <img src="https://i.postimg.cc/ZqmJFb7K/cuarto-3.jpg" alt="Detalle de la habitación" loading="lazy" class="animar-tarjeta">
+                    <img src="https://i.postimg.cc/59YDycgG/entrada-de-vivienda-imagen-1.jpg" alt="Entrada de la vivienda" loading="lazy" class="animar-tarjeta">
+                    <img src="https://i.postimg.cc/1zDfs7TZ/pasillo-hacia-habitacion-cocina-y-terraza.jpg" alt="Pasillo hacia la habitación" loading="lazy" class="animar-tarjeta">
                 </div>
             </div>
             
             <div class="habitacion-lista">
-                <div><i class="fas fa-wind"></i> Aire acondicionado</div>
-                <div><i class="fas fa-wifi"></i> Wi-Fi gratuito</div>
-                <div><i class="fas fa-bed"></i> Ropa de cama incluida</div>
-                <div><i class="fas fa-tint"></i> Agua caliente 24/7</div>
-                <div><i class="fas fa-lock"></i> Entrada privada</div>
-                <div><i class="fas fa-tshirt"></i> Toallas limpias</div>
+                <div class="animar-tarjeta"><i class="fas fa-wind"></i> Aire acondicionado</div>
+                <div class="animar-tarjeta"><i class="fas fa-wifi"></i> Wi-Fi gratuito</div>
+                <div class="animar-tarjeta"><i class="fas fa-bed"></i> Ropa de cama incluida</div>
+                <div class="animar-tarjeta"><i class="fas fa-tint"></i> Agua caliente 24/7</div>
+                <div class="animar-tarjeta"><i class="fas fa-lock"></i> Entrada privada</div>
+                <div class="animar-tarjeta"><i class="fas fa-tshirt"></i> Toallas limpias</div>
             </div>
         </div>
     </section>
 
-    <!-- SECCIÓN TERRAZA (NUEVAS IMÁGENES) -->
-    <section id="terraza" class="seccion terraza">
+    <!-- SECCIÓN BAÑO (NUEVA) -->
+    <section id="bano" class="seccion bano animar-seccion">
+        <div class="contenedor">
+            <h2 class="seccion-titulo">Baño <span class="text-principal">Privado</span></h2>
+            <p class="seccion-subtitulo">Limpio, moderno y con agua caliente las 24 horas</p>
+            
+            <div class="galeria-bano">
+                <div class="galeria-grid-2">
+                    <img src="https://i.postimg.cc/44tCxkNG/bano-1.jpg" alt="Baño privado - Vista 1" loading="lazy" class="animar-tarjeta">
+                    <img src="https://i.postimg.cc/CMDyxTLF/bano-2.jpg" alt="Baño privado - Vista 2" loading="lazy" class="animar-tarjeta">
+                </div>
+            </div>
+            
+            <div class="habitacion-lista">
+                <div class="animar-tarjeta"><i class="fas fa-shower"></i> Ducha con agua caliente</div>
+                <div class="animar-tarjeta"><i class="fas fa-toilet"></i> Inodoro privado</div>
+                <div class="animar-tarjeta"><i class="fas fa-hand-sparkles"></i> Jabón y papel incluidos</div>
+                <div class="animar-tarjeta"><i class="fas fa-wind"></i> Ventilación adecuada</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN TERRAZA -->
+    <section id="terraza" class="seccion terraza animar-seccion">
         <div class="contenedor">
             <h2 class="seccion-titulo">Tus <span class="text-acento">2 Terrazas Privadas</span></h2>
             <p class="seccion-subtitulo">El espacio que enamora a todos nuestros huéspedes</p>
             
             <div class="terraza-grid">
-                <div class="terraza-card">
+                <div class="terraza-card animar-tarjeta">
                     <img src="https://i.postimg.cc/KzvFw9hw/terraza-2.jpg" alt="Terraza principal" loading="lazy">
                     <h3>Terraza Panorámica</h3>
                     <p>Vistas espectaculares, muebles cómodos, ideal para atardeceres</p>
                 </div>
-                <div class="terraza-card">
+                <div class="terraza-card animar-tarjeta">
                     <img src="https://i.postimg.cc/d1B3TkJs/terraza-imagen-3.jpg" alt="Terraza lateral" loading="lazy">
                     <h3>Terraza Lateral</h3>
                     <p>Más íntima, rodeada de plantas tropicales</p>
@@ -160,8 +186,36 @@
         </div>
     </section>
 
+    <!-- SECCIÓN DESAYUNO (REDISEÑADA CON PARALLAX) -->
+    <section id="desayuno" class="seccion desayuno-parallax animar-seccion">
+        <div class="desayuno-overlay"></div>
+        <div class="contenedor desayuno-contenido">
+            <div class="desayuno-info">
+                <span class="desayuno-tag animar-aparecer">🍳 Desayuno Cubano</span>
+                <h2 class="animar-aparecer">Empieza tu día con <span class="text-acento">sabor cubano</span></h2>
+                <p class="animar-aparecer">Café recién hecho, frutas tropicales, pan fresco y jugos naturales. Todo preparado con cariño por Isaida.</p>
+                <ul class="desayuno-lista animar-aparecer">
+                    <li><i class="fas fa-check-circle"></i> Café cubano tradicional</li>
+                    <li><i class="fas fa-check-circle"></i> Frutas frescas de temporada</li>
+                    <li><i class="fas fa-check-circle"></i> Pan y mantequilla</li>
+                    <li><i class="fas fa-check-circle"></i> Jugo natural</li>
+                    <li><i class="fas fa-check-circle"></i> Huevos al gusto</li>
+                </ul>
+                <div class="desayuno-precio animar-aparecer">
+                    <strong>5 USD</strong> por persona/día
+                </div>
+                <a href="https://wa.me/5356382909?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20el%20desayuno" target="_blank" class="boton boton-whatsapp animar-aparecer">
+                    <i class="fab fa-whatsapp"></i> Preguntar por WhatsApp
+                </a>
+            </div>
+            <div class="desayuno-imagen animar-tarjeta">
+                <img src="https://i.postimg.cc/P59sb6T6/desayuno.jpg" alt="Desayuno cubano" loading="lazy">
+            </div>
+        </div>
+    </section>
+
     <!-- SECCIÓN PRECIOS -->
-    <section id="precios" class="seccion precios">
+    <section id="precios" class="seccion precios animar-seccion">
         <div class="contenedor">
             <h2 class="seccion-titulo">Precios <span class="text-principal">Claros y Directos</span></h2>
             <p class="seccion-subtitulo">Sin sorpresas, lo que ves es lo que pagas</p>
@@ -181,21 +235,21 @@
     </section>
 
     <!-- SERVICIOS -->
-    <section class="seccion servicios">
+    <section class="seccion servicios animar-seccion">
         <div class="contenedor">
             <h2 class="seccion-titulo">Servicios <span class="text-principal">para tu estancia</span></h2>
             <div class="servicios-grid">
-                <div class="servicio-card">
+                <div class="servicio-card animar-tarjeta">
                     <img src="https://i.postimg.cc/P59sb6T6/desayuno.jpg" alt="Desayuno cubano" loading="lazy">
                     <h3>Desayuno Cubano</h3>
                     <p>Café, frutas frescas, pan, jugo natural. <strong>5 USD</strong></p>
                 </div>
-                <div class="servicio-card">
+                <div class="servicio-card animar-tarjeta">
                     <img src="https://i.postimg.cc/JzvV3TMQ/izaida_y_huespedes.jpg" alt="Tour por La Habana" loading="lazy">
                     <h3>Tours y Traslados</h3>
                     <p>Te ayudamos a organizar tu recorrido por la ciudad</p>
                 </div>
-                <div class="servicio-card">
+                <div class="servicio-card animar-tarjeta">
                     <img src="https://i.postimg.cc/W4ymSH4x/IMG-20250921-WA0002.jpg" alt="Chofer disponible" loading="lazy">
                     <h3>Chofer de Confianza</h3>
                     <p>Traslados al aeropuerto y excursiones</p>
@@ -205,21 +259,21 @@
     </section>
 
     <!-- OPINIONES -->
-    <section class="seccion opiniones">
+    <section class="seccion opiniones animar-seccion">
         <div class="contenedor">
             <h2 class="seccion-titulo">Lo que dicen <span class="text-acento">nuestros huéspedes</span></h2>
             <div class="opiniones-grid">
-                <div class="opinion-card">
+                <div class="opinion-card animar-tarjeta">
                     <i class="fas fa-star estrella"></i>
                     <p>"La terraza es espectacular. Alexander e Isaida son unos anfitriones increíbles."</p>
                     <span>— María, España</span>
                 </div>
-                <div class="opinion-card">
+                <div class="opinion-card animar-tarjeta">
                     <i class="fas fa-star estrella"></i>
                     <p>"La mejor experiencia en Cuba. La habitación impecable y el desayuno delicioso."</p>
                     <span>— Carlos, Argentina</span>
                 </div>
-                <div class="opinion-card">
+                <div class="opinion-card animar-tarjeta">
                     <i class="fas fa-star estrella"></i>
                     <p>"Volveré sin duda. La ubicación es perfecta y la atención insuperable."</p>
                     <span>— Ana, México</span>
@@ -229,7 +283,7 @@
     </section>
 
     <!-- FORMULARIO DE RESERVA -->
-    <section id="reservas" class="seccion reservas">
+    <section id="reservas" class="seccion reservas animar-seccion">
         <div class="contenedor">
             <h2 class="seccion-titulo">Reserva tu <span class="text-principal">experiencia cubana</span></h2>
             <p class="seccion-subtitulo">Completa el formulario y te confirmamos en menos de 24 horas</p>
@@ -294,6 +348,7 @@
             <div>
                 <h4>Enlaces</h4>
                 <a href="#habitacion">Habitación</a>
+                <a href="#bano">Baño</a>
                 <a href="#terraza">Terraza</a>
                 <a href="#precios">Precios</a>
             </div>
@@ -303,6 +358,7 @@
         </div>
     </footer>
 
+    <script src="animaciones.js"></script>
     <script src="config.js"></script>
     <script>
         const hoy = new Date().toISOString().split('T')[0];

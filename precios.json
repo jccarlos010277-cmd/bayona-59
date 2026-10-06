@@ -1,10 +1,10 @@
 {
-  "precio_1_6_noches": 25,
-  "precio_7_14_noches": 20,
+  "precio_1_6_noches": 20,
+  "precio_7_14_noches": 18,
   "precio_15_mas_noches": 15,
-  "precio_desayuno": 5,
+  "precio_desayuno": 7,
   "moneda": "USD",
-  "texto_oferta": "Reserva 7+ noches y el desayuno es GRATIS",
+  "texto_oferta": "Reserva 7+ noches y 1 desayuno es GRATIS",
   "oferta_activa": true,
   "actualizado": "abril 2026"
 }

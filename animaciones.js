@@ -72,17 +72,11 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // ========================================
-    // 4. EFECTO PARALLAX SUAVE EN EL HERO
+    // 4. EFECTO PARALLAX EN EL HERO
+    // ❌ ELIMINADO: causaba que la imagen del hero
+    // "cambiara" al hacer scroll. Ahora el efecto
+    // parallax lo hace CSS con background-attachment: fixed.
     // ========================================
-    const hero = document.querySelector('.hero');
-    if (hero) {
-        window.addEventListener('scroll', function() {
-            const scrolled = window.pageYOffset;
-            if (scrolled < window.innerHeight) {
-                hero.style.backgroundPositionY = scrolled * 0.5 + 'px';
-            }
-        });
-    }
 
     // ========================================
     // 5. CONTADOR ANIMADO EN LAS ESTADÍSTICAS

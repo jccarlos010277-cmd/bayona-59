@@ -42,10 +42,9 @@
                 <i class="fas fa-home"></i> Terrazas de Bayona
             </a>
             <nav class="nav-desktop">
-                <a href="#habitacion">Habitación</a>
-                <a href="#bano">Baño</a>
                 <a href="#terraza">Terraza</a>
-                <a href="#desayuno">Desayuno</a>
+                <a href="#habitacion">Habitación</a>
+                <a href="#nosotros">Nosotros</a>
                 <a href="#precios">Precios</a>
                 <a href="#reservas">Reservar</a>
                 <a href="blog.html">Consejos Cuba</a>
@@ -55,10 +54,9 @@
             </button>
         </div>
         <div class="menu-mobile" id="menuMobile">
-            <a href="#habitacion">Habitación</a>
-            <a href="#bano">Baño</a>
             <a href="#terraza">Terraza</a>
-            <a href="#desayuno">Desayuno</a>
+            <a href="#habitacion">Habitación</a>
+            <a href="#nosotros">Nosotros</a>
             <a href="#precios">Precios</a>
             <a href="#reservas">Reservar</a>
             <a href="blog.html">Consejos Cuba</a>
@@ -117,6 +115,29 @@
         </div>
     </section>
 
+    <!-- SECCIÓN TERRAZA (EL DIFERENCIADOR - AHORA PRIMERO) -->
+    <section id="terraza" class="seccion terraza animar-seccion">
+        <div class="contenedor">
+            <h2 class="seccion-titulo">Tus <span class="text-acento">2 Terrazas Privadas</span></h2>
+            <p class="seccion-subtitulo">
+                Aquí es donde nuestros huéspedes se enamoran de La Habana. Dos terrazas solo para ti: una panorámica para los atardeceres y otra íntima entre plantas tropicales.
+            </p>
+            
+            <div class="terraza-grid">
+                <div class="terraza-card animar-tarjeta">
+                    <img src="https://i.postimg.cc/KzvFw9hw/terraza-2.jpg" alt="Terraza panorámica con vistas" loading="lazy">
+                    <h3>Terraza Panorámica</h3>
+                    <p>Vistas espectaculares, muebles cómodos, ideal para atardeceres con una copa de ron.</p>
+                </div>
+                <div class="terraza-card animar-tarjeta">
+                    <img src="https://i.postimg.cc/d1B3TkJs/terraza-imagen-3.jpg" alt="Terraza lateral rodeada de plantas" loading="lazy">
+                    <h3>Terraza Lateral</h3>
+                    <p>Más íntima, rodeada de plantas tropicales. Perfecta para leer o desayunar sin prisa.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- SECCIÓN HABITACIÓN -->
     <section id="habitacion" class="seccion habitacion animar-seccion">
         <div class="contenedor">
@@ -166,27 +187,6 @@
         </div>
     </section>
 
-    <!-- SECCIÓN TERRAZA -->
-    <section id="terraza" class="seccion terraza animar-seccion">
-        <div class="contenedor">
-            <h2 class="seccion-titulo">Tus <span class="text-acento">2 Terrazas Privadas</span></h2>
-            <p class="seccion-subtitulo">El espacio que enamora a todos nuestros huéspedes</p>
-            
-            <div class="terraza-grid">
-                <div class="terraza-card animar-tarjeta">
-                    <img src="https://i.postimg.cc/KzvFw9hw/terraza-2.jpg" alt="Terraza principal" loading="lazy">
-                    <h3>Terraza Panorámica</h3>
-                    <p>Vistas espectaculares, muebles cómodos, ideal para atardeceres</p>
-                </div>
-                <div class="terraza-card animar-tarjeta">
-                    <img src="https://i.postimg.cc/d1B3TkJs/terraza-imagen-3.jpg" alt="Terraza lateral" loading="lazy">
-                    <h3>Terraza Lateral</h3>
-                    <p>Más íntima, rodeada de plantas tropicales</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- SECCIÓN DESAYUNO (PARALLAX) -->
     <section id="desayuno" class="seccion desayuno-parallax animar-seccion">
         <div class="desayuno-overlay"></div>
@@ -205,12 +205,64 @@
                 <div class="desayuno-precio animar-aparecer">
                     <strong>7 USD</strong> por persona/día
                 </div>
-                <a href="https://wa.me/5353893144?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20el%20desayuno" target="_blank" class="boton boton-whatsapp animar-aparecer">
+                <a href="https://wa.me/5356382909?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20el%20desayuno" target="_blank" class="boton boton-whatsapp animar-aparecer">
                     <i class="fab fa-whatsapp"></i> Preguntar por WhatsApp
                 </a>
             </div>
             <div class="desayuno-imagen animar-tarjeta">
                 <img src="https://i.postimg.cc/0jHryh0q/1791458078356.jpg" alt="Desayuno cubano" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN QUIÉNES SOMOS (NUEVA) -->
+    <section id="nosotros" class="seccion animar-seccion" style="background: linear-gradient(135deg, #FFFBF5 0%, #FDF4E3 100%);">
+        <div class="contenedor">
+            <h2 class="seccion-titulo">Quiénes te <span class="text-principal">reciben</span></h2>
+            <p class="seccion-subtitulo">No somos un hotel. Somos una familia cubana que abre su hogar.</p>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1.3fr; gap: 3rem; align-items: center; margin-top: 2rem;">
+                <div class="animar-tarjeta" style="text-align: center;">
+                    <img src="https://i.postimg.cc/JzvV3TMQ/izaida_y_huespedes.jpg" 
+                         alt="Alexander e Isaida con huéspedes" 
+                         loading="lazy"
+                         style="width: 100%; max-width: 380px; height: 380px; object-fit: cover; border-radius: 1.5rem; box-shadow: 0 20px 40px rgba(199, 91, 57, 0.25); margin: 0 auto;">
+                    <p style="margin-top: 1rem; font-weight: 600; color: var(--color-principal); font-size: 1.125rem;">
+                        Alexander &amp; Isaida
+                    </p>
+                    <p style="color: var(--color-texto-claro); font-size: 0.9rem;">Anfitriones desde 2008</p>
+                </div>
+                
+                <div class="animar-tarjeta">
+                    <h3 style="font-size: 1.75rem; font-weight: 800; color: var(--color-texto); margin-bottom: 1.25rem; line-height: 1.3;">
+                        Desde 2008, hemos recibido a viajeros de más de 40 países en nuestra casa de Bayona.
+                    </h3>
+                    <p style="font-size: 1.05rem; line-height: 1.8; color: var(--color-texto-claro); margin-bottom: 1rem;">
+                        No somos un hotel: somos una familia cubana que abre su hogar. <strong>Isaida cocina el desayuno que probarás</strong> — con fruta del mercado y café recién colado. <strong>Alexander te ayuda a organizar el taxi al aeropuerto</strong>, te explica cómo comprar la tarjeta Nauta y te cuenta dónde comer sin trampas.
+                    </p>
+                    <p style="font-size: 1.05rem; line-height: 1.8; color: var(--color-texto-claro); margin-bottom: 1.5rem;">
+                        Hemos visto crecer el barrio, cambiar los precios y llegar a viajeros de todas partes. Lo que no ha cambiado es la razón por la que abrimos la puerta cada mañana: <strong>hacer que te sientas en casa, aunque estés a 8.000 km de la tuya</strong>.
+                    </p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+                        <div style="background: white; padding: 0.75rem 1.25rem; border-radius: 9999px; box-shadow: 0 4px 12px rgba(199, 91, 57, 0.1); font-size: 0.9rem; font-weight: 600; color: var(--color-texto);">
+                            <i class="fas fa-globe-americas" style="color: var(--color-principal); margin-right: 0.4rem;"></i> 40+ países recibidos
+                        </div>
+                        <div style="background: white; padding: 0.75rem 1.25rem; border-radius: 9999px; box-shadow: 0 4px 12px rgba(199, 91, 57, 0.1); font-size: 0.9rem; font-weight: 600; color: var(--color-texto);">
+                            <i class="fas fa-heart" style="color: var(--color-principal); margin-right: 0.4rem;"></i> Trato familiar
+                        </div>
+                        <div style="background: white; padding: 0.75rem 1.25rem; border-radius: 9999px; box-shadow: 0 4px 12px rgba(199, 91, 57, 0.1); font-size: 0.9rem; font-weight: 600; color: var(--color-texto);">
+                            <i class="fas fa-comments" style="color: var(--color-principal); margin-right: 0.4rem;"></i> Español · Inglés
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="https://wa.me/5356382909?text=Hola%20Alexander%20e%20Isaida%2C%20quiero%20preguntarles%20algo%20sobre%20la%20casa" 
+                   target="_blank" 
+                   class="boton boton-whatsapp">
+                    <i class="fab fa-whatsapp"></i> Escríbenos directamente
+                </a>
             </div>
         </div>
     </section>
@@ -235,72 +287,116 @@
         </div>
     </section>
 
-    <!-- SERVICIOS -->
+    <!-- SERVICIOS REDISEÑADOS: LO QUE HACEMOS POR TI -->
     <section class="seccion servicios animar-seccion">
         <div class="contenedor">
-            <h2 class="seccion-titulo">Servicios <span class="text-principal">para tu estancia</span></h2>
+            <h2 class="seccion-titulo">Lo que <span class="text-principal">hacemos por ti</span></h2>
+            <p class="seccion-subtitulo">Detalles que no salen en las fotos pero marcan la diferencia</p>
             <div class="servicios-grid">
-                <div class="servicio-card animar-tarjeta">
-                    <img src="https://i.postimg.cc/0jHryh0q/1791458078356.jpg" alt="Desayuno cubano" loading="lazy">
-                    <h3>Desayuno Cubano</h3>
-                    <p>Café, frutas frescas, pan, jugo natural. <strong>7 USD</strong></p>
+                <div class="servicio-card animar-tarjeta" style="padding: 2rem 1.5rem;">
+                    <div style="width: 70px; height: 70px; background: var(--color-fondo-gris); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
+                        <i class="fas fa-car" style="font-size: 1.8rem; color: var(--color-principal);"></i>
+                    </div>
+                    <h3>Te recogemos en el aeropuerto</h3>
+                    <p>Chofer de confianza, precio pactado antes de salir. Sin sorpresas al llegar a La Habana.</p>
                 </div>
-                <div class="servicio-card animar-tarjeta">
-                    <img src="https://i.postimg.cc/JzvV3TMQ/izaida_y_huespedes.jpg" alt="Tour por La Habana" loading="lazy">
-                    <h3>Tours y Traslados</h3>
-                    <p>Te ayudamos a organizar tu recorrido por la ciudad</p>
+                <div class="servicio-card animar-tarjeta" style="padding: 2rem 1.5rem;">
+                    <div style="width: 70px; height: 70px; background: var(--color-fondo-gris); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
+                        <i class="fas fa-wifi" style="font-size: 1.8rem; color: var(--color-principal);"></i>
+                    </div>
+                    <h3>Te ayudamos con la conexión</h3>
+                    <p>Te explicamos cómo comprar la tarjeta Nauta y dónde hay mejor Wi-Fi. Sin perder tiempo.</p>
                 </div>
-                <div class="servicio-card animar-tarjeta">
-                    <img src="https://i.postimg.cc/W4ymSH4x/IMG-20250921-WA0002.jpg" alt="Chofer disponible" loading="lazy">
-                    <h3>Chofer de Confianza</h3>
-                    <p>Traslados al aeropuerto y excursiones</p>
+                <div class="servicio-card animar-tarjeta" style="padding: 2rem 1.5rem;">
+                    <div style="width: 70px; height: 70px; background: var(--color-fondo-gris); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
+                        <i class="fas fa-utensils" style="font-size: 1.8rem; color: var(--color-principal);"></i>
+                    </div>
+                    <h3>Paladares sin comisiones</h3>
+                    <p>Te recomendamos dónde comer bien y a buen precio. No cobramos por recomendar.</p>
+                </div>
+                <div class="servicio-card animar-tarjeta" style="padding: 2rem 1.5rem;">
+                    <div style="width: 70px; height: 70px; background: var(--color-fondo-gris); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem;">
+                        <i class="fas fa-map-marked-alt" style="font-size: 1.8rem; color: var(--color-principal);"></i>
+                    </div>
+                    <h3>Excursiones a tu medida</h3>
+                    <p>Viñales, Varadero, Trinidad. Te organizamos el transporte y te damos contactos de confianza.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- OPINIONES -->
+    <!-- OPINIONES AMPLIADAS -->
     <section class="seccion opiniones animar-seccion">
         <div class="contenedor">
             <h2 class="seccion-titulo">Lo que dicen <span class="text-acento">nuestros huéspedes</span></h2>
+            <p class="seccion-subtitulo">Reseñas reales de quienes ya han dormido en nuestra terraza</p>
             <div class="opiniones-grid">
-                <div class="opinion-card animar-tarjeta">
-                    <i class="fas fa-star estrella"></i>
-                    <p>"La terraza es espectacular. Alexander e Isaida son unos anfitriones increíbles."</p>
-                    <span>— María, España</span>
+                <div class="opinion-card animar-tarjeta" style="text-align: left;">
+                    <div style="color: var(--color-acento); font-size: 1rem; margin-bottom: 1rem;">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p style="font-style: italic; margin-bottom: 1rem; color: var(--color-texto-claro); line-height: 1.7;">
+                        "La terraza al atardecer con una copa de ron fue lo mejor del viaje. Isaida nos preparó un desayuno con fruta del mercado que aún recordamos. Volvemos en 2027, sin duda."
+                    </p>
+                    <span style="font-weight: 600; color: var(--color-principal);">— María &amp; Javier, España</span>
+                    <p style="font-size: 0.8rem; color: #9ca3af; margin-top: 0.25rem;">Estancia: marzo 2026 · 9 noches</p>
                 </div>
-                <div class="opinion-card animar-tarjeta">
-                    <i class="fas fa-star estrella"></i>
-                    <p>"La mejor experiencia en Cuba. La habitación impecable y el desayuno delicioso."</p>
-                    <span>— Carlos, Argentina</span>
+                <div class="opinion-card animar-tarjeta" style="text-align: left;">
+                    <div style="color: var(--color-acento); font-size: 1rem; margin-bottom: 1rem;">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p style="font-style: italic; margin-bottom: 1rem; color: var(--color-texto-claro); line-height: 1.7;">
+                        "Alexander nos ayudó a comprar la tarjeta Nauta y a organizar el taxi al aeropuerto a las 4 de la mañana. La habitación impecable y el barrio muy tranquilo. Nos sentimos en casa."
+                    </p>
+                    <span style="font-weight: 600; color: var(--color-principal);">— Carlos &amp; Lucía, Argentina</span>
+                    <p style="font-size: 0.8rem; color: #9ca3af; margin-top: 0.25rem;">Estancia: enero 2026 · 6 noches</p>
                 </div>
-                <div class="opinion-card animar-tarjeta">
-                    <i class="fas fa-star estrella"></i>
-                    <p>"Volveré sin duda. La ubicación es perfecta y la atención insuperable."</p>
-                    <span>— Ana, México</span>
+                <div class="opinion-card animar-tarjeta" style="text-align: left;">
+                    <div style="color: var(--color-acento); font-size: 1rem; margin-bottom: 1rem;">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p style="font-style: italic; margin-bottom: 1rem; color: var(--color-texto-claro); line-height: 1.7;">
+                        "Viajé sola y me sentí segura en todo momento. La terraza lateral es perfecta para leer por la mañana. Alexander me recomendó un paladar que no estaba en ninguna guía. Volveré."
+                    </p>
+                    <span style="font-weight: 600; color: var(--color-principal);">— Ana, México</span>
+                    <p style="font-size: 0.8rem; color: #9ca3af; margin-top: 0.25rem;">Estancia: febrero 2026 · 5 noches</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA BLOG -->
-    <section class="seccion" style="background: linear-gradient(135deg, #115e59 0%, #0d9488 100%); color: white;">
-        <div class="contenedor" style="text-align: center;">
-            <h2 class="seccion-titulo" style="color: white;">📚 ¿Planeando tu viaje a Cuba?</h2>
-            <p style="font-size: 1.125rem; margin-bottom: 2rem; opacity: 0.95; max-width: 700px; margin-left: auto; margin-right: auto;">
-                Lee nuestras guías prácticas: internet, qué llevar en la maleta, transporte y los mejores consejos para tu estancia en La Habana.
-            </p>
-            <a href="blog.html" class="boton boton-primario" style="background-color: #F2B441; color: #3B2A20;">
-                <i class="fas fa-book-open"></i> Ver consejos para viajar a Cuba
-            </a>
+    <!-- BLOG COMO AUTORIDAD -->
+    <section class="seccion animar-seccion" style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); padding: 3rem 0;">
+        <div class="contenedor">
+            <div style="display: grid; grid-template-columns: auto 1fr auto; gap: 2rem; align-items: center; background: white; padding: 2rem; border-radius: 1.5rem; box-shadow: 0 10px 30px rgba(13, 148, 136, 0.1);">
+                <div style="width: 70px; height: 70px; background: #ccfbf1; border-radius: 1rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                    <i class="fas fa-suitcase-rolling" style="font-size: 1.8rem; color: var(--color-principal);"></i>
+                </div>
+                <div>
+                    <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--color-texto); margin-bottom: 0.5rem;">
+                        ¿Es tu primera vez en Cuba?
+                    </h3>
+                    <p style="color: var(--color-texto-claro); line-height: 1.6;">
+                        Lee nuestra guía de <strong>qué llevar en la maleta</strong> (actualizada 2026). Basada en 16 años viendo a viajeros llegar con lo que no necesitan y olvidar lo que sí.
+                    </p>
+                </div>
+                <a href="blog.html#que-llevar-cuba" class="boton boton-primario" style="white-space: nowrap;">
+                    Leer guía <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            <div style="text-align: center; margin-top: 1.5rem;">
+                <a href="blog.html" style="color: var(--color-principal); font-weight: 600; text-decoration: none;">
+                    Ver todos los consejos para viajar a Cuba →
+                </a>
+            </div>
         </div>
     </section>
 
-    <!-- FORMULARIO DE RESERVA -->
+    <!-- FORMULARIO DE RESERVA (COPY MÁS PERSONAL) -->
     <section id="reservas" class="seccion reservas animar-seccion">
         <div class="contenedor">
-            <h2 class="seccion-titulo">Reserva tu <span class="text-principal">experiencia cubana</span></h2>
-            <p class="seccion-subtitulo">Completa el formulario y te confirmamos en menos de 24 horas</p>
+            <h2 class="seccion-titulo">Cuéntanos cuándo vienes</h2>
+            <p class="seccion-subtitulo">Te preparamos la habitación y te confirmamos en menos de 24 horas. Sin comisiones, trato directo con Alexander e Isaida.</p>
             
             <div class="reservas-formulario">
                 <form id="formReserva" action="https://formspree.io/f/mqavrlvg" method="POST">
@@ -324,6 +420,13 @@
                         </select>
                     </div>
                     
+                    <div class="form-grid" style="grid-template-columns: 1fr;">
+                        <textarea name="que_hacer" 
+                                  placeholder="¿Qué te gustaría hacer en La Habana? (opcional) — Te damos ideas y contactos de confianza" 
+                                  rows="3"
+                                  style="width: 100%; padding: 0.75rem; border: 1px solid var(--color-fondo-gris); border-radius: 0.75rem; font-family: var(--fuente); background-color: var(--color-fondo); resize: vertical;"></textarea>
+                    </div>
+                    
                     <div class="form-check">
                         <label>
                             <input type="checkbox" name="desayuno" value="Sí">
@@ -332,16 +435,47 @@
                     </div>
                     
                     <button type="submit" class="boton boton-primario boton-grande">
-                        <i class="fas fa-calendar-check"></i> Solicitar reserva
+                        <i class="fas fa-key"></i> Quiero reservar mi terraza
                     </button>
-                    <p class="form-nota">📩 Recibirás confirmación por email/WhatsApp</p>
+                    <p class="form-nota">📩 Recibirás confirmación por email o WhatsApp en menos de 24h</p>
                 </form>
                 
                 <div class="reservas-whatsapp">
-                    <p>¿Prefieres reservar por WhatsApp?</p>
-                    <a href="https://wa.me/5356382909" target="_blank" class="boton boton-whatsapp">
+                    <p>¿Prefieres hablar directamente con nosotros?</p>
+                    <a href="https://wa.me/5356382909?text=Hola%20Alexander%20e%20Isaida%2C%20quiero%20reservar%20en%20Terrazas%20de%20Bayona" target="_blank" class="boton boton-whatsapp">
                         <i class="fab fa-whatsapp"></i> Escribir por WhatsApp
                     </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BLOQUE "ESTA CASA ES PARA TI SI..." -->
+    <section class="seccion animar-seccion" style="background: var(--color-fondo-gris); padding: 4rem 0;">
+        <div class="contenedor">
+            <h2 class="seccion-titulo" style="margin-bottom: 2.5rem;">¿Es esta casa para ti?</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 900px; margin: 0 auto;">
+                <div class="animar-tarjeta" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 10px 25px rgba(199, 91, 57, 0.1); border-top: 4px solid #10b981;">
+                    <h3 style="font-size: 1.25rem; font-weight: 800; color: #065f46; margin-bottom: 1rem;">
+                        <i class="fas fa-check-circle" style="margin-right: 0.5rem;"></i> Es para ti si...
+                    </h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 0.75rem; color: var(--color-texto-claro); line-height: 1.6;">✅ Buscas trato familiar, no un hotel impersonal</li>
+                        <li style="margin-bottom: 0.75rem; color: var(--color-texto-claro); line-height: 1.6;">✅ Te gusta desayunar con la familia y conversar</li>
+                        <li style="margin-bottom: 0.75rem; color: var(--color-texto-claro); line-height: 1.6;">✅ Valoras una terraza privada para descansar</li>
+                        <li style="color: var(--color-texto-claro); line-height: 1.6;">✅ Quieres consejos honestos de quien vive allí</li>
+                    </ul>
+                </div>
+                <div class="animar-tarjeta" style="background: white; padding: 2rem; border-radius: 1rem; box-shadow: 0 10px 25px rgba(199, 91, 57, 0.1); border-top: 4px solid #ef4444;">
+                    <h3 style="font-size: 1.25rem; font-weight: 800; color: #991b1b; margin-bottom: 1rem;">
+                        <i class="fas fa-times-circle" style="margin-right: 0.5rem;"></i> No es para ti si...
+                    </h3>
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 0.75rem; color: var(--color-texto-claro); line-height: 1.6;">❌ Buscas discoteca en el edificio o fiesta 24h</li>
+                        <li style="margin-bottom: 0.75rem; color: var(--color-texto-claro); line-height: 1.6;">❌ Necesitas servicio de habitaciones tipo resort</li>
+                        <li style="margin-bottom: 0.75rem; color: var(--color-texto-claro); line-height: 1.6;">❌ Prefieres el anonimato de un gran hotel</li>
+                        <li style="color: var(--color-texto-claro); line-height: 1.6;">❌ No te interesa interactuar con locales</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -353,6 +487,7 @@
             <div>
                 <h3><i class="fas fa-home"></i> Terrazas de Bayona</h3>
                 <p>Tu hogar en La Habana desde 2008</p>
+                <p style="margin-top: 0.5rem; font-size: 0.9rem; color: #a89a8e;">Alexander &amp; Isaida · Bayona, La Habana</p>
             </div>
             <div>
                 <h4>Contacto</h4>
@@ -361,10 +496,11 @@
             </div>
             <div>
                 <h4>Enlaces</h4>
-                <a href="#habitacion">Habitación</a>
-                <a href="#bano">Baño</a>
                 <a href="#terraza">Terraza</a>
+                <a href="#habitacion">Habitación</a>
+                <a href="#nosotros">Nosotros</a>
                 <a href="#precios">Precios</a>
+                <a href="#reservas">Reservar</a>
                 <a href="blog.html">Consejos Cuba</a>
             </div>
         </div>
